@@ -1,0 +1,12 @@
+{
+  "name": "gbr-management-system",
+  "version": "1.0.0",
+  "description": "A management system for Green Box Rentals.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Brian Peter & Taylor Hartley",
+  "license": "ISC"
+}
