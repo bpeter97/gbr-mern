@@ -16,12 +16,10 @@ const UserSchema = new Schema({
     required: true
   },
   middleInitial: {
-    type: String,
-    minlength: 1
+    type: String
   },
   suffix: {
-    type: String,
-    minlength: 2
+    type: String
   },
   username: {
     type: String,
@@ -46,8 +44,7 @@ const UserSchema = new Schema({
     required: true
   },
   title: {
-    type: String,
-    minlength: 3
+    type: String
   },
   type: {
     type: String,

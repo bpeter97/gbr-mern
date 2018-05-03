@@ -34,7 +34,7 @@ module.exports = function validateRegisterInput(data) {
 
   // Check to see if middleInitial has validation errors.
   if (
-    Validator.isEmpty(data.middleInitial) &&
+    !Validator.isEmpty(data.middleInitial) &&
     !Validator.isLength(data.middleInitial, { min: 1, max: 1 })
   ) {
     errors.middleInitial = "Middle initial must only be 1 character.";
@@ -42,7 +42,7 @@ module.exports = function validateRegisterInput(data) {
 
   // Check to see if suffix has validation errors.
   if (
-    Validator.isEmpty(data.suffix) &&
+    !Validator.isEmpty(data.suffix) &&
     !Validator.isLength(data.suffix, { min: 2, max: 4 })
   ) {
     errors.suffix = "Suffix must be between 2 and 4.";
@@ -76,7 +76,7 @@ module.exports = function validateRegisterInput(data) {
 
   // Check to see if title has validation errors.
   if (
-    Validator.isEmpty(data.title) &&
+    !Validator.isEmpty(data.title) &&
     !Validator.isLength(data.title, { min: 3 })
   ) {
     errors.title = "Title must be at least 3 characters.";
