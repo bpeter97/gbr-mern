@@ -4,58 +4,58 @@ const Schema = mongoose.Schema;
 // Create the user Schema
 const UserSchema = new Schema({
   firstName: {
-    type: "String",
+    type: String,
     minlength: 2,
     required: true
   },
   lastName: {
-    type: "String",
+    type: String,
     minlength: 2,
     required: true
   },
   middleInitial: {
-    type: "String",
+    type: String,
     minlength: 1
   },
   suffix: {
-    type: "String",
+    type: String,
     minlength: 2
   },
   username: {
-    type: "String",
+    type: String,
     minlength: 4,
     required: true
   },
   password: {
-    type: "String",
+    type: String,
     minlength: 6,
     required: true
   },
   email: {
-    type: "String",
+    type: String,
     minlength: 5,
     required: true
   },
   phone: {
-    type: "String",
+    type: String,
     minlength: 10,
     required: true
   },
   title: {
-    type: "String",
+    type: String,
     minlength: 3
   },
   type: {
-    type: "String",
+    type: String,
     required: true
   },
   tokens: [
     {
       auth: {
-        type: "String"
+        type: String
       },
       token: {
-        type: "String"
+        type: String
       }
     }
   ]

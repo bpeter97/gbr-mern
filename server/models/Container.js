@@ -2,59 +2,57 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ContainerSchema = new Schema({
-    
-    "_id": {
-        "type": "Schema.Types.ObjectId"
+    gbrNumber: {
+        type: String
     },
-    "gbrNumber": {
-        "type": "String"
+    releaseNumber: {
+        type: String
     },
-    "releaseNumber": {
-        "type": "String"
+    size: {
+        type: Schema.Types.ObjectId,
+        required: true
     },
-    "size": {
-        "type": "Schema.Types.ObjectId",
-        "required": true
+    serialNumber: {
+        type: String,
+        required: true
     },
-    "serialNumber": {
-        "type": "String",
-        "required": true
+    hasShelves: {
+        type: Boolean,
+        default: false
     },
-    "hasShelves": {
-        "type": "Boolean",
-        "default": false
+    isPainted: {
+        type: Boolean,
+        default: false
     },
-    "isPainted": {
-        "type": "Boolean",
-        "default": false
+    hasOnboxNumbers: {
+        type: Boolean,
+        default: false
     },
-    "hasOnboxNumbers": {
-        "type": "Boolean",
-        "default": false
+    hasSigns: {
+        type: Boolean,
+        default: false
     },
-    "hasSigns": {
-        "type": "Boolean",
-        "default": false
+    rentalResale: {
+        type: String,
+        minlength: 6,
+        maxlength: 6,
+        required: true
     },
-    "rentalResale": {
-        "type": "String",
-        "minlength": 6,
-        "maxlength": 6,
-        "required": true
+    isFlagged: {
+        type: Boolean,
+        default: false
     },
-    "isFlagged": {
-        "type": "Boolean",
-        "default": false
+    flagReason: {
+        type: String
     },
-    "flagReason": {
-        "type": "String"
+    shortName: {
+        type: Schema.Types.ObjectId,
+        required: true
     },
-    "shortName": {
-        "type": "Schema.Types.ObjectId",
-        "required": true
-    },
-    "stats": {
-        "type": "Schema.Types.ObjectId",
-        "required": true
+    stats: {
+        type: Schema.Types.ObjectId,
+        required: true
     }
 });
+
+module.exports = Container = mongoose.model("Container", ContainerSchema);
