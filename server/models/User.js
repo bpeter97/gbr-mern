@@ -6,11 +6,13 @@ const UserSchema = new Schema({
   firstName: {
     type: String,
     minlength: 2,
+    maxlength: 20,
     required: true
   },
   lastName: {
     type: String,
     minlength: 2,
+    maxlength: 20,
     required: true
   },
   middleInitial: {
@@ -24,6 +26,7 @@ const UserSchema = new Schema({
   username: {
     type: String,
     minlength: 4,
+    maxlength: 20,
     required: true
   },
   password: {
@@ -39,6 +42,7 @@ const UserSchema = new Schema({
   phone: {
     type: String,
     minlength: 10,
+    maxlength: 10,
     required: true
   },
   title: {
@@ -48,17 +52,7 @@ const UserSchema = new Schema({
   type: {
     type: String,
     required: true
-  },
-  tokens: [
-    {
-      auth: {
-        type: String
-      },
-      token: {
-        type: String
-      }
-    }
-  ]
+  }
 });
 
 // Export the newly created model.
