@@ -1,4 +1,4 @@
-// Simple function designed to check to see if a value is empty, returns True or False.
+// Simple function designed to check to see if a value is empty, returns bool.
 const isEmpty = value =>
   // Check if undefined
   value === undefined ||

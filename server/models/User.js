@@ -6,24 +6,29 @@ const UserSchema = new Schema({
   firstName: {
     type: "String",
     minlength: 2,
+    maxlength: 20,
     required: true
   },
   lastName: {
     type: "String",
     minlength: 2,
+    maxlength: 20,
     required: true
   },
   middleInitial: {
     type: "String",
-    minlength: 1
+    minlength: 1,
+    maxlength: 1
   },
   suffix: {
     type: "String",
-    minlength: 2
+    minlength: 2,
+    maxlength: 4
   },
   username: {
     type: "String",
     minlength: 4,
+    maxlength: 20,
     required: true
   },
   password: {
@@ -39,6 +44,7 @@ const UserSchema = new Schema({
   phone: {
     type: "String",
     minlength: 10,
+    maxlength: 10,
     required: true
   },
   title: {
