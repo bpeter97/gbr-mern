@@ -54,17 +54,7 @@ const UserSchema = new Schema({
   type: {
     type: "String",
     required: true
-  },
-  tokens: [
-    {
-      auth: {
-        type: "String"
-      },
-      token: {
-        type: "String"
-      }
-    }
-  ]
+  }
 });
 
 // Export the newly created model.

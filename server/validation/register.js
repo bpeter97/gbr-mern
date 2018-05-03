@@ -19,14 +19,14 @@ module.exports = function validateRegisterInput(data) {
   data.type = !isEmpty(data.type) ? data.type : "";
 
   // Check to see if firstName has validation errors.
-  if (!Validator.isEmpty(data.firstName)) {
+  if (Validator.isEmpty(data.firstName)) {
     errors.firstName = "First name is required.";
   } else if (!Validator.isLength(data.firstName, { min: 2, max: 20 })) {
     errors.firstName = "First name must be between 2 and 20 characters.";
   }
 
   // Check to see if lastName has validation errors.
-  if (!Validator.isEmpty(data.lastName)) {
+  if (Validator.isEmpty(data.lastName)) {
     errors.lastName = "Last name is required.";
   } else if (!Validator.isLength(data.lastName, { min: 2, max: 20 })) {
     errors.lastName = "Last name must be between 2 and 20 characters.";
@@ -34,60 +34,56 @@ module.exports = function validateRegisterInput(data) {
 
   // Check to see if middleInitial has validation errors.
   if (
-    Validator.isEmpty(
-      data.middleInitial &&
-        !Validator.isLength(data.middleInitial, { min: 1, max: 1 })
-    )
+    Validator.isEmpty(data.middleInitial) &&
+    !Validator.isLength(data.middleInitial, { min: 1, max: 1 })
   ) {
     errors.middleInitial = "Middle initial must only be 1 character.";
   }
 
   // Check to see if suffix has validation errors.
   if (
-    Validator.isEmpty(
-      data.suffix && !Validator.isLength(data.suffix, { min: 2, max: 4 })
-    )
+    Validator.isEmpty(data.suffix) &&
+    !Validator.isLength(data.suffix, { min: 2, max: 4 })
   ) {
     errors.suffix = "Suffix must be between 2 and 4.";
   }
 
   // Check to see if username has validation errors.
-  if (!Validator.isEmpty(data.username)) {
+  if (Validator.isEmpty(data.username)) {
     errors.username = "Username is required.";
   } else if (!Validator.isLength(data.username, { min: 4, max: 20 })) {
     errors.username = "Username must be between 4 and 20 characters.";
   }
 
   // Check to see if password has validation errors.
-  if (!Validator.isEmpty(data.password)) {
+  if (Validator.isEmpty(data.password)) {
     errors.password = "Password is required.";
   } else if (!Validator.isLength(data.password, { min: 6 })) {
     errors.password = "Password must be more than 6 characters";
   }
 
   // Check to see if email has validation errors.
-  if (!Validator.isEmpty(data.email)) {
+  if (Validator.isEmpty(data.email)) {
     errors.email = "Email is required.";
   } else if (!Validator.isEmail(data.email)) {
     errors.email = "Must enter a valid email.";
   }
 
   // Check to see if phone has validation errors.
-  if (!Validator.isEmpty(data.phone)) {
+  if (Validator.isEmpty(data.phone)) {
     errors.phone = "Phone is required.";
-  } else if (data.phone.match(/\d/g).length === 10) {
-    errors.phone = "Phone must be exactly 10 digits (5591234567).";
   }
 
   // Check to see if title has validation errors.
   if (
-    Validator.isEmpty(data.title && !Validator.isLength(data.title, { min: 3 }))
+    Validator.isEmpty(data.title) &&
+    !Validator.isLength(data.title, { min: 3 })
   ) {
     errors.title = "Title must be at least 3 characters.";
   }
 
   // Check to see if type has validation errors.
-  if (!Validator.isEmpty(data.type)) {
+  if (Validator.isEmpty(data.type)) {
     errors.type = "Type is required.";
   }
 
