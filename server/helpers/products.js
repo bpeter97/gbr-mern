@@ -10,7 +10,7 @@ const validateProductInput = require("../validation/product");
 // @access  Private
 exports.getProducts = (req, res) => {
   // Check to see if username exists
-  Product.findMany({})
+  Product.find({})
     .populate("type")
     .then(products => {
       if (!products) {
