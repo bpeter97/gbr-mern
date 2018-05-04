@@ -29,12 +29,13 @@ exports.getProducts = (req, res) => {
 // @desc    Retrieves all of the product types
 // @access  Private
 exports.getProductTypes = (req, res) => {
-  ProductType.findMany({})
+  ProductType.find({})
     .then(productTypes => {
       if (!productTypes) {
         return res.send("No product types found.");
       }
-      res.json(productTypes);
+
+      res.json({ productTypes });
     })
     .catch(e => res.status(404).json(e));
 };
