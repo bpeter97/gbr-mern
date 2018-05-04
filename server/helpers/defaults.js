@@ -87,10 +87,10 @@ exports.login = (req, res) => {
 
   // find the user with that username
   User.findOne({ username }).then(user => {
-    // If no user, send 404 with generic login error.
+    // If no user, send 401 with generic login error.
     if (!user) {
       errors.login = loginError;
-      return res.status(404).json(errors);
+      return res.status(401).json(errors);
     }
 
     // check to see if password matches
@@ -123,10 +123,10 @@ exports.login = (req, res) => {
           }
         );
 
-        // else, send back 400 error and generic login error
+        // else, send back 401 error and generic login error
       } else {
         errors.password = loginError;
-        return res.status(400).json(errors);
+        return res.status(401).json(errors);
       }
     });
   });
