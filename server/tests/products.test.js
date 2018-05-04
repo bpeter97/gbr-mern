@@ -79,7 +79,24 @@ describe("PRODUCT TYPES", () => {
   });
 
   describe("GET /products/types/:type", () => {
-    it("should retrieve a specific type");
-    it("should return a 400 error if type not found and error message");
+    it("should retrieve a specific type", done => {
+      request(app)
+        .get("/api/products/types/modification")
+        .expect(200)
+        .expect(res => {
+          expect(res.body.type.type).toBe("modification");
+        })
+        .end(done);
+    });
+
+    it("should return a 400 error if type not found and error message", done => {
+      request(app)
+        .get("/api/products/types/modifications")
+        .expect(400)
+        .expect(res => {
+          expect(res.body.type).toBe("There was no product type found.");
+        })
+        .end(done);
+    });
   });
 });
