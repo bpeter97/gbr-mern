@@ -8,7 +8,7 @@ const defaults = require("./server/routes/api/defaults");
 const products = require("./server/routes/api/products");
 
 // Set the port if no environment port is set.
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 const app = express();
 

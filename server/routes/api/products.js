@@ -24,6 +24,7 @@ router
 // @route   GET api/products/types/:id
 // @desc    Retrieves a specific product type
 // @access  Private
+router.route("/types/:type").get(helpers.getProductType);
 
 // @route   PATCH api/products/types/:id
 // @desc    Updates a specific product type

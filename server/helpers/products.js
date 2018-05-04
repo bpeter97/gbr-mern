@@ -16,7 +16,7 @@ exports.getProducts = (req, res) => {
       if (!products) {
         return res.send("No products found.");
       }
-      res.json(products);
+      res.json({ products });
     })
     .catch(e => res.status(404).json(e));
 };
@@ -66,21 +66,36 @@ exports.postProductType = (req, res) => {
     newProductType
       .save()
       .then(productType => {
-        res.json(productType);
+        res.json({ productType });
       })
       .catch(e => console.log(e));
   });
 };
 
-// @route   GET api/products/types/:id
+// @route   GET api/products/types/:type
 // @desc    Retrieves a specific product type
 // @access  Private
+exports.getProductType = (req, res) => {
+  const rType = req.params.type;
+  errors = {};
 
-// @route   PATCH api/products/types/:id
+  ProductType.findOne({ type: rType })
+    .then(type => {
+      if (!type) {
+        errors.type = "There was no product type found.";
+        return res.status(400).json(errors);
+      }
+
+      res.json({ type });
+    })
+    .catch(e => console.log(e));
+};
+
+// @route   PATCH api/products/types/:type
 // @desc    Updates a specific product type
 // @access  Private
 
-// @route   DELETE api/products/types/:id
+// @route   DELETE api/products/types/:type
 // @desc    Deletes a specific product type
 // @access  Private
 

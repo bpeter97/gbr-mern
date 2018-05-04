@@ -36,7 +36,7 @@ describe("PRODUCT TYPES", () => {
         .expect(200)
         .expect(res => {
           // check to see if new product type exists.
-          expect(res.body.type).toBe(newProductType.type);
+          expect(res.body.productType.type).toBe(newProductType.type);
         })
         .end(err => {
           if (err) {
@@ -76,5 +76,10 @@ describe("PRODUCT TYPES", () => {
             .catch(e => done(e));
         });
     });
+  });
+
+  describe("GET /products/types/:type", () => {
+    it("should retrieve a specific type");
+    it("should return a 400 error if type not found and error message");
   });
 });
