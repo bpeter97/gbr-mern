@@ -15,14 +15,21 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// connect to DB
-mongoose
-  .connect(process.env.mongoURI)
-  .then(() => console.log("MongoDB Connected."))
-  .catch(err => console.log(err));
+// connect to DB, if NODE_ENV is testing, then use test DB
+if (process.env.NODE_ENV == "test") {
+  mongoose.connect(process.env.mongoTestURI).catch(err => console.log(err));
+} else {
+  mongoose
+    .connect(process.env.mongoURI)
+    .then(() => console.log("MongoDB Connected."))
+    .catch(err => console.log(err));
+}
 
 // Assign routes!
 app.use("/api", defaults);
 
 // Start the server
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+// export app for tests.
+module.exports = { app };
