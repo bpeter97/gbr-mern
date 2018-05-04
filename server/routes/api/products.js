@@ -1,12 +1,35 @@
 const express = require("express");
 const router = express.Router();
 
+const helpers = require("../../helpers/products");
+
 // @route   GET api/products/
 // @desc    Retrieves all of the products
 // @access  Private
+router.route("/products").get(helpers.getProducts);
 
 // @route   POST api/products/
 // @desc    Creates a new product.
+// @access  Private
+
+// @route   GET api/products/types
+// @desc    Retrieves all of the product types
+// @access  Private
+
+// @route   POST api/products/types
+// @desc    Creates a new product type
+// @access  Private
+
+// @route   GET api/products/types/:id
+// @desc    Retrieves a specific product type
+// @access  Private
+
+// @route   PATCH api/products/types/:id
+// @desc    Updates a specific product type
+// @access  Private
+
+// @route   DELETE api/products/types/:id
+// @desc    Deletes a specific product type
 // @access  Private
 
 // @route   GET api/products/:id
