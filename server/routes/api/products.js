@@ -15,10 +15,12 @@ router.route("/products").get(helpers.getProducts);
 // @route   GET api/products/types
 // @desc    Retrieves all of the product types
 // @access  Private
+router.route("/products/types").get(helpers.getProductTypes);
 
 // @route   POST api/products/types
 // @desc    Creates a new product type
 // @access  Private
+router.route("/products/types").post(helpers.postProductType);
 
 // @route   GET api/products/types/:id
 // @desc    Retrieves a specific product type
