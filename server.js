@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const defaults = require("./server/routes/api/defaults");
 
 // Set the port if no environment port is set.
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 const app = express();
 
