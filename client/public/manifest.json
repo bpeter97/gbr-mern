@@ -1,0 +1,9 @@
+{
+  "short_name": "GBR",
+  "name": "GBR Management System",
+  "icons": [{}],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#006400",
+  "background_color": "#ffffff"
+}
