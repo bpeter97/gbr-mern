@@ -72,6 +72,9 @@ module.exports = function validateRegisterInput(data) {
   // Check to see if phone has validation errors.
   if (validator.isEmpty(data.phone)) {
     errors.phone = "Phone is required.";
+  } else if (!(validator.isInt(data.phone) && data.phone.length == 10)) {
+    errors.phone =
+      "Must contain 10 digits, no dashes or parenthesis. ex: 5591234567";
   }
 
   // Check to see if title has validation errors.
