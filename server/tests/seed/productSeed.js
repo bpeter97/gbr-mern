@@ -33,11 +33,11 @@ const productTypes = [
 const populateProductTypes = done => {
   ProductType.remove({})
     .then(() => {
-      var modification = new User(productTypes[0]).save();
-      var container = new User(productTypes[1]).save();
-      var rentalModification = new User(productTypes[2]).save();
-      var delivery = new User(productTypes[3]).save();
-      var pickup = new User(productTypes[4]).save();
+      var modification = new ProductType(productTypes[0]).save();
+      var container = new ProductType(productTypes[1]).save();
+      var rentalModification = new ProductType(productTypes[2]).save();
+      var delivery = new ProductType(productTypes[3]).save();
+      var pickup = new ProductType(productTypes[4]).save();
 
       return Promise.all([
         modification,
