@@ -24,6 +24,7 @@ const ProductSchema = new Schema({
   },
   type: {
     type: Schema.Types.ObjectId,
+    ref: "ProductType",
     required: true
   }
 });
