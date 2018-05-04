@@ -1,4 +1,5 @@
 const { ObjectID } = require("mongodb");
+const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
 
 const userOneID = new ObjectID();
@@ -50,11 +51,23 @@ const users = [
 const populateUsers = done => {
   User.remove({})
     .then(() => {
-      var userOne = new User(users[0]).save();
-      var userTwo = new User(users[1]).save();
-      var userThree = new User(users[2]).save();
+      // generate the hash/salted password for the users.
+      bcrypt.genSalt(10, (err, salt) => {
+        // Now hash the password with the salt.
+        bcrypt.hash("thePassword", salt, (err, hash) => {
+          if (err) throw err;
+          // Assign the newly hashed password to the new User object
+          users[0].password = hash;
+          users[1].password = hash;
+          users[2].password = hash;
 
-      return Promise.all([userOne, userTwo, userThree]);
+          var userOne = new User(users[0]).save();
+          var userTwo = new User(users[1]).save();
+          var userThree = new User(users[2]).save();
+
+          return Promise.all([userOne, userTwo, userThree]);
+        });
+      });
     })
     .then(() => done())
     .catch(e => console.log(e));
