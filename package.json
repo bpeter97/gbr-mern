@@ -8,10 +8,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js --timeout 5000",
-<<<<<<< HEAD
     "test-watch": "nodemon --exec \"yarn run test\"",
-=======
->>>>>>> loginbranch
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \" npm run client\""
   },
