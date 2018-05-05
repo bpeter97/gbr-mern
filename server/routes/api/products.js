@@ -7,7 +7,10 @@ const helpers = require("../../helpers/products");
 // @GET     Retrieve all of the products
 // @POST    Create a new product
 // @access  Private
-router.route("/").get(helpers.getProducts);
+router
+  .route("/")
+  .get(helpers.getProducts)
+  .post(helpers.postProduct);
 
 // @route   api/products/types
 // @GET     Retrieves all of the product types
@@ -30,7 +33,7 @@ router
   .delete(helpers.deleteProductType);
 
 // @route   GET api/products/:id
-// @GET   api/products/:id
+// @GET     api/products/:id
 // @PATCH   api/products/:id
 // @DELTE   api/products/:id
 // @access  Private

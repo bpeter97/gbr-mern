@@ -1,4 +1,5 @@
 const { ObjectID } = require("mongodb");
+const _ = require("lodash");
 
 // models
 const Product = require("../models/Product");
@@ -26,6 +27,42 @@ exports.getProducts = (req, res) => {
 // @route   POST api/products/
 // @desc    Creates a new product.
 // @access  Private
+exports.postProduct = (req, res) => {
+  // Fetch validation errors.
+  const { errors, isValid } = validateProductInput("product", req.body);
+
+  // send 400 error with validation errors if not valid.
+  if (!isValid) return res.status(400).json(errors);
+
+  // easily grab posted data
+  var body = _.pick(req.body, [
+    "name",
+    "shortName",
+    "price",
+    "monthlyPrice",
+    "rental"
+  ]);
+  body.type = new ObjectID(req.body.type);
+
+  // check to see if the product type already exists.
+  ProductType.findOne({ name: body.name }).then(product => {
+    if (product) {
+      errors.name = "This product already exists";
+      return res.status(400).json(errors);
+    }
+
+    // If product does not exist, create it.
+    var newProduct = new Product(body);
+
+    // Save it in the DB and return it.
+    newProduct
+      .save()
+      .then(product => {
+        res.json({ product });
+      })
+      .catch(e => console.log(e));
+  });
+};
 
 // @route   GET api/products/types
 // @desc    Retrieves all of the product types
@@ -55,7 +92,7 @@ exports.postProductType = (req, res) => {
   // check to see if the product type already exists.
   ProductType.findOne({ type: req.body.type }).then(productType => {
     if (productType) {
-      errors.type = "This produc type already exists";
+      errors.type = "This product type already exists";
       return res.status(400).json(errors);
     }
 
@@ -82,7 +119,7 @@ exports.getProductType = (req, res) => {
 
   // Check to see if error is a valid ObjectID
   if (!ObjectID.isValid(req.params.id)) {
-    errors.type = "There was no product type found.";
+    errors.type = "There was no product type found";
     return res.status(400).json(errors);
   }
 
@@ -90,7 +127,7 @@ exports.getProductType = (req, res) => {
   ProductType.findById(req.params.id)
     .then(type => {
       if (!type) {
-        errors.type = "There was no product type found.";
+        errors.type = "There was no product type found";
         return res.status(400).json(errors);
       }
 
@@ -109,7 +146,7 @@ exports.patchProductType = (req, res) => {
   // send 400 error with validation errors if not valid.
   if (!isValid || !ObjectID.isValid(req.params.id)) {
     if (!ObjectID.isValid(req.params.id)) {
-      errors.type = "No product found with that ID in the URL.";
+      errors.type = "No product found with that ID in the URL";
     }
     return res.status(400).json(errors);
   }
@@ -121,7 +158,7 @@ exports.patchProductType = (req, res) => {
   ProductType.findOne({ type }).then(newType => {
     // If so, return error!
     if (newType) {
-      errors.type = "That type is already being used.";
+      errors.type = "That type is already being used";
       res.status(400).json(errors);
     }
 
@@ -133,7 +170,7 @@ exports.patchProductType = (req, res) => {
     )
       .then(type => {
         if (!type) {
-          errors.type = "Unable to find and update the type.";
+          errors.type = "Unable to find and update the type";
           return res.status(404).json(errors);
         }
         // Return the newly modified type.
@@ -151,7 +188,7 @@ exports.deleteProductType = (req, res) => {
 
   // Check to see if error is a valid ObjectID
   if (!ObjectID.isValid(req.params.id)) {
-    errors.type = "There was no product type found.";
+    errors.type = "There was no product type found";
     return res.status(400).json(errors);
   }
 
@@ -160,7 +197,7 @@ exports.deleteProductType = (req, res) => {
     .then(type => {
       // Type was not found!
       if (!type) {
-        errors.type = "Unable to find and remove the product type.";
+        errors.type = "Unable to find and remove the product type";
         res.status(404).json(errors);
       }
       // Return the type that was just removed.
