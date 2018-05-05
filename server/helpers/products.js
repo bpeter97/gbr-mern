@@ -1,3 +1,5 @@
+const { ObjectID } = require("mongodb");
+
 // models
 const Product = require("../models/Product");
 const ProductType = require("../models/ProductType");
@@ -72,14 +74,20 @@ exports.postProductType = (req, res) => {
   });
 };
 
-// @route   GET api/products/types/:type
+// @route   GET api/products/types/:id
 // @desc    Retrieves a specific product type
 // @access  Private
 exports.getProductType = (req, res) => {
-  const rType = req.params.type;
   errors = {};
 
-  ProductType.findOne({ type: rType })
+  // Check to see if error is a valid ObjectID
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.type = "There was no product type found.";
+    return res.status(400).json(errors);
+  }
+
+  // Find the object in the DB!
+  ProductType.findById(req.params.id)
     .then(type => {
       if (!type) {
         errors.type = "There was no product type found.";
@@ -91,11 +99,53 @@ exports.getProductType = (req, res) => {
     .catch(e => console.log(e));
 };
 
-// @route   PATCH api/products/types/:type
+// @route   PATCH api/products/types/:id
 // @desc    Updates a specific product type
 // @access  Private
+exports.patchProductType = (req, res) => {
+  // Fetch validation errors.
+  const { errors, isValid } = validateProductInput("productType", req.body);
 
-// @route   DELETE api/products/types/:type
+  // send 400 error with validation errors if not valid.
+  if (!isValid || !ObjectID.isValid(req.params.id)) {
+    if (!ObjectID.isValid(req.params.id)) {
+      errors.type = "No product found with that ID in the URL.";
+    }
+    return res.status(400).json(errors);
+  }
+
+  // assign the type
+  var type = req.body.type;
+
+  // Check to see if new product type already exists
+  ProductType.findOne({ type }).then(newType => {
+    // If so, return error!
+    if (newType) {
+      errors.type = "That type is already being used.";
+      res.status(400).json(errors);
+    }
+
+    // find that document and update the type field.
+    ProductType.findByIdAndUpdate(
+      req.params.id,
+      { $set: { type: type } },
+      { new: true }
+    )
+      .then(type => {
+        if (!type) {
+          errors.type = "Type was unable to be updated";
+          return res.status(404).json(errors);
+        }
+        // Return the newly modified type.
+        res.json({ type });
+      })
+      .catch(e => {
+        res.status(400).send();
+      });
+  });
+};
+
+// @route   DELETE api/products/types/:id
 // @desc    Deletes a specific product type
 // @access  Private
 

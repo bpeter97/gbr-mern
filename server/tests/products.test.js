@@ -78,10 +78,10 @@ describe("PRODUCT TYPES", () => {
     });
   });
 
-  describe("GET /products/types/:type", () => {
+  describe("GET /products/types/:id", () => {
     it("should retrieve a specific type", done => {
       request(app)
-        .get("/api/products/types/modification")
+        .get(`/api/products/types/${productTypes[0]._id.toHexString()}`)
         .expect(200)
         .expect(res => {
           expect(res.body.type.type).toBe("modification");
@@ -91,10 +91,63 @@ describe("PRODUCT TYPES", () => {
 
     it("should return a 400 error if type not found and error message", done => {
       request(app)
-        .get("/api/products/types/modifications")
+        .get(`/api/products/types/${productTypes[0]._id.toHexString()}sss`)
         .expect(400)
         .expect(res => {
           expect(res.body.type).toBe("There was no product type found.");
+        })
+        .end(done);
+    });
+  });
+
+  describe("PATCH /products/types/:id", () => {
+    it("should update a specific type", done => {
+      request(app)
+        .patch(`/api/products/types/${productTypes[0]._id.toHexString()}`)
+        .send({
+          type: "new modification"
+        })
+        .expect(200)
+        .expect(res => {
+          expect(res.body.type.type).toBe("new modification");
+        })
+        .end(done);
+    });
+
+    it("should return a 400 error if no type is entered", done => {
+      request(app)
+        .patch(`/api/products/types/${productTypes[0]._id.toHexString()}`)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.type).toBe("Type is required.");
+        })
+        .end(done);
+    });
+
+    it("should not update a type with a type that is in use", done => {
+      request(app)
+        .patch(`/api/products/types/${productTypes[0]._id.toHexString()}`)
+        .send({
+          type: "container"
+        })
+        .expect(400)
+        .expect(res => {
+          expect(res.body.type).toBe("That type is already being used.");
+        })
+        .end(done);
+    });
+
+    it("should not update a type with a messed up ID", done => {
+      request(app)
+        .patch(`/api/products/types/${productTypes[0]._id.toHexString()}sss`)
+        .send({
+          type: "some new mod"
+        })
+        .expect(400)
+        .expect(res => {
+          expect(res.body.type).toBe(
+            "No product found with that ID in the URL."
+          );
         })
         .end(done);
     });
