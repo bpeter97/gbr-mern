@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 
 // require the routes
 const defaults = require("./server/routes/api/defaults");
+const products = require("./server/routes/api/products");
 
 // Set the port if no environment port is set.
 const port = process.env.PORT || 5000;
@@ -27,6 +28,7 @@ if (process.env.NODE_ENV == "test") {
 
 // Assign routes!
 app.use("/api", defaults);
+app.use("/api/products", products);
 
 // Start the server
 app.listen(port, () => console.log(`Server running on port ${port}`));
