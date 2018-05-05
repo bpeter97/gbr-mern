@@ -7,6 +7,10 @@ const rentalModificationID = new ObjectID();
 const deliveryID = new ObjectID();
 const pickupID = new ObjectID();
 
+const lockboxProdID = new ObjectID();
+const deliveryProdID = new ObjectID();
+const containerProdID = new ObjectID();
+
 const productTypes = [
   {
     _id: modificationID,
@@ -27,6 +31,36 @@ const productTypes = [
   {
     _id: pickupID,
     type: "pickup"
+  }
+];
+
+const products = [
+  {
+    _id: lockboxProdID,
+    name: "Lock Box",
+    shortName: "LBOX",
+    price: 100.0,
+    monthlyPrice: 0.0,
+    rental: false,
+    type: modificationID
+  },
+  {
+    _id: deliveryProdID,
+    name: "20' Delivery",
+    shortName: "20DEL",
+    price: 90.0,
+    monthlyPrice: 0.0,
+    rental: false,
+    type: deliveryID
+  },
+  {
+    _id: containerProdID,
+    name: "20' Container",
+    shortName: "20CON",
+    price: 0.0,
+    monthlyPrice: 100.0,
+    rental: false,
+    type: containerID
   }
 ];
 
@@ -51,7 +85,22 @@ const populateProductTypes = done => {
     .catch(e => console.log(e));
 };
 
+const populateProducts = done => {
+  Product.remove({})
+    .then(() => {
+      var lockbox = new Product(products[0]).save();
+      var delivery = new Product(products[1]).save();
+      var container = new Product(products[2]).save();
+
+      return Promise.all([lockbox, delivery, container]);
+    })
+    .then(() => done())
+    .catch(e => console.log(e));
+};
+
 module.exports = {
   populateProductTypes,
-  productTypes
+  productTypes,
+  populateProducts,
+  products
 };

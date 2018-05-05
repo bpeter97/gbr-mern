@@ -209,11 +209,101 @@ exports.deleteProductType = (req, res) => {
 // @route   GET api/products/:id
 // @desc    Retrieves a single product.
 // @access  Private
+exports.getProduct = (req, res) => {
+  errors = {};
+
+  // Check to see if error is a valid ObjectID
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.product = "There was no product found";
+    return res.status(400).json(errors);
+  }
+
+  // Find the object in the DB!
+  Product.findById(req.params.id)
+    .then(product => {
+      if (!product) {
+        errors.product = "There was no product found";
+        return res.status(400).json(errors);
+      }
+
+      res.json({ product });
+    })
+    .catch(e => console.log(e));
+};
 
 // @route   PATCH api/products/:id
 // @desc    Updates all or part of a single product.
 // @access  Private
+exports.patchProduct = (req, res) => {
+  // Fetch validation errors.
+  const { errors, isValid } = validateProductInput("product", req.body);
+
+  // send 400 error with validation errors if not valid.
+  if (!isValid || !ObjectID.isValid(req.params.id)) {
+    if (!ObjectID.isValid(req.params.id)) {
+      errors.product = "No product found.";
+    }
+    return res.status(400).json(errors);
+  }
+
+  // assign the product
+  var body = _.pick(req.body, [
+    "name",
+    "shortName",
+    "price",
+    "monthlyPrice",
+    "rental"
+  ]);
+  body.type = new ObjectID(req.body.type);
+
+  // find that document and update it.
+  Product.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: {
+        name: body.name,
+        shortName: body.shortName,
+        price: body.price,
+        monthlyPrice: body.monthlyPrice,
+        rental: body.rental,
+        type: body.type
+      }
+    },
+    { new: true }
+  )
+    .then(product => {
+      if (!product) {
+        errors.product = "Unable to find and update the product";
+        return res.status(404).json(errors);
+      }
+      // Return the newly modified product.
+      res.json({ product });
+    })
+    .catch(e => res.status(400).send());
+};
 
 // @route   DELETE api/products/:id
 // @desc    Deletes a single product from the database.
 // @access  Private
+exports.deleteProduct = (req, res) => {
+  errors = {};
+
+  // Check to see if error is a valid ObjectID
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.product = "There was no product found";
+    return res.status(400).json(errors);
+  }
+
+  // Find the product by ID and remove it.
+  Product.findByIdAndRemove(req.params.id)
+    .then(product => {
+      // product was not found!
+      if (!product) {
+        errors.product = "Unable to find and remove the product";
+        res.status(404).json(errors);
+      }
+      // Return the product that was just removed.
+      res.json({ product });
+    })
+    .catch(e => res.status(400).send());
+};

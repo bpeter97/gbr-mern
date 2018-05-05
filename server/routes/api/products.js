@@ -37,5 +37,10 @@ router
 // @PATCH   api/products/:id
 // @DELTE   api/products/:id
 // @access  Private
+router
+  .route("/:id")
+  .get(helpers.getProduct)
+  .patch(helpers.patchProduct)
+  .delete(helpers.deleteProduct);
 
 module.exports = router;
