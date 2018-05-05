@@ -19,7 +19,8 @@ var newUser = {
   email: "jboy@test.com",
   phone: "5559992222",
   title: "Driver",
-  type: "Driver"
+  type: "Driver",
+  validated: false
 };
 
 describe("DEFAULTS", () => {
@@ -183,6 +184,23 @@ describe("DEFAULTS", () => {
           // check to see if success & token has been created.
           expect(res.body.success).toBeFalsy();
           expect(res.body.token).toBeFalsy();
+        })
+        .end(done);
+    });
+
+    it("should not log user in without being validated", done => {
+      request(app)
+        .post("/api/login")
+        .send({
+          username: "blpsr",
+          password: "thePassword"
+        })
+        .expect(401)
+        .expect(res => {
+          // check to see if success & token has been created.
+          expect(res.body.success).toBeFalsy();
+          expect(res.body.token).toBeFalsy();
+          expect(res.body.login).toBe("Your account is not validated yet");
         })
         .end(done);
     });

@@ -47,6 +47,11 @@ const UserSchema = new Schema({
   type: {
     type: String,
     required: true
+  },
+  validated: {
+    type: Boolean,
+    required: true,
+    default: false
   }
 });
 

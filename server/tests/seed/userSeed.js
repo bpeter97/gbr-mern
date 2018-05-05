@@ -18,7 +18,8 @@ const users = [
     email: "test@test.com",
     phone: "5559991234",
     title: "Web Developer",
-    type: "Admin"
+    type: "Admin",
+    validated: true
   },
   {
     _id: userTwoID,
@@ -31,7 +32,8 @@ const users = [
     email: "gbr@test.com",
     phone: "5559991224",
     title: "Manager",
-    type: "Staff"
+    type: "Staff",
+    validated: false
   },
   {
     _id: userThreeID,
@@ -44,7 +46,8 @@ const users = [
     email: "new@test.com",
     phone: "5558881224",
     title: "Web Developer",
-    type: "Admin"
+    type: "Admin",
+    validated: true
   }
 ];
 

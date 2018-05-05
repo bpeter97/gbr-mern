@@ -46,7 +46,8 @@ exports.register = (req, res) => {
             email: req.body.email,
             phone: req.body.phone,
             title: req.body.title,
-            type: req.body.type
+            type: req.body.type,
+            validated: false
           });
 
           // Hash and salt the password and save the user.
@@ -97,35 +98,41 @@ exports.login = (req, res) => {
     bcrypt.compare(password, user.password).then(isMatch => {
       // If it matches, setup payload for JWT, sign the token, and send it.
       if (isMatch) {
-        // the payload - same as user except without password prop
-        const payload = {
-          firstName: user.firstName,
-          lastName: user.lastName,
-          middleInitial: user.middleInitial,
-          suffix: user.suffix,
-          username: user.username,
-          email: user.email,
-          phone: user.phone,
-          title: user.title,
-          type: user.type
-        };
+        if (user.validated == true) {
+          // the payload - same as user except without password prop
+          const payload = {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            middleInitial: user.middleInitial,
+            suffix: user.suffix,
+            username: user.username,
+            email: user.email,
+            phone: user.phone,
+            title: user.title,
+            type: user.type,
+            validated: user.validated
+          };
 
-        // sign and send the token
-        jwt.sign(
-          payload,
-          process.env.secretKey,
-          { expiresIn: 3600 },
-          (err, token) => {
-            res.json({
-              success: true,
-              token
-            });
-          }
-        );
+          // sign and send the token
+          jwt.sign(
+            payload,
+            process.env.secretKey,
+            { expiresIn: 3600 },
+            (err, token) => {
+              res.json({
+                success: true,
+                token
+              });
+            }
+          );
+        } else {
+          errors.login = "Your account is not validated yet";
+          return res.status(401).json(errors);
+        }
 
         // else, send back 401 error and generic login error
       } else {
-        errors.password = loginError;
+        errors.login = loginError;
         return res.status(401).json(errors);
       }
     });
