@@ -2,10 +2,14 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import Home from '../home';
 import About from '../about';
+import Login from '../defaults/Login';
 
 const App = () => (
   <div>
-    <h1>My React App</h1>
+    <main>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/login" component={Login} />
+    </main>
   </div>
 );
 
