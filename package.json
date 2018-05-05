@@ -24,6 +24,7 @@
     "lodash": "^4.17.10",
     "mongodb": "^3.0.7",
     "mongoose": "^5.0.17",
+    "node-geocoder": "^3.22.0",
     "prop-types": "^15.6.1",
     "validator": "^9.4.1"
   },
