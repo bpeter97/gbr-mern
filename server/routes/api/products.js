@@ -27,7 +27,8 @@ router
 router
   .route("/types/:id")
   .get(helpers.getProductType)
-  .patch(helpers.patchProductType);
+  .patch(helpers.patchProductType)
+  .delete(helpers.deleteProductType);
 
 // @route   PATCH api/products/types/:id
 // @desc    Updates a specific product type

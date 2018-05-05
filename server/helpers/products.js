@@ -133,21 +133,41 @@ exports.patchProductType = (req, res) => {
     )
       .then(type => {
         if (!type) {
-          errors.type = "Type was unable to be updated";
+          errors.type = "Unable to find and update the type.";
           return res.status(404).json(errors);
         }
         // Return the newly modified type.
         res.json({ type });
       })
-      .catch(e => {
-        res.status(400).send();
-      });
+      .catch(e => res.status(400).send());
   });
 };
 
 // @route   DELETE api/products/types/:id
 // @desc    Deletes a specific product type
 // @access  Private
+exports.deleteProductType = (req, res) => {
+  errors = {};
+
+  // Check to see if error is a valid ObjectID
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.type = "There was no product type found.";
+    return res.status(400).json(errors);
+  }
+
+  // Find the type by ID and remove it.
+  ProductType.findByIdAndRemove(req.params.id)
+    .then(type => {
+      // Type was not found!
+      if (!type) {
+        errors.type = "Unable to find and remove the product type.";
+        res.status(404).json(errors);
+      }
+      // Return the type that was just removed.
+      res.json({ type });
+    })
+    .catch(e => res.status(400).send());
+};
 
 // @route   GET api/products/:id
 // @desc    Retrieves a single product.

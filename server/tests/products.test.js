@@ -1,3 +1,4 @@
+const { ObjectID } = require("mongodb");
 const expect = require("expect");
 const request = require("supertest");
 
@@ -147,6 +148,51 @@ describe("PRODUCT TYPES", () => {
         .expect(res => {
           expect(res.body.type).toBe(
             "No product found with that ID in the URL."
+          );
+        })
+        .end(done);
+    });
+  });
+
+  describe("DELETE /products/types/:id", () => {
+    it("should remove a specific type", done => {
+      request(app)
+        .delete(`/api/products/types/${productTypes[0]._id.toHexString()}`)
+        .expect(200)
+        .expect(res => {
+          expect(res.body.type.type).toBe(productTypes[0].type);
+        })
+        .end(err => {
+          if (err) {
+            return done(err);
+          }
+
+          ProductType.findById(productTypes[0]._id.toHexString())
+            .then(type => {
+              expect(type).toBeFalsy();
+              done();
+            })
+            .catch(e => done(e));
+        });
+    });
+
+    it("should return 400 and an error message if id is invalid", done => {
+      request(app)
+        .delete(`/api/products/types/${productTypes[0]._id.toHexString()}ss`)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.type).toBe("There was no product type found.");
+        })
+        .end(done);
+    });
+
+    it("should return 404 and an error message if id is not found", done => {
+      request(app)
+        .delete(`/api/products/types/${new ObjectID().toHexString()}`)
+        .expect(404)
+        .expect(res => {
+          expect(res.body.type).toBe(
+            "Unable to find and remove the product type."
           );
         })
         .end(done);
