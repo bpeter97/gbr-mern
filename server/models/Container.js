@@ -13,8 +13,7 @@ const ContainerSchema = new Schema({
     required: true
   },
   serialNumber: {
-    type: String,
-    required: true
+    type: String
   },
   hasShelves: {
     type: Boolean,
