@@ -3,14 +3,11 @@ const router = express.Router();
 
 const helpers = require("../../helpers/products");
 
-// @route   GET api/products/
-// @desc    Retrieves all of the products
+// @route   api/products/
+// @GET     Retrieve all of the products
+// @POST    Create a new product
 // @access  Private
 router.route("/").get(helpers.getProducts);
-
-// @route   POST api/products/
-// @desc    Creates a new product.
-// @access  Private
 
 // @route   api/products/types
 // @GET     Retrieves all of the product types
@@ -21,8 +18,10 @@ router
   .get(helpers.getProductTypes)
   .post(helpers.postProductType);
 
-// @route   GET api/products/types/:id
-// @desc    Retrieves a specific product type
+// @route   api/products/types/:id
+// @GET     Retrieves all of the product types
+// @PATCH   Updates a product type
+// @DELETE  Deletes a product type
 // @access  Private
 router
   .route("/types/:id")
@@ -30,24 +29,10 @@ router
   .patch(helpers.patchProductType)
   .delete(helpers.deleteProductType);
 
-// @route   PATCH api/products/types/:id
-// @desc    Updates a specific product type
-// @access  Private
-
-// @route   DELETE api/products/types/:id
-// @desc    Deletes a specific product type
-// @access  Private
-
 // @route   GET api/products/:id
-// @desc    Retrieves a single product.
-// @access  Private
-
-// @route   PATCH api/products/:id
-// @desc    Updates all or part of a single product.
-// @access  Private
-
-// @route   DELETE api/products/:id
-// @desc    Deletes a single product from the database.
+// @GET   api/products/:id
+// @PATCH   api/products/:id
+// @DELTE   api/products/:id
 // @access  Private
 
 module.exports = router;
