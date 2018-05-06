@@ -17,15 +17,15 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    // if (this.props.auth.isAuthenticated) {
-    //   this.props.history.push("/dashboard");
-    // }
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    // if (nextProps.auth.isAuthenticated) {
-    //   this.props.history.push("/dashboard");
-    // }
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
@@ -65,7 +65,7 @@ class Login extends Component {
                   type="username"
                   value={this.state.username}
                   onChange={this.onChange}
-                  error={errors.username}
+                  error={errors.login}
                 />
                 <TextFieldGroup
                   placeholder="Password"
@@ -73,7 +73,7 @@ class Login extends Component {
                   type="password"
                   value={this.state.password}
                   onChange={this.onChange}
-                  error={errors.password}
+                  error={errors.login}
                 />
                 <input type="submit" className="btn btn-info mt-2" />
               </form>
