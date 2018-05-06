@@ -23,7 +23,7 @@ const ContainerSchema = new Schema({
     type: Boolean,
     default: false
   },
-  hasOnboxNumbers: {
+  hasOnBoxNumbers: {
     type: Boolean,
     default: false
   },
