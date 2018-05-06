@@ -449,16 +449,26 @@ exports.patchContainer = (req, res) => {
       // check for equality, if not equal update stats.
       if (!_.isEqual(stats, container.stats)) {
         // update the containerStats
-        ContainerStats.findByIdAndUpdate(
-          body.stats,
-          { $set: stats },
-          { new: true }
-        )
-          .then(updatedStats => {
-            if (!updatedStats) {
-              errors.container = "Unable to update the container's stats";
-              return res.status(400).json(errors);
-            }
+        ContainerStats.findById(body.stats)
+          .then(newStats => {
+            newStats.currentAddress = stats.currentAddress;
+            newStats.currentlyRented = stats.currentlyRented;
+            newStats.currentRentee = stats.currentRentee;
+            newStats.previousRentees = stats.previousRentees;
+            newStats.getLatLon();
+
+            ContainerStats.findByIdAndUpdate(
+              body.stats,
+              { $set: newStats },
+              { new: true }
+            )
+              .then(updatedStats => {
+                if (!updatedStats) {
+                  errors.container = "Unable to update the container's stats";
+                  return res.status(400).json(errors);
+                }
+              })
+              .catch(e => console.log(e));
           })
           .catch(e => console.log(e));
       }
