@@ -17,17 +17,17 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    }
+    // if (this.props.auth.isAuthenticated) {
+    //   this.props.history.push("/dashboard");
+    // }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    }
+    // if (nextProps.auth.isAuthenticated) {
+    //   this.props.history.push("/dashboard");
+    // }
     if (nextProps.errors) {
-      this.setState({ error: nextProps.errors });
+      this.setState({ errors: nextProps.errors });
     }
   }
 
@@ -91,7 +91,7 @@ class Login extends Component {
   }
 }
 
-Login.PropTypes = {
+Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
