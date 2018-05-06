@@ -12,13 +12,19 @@ body {
 button:disabled {
   opacity: 0.5;
 }
-h1 {
-  padding-top: 25%;
-}
+
 nav, a {
   color:#fff;
 }
-
+nav {
+  background-color: #006400;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: gray;
+}
 
 
 .btn {
