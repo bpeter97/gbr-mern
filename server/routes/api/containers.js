@@ -12,26 +12,6 @@ router
   .get(helpers.getContainers)
   .post(helpers.postContainer);
 
-// @route   api/containers/shortnames
-// @GET     Retrieves all of the container short names
-// @POST    Creates a container short name
-// @access  Private
-router
-  .route("/shortnames")
-  .get(helpers.getContainerShortNames)
-  .post(helpers.postContainerShortName);
-
-// @route   api/containers/shortnames/:id
-// @GET     Retrieves a container short name
-// @PATCH   Updates a container short name
-// @DELETE  Deletes a container short name
-// @access  Private
-router
-  .route("/shortnames/:id")
-  .get(helpers.getContainerShortName)
-  .patch(helpers.patchContainerShortName)
-  .delete(helpers.deleteContainerShortName);
-
 // @route   api/containers/sizes
 // @GET     Retrieves all of the container size
 // @POST    Creates a container size

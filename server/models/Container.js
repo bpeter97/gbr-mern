@@ -42,10 +42,6 @@ const ContainerSchema = new Schema({
   flagReason: {
     type: String
   },
-  shortName: {
-    type: Schema.Types.ObjectId,
-    required: true
-  },
   stats: {
     type: Schema.Types.ObjectId,
     required: true
