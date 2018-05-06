@@ -131,9 +131,9 @@ containers = [
 const populateContainerSizes = done => {
   ContainerSize.remove({})
     .then(() => {
-      var twenty = new ProductType(containerSizes[0]).save();
-      var fourty = new ProductType(containerSizes[1]).save();
-      var twentydoubledoors = new ProductType(containerSizes[2]).save();
+      var twenty = new ContainerSize(containerSizes[0]).save();
+      var fourty = new ContainerSize(containerSizes[1]).save();
+      var twentydoubledoors = new ContainerSize(containerSizes[2]).save();
 
       return Promise.all([twenty, fourty, twentydoubledoors]);
     })
@@ -144,9 +144,9 @@ const populateContainerSizes = done => {
 const populateContainerStats = done => {
   ContainerStats.remove({})
     .then(() => {
-      var twenty = new ProductType(containerStats[0]).save();
-      var fourty = new ProductType(containerStats[1]).save();
-      var twentydoubledoors = new ProductType(containerStats[2]).save();
+      var twenty = new ContainerStats(containerStats[0]).save();
+      var fourty = new ContainerStats(containerStats[1]).save();
+      var twentydoubledoors = new ContainerStats(containerStats[2]).save();
 
       return Promise.all([twenty, fourty, twentydoubledoors]);
     })
@@ -157,9 +157,9 @@ const populateContainerStats = done => {
 const populateContainers = done => {
   Container.remove({})
     .then(() => {
-      var twenty = new ProductType(containers[0]).save();
-      var fourty = new ProductType(containers[1]).save();
-      var twentydoubledoors = new ProductType(containers[2]).save();
+      var twenty = new Container(containers[0]).save();
+      var fourty = new Container(containers[1]).save();
+      var twentydoubledoors = new Container(containers[2]).save();
 
       return Promise.all([twenty, fourty, twentydoubledoors]);
     })
