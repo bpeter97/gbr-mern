@@ -20,29 +20,24 @@ module.exports = function validateContainerInput(type, data) {
         errors.rentalResale = "Select rental or resale";
       }
 
-      if (data.hasShelves != typeof Boolean) {
+      if (!validator.isBoolean(String(data.hasShelves))) {
         errors.hasShelves =
           "You must select whether the container has shelves or not";
       }
 
-      if (data.isPainted != typeof Boolean) {
+      if (!validator.isBoolean(String(data.isPainted))) {
         errors.isPainted =
           "You must select whether the container is painted or not";
       }
 
-      if (data.hasOnBoxNumbers != typeof Boolean) {
+      if (!validator.isBoolean(String(data.hasOnBoxNumbers))) {
         errors.hasOnBoxNumbers =
           "You must select whether the container has GBR numbers or not";
       }
 
-      if (data.hasSigns != typeof Boolean) {
+      if (!validator.isBoolean(String(data.hasSigns))) {
         errors.hasSigns =
           "You must select whether the container has signs or not";
-      }
-
-      if (isEmpty(data.shortName) || !ObjectID.isValid(data.shortName)) {
-        errors.shortName =
-          "You must select a short name or add a new one if it is not listed";
       }
 
       break;
@@ -64,8 +59,14 @@ module.exports = function validateContainerInput(type, data) {
         errors.shortName = "Short name is required";
       }
       break;
-    case "containerStats":
+    case "updateContainer":
       // Set data values to blanks if they're empty.
+      data.gbrNumber = !isEmpty(data.gbrNumber) ? data.gbrNumber : "";
+      data.releaseNumber = !isEmpty(data.releaseNumber)
+        ? data.releaseNumber
+        : "";
+      data.serialNumber = !isEmpty(data.serialNumber) ? data.serialNumber : "";
+      data.rentalResale = !isEmpty(data.rentalResale) ? data.rentalResale : "";
       data.currentAddress = !isEmpty(data.currentAddress)
         ? data.currentAddress
         : "";
@@ -79,9 +80,33 @@ module.exports = function validateContainerInput(type, data) {
       }
 
       // Check to see if currentlyRented has validation errors.
-      if (data.currentlyRented != typeof Boolean) {
+      if (!validator.isBoolean(String(data.currentlyRented))) {
         errors.currentlyRented =
           "You must select whether the container is currently rented";
+      }
+
+      if (validator.isEmpty(data.rentalResale)) {
+        errors.rentalResale = "Select rental or resale";
+      }
+
+      if (!validator.isBoolean(String(data.hasShelves))) {
+        errors.hasShelves =
+          "You must select whether the container has shelves or not";
+      }
+
+      if (!validator.isBoolean(String(data.isPainted))) {
+        errors.isPainted =
+          "You must select whether the container is painted or not";
+      }
+
+      if (!validator.isBoolean(String(data.hasOnBoxNumbers))) {
+        errors.hasOnBoxNumbers =
+          "You must select whether the container has GBR numbers or not";
+      }
+
+      if (!validator.isBoolean(String(data.hasSigns))) {
+        errors.hasSigns =
+          "You must select whether the container has signs or not";
       }
       break;
     default:

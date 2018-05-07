@@ -1,5 +1,6 @@
 const { ObjectID } = require("mongodb");
 const _ = require("lodash");
+const isEmpty = require("./../validation/is-empty");
 
 // models
 const Container = require("../models/Container");
@@ -53,7 +54,7 @@ exports.postContainer = (req, res) => {
   // first, create stats for container
   newConStats = new ContainerStats({
     currentlyRented: false,
-    currentRentee: {},
+    currentRentee: null,
     previousRentees: []
   });
 
@@ -234,12 +235,12 @@ exports.getContainer = (req, res) => {
   }
 
   // Find the container, populate the sub models and return it.
-  Container.findById(req.param.id)
+  Container.findById(req.params.id)
     .populate("size")
     .populate("stats")
     .then(container => {
       if (!container) {
-        erros.container = "There was no container found";
+        errors.container = "There was no container found";
         return res.status(400).json(errors);
       }
       res.json({ container });
@@ -250,7 +251,10 @@ exports.getContainer = (req, res) => {
 // @desc    Updates all or part of a single container
 // @access  Private
 exports.patchContainer = (req, res) => {
-  let errors = {};
+  const { errors, isValid } = validateContainerInput(
+    "updateContainer",
+    req.body
+  );
 
   // Check to see if id is a valid ObjectID
   if (!ObjectID.isValid(req.params.id)) {
@@ -274,12 +278,22 @@ exports.patchContainer = (req, res) => {
   body.stats = new ObjectID(req.body.stats);
 
   var stats = _.pick(req.body, ["currentAddress", "currentlyRented"]);
-  stats.currentRentee = new ObjectID(req.body.currentRentee);
+
+  if (!isEmpty(req.body.currentRentee)) {
+    stats.currentRentee = new ObjectID(req.body.currentRentee);
+  } else {
+    stats.currentRentee = null;
+  }
+
   stats.previousRentees = [];
 
-  req.body.previousRentees.map(rentee =>
-    stats.previousRentees.push(new ObjectID(rentee))
-  );
+  if (req.body.previousRentees != "" || req.body.previousRentees != null) {
+    req.body.previousRentees = req.body.previousRentees.split(",");
+
+    req.body.previousRentees.map(rentee =>
+      stats.previousRentees.push(new ObjectID(rentee))
+    );
+  }
 
   // find populated container by id
   Container.findById(req.params.id)
@@ -303,7 +317,7 @@ exports.patchContainer = (req, res) => {
             newStats.currentlyRented = stats.currentlyRented;
             newStats.currentRentee = stats.currentRentee;
             newStats.previousRentees = stats.previousRentees;
-            newStats.getLatLon();
+            newStats = newStats.getLatLon();
 
             ContainerStats.findByIdAndUpdate(
               body.stats,
@@ -322,17 +336,27 @@ exports.patchContainer = (req, res) => {
       }
 
       // finally, update the container
-      Container.findByIdAndUpdate(
-        req.params.id,
-        { $set: body },
-        { new: true }
-      ).then(container => {
-        if (!container) {
-          errors.container = "Unable to update the container";
-          return res.status(400).json(errors);
-        }
-        res.json({ container });
-      });
+      Container.findByIdAndUpdate(req.params.id, { $set: body }, { new: true })
+        .then(container => {
+          if (!container) {
+            errors.container = "Unable to update the container";
+            return res.status(400).json(errors);
+          }
+
+          Container.findById(container._id)
+            .populate("size")
+            .populate("stats")
+            .then(container => {
+              if (!container) {
+                errors.container = "Unable to update the container";
+                return res.status(400).json(errors);
+              }
+
+              res.json({ container });
+            })
+            .catch(e => console.log(e));
+        })
+        .catch(e => console.log(e));
     });
 };
 

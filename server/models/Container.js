@@ -10,6 +10,7 @@ const ContainerSchema = new Schema({
   },
   size: {
     type: Schema.Types.ObjectId,
+    ref: "ContainerSize",
     required: true
   },
   serialNumber: {
@@ -44,6 +45,7 @@ const ContainerSchema = new Schema({
   },
   stats: {
     type: Schema.Types.ObjectId,
+    ref: "ContainerStats",
     required: true
   }
 });
