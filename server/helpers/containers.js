@@ -88,11 +88,11 @@ exports.postContainer = (req, res) => {
 // @access  Private
 exports.getContainerSizes = (req, res) => {
   ContainerSize.find({})
-    .then(sizes => {
-      if (!sizes) {
+    .then(containerSizes => {
+      if (!containerSizes) {
         return res.status(400).json({ error: "No sizes found" });
       }
-      res.json({ sizes });
+      res.json({ containerSizes });
     })
     .catch(e => res.status(404).json(e));
 };
@@ -116,9 +116,9 @@ exports.postContainerSize = (req, res) => {
     }
 
     // If it does not, create it.
-    var conSize = {
+    var conSize = new ContainerSize({
       size: req.body.size
-    };
+    });
 
     conSize
       .save()
@@ -184,12 +184,12 @@ exports.patchContainerSize = (req, res) => {
       { $set: { size } },
       { new: true }
     )
-      .then(size => {
-        if (!size) {
+      .then(containerSize => {
+        if (!containerSize) {
           errors.size = "Unable to find and update the size";
           return res.status(400).json(errors);
         }
-        res.json({ type });
+        res.json({ containerSize });
       })
       .catch(e => console.log(e));
   });
@@ -209,14 +209,14 @@ exports.deleteContainerSize = (req, res) => {
 
   // Find the size by ID and remove it.
   ContainerSize.findByIdAndRemove(req.params.id)
-    .then(size => {
+    .then(containerSize => {
       // size was not found!
-      if (!size) {
+      if (!containerSize) {
         errors.size = "Unable to find and remove the size";
         res.status(404).json(errors);
       }
       // Return the size that was just removed.
-      res.json({ size });
+      res.json({ containerSize });
     })
     .catch(e => res.status(400).send());
 };

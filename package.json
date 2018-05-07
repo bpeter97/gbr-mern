@@ -7,11 +7,11 @@
     "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "test":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js --reporter mochawesome --reporter-options reportFilename=all --timeout 5000",
+    "test-all":
+      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=alltests --timeout 5000",
     "test-containers":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/containers.test.js --reporter mochawesome --reporter-options reportFilename=containers --timeout 5000",
-    "test-watch": "nodemon --exec \"yarn run test\"",
+      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/containers.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=containers --timeout 5000",
+    "test-watch": "nodemon --exec \"yarn run test-all\"",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \" npm run client\""
   },
