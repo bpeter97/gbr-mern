@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/defaultsActions";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
 
 import { Provider } from "react-redux";
 import store from "./store";
