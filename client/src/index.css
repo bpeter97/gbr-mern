@@ -57,28 +57,31 @@ a:hover {
 }
 
 .navItem {
-  color: #006400;
+  color: #fff;
   font-size: 16px;
   padding: 8px 12px;
-  background: #fff;
+  background: #006400;
   display: inline-flex;
   vertical-align: middle;
   width: 100%;
   text-align: center;
 }
 
-.navItem.active {
+/* .navItem.active {
   background-color: #006400;
   color: #fff;
 }
 .navItem.hover {
   background-color: #006400;
   color: #fff;
-}
+} */
 
+.navItemText {
+  display: inline-flex;
+  margin-left: 10px;
+}
 .navItemIcon {
   display: inline-flex;
-  padding-right: 20px;
 }
 
 .btn {
@@ -119,17 +122,30 @@ a:hover {
   background-position: center center;
 }
 
-#sideNavWrapper {
+#sideNav {
   display: flex;
-  align-content: left;
   align-items: stretch;
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  padding-bottom: 16;
   font-family: "Roboto";
-  width: 240px;
-  border-right: 1px solid #006400;
+  min-width: 150px;
+  max-width: 150px;
+  border-right: #006400 1px solid;
+  background-color: #006400;
+}
+
+#sideNav.collapsed {
+  min-width: 80px;
+  max-width: 80px;
+}
+
+#sideNav.collapsed .navItem {
+  justify-content: center;
+}
+
+#sideNav.collapsed .navItemText {
+  display: none;
 }
 
 @media (max-width: 991.98px) {

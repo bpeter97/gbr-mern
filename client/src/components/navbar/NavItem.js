@@ -21,11 +21,11 @@ class NavItem extends Component {
     return (
       <Link to={pathname}>
         <div className="navItem">
-          <div className="navItemIcon">
+          <div id="navItemIcon">
             <Icon20 size={20} icon={icon} />
           </div>
 
-          <div>{name}</div>
+          <div className="navItemText">{name}</div>
         </div>
       </Link>
     );
