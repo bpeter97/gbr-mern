@@ -27,16 +27,15 @@ if (localStorage.jwtToken) {
 
 class App extends Component {
   render() {
-    return <Provider store={store}>
+    return( <Provider store={store}>
         <Router>
           <div className="App">
+          <Navbar />
             <Route exact path="/login" component={Login} />
-            <Switch>
               <PrivateRoute exact path="/" component={Dashboard} />
-            </Switch>
           </div>
         </Router>
-      </Provider>;
+    </Provider>);
   }
 }
 

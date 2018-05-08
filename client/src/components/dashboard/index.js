@@ -13,7 +13,6 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <h1>DASHBOARD PAGE!</h1>
       </div>
     );
