@@ -1,5 +1,6 @@
 const { ObjectID } = require("mongodb");
 const _ = require("lodash");
+const isEmpty = require("./../validation/is-empty");
 
 // models
 const Container = require("../models/Container");
@@ -53,7 +54,7 @@ exports.postContainer = (req, res) => {
   // first, create stats for container
   newConStats = new ContainerStats({
     currentlyRented: false,
-    currentRentee: {},
+    currentRentee: null,
     previousRentees: []
   });
 
@@ -88,11 +89,11 @@ exports.postContainer = (req, res) => {
 // @access  Private
 exports.getContainerSizes = (req, res) => {
   ContainerSize.find({})
-    .then(sizes => {
-      if (!sizes) {
+    .then(containerSizes => {
+      if (!containerSizes) {
         return res.status(400).json({ error: "No sizes found" });
       }
-      res.json({ sizes });
+      res.json({ containerSizes });
     })
     .catch(e => res.status(404).json(e));
 };
@@ -116,9 +117,9 @@ exports.postContainerSize = (req, res) => {
     }
 
     // If it does not, create it.
-    var conSize = {
+    var conSize = new ContainerSize({
       size: req.body.size
-    };
+    });
 
     conSize
       .save()
@@ -184,12 +185,12 @@ exports.patchContainerSize = (req, res) => {
       { $set: { size } },
       { new: true }
     )
-      .then(size => {
-        if (!size) {
+      .then(containerSize => {
+        if (!containerSize) {
           errors.size = "Unable to find and update the size";
           return res.status(400).json(errors);
         }
-        res.json({ type });
+        res.json({ containerSize });
       })
       .catch(e => console.log(e));
   });
@@ -209,14 +210,14 @@ exports.deleteContainerSize = (req, res) => {
 
   // Find the size by ID and remove it.
   ContainerSize.findByIdAndRemove(req.params.id)
-    .then(size => {
+    .then(containerSize => {
       // size was not found!
-      if (!size) {
+      if (!containerSize) {
         errors.size = "Unable to find and remove the size";
         res.status(404).json(errors);
       }
       // Return the size that was just removed.
-      res.json({ size });
+      res.json({ containerSize });
     })
     .catch(e => res.status(400).send());
 };
@@ -234,12 +235,12 @@ exports.getContainer = (req, res) => {
   }
 
   // Find the container, populate the sub models and return it.
-  Container.findById(req.param.id)
+  Container.findById(req.params.id)
     .populate("size")
     .populate("stats")
     .then(container => {
       if (!container) {
-        erros.container = "There was no container found";
+        errors.container = "There was no container found";
         return res.status(400).json(errors);
       }
       res.json({ container });
@@ -250,11 +251,16 @@ exports.getContainer = (req, res) => {
 // @desc    Updates all or part of a single container
 // @access  Private
 exports.patchContainer = (req, res) => {
-  let errors = {};
+  const { errors, isValid } = validateContainerInput(
+    "updateContainer",
+    req.body
+  );
 
-  // Check to see if id is a valid ObjectID
-  if (!ObjectID.isValid(req.params.id)) {
-    errors.container = "There was no container found";
+  // send 400 error with validation errors if not valid.
+  if (!isValid || !ObjectID.isValid(req.params.id)) {
+    if (!ObjectID.isValid(req.params.id)) {
+      errors.container = "There was no container found";
+    }
     return res.status(400).json(errors);
   }
 
@@ -274,12 +280,22 @@ exports.patchContainer = (req, res) => {
   body.stats = new ObjectID(req.body.stats);
 
   var stats = _.pick(req.body, ["currentAddress", "currentlyRented"]);
-  stats.currentRentee = new ObjectID(req.body.currentRentee);
+
+  if (!isEmpty(req.body.currentRentee)) {
+    stats.currentRentee = new ObjectID(req.body.currentRentee);
+  } else {
+    stats.currentRentee = null;
+  }
+
   stats.previousRentees = [];
 
-  req.body.previousRentees.map(rentee =>
-    stats.previousRentees.push(new ObjectID(rentee))
-  );
+  if (req.body.previousRentees != "" || req.body.previousRentees != null) {
+    req.body.previousRentees = req.body.previousRentees.split(",");
+
+    req.body.previousRentees.map(rentee =>
+      stats.previousRentees.push(new ObjectID(rentee))
+    );
+  }
 
   // find populated container by id
   Container.findById(req.params.id)
@@ -303,7 +319,7 @@ exports.patchContainer = (req, res) => {
             newStats.currentlyRented = stats.currentlyRented;
             newStats.currentRentee = stats.currentRentee;
             newStats.previousRentees = stats.previousRentees;
-            newStats.getLatLon();
+            newStats = newStats.getLatLon();
 
             ContainerStats.findByIdAndUpdate(
               body.stats,
@@ -322,17 +338,27 @@ exports.patchContainer = (req, res) => {
       }
 
       // finally, update the container
-      Container.findByIdAndUpdate(
-        req.params.id,
-        { $set: body },
-        { new: true }
-      ).then(container => {
-        if (!container) {
-          errors.container = "Unable to update the container";
-          return res.status(400).json(errors);
-        }
-        res.json({ container });
-      });
+      Container.findByIdAndUpdate(req.params.id, { $set: body }, { new: true })
+        .then(container => {
+          if (!container) {
+            errors.container = "Unable to update the container";
+            return res.status(400).json(errors);
+          }
+
+          Container.findById(container._id)
+            .populate("size")
+            .populate("stats")
+            .then(container => {
+              if (!container) {
+                errors.container = "Unable to update the container";
+                return res.status(400).json(errors);
+              }
+
+              res.json({ container });
+            })
+            .catch(e => console.log(e));
+        })
+        .catch(e => console.log(e));
     });
 };
 
@@ -344,7 +370,7 @@ exports.deleteContainer = (req, res) => {
 
   // Check to see if id is a valid ObjectID
   if (!ObjectID.isValid(req.params.id)) {
-    errors.size = "There was no size found";
+    errors.container = "There was no container found";
     return res.status(400).json(errors);
   }
 
@@ -357,7 +383,7 @@ exports.deleteContainer = (req, res) => {
       }
 
       // Delete the container stats first
-      ContainerStats.findByIdAndRemove(container.stats._id)
+      ContainerStats.findByIdAndRemove(container.stats)
         .then(stats => {
           if (!stats) {
             errors.container = "Unable to delete the containers stats";
@@ -367,7 +393,7 @@ exports.deleteContainer = (req, res) => {
         .catch(e => console.log(e));
 
       // delete the container
-      Container.remove({ _id: container._id })
+      Container.findByIdAndRemove(container._id)
         .then(container => {
           if (!container) {
             errors.container = "Unable to delete the container";
@@ -379,17 +405,4 @@ exports.deleteContainer = (req, res) => {
         .catch(e => console.log(e));
     })
     .catch(e => console.log(e));
-
-  // Find the size by ID and remove it.
-  ContainerSize.findByIdAndRemove(req.params.id)
-    .then(size => {
-      // size was not found!
-      if (!size) {
-        errors.size = "Unable to find and remove the size";
-        res.status(404).json(errors);
-      }
-      // Return the size that was just removed.
-      res.json({ size });
-    })
-    .catch(e => res.status(400).send());
 };

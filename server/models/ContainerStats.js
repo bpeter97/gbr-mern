@@ -35,7 +35,7 @@ ContainerStatsSchema.methods = {
     var stats = this;
 
     var options = {
-      privoder: "google",
+      privoder: "freegeoip",
       httpAdapter: "https",
       formatter: "json"
     };
@@ -47,10 +47,12 @@ ContainerStatsSchema.methods = {
         stats.latitude = "";
         stats.longitude = "";
       } else {
-        stasts.latitude = res[0].latitude;
-        stasts.longitude = res[0].longitude;
+        stats.latitude = res[0].latitude;
+        stats.longitude = res[0].longitude;
       }
     });
+
+    return stats;
   }
 };
 
