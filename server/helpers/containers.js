@@ -256,9 +256,11 @@ exports.patchContainer = (req, res) => {
     req.body
   );
 
-  // Check to see if id is a valid ObjectID
-  if (!ObjectID.isValid(req.params.id)) {
-    errors.container = "There was no container found";
+  // send 400 error with validation errors if not valid.
+  if (!isValid || !ObjectID.isValid(req.params.id)) {
+    if (!ObjectID.isValid(req.params.id)) {
+      errors.container = "There was no container found";
+    }
     return res.status(400).json(errors);
   }
 
@@ -368,7 +370,7 @@ exports.deleteContainer = (req, res) => {
 
   // Check to see if id is a valid ObjectID
   if (!ObjectID.isValid(req.params.id)) {
-    errors.size = "There was no size found";
+    errors.container = "There was no container found";
     return res.status(400).json(errors);
   }
 
@@ -381,7 +383,7 @@ exports.deleteContainer = (req, res) => {
       }
 
       // Delete the container stats first
-      ContainerStats.findByIdAndRemove(container.stats._id)
+      ContainerStats.findByIdAndRemove(container.stats)
         .then(stats => {
           if (!stats) {
             errors.container = "Unable to delete the containers stats";
@@ -391,7 +393,7 @@ exports.deleteContainer = (req, res) => {
         .catch(e => console.log(e));
 
       // delete the container
-      Container.remove({ _id: container._id })
+      Container.findByIdAndRemove(container._id)
         .then(container => {
           if (!container) {
             errors.container = "Unable to delete the container";
@@ -403,17 +405,4 @@ exports.deleteContainer = (req, res) => {
         .catch(e => console.log(e));
     })
     .catch(e => console.log(e));
-
-  // Find the size by ID and remove it.
-  ContainerSize.findByIdAndRemove(req.params.id)
-    .then(size => {
-      // size was not found!
-      if (!size) {
-        errors.size = "Unable to find and remove the size";
-        res.status(404).json(errors);
-      }
-      // Return the size that was just removed.
-      res.json({ size });
-    })
-    .catch(e => res.status(400).send());
 };

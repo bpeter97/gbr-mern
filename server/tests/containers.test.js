@@ -375,7 +375,8 @@ describe("CONTAINERS", () => {
         currentRentee: null,
         previousRentees:
           "5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427",
-        currentAddress: "1733 S. Casablanca St., Visalia, CA 93292"
+        currentAddress: "1733 S. Casablanca St., Visalia, CA 93292",
+        currentlyRented: false
       };
 
       request(app)
@@ -396,6 +397,106 @@ describe("CONTAINERS", () => {
             patchData.currentAddress
           );
           expect(res.body.container.stats.currentRentee).toBe(null);
+        })
+        .end(done);
+    });
+
+    it("should not patch a container with invalid fields", done => {
+      patchData = {
+        gbrNumber: containers[1].gbrNumber,
+        releaseNumber: containers[1].releaseNumber,
+        size: "",
+        serialNumber: containers[1].serialNumber,
+        hasShelves: true,
+        isPainted: true,
+        hasOnBoxNumbers: true,
+        hasSigns: true,
+        isFlagged: true,
+        flagReason: "Container is super damaged",
+        stats: containers[1].stats.toHexString(),
+        currentRentee: null,
+        rentalResale: "",
+        currentAddress: "",
+        currentlyRented: "",
+        previousRentees:
+          "5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427"
+      };
+
+      request(app)
+        .patch(`/api/containers/${containers[1]._id}`)
+        .send(patchData)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.container).toBeFalsy();
+          expect(res.body.size).toBe("Size is required");
+          expect(res.body.currentlyRented).toBe(
+            "You must select whether the container is currently rented"
+          );
+          expect(res.body.currentAddress).toBe("Current address is required");
+          expect(res.body.rentalResale).toBe("Select rental or resale");
+        })
+        .end(done);
+    });
+
+    it("should not patch a container with invalid fields", done => {
+      patchData = {
+        gbrNumber: containers[1].gbrNumber,
+        releaseNumber: containers[1].releaseNumber,
+        size: containers[1].size.toHexString(),
+        serialNumber: containers[1].serialNumber,
+        hasShelves: true,
+        isPainted: true,
+        hasOnBoxNumbers: true,
+        hasSigns: true,
+        rentalResale: "Rental",
+        isFlagged: true,
+        flagReason: "Container is super damaged",
+        stats: containers[1].stats.toHexString(),
+        currentRentee: null,
+        previousRentees:
+          "5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427",
+        currentAddress: "1733 S. Casablanca St., Visalia, CA 93292",
+        currentlyRented: false
+      };
+
+      request(app)
+        .patch(`/api/containers/${containers[1]._id}ss`)
+        .send(patchData)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.container).toBe("There was no container found");
+        })
+        .end(done);
+    });
+  });
+
+  describe("DELETE /containers/:id", () => {
+    it("should delete a container", done => {
+      request(app)
+        .delete(`/api/containers/${containers[1]._id}`)
+        .expect(200)
+        .expect(res => {
+          expect(res.body.container._id).toBe(containers[1]._id.toHexString());
+        })
+        .end(err => {
+          if (err) {
+            return done(err);
+          }
+
+          Container.findById(containers[1]._id)
+            .then(container => {
+              expect(container).toBeFalsy();
+              done();
+            })
+            .catch(e => done(e));
+        });
+    });
+    it("should not delete a container with invalid ID", done => {
+      request(app)
+        .delete(`/api/containers/${containers[1]._id}sss`)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.container).toBe("There was no container found");
         })
         .end(done);
     });

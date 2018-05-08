@@ -15,6 +15,11 @@ module.exports = function validateContainerInput(type, data) {
         : "";
       data.serialNumber = !isEmpty(data.serialNumber) ? data.serialNumber : "";
       data.rentalResale = !isEmpty(data.rentalResale) ? data.rentalResale : "";
+      // data.size = !isEmpty(data.size) ? data.size : "";
+
+      // if (validator.isEmpty(data.size)) {
+      //   errors.size = "Size is required";
+      // }
 
       if (validator.isEmpty(data.rentalResale)) {
         errors.rentalResale = "Select rental or resale";
@@ -67,12 +72,14 @@ module.exports = function validateContainerInput(type, data) {
         : "";
       data.serialNumber = !isEmpty(data.serialNumber) ? data.serialNumber : "";
       data.rentalResale = !isEmpty(data.rentalResale) ? data.rentalResale : "";
-      data.currentAddress = !isEmpty(data.currentAddress)
-        ? data.currentAddress
-        : "";
       data.currentlyRented = !isEmpty(data.currentlyRented)
         ? data.currentlyRented
         : "";
+      data.size = !isEmpty(data.size) ? data.size : "";
+
+      if (validator.isEmpty(data.size)) {
+        errors.size = "Size is required";
+      }
 
       // Check to see if currentAddress has validation errors.
       if (validator.isEmpty(data.currentAddress)) {
