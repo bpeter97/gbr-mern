@@ -29,29 +29,18 @@ if (localStorage.jwtToken) {
 
 class App extends Component {
   render() {
-    const { isAuthenticated } = this.props;
-    //IF true, then render Navbar component, else 
-    isAuthenticated ? <Navbar /> : '';
-    return( <Provider store={store}>
+    return (
+      <Provider store={store}>
         <Router>
-        
           <div className="App">
+            <Navbar />
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/" component={Dashboard} />
           </div>
         </Router>
-    </Provider>);
+      </Provider>
+    );
   }
 }
-
-App.propTypes = {
-  auth: PropTypes.object.isRequired,
-  error: PropTypes.object.isRequired
-}
-
-const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors
-});
 
 export default App;
