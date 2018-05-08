@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { logoutUser } from "../../actions/defaultsActions";
-import Navbar from "../navbar";
 
 class Dashboard extends Component {
   constructor() {

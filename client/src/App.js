@@ -12,7 +12,7 @@ import store from "./store";
 import Login from "./components/defaults/Login";
 import PrivateRoute from "./components/common/PrivateRoute";
 import Dashboard from "./components/dashboard";
-import Navbar from "./components/navbar";
+import Navbar from "./components/navbar/SideNav";
 import Calendar from "./components/calendar";
 import Customers from "./components/customers";
 
@@ -37,9 +37,15 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/login" component={Login} />
-            <PrivateRoute exact path="/" component={Dashboard} />
-            <PrivateRoute exact path="/calendar" component={Calendar} />
-            <PrivateRoute exact path="/customers" component={Customers} />
+            <Switch>
+              <PrivateRoute exact path="/" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/calendar" component={Calendar} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/customers" component={Customers} />
+            </Switch>
           </div>
         </Router>
       </Provider>
