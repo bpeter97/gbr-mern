@@ -47,15 +47,15 @@ render() {
             <div style={{padding: 16, background: '#1a2229', textAlign: 'center' }}>
                 <div style={{ display: 'inline',width: 40, height: 40 }}>
                     <img
-                        src="https://e27.co/img/profiles/15483/profile_pic.png"
+                        // src={USER.AVATAR}
                         style={{ borderRadius: '30px', width: 40, height: 40 }}
                     />
                 </div>
                 <div style={{paddingLeft: 6, paddingTop: 6 }}>
                     <div style={{ fontSize: 12, color: '#E5E5E5' }}>
-                        {' '}Warren Mira{' '}
+                        {/* {' '}{USER.NAME}{' '} */}
                     </div>
-                    <div style={{ fontSize: 11 }}> Ninja Developer </div>
+                    <div style={{ fontSize: 11 }}>{USER.TITLE} </div>
                 </div>
             </div>
             <SideNav
@@ -64,7 +64,6 @@ render() {
                 highlightBgColor="#00acac"
                 defaultSelected="products"
                 highlightColor="#FFF"
-                style= {{textAlign: 'left'}}
             >
                 <div />
                 <Nav id="dashboard">
