@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 
 import styled from "styled-components";
 
+import {logoutUser} from '../../actions/defaultsActions'
+
 import SideNav, { Nav, NavIcon, NavText } from "react-sidenav";
 import SvgIcon from "react-icons-kit";
 
@@ -13,6 +15,7 @@ import { ic_business_center } from "react-icons-kit/md/ic_business_center";
 import { ic_format_list_bulleted } from "react-icons-kit/md/ic_format_list_bulleted";
 import { ic_people } from "react-icons-kit/md/ic_people";
 import { ic_shopping_cart } from "react-icons-kit/md/ic_shopping_cart";
+import { ic_exit_to_app } from 'react-icons-kit/md/ic_exit_to_app'
 
 const Icon20 = props => <SvgIcon size={props.size || 20} icon={props.icon} />;
 
@@ -35,6 +38,11 @@ const BaseContainer = props => (
 );
 
 class Navbar extends Component {
+  onLogoutClick(e) {
+    this.props.logoutUser();
+  }
+
+
   render() {
     const { isAuthenticated } = this.props.auth;
 
@@ -130,12 +138,15 @@ class Navbar extends Component {
               </NavIcon>
               <NavText> Sales </NavText>
             </Nav>
-            <Nav id="deliveries">
+            <a
+            onClick={this.onLogoutClick.bind(this)}>
+            <Nav id="logout">
               <NavIcon>
-                <Icon20 icon={ic_shopping_cart} />
+                <Icon20 icon={ic_exit_to_app} />
               </NavIcon>
-              <NavText> Deliveries </NavText>
+              <NavText> Logout </NavText>
             </Nav>
+            </a>
           </SideNav>
         </div>
       );
@@ -152,7 +163,8 @@ Navbar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  logoutUser: PropTypes.func.isRequired
 });
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, {logoutUser})(Navbar);
