@@ -7,131 +7,43 @@ import { ic_exit_to_app } from "react-icons-kit/md/ic_exit_to_app";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
 
-import SvgIcon from "react-icons-kit";
-
-const Icon20 = props => <SvgIcon size={props.size || 20} icon={props.icon} />;
+import NavHeader from "./NavHeader";
+import NavItem from "./NavItem";
 
 class SideNav extends Component {
-  constructor() {
-    super();
-    this.state = {};
+  onLogoutClick(e) {
+    e.preventDefault();
+    this.props.logoutUser();
   }
 
   render() {
     const { firstName, lastName, title } = this.props;
     return (
       <nav>
-        <div className="navHeader">
-          <div className="navHeaderImgDiv">
-            <img
-              id="navHeaderImg"
-              src="https://avatars1.githubusercontent.com/u/17460785?s=400&u=d8b0d093c1d4ad51c2700d15cdf3898cdee42006&v=4"
-              alt=""
-            />
-          </div>
-          <div className="navHeaderText">
-            {firstName} {lastName}
-          </div>
-          <div id="navHeaderTitle" className="navHeaderText">
-            {title}
-          </div>
-        </div>
+        <NavHeader firstName={firstName} lastName={lastName} title={title} />
         <div className="navSection">
-          <div
-            className={classnames("navItem", {
-              active: window.location.pathname === "/"
-            })}
-          >
-            <div className="navItemIcon">
-              <Icon20 size={20} icon={ic_exit_to_app} />
-            </div>
-            <Link to="/">
-              <div>Dashboard</div>
-            </Link>
-          </div>
-          <Link to="/containers">
-            <div
-              className={classnames("navItem", {
-                active: window.location.pathname === "/containers"
-              })}
-            >
-              <div className="navItemIcon">
-                <Icon20 size={20} icon={ic_exit_to_app} />
-              </div>
-              <div>Containers</div>
-            </div>
-          </Link>
-          <Link to="/customers">
-            <div
-              className={classnames("navItem", {
-                active: window.location.pathname === "/customers"
-              })}
-            >
-              <div className="navItemIcon">
-                <Icon20 size={20} icon={ic_exit_to_app} />
-              </div>
-              <div>Customers</div>
-            </div>
-          </Link>
-          <Link to="/quotes">
-            <div
-              className={classnames("navItem", {
-                active: window.location.pathname === "/quotes"
-              })}
-            >
-              <div className="navItemIcon">
-                <Icon20 size={20} icon={ic_exit_to_app} />
-              </div>
-              <div>Quotes</div>
-            </div>
-          </Link>
-          <Link to="/orders">
-            <div
-              className={classnames("navItem", {
-                active: window.location.pathname === "/Orders"
-              })}
-            >
-              <div className="navItemIcon">
-                <Icon20 size={20} icon={ic_exit_to_app} />
-              </div>
-              <div>Orders</div>
-            </div>
-          </Link>
-          <Link to="/products">
-            <div
-              className={classnames("navItem", {
-                active: window.location.pathname === "/products"
-              })}
-            >
-              <div className="navItemIcon">
-                <Icon20 size={20} icon={ic_exit_to_app} />
-              </div>
-              <div>Products</div>
-            </div>
-          </Link>
-          <Link to="/calendar">
-            <div
-              className={classnames("navItem", {
-                active: window.location.pathname === "/calendar"
-              })}
-            >
-              <div className="navItemIcon">
-                <Icon20 size={20} icon={ic_exit_to_app} />
-              </div>
-              <div>Calendar</div>
-            </div>
-          </Link>
-
-          <div className={classnames("navItem")}>
-            <div className="navItemIcon">
-              <Icon20 size={20} icon={ic_exit_to_app} />
-            </div>
-            <div>Logout</div>
-          </div>
+          <NavItem name="Dashboard" icon={ic_exit_to_app} pathname="/" />
+          <NavItem name="Customers" icon={ic_exit_to_app} pathname="/" />
+          <NavItem name="Quotes" icon={ic_exit_to_app} pathname="/" />
+          <NavItem name="Orders" icon={ic_exit_to_app} pathname="/" />
+          <NavItem name="Products" icon={ic_exit_to_app} pathname="/" />
+          <NavItem name="Calendar" icon={ic_exit_to_app} pathname="/" />
+          <a onClick={this.onLogoutClick.bind(this)}>
+            <NavItem name="Logout" icon={ic_exit_to_app} pathname="/" />
+          </a>
         </div>
       </nav>
     );
   }
 }
 
-export default SideNav;
+SideNav.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logoutUser })(SideNav);
