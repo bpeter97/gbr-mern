@@ -13,7 +13,8 @@ import Login from "./components/defaults/Login";
 import PrivateRoute from "./components/common/PrivateRoute";
 import Dashboard from "./components/dashboard";
 import Navbar from "./components/navbar";
-import Calendar from './components/calendar';
+import Calendar from "./components/calendar";
+import Customers from "./components/customers";
 
 import "./App.css";
 
@@ -37,7 +38,8 @@ class App extends Component {
             <Navbar />
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/" component={Dashboard} />
-            <PrivateRoute exact path="/calendar" component={Calendar}/>
+            <PrivateRoute exact path="/calendar" component={Calendar} />
+            <PrivateRoute exact path="/customers" component={Customers} />
           </div>
         </Router>
       </Provider>

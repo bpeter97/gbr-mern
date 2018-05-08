@@ -7,6 +7,7 @@ body {
   padding: 0;
   color: #006400;
   font-family: 'Open Sans', sans-serif;
+    line-height: 1.5;
 }
 
 button:disabled {
@@ -25,6 +26,61 @@ a {
 a:hover {
   color: gray;
 }
+
+.navHeader {
+  text-align: center;
+  padding: 16px;
+  background-color: #006400;
+}
+.navHeaderImgDiv {
+  display: inline;
+}
+#navHeaderImg {
+  border-radius: 30px;
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  border-style: none;
+}
+.navHeaderText {
+  padding-left: 6px;
+  padding-top: 6px;
+  font-size: 12px;
+  color: #fff;
+}
+#navHeaderTitle {
+  font-size: 11px;
+}
+
+.navSection {
+box-sizing: border-box;
+}
+
+.navItem {
+  color: #006400;
+  font-size: 16px;
+  padding: 8px 12px;
+  background: #fff;
+  display: inline-flex;
+  vertical-align: middle;
+  width: 100%;
+  text-align: center;
+}
+
+.navItem.active {
+  background-color: #006400;
+  color: #fff;
+}
+.navItem.hover {
+  background-color: #006400;
+  color: #fff;
+}
+
+.navItemIcon {
+  display: inline-flex;
+  padding-right: 20px;
+}
+
 
 
 .btn {
@@ -66,6 +122,7 @@ a:hover {
 #sideNavWrapper {
   display: flex;
   align-content: left;
+  align-items: stretch;
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
@@ -73,8 +130,10 @@ a:hover {
   font-family: 'Roboto';
   width: 240px;
   border-right: 1px solid #006400;
-  
+
 }
+
+
 
 
 @media (max-width: 991.98px) {
