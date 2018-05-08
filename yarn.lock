@@ -1853,7 +1853,7 @@ node-pre-gyp@^0.9.0:
     semver "^5.3.0"
     tar "^4"
 
-nodemon@^1.17.3:
+nodemon@^1.17.4:
   version "1.17.4"
   resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.17.4.tgz#243ff9c69ffbf1175f2460f9b023f35a072c15e9"
   dependencies:
@@ -2822,7 +2822,11 @@ uuid@^3.0.1, uuid@^3.1.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
 
-validator@^9.1.2, validator@^9.4.1:
+validator@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-10.1.0.tgz#0ef24583c23556922f0228a8fe4ac5f1b4a08cd5"
+
+validator@^9.1.2:
   version "9.4.1"
   resolved "https://registry.yarnpkg.com/validator/-/validator-9.4.1.tgz#abf466d398b561cd243050112c6ff1de6cc12663"
 
