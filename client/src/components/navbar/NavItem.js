@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import classnames from "classnames";
 import { ic_exit_to_app } from "react-icons-kit/md/ic_exit_to_app";
@@ -18,17 +19,15 @@ class NavItem extends Component {
     const { name, pathname, icon, clickFunc } = this.props;
 
     return (
-      <div
-        className={classnames("navItem", {
-          active: window.location.pathname === { pathname }
-        })}
-      >
-        <div className="navItemIcon">
-          <Icon20 size={20} icon={icon} />
-        </div>
+      <Link to={pathname}>
+        <div className="navItem">
+          <div className="navItemIcon">
+            <Icon20 size={20} icon={icon} />
+          </div>
 
-        <div>{name}</div>
-      </div>
+          <div>{name}</div>
+        </div>
+      </Link>
     );
   }
 }
