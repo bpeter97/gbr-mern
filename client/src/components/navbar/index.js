@@ -36,32 +36,28 @@ const BaseContainer = props =>
     </div>;
 
 class Navbar extends Component {
-constructor() {
-    super();
-
-}
 
 render() {
     return (
-        <BaseContainer>
-            <div style={{padding: 16, background: '#1a2229', textAlign: 'center' }}>
+        <div id='sideNavWrapper'>
+            <div style={{padding: 16, background: '#006400', textAlign: 'center' }}>
                 <div style={{ display: 'inline',width: 40, height: 40 }}>
                     <img
-                        // src={USER.AVATAR}
+                        src="https://avatars1.githubusercontent.com/u/17460785?s=400&u=d8b0d093c1d4ad51c2700d15cdf3898cdee42006&v=4"
                         style={{ borderRadius: '30px', width: 40, height: 40 }}
                     />
                 </div>
                 <div style={{paddingLeft: 6, paddingTop: 6 }}>
-                    <div style={{ fontSize: 12, color: '#E5E5E5' }}>
-                        {/* {' '}{USER.NAME}{' '} */}
+                    <div style={{ fontSize: 12, color: '#fff' }}>
+                        USERS NAME{/* {' '}{USER.NAME}{' '} */}
                     </div>
-                    <div style={{ fontSize: 11 }}>{USER.TITLE} </div>
+                    <div style={{ fontSize: 11, color: '#fff' }}>USERS TITLE</div>
                 </div>
             </div>
             <SideNav
-                hoverBgColor="#232a2f"
-                hoverColor="red"
-                highlightBgColor="#00acac"
+                hoverBgColor="#006400"
+                hoverColor="#fff"
+                highlightBgColor="#006400"
                 defaultSelected="products"
                 highlightColor="#FFF"
             >
@@ -116,7 +112,7 @@ render() {
                     <NavText> Deliveries </NavText>
                 </Nav>
             </SideNav>
-        </BaseContainer>
+        </div>
     );
 }
 

@@ -63,6 +63,20 @@ a:hover {
   background-position: center center;
 }
 
+#sideNavWrapper {
+  display: flex;
+  align-content: left;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100vh;
+  padding-bottom: 16;
+  font-family: 'Roboto';
+  width: 240px;
+  border-right: 1px solid #006400;
+  
+}
+
+
 @media (max-width: 991.98px) {
   #login-block {
     opacity: 0.95;
