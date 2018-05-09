@@ -87,6 +87,7 @@ a:hover {
 .navItemText {
   display: inline-flex;
   margin-left: 10px;
+  align-items: center;
 }
 .navItemIcon {
   display: inline-flex;
