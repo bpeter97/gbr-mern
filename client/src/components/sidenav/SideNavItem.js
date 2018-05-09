@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 import SvgIcon from "react-icons-kit";
 
-const Icon24 = props => <SvgIcon size={20} icon={props.icon} />;
+const Icon24 = props => <SvgIcon size={24} icon={props.icon} />;
 
-class NavItem extends Component {
+class SideNavItem extends Component {
   constructor() {
     super();
     this.state = {};
@@ -43,10 +43,10 @@ class NavItem extends Component {
   }
 }
 
-NavItem.propTypes = {
+SideNavItem.propTypes = {
   name: PropTypes.string.isRequired,
   pathname: PropTypes.string,
   icon: PropTypes.object.isRequired
 };
 
-export default NavItem;
+export default SideNavItem;

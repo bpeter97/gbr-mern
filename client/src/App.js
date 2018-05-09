@@ -10,7 +10,7 @@ import store from "./store";
 import Login from "./components/defaults/Login";
 import PrivateRoute from "./components/common/PrivateRoute";
 import Dashboard from "./components/dashboard";
-import SideNav from "./components/navbar/SideNav";
+import SideNav from "./components/sidenav/SideNav";
 import Calendar from "./components/calendar";
 import Customers from "./components/customers";
 

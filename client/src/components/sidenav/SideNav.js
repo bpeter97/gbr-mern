@@ -15,8 +15,8 @@ import {
   notCollapsedIcon
 } from "../../icons/";
 
-import NavHeader from "./NavHeader";
-import NavItem from "./NavItem";
+import SideNavHeader from "./SideNavHeader";
+import SideNavItem from "./SideNavItem";
 
 class SideNav extends Component {
   constructor() {
@@ -38,38 +38,56 @@ class SideNav extends Component {
   render() {
     let navbarContent;
     let minimizedIcon;
+    let minimizedText;
     const { isAuthenticated, user } = this.props.auth;
     const collapsed = this.state.collapsed;
     minimizedIcon = collapsed ? CollapsedIcon : notCollapsedIcon;
+    minimizedText = collapsed ? "Expand" : "Minimize";
 
     if (isAuthenticated) {
       navbarContent = (
         <nav id="sideNav" className={collapsed ? "collapsed" : null}>
-          <NavHeader
+          <SideNavHeader
             firstName={user.firstName}
             lastName={user.lastName}
             title={user.title}
+            avatar={
+              user.avatar
+              //"https://avatars1.githubusercontent.com/u/17460785?s=400&u=d8b0d093c1d4ad51c2700d15cdf3898cdee42006&v=4"
+            }
           />
           <div className="navSection">
-            <NavItem name="Dashboard" icon={DashboardIcon} pathname="/" />
-            <NavItem
+            <SideNavItem name="Dashboard" icon={DashboardIcon} pathname="/" />
+            <SideNavItem
               name="Customers"
               icon={CustomersIcon}
               pathname="/customers"
             />
-            <NavItem name="Quotes" icon={QuotesIcon} pathname="/quotes" />
-            <NavItem name="Orders" icon={OrdersIcon} pathname="/orders" />
-            <NavItem name="Products" icon={ProductsIcon} pathname="/products" />
-            <NavItem name="Calendar" icon={CalendarIcon} pathname="/calendar" />
+            <SideNavItem name="Quotes" icon={QuotesIcon} pathname="/quotes" />
+            <SideNavItem name="Orders" icon={OrdersIcon} pathname="/orders" />
+            <SideNavItem
+              name="Products"
+              icon={ProductsIcon}
+              pathname="/products"
+            />
+            <SideNavItem
+              name="Calendar"
+              icon={CalendarIcon}
+              pathname="/calendar"
+            />
           </div>
           <div className="navExtras">
             <a onClick={this.onLogoutClick.bind(this)}>
-              <NavItem name="Logout" icon={LogoutIcon} pathname="" />
+              <SideNavItem name="Logout" icon={LogoutIcon} pathname="" />
             </a>
 
             {/* Add minimize button */}
             <a onClick={this.onMinimizeClick.bind(this)}>
-              <NavItem name="Minimize" icon={minimizedIcon} pathname="" />
+              <SideNavItem
+                name={minimizedText}
+                icon={minimizedIcon}
+                pathname=""
+              />
             </a>
           </div>
         </nav>

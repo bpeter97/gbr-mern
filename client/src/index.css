@@ -24,6 +24,7 @@ nav {
   font-size: 14px;
   padding-left: 0;
   margin-bottom: 0;
+  border-radius: 3px;
 }
 
 a {
@@ -36,10 +37,10 @@ a:hover {
 
 .navHeader {
   text-align: center;
-  padding: 16px;
   background-color: #006400;
   border-bottom: 1px solid #fff;
   flex: 0 1;
+  padding-bottom: 16px;
 }
 .navHeaderImgDiv {
   display: inline;
@@ -52,13 +53,15 @@ a:hover {
   border-style: none;
 }
 .navHeaderText {
-  padding-left: 6px;
   padding-top: 6px;
   font-size: 12px;
   color: #fff;
 }
+#navHeaderName {
+  font-size: 14px;
+}
 #navHeaderTitle {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .navSection {
@@ -138,7 +141,6 @@ a:hover {
   font-family: "Roboto";
   min-width: 250px;
   max-width: 250px;
-  border-right: #006400 1px solid;
   background-color: #006400;
   transition: all 0.3s;
   padding-top: 0.5rem;
