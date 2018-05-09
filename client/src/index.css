@@ -39,6 +39,7 @@ a:hover {
   padding: 16px;
   background-color: #006400;
   border-bottom: 1px solid #fff;
+  flex: 0 1;
 }
 .navHeaderImgDiv {
   display: inline;
@@ -62,6 +63,7 @@ a:hover {
 
 .navSection {
   box-sizing: border-box;
+  flex: 1 1;
 }
 
 .navItem {
@@ -74,14 +76,14 @@ a:hover {
   text-align: center;
 }
 
-/* .navItem.active {
+.navItem.active {
   background-color: #006400;
   color: #fff;
 }
 .navItem.hover {
   background-color: #006400;
   color: #fff;
-} */
+}
 
 .navItemText {
   display: inline-flex;
@@ -133,8 +135,6 @@ a:hover {
   display: flex;
   align-items: stretch;
   flex-direction: column;
-  flex-wrap: wrap;
-  height: 100vh;
   font-family: "Roboto";
   min-width: 250px;
   max-width: 250px;
@@ -144,8 +144,6 @@ a:hover {
   padding-top: 0.5rem;
   position: sticky;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 #sideNav.collapsed {
