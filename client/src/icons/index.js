@@ -1,0 +1,21 @@
+import { users } from "react-icons-kit/icomoon/users";
+import { logout } from "react-icons-kit/iconic/logout";
+import { calendar } from "react-icons-kit/icomoon/calendar";
+import { list2 } from "react-icons-kit/icomoon/list2";
+import { ic_shopping_cart } from "react-icons-kit/md/ic_shopping_cart";
+import { home3 } from "react-icons-kit/icomoon/home3";
+import { folder } from "react-icons-kit/ikons/folder";
+import { box } from "react-icons-kit/iconic/box";
+import { ic_keyboard_tab } from "react-icons-kit/md/ic_keyboard_tab";
+import { ic_keyboard_backspace } from "react-icons-kit/md/ic_keyboard_backspace";
+
+export const CustomersIcon = users;
+export const ContainersIcon = box;
+export const ProductsIcon = ic_shopping_cart;
+export const QuotesIcon = list2;
+export const CalendarIcon = calendar;
+export const OrdersIcon = folder;
+export const DashboardIcon = home3;
+export const LogoutIcon = logout;
+export const CollapsedIcon = ic_keyboard_tab;
+export const notCollapsedIcon = ic_keyboard_backspace;

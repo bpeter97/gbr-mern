@@ -154,10 +154,12 @@ a:hover {
 
 #sideNav.collapsed .navItem {
   justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #sideNav.collapsed .navItemText {
-  display: none;
+  margin: 0;
 }
 
 @media (max-width: 991.98px) {

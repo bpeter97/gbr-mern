@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import SvgIcon from "react-icons-kit";
 
-const Icon20 = props => <SvgIcon size={props.size || 20} icon={props.icon} />;
+const Icon24 = props => <SvgIcon size={20} icon={props.icon} />;
 
 class NavItem extends Component {
   constructor() {
@@ -19,7 +19,7 @@ class NavItem extends Component {
       item = (
         <div className="navItem">
           <div id="navItemIcon">
-            <Icon20 size={20} icon={icon} />
+            <Icon24 size={24} icon={icon} />
           </div>
 
           <div className="navItemText">{name}</div>
@@ -30,7 +30,7 @@ class NavItem extends Component {
         <Link to={pathname}>
           <div className="navItem">
             <div id="navItemIcon">
-              <Icon20 size={20} icon={icon} />
+              <Icon24 size={24} icon={icon} />
             </div>
 
             <div className="navItemText">{name}</div>
