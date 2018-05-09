@@ -80,12 +80,8 @@ a:hover {
 }
 
 .navItem.active {
-  background-color: #006400;
-  color: #fff;
-}
-.navItem.hover {
-  background-color: #006400;
-  color: #fff;
+  background-color: #fff;
+  color: #006400;
 }
 
 .navItemText {

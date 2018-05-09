@@ -22,7 +22,8 @@ class SideNav extends Component {
   constructor() {
     super();
     this.state = {
-      collapsed: false
+      collapsed: false,
+      activePath: "/"
     };
   }
 
@@ -34,6 +35,12 @@ class SideNav extends Component {
     const currentState = this.state.collapsed;
     this.setState({ collapsed: !currentState });
   }
+  navClick = path => {
+    let activePath = this.state.activePath;
+    this.setState({
+      activePath: path
+    });
+  };
 
   render() {
     let navbarContent;
@@ -57,23 +64,47 @@ class SideNav extends Component {
             }
           />
           <div className="navSection">
-            <SideNavItem name="Dashboard" icon={DashboardIcon} pathname="/" />
+            <SideNavItem
+              name="Dashboard"
+              icon={DashboardIcon}
+              pathname="/"
+              isActive={this.state.activePath === "/"}
+              onClick={this.navClick}
+            />
             <SideNavItem
               name="Customers"
               icon={CustomersIcon}
               pathname="/customers"
+              isActive={this.state.activePath === "/customers"}
+              onClick={this.navClick}
             />
-            <SideNavItem name="Quotes" icon={QuotesIcon} pathname="/quotes" />
-            <SideNavItem name="Orders" icon={OrdersIcon} pathname="/orders" />
+            <SideNavItem
+              name="Quotes"
+              icon={QuotesIcon}
+              pathname="/quotes"
+              isActive={this.state.activePath === "/quotes"}
+              onClick={this.navClick}
+            />
+            <SideNavItem
+              name="Orders"
+              icon={OrdersIcon}
+              pathname="/orders"
+              isActive={this.state.activePath === "/orders"}
+              onClick={this.navClick}
+            />
             <SideNavItem
               name="Products"
               icon={ProductsIcon}
               pathname="/products"
+              isActive={this.state.activePath === "/products"}
+              onClick={this.navClick}
             />
             <SideNavItem
               name="Calendar"
               icon={CalendarIcon}
               pathname="/calendar"
+              isActive={this.state.activePath === "/calendar"}
+              onClick={this.navClick}
             />
           </div>
           <div className="navExtras">
