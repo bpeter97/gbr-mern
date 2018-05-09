@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Dashboard extends Component {
+class Calendar extends Component {
   constructor() {
     super();
     this.state = {};
@@ -9,10 +9,10 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <h1>DASHBOARD PAGE!</h1>
+        <h1>CALENDAR PAGE</h1>
       </div>
     );
   }
 }
 
-export default Dashboard;
+export default Calendar;
