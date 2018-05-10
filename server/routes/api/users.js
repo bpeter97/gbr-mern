@@ -22,3 +22,5 @@ router
   .get(helpers.getUser)
   .post(helpers.patchUser)
   .delete(helpers.deleteUser);
+
+module.exports = router;
