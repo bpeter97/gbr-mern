@@ -1,22 +1,24 @@
 const express = require("express");
 const router = express.Router();
 
-// @route   GET api/users/
-// @desc    Retrieves all of the users
-// @access  Private
+const helpers = require("../../helpers/users");
 
-// @route   POST api/users/
-// @desc    Registers a new user.
+// @route   api/users/
+// @GET     Retrieves all of the users.
+// @POST    Registers a new user.
 // @access  Private
+router
+  .route("/")
+  .get(helpers.getUsers)
+  .post(helpers.postUser);
 
 // @route   GET api/users/:id
-// @desc    Retrieves a single users information.
+// @GET     Retrieves a single users information.
+// @PATCH   Updates all or part of a single users information.
+// @DELETE  Deletes a single user from the database.
 // @access  Private
-
-// @route   PATCH api/users/:id
-// @desc    Updates all or part of a single users information.
-// @access  Private
-
-// @route   DELETE api/users/:id
-// @desc    Deletes a single user from the database.
-// @access  Private
+router
+  .route("/:id")
+  .get(helpers.getUser)
+  .post(helpers.patchUser)
+  .delete(helpers.deleteUser);
