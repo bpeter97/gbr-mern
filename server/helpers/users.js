@@ -1,12 +1,12 @@
 const { ObjectID } = require("mongodb");
+const bcrypt = require("bcryptjs");
 const _ = require("lodash");
 
 // models
 const User = require("../models/User");
 
 // validation files
-const validateRegisterInput = require("../validation/register");
-const validateLoginInput = require("../validation/login");
+const validateUserInput = require("../validation/user");
 
 // @route   GET api/users/
 // @desc    Retrieves all of the users
@@ -27,7 +27,7 @@ exports.getUsers = (req, res) => {
 // @access  Private
 exports.postUser = (req, res) => {
   // Fetch validation errors.
-  const { errors, isValid } = validateRegisterInput(req.body);
+  const { errors, isValid } = validateUserInput(req.body);
 
   // send 400 error with validation errors if not valid.
   if (!isValid) return res.status(400).json(errors);
@@ -89,7 +89,7 @@ exports.postUser = (req, res) => {
               // Now save it to the database.
               newUser
                 .save()
-                .then(user => res.json(user))
+                .then(user => res.json({ user }))
                 .catch(err => console.log(err));
             });
           });
@@ -129,10 +129,14 @@ exports.getUser = (req, res) => {
 // @access  Private
 exports.patchUser = (req, res) => {
   // Fetch validation errors.
-  const { errors, isValid } = validateRegisterInput(req.body);
+  const { errors, isValid } = validateUserInput(req.body);
 
   // send 400 error with validation errors if not valid.
   if (!isValid) return res.status(400).json(errors);
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.user = "There was no user found";
+    return res.status(400).json(errors);
+  }
 
   var body = _.pick(req.body, [
     "firstName",

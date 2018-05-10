@@ -20,7 +20,7 @@ router
 router
   .route("/:id")
   .get(helpers.getUser)
-  .post(helpers.patchUser)
+  .patch(helpers.patchUser)
   .delete(helpers.deleteUser);
 
 module.exports = router;
