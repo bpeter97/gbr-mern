@@ -9,10 +9,9 @@ const ProductType = require("../models/ProductType");
 const validateProductInput = require("../validation/product");
 
 // @route   GET api/products
-// @desc    Registers a new user.
+// @desc    Retrieve all products.
 // @access  Private
 exports.getProducts = (req, res) => {
-  // Check to see if username exists
   Product.find({})
     .populate("type")
     .then(products => {
