@@ -22,28 +22,28 @@ class SideNavItem extends Component {
     let item;
     if (pathname === "") {
       item = (
-        <div className="navItem">
-          <div id="navItemIcon">
+        <li className="navItem">
+          <li>
             <Icon24 size={24} icon={icon} />
-          </div>
+          </li>
 
-          <div className="navItemText">{name}</div>
-        </div>
+          <li className="navItemText">{name}</li>
+        </li>
       );
     } else {
       item = (
         <Link to={pathname}>
-          <div
+          <li
             className={this.props.isActive ? "navItem active" : "navItem"}
             onClick={this.navClick.bind(this)}
             name={name}
           >
-            <div id="navItemIcon">
+            <li>
               <Icon24 size={24} icon={icon} />
-            </div>
+            </li>
 
-            <div className="navItemText">{name}</div>
-          </div>
+            <li className="navItemText">{name}</li>
+          </li>
         </Link>
       );
     }

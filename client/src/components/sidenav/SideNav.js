@@ -53,73 +53,81 @@ class SideNav extends Component {
 
     if (isAuthenticated) {
       navbarContent = (
-        <nav id="sideNav" className={collapsed ? "collapsed" : null}>
-          <SideNavHeader
-            firstName={user.firstName}
-            lastName={user.lastName}
-            title={user.title}
-            avatar={
-              user.avatar
-              //"https://avatars1.githubusercontent.com/u/17460785?s=400&u=d8b0d093c1d4ad51c2700d15cdf3898cdee42006&v=4"
-            }
-          />
-          <div className="navSection">
-            <SideNavItem
-              name="Dashboard"
-              icon={DashboardIcon}
-              pathname="/"
-              isActive={this.state.activePath === "/"}
-              onClick={this.navClick}
+        <nav
+          id="sideNav"
+          className={
+            collapsed
+              ? "collapsed d-flex col-md-2 pl-0 pr-0 sidebar"
+              : "col-md-2 d-flex pl-0 pr-0 d-md-block sidebar"
+          }
+        >
+          <div className="sidebar-sticky justify-content-between">
+            <SideNavHeader
+              firstName={user.firstName}
+              lastName={user.lastName}
+              title={user.title}
+              avatar={
+                user.avatar
+                // "https://avatars1.githubusercontent.com/u/17460785?s=400&u=d8b0d093c1d4ad51c2700d15cdf3898cdee42006&v=4"
+              }
             />
-            <SideNavItem
-              name="Customers"
-              icon={CustomersIcon}
-              pathname="/customers"
-              isActive={this.state.activePath === "/customers"}
-              onClick={this.navClick}
-            />
-            <SideNavItem
-              name="Quotes"
-              icon={QuotesIcon}
-              pathname="/quotes"
-              isActive={this.state.activePath === "/quotes"}
-              onClick={this.navClick}
-            />
-            <SideNavItem
-              name="Orders"
-              icon={OrdersIcon}
-              pathname="/orders"
-              isActive={this.state.activePath === "/orders"}
-              onClick={this.navClick}
-            />
-            <SideNavItem
-              name="Products"
-              icon={ProductsIcon}
-              pathname="/products"
-              isActive={this.state.activePath === "/products"}
-              onClick={this.navClick}
-            />
-            <SideNavItem
-              name="Calendar"
-              icon={CalendarIcon}
-              pathname="/calendar"
-              isActive={this.state.activePath === "/calendar"}
-              onClick={this.navClick}
-            />
-          </div>
-          <div className="navExtras">
-            <a onClick={this.onLogoutClick.bind(this)}>
-              <SideNavItem name="Logout" icon={LogoutIcon} pathname="" />
-            </a>
-
-            {/* Add minimize button */}
-            <a onClick={this.onMinimizeClick.bind(this)}>
+            <ul className="nav flex-column">
               <SideNavItem
-                name={minimizedText}
-                icon={minimizedIcon}
-                pathname=""
+                name="Dashboard"
+                icon={DashboardIcon}
+                pathname="/"
+                isActive={this.state.activePath === "/"}
+                onClick={this.navClick}
               />
-            </a>
+              <SideNavItem
+                name="Customers"
+                icon={CustomersIcon}
+                pathname="/customers"
+                isActive={this.state.activePath === "/customers"}
+                onClick={this.navClick}
+              />
+              <SideNavItem
+                name="Quotes"
+                icon={QuotesIcon}
+                pathname="/quotes"
+                isActive={this.state.activePath === "/quotes"}
+                onClick={this.navClick}
+              />
+              <SideNavItem
+                name="Orders"
+                icon={OrdersIcon}
+                pathname="/orders"
+                isActive={this.state.activePath === "/orders"}
+                onClick={this.navClick}
+              />
+              <SideNavItem
+                name="Products"
+                icon={ProductsIcon}
+                pathname="/products"
+                isActive={this.state.activePath === "/products"}
+                onClick={this.navClick}
+              />
+              <SideNavItem
+                name="Calendar"
+                icon={CalendarIcon}
+                pathname="/calendar"
+                isActive={this.state.activePath === "/calendar"}
+                onClick={this.navClick}
+              />
+
+              <a onClick={this.onLogoutClick.bind(this)}>
+                <SideNavItem name="Logout" icon={LogoutIcon} pathname="" />
+              </a>
+
+              {/* Add minimize button */}
+              <a onClick={this.onMinimizeClick.bind(this)}>
+                <SideNavItem
+                  name={minimizedText}
+                  icon={minimizedIcon}
+                  pathname=""
+                />
+              </a>
+            </ul>
           </div>
         </nav>
       );

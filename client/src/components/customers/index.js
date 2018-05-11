@@ -8,7 +8,7 @@ class Customers extends Component {
 
   render() {
     return (
-      <div>
+      <div className="col-md-10">
         <h1>Customers PAGE</h1>
       </div>
     );
