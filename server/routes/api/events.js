@@ -1,22 +1,26 @@
 const express = require("express");
 const router = express.Router();
 
-// @route   GET api/events/
-// @desc    Retrieves all of the events
-// @access  Private
+const helpers = require("../../helpers/events");
 
-// @route   POST api/events/
-// @desc    Creates a new event.
+// @route   api/events/
+// @GET     Retrieves all of the events
+// @POST    Creates a new event.
 // @access  Private
+router
+  .route("/")
+  .get(helpers.getEvents)
+  .post(helpers.postEvent);
 
-// @route   GET api/events/:id
-// @desc    Retrieves a single event.
+// @route   api/events/:id
+// @GET     Retrieves a single event.
+// @PATCH   Updates all or part of a single event.
+// @DELETE  Deletes a single event from the database.
 // @access  Private
+router
+  .route("/:id")
+  .get(helpers.getEvent)
+  .patch(helpers.patchEvent)
+  .delete(helpers.deleteEvent);
 
-// @route   PATCH api/events/:id
-// @desc    Updates all or part of a single event.
-// @access  Private
-
-// @route   DELETE api/events/:id
-// @desc    Deletes a single event from the database.
-// @access  Private
+module.exports = router;
