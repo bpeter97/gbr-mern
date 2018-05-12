@@ -8,6 +8,8 @@ import { folder } from "react-icons-kit/ikons/folder";
 import { box } from "react-icons-kit/iconic/box";
 import { ic_keyboard_tab } from "react-icons-kit/md/ic_keyboard_tab";
 import { ic_keyboard_backspace } from "react-icons-kit/md/ic_keyboard_backspace";
+import { userPlus } from "react-icons-kit/fa/userPlus";
+import { search } from "react-icons-kit/fa/search";
 
 export const CustomersIcon = users;
 export const ContainersIcon = box;
@@ -19,3 +21,5 @@ export const DashboardIcon = home3;
 export const LogoutIcon = logout;
 export const CollapsedIcon = ic_keyboard_tab;
 export const notCollapsedIcon = ic_keyboard_backspace;
+export const addCustomerIcon = userPlus;
+export const SearchIcon = search;
