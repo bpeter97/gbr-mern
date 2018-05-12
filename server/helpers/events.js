@@ -25,7 +25,28 @@ exports.getEvents = (req, res) => {
 // @route   POST api/events/
 // @desc    Creates a new event.
 // @access  Private
-exports.postEvent = (req, res) => {};
+exports.postEvent = (req, res) => {
+  // Fetch validation errors.
+  const { errors, isValid } = validateEventInput(req.body);
+
+  // send 400 error with validation errors if not valid.
+  if (!isValid) return res.status(400).json(errors);
+
+  // easily grab posted data
+  var body = _.pick(req.body, ["title", "color", "start", "end"]);
+  body.order = new ObjectID(req.body.order);
+
+  // create it.
+  var newEvent = new CalendarEvent(body);
+
+  // Save it in the DB and return it.
+  newEvent
+    .save()
+    .then(event => {
+      res.json({ event });
+    })
+    .catch(e => console.log(e));
+};
 
 // @route   GET api/events/:id
 // @desc    Retrieves a single event.
@@ -55,9 +76,56 @@ exports.getEvent = (req, res) => {
 // @route   PATCH api/events/:id
 // @desc    Updates all or part of a single event.
 // @access  Private
-exports.patchEvent = (req, res) => {};
+exports.patchEvent = (req, res) => {
+  // Fetch validation errors.
+  const { errors, isValid } = validateEventInput(req.body);
+
+  // send 400 error with validation errors if not valid.
+  if (!isValid) return res.status(400).json(errors);
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.event = "There was no event found";
+    return res.status(400).json(errors);
+  }
+
+  var body = _.pick(req.body, ["title", "color", "start", "end"]);
+  body.order = new ObjectID(req.body.order);
+  body._id = req.params.id;
+
+  // Check to see if eventname exists
+  CalendarEvent.findByIdAndUpdate(body._id, { $set: body }, { new: true })
+    .then(event => {
+      if (!event) {
+        errors.event = "Unable to find and update the event";
+        return res.status(404).json(errors);
+      }
+      // Return the newly modified event.
+      res.json({ event });
+    })
+    .catch(e => res.status(400).send());
+};
 
 // @route   DELETE api/events/:id
 // @desc    Deletes a single event from the database.
 // @access  Private
-exports.deleteEvent = (req, res) => {};
+exports.deleteEvent = (req, res) => {
+  errors = {};
+
+  // Check to see if error is a valid ObjectID
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.event = "There was no event found";
+    return res.status(400).json(errors);
+  }
+
+  // Find the event by ID and remove them.
+  CalendarEvent.findByIdAndRemove(req.params.id)
+    .then(event => {
+      // event was not found!
+      if (!event) {
+        errors.event = "Unable to find and remove the event";
+        res.status(404).json(errors);
+      }
+      // Return the event that was just removed.
+      res.json({ event });
+    })
+    .catch(e => res.status(400).send());
+};
