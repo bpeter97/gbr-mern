@@ -34,7 +34,11 @@ exports.postEvent = (req, res) => {
 
   // easily grab posted data
   var body = _.pick(req.body, ["title", "color", "start", "end"]);
-  body.order = new ObjectID(req.body.order);
+  if (req.body.order) {
+    body.order = new ObjectID(req.body.order);
+  } else {
+    body.order = null;
+  }
 
   // create it.
   var newEvent = new CalendarEvent(body);
@@ -80,10 +84,10 @@ exports.patchEvent = (req, res) => {
   // Fetch validation errors.
   const { errors, isValid } = validateEventInput(req.body);
 
-  // send 400 error with validation errors if not valid.
-  if (!isValid) return res.status(400).json(errors);
-  if (!ObjectID.isValid(req.params.id)) {
-    errors.event = "There was no event found";
+  if (!isValid || !ObjectID.isValid(req.params.id)) {
+    if (!ObjectID.isValid(req.params.id)) {
+      errors.event = "There was no event found";
+    }
     return res.status(400).json(errors);
   }
 

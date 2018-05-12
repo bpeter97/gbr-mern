@@ -20,7 +20,7 @@ router
 router
   .route("/:id")
   .get(helpers.getEvent)
-  .patch(helpers.postEvent)
+  .patch(helpers.patchEvent)
   .delete(helpers.deleteEvent);
 
 module.exports = router;
