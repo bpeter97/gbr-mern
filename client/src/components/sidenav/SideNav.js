@@ -57,8 +57,8 @@ class SideNav extends Component {
           id="sideNav"
           className={
             collapsed
-              ? "collapsed d-flex col-md-2 pl-0 pr-0 sidebar"
-              : "col-md-2 d-flex pl-0 pr-0 d-md-block sidebar"
+              ? "collapsed d-flex col-md-2 pl-0 pr-0 sidebar rounded-0"
+              : "col-md-2 d-flex pl-0 pr-0 d-md-block sidebar rounded-0"
           }
         >
           <div className="sidebar-sticky justify-content-between">

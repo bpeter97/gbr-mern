@@ -58,7 +58,7 @@ class NavBar extends Component {
     if (icon) {
       navbar = (
         <nav
-          className="navbar navbar-expand py-0 px-2  flex-column flex-md-row bd-navbar shadow-sm"
+          className="navbar navbar-expand py-0 px-2  flex-column flex-md-row bd-navbar rounded-0"
           style={{ backgroundColor: "#006400" }}
         >
           <form
@@ -121,7 +121,7 @@ class NavBar extends Component {
     } else {
       navbar = (
         <nav
-          className="navbar navbar-expand py-0 px-2 flex-column flex-md-row bd-navbar shadow-sm"
+          className="navbar navbar-expand py-0 px-2 flex-column flex-md-row bd-navbar rounded-0"
           style={{ backgroundColor: "#006400" }}
         >
           <form className="form-inline m-auto " style={{ flex: " 3 0 auto" }}>
