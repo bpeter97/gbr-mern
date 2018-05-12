@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const helpers = require("./../../helpers/events");
+const helpers = require("../../helpers/events");
 
 // @route   api/events/
 // @GET     Retrieves all of the events
@@ -22,3 +22,5 @@ router
   .get(helpers.getEvent)
   .patch(helpers.postEvent)
   .delete(helpers.deleteEvent);
+
+module.exports = router;
