@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import NavBar from "../navbar";
+import { addCustomerIcon } from "../../icons";
 
 class Dashboard extends Component {
   constructor() {
@@ -8,8 +10,9 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="col-md-10">
-        <h1>DASHBOARD PAGE!</h1>
+      <div className="col-md">
+        <NavBar />
+        <h1 className="text-center align-middle">DASHBOARD PAGE!</h1>
       </div>
     );
   }
