@@ -1,0 +1,361 @@
+{
+  "stats": {
+    "suites": 7,
+    "tests": 10,
+    "passes": 3,
+    "pending": 7,
+    "failures": 0,
+    "start": "2018-05-13T06:16:43.223Z",
+    "end": "2018-05-13T06:16:44.800Z",
+    "duration": 1577,
+    "testsRegistered": 10,
+    "passPercent": 100,
+    "pendingPercent": 70,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "success",
+    "pendingPercentClass": "warning"
+  },
+  "suites": {
+    "uuid": "0000d407-23cb-45b5-833f-60973e9b318f",
+    "title": "",
+    "fullFile": "",
+    "file": "",
+    "beforeHooks": [
+      {
+        "title": "\"before each\" hook: populatePurchaseTypes",
+        "fullTitle": "\"before each\" hook: populatePurchaseTypes",
+        "timedOut": false,
+        "duration": 168,
+        "pass": false,
+        "fail": false,
+        "pending": false,
+        "code": "done => {\n  PurchaseType.remove({})\n    .then(() => {\n      var purchaseTypeOne = new PurchaseType(purchaseTypes[0]).save();\n      var purchaseTypeTwo = new PurchaseType(purchaseTypes[1]).save();\n      return Promise.all([purchaseTypeOne, purchaseTypeTwo]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+        "err": {},
+        "isRoot": true,
+        "uuid": "10b90806-6279-4af5-8e26-04f835c550c6",
+        "isHook": true,
+        "skipped": false
+      }
+    ],
+    "afterHooks": [],
+    "tests": [],
+    "suites": [
+      {
+        "uuid": "906b8d12-6421-492b-8934-7cfa5dcc5453",
+        "title": "SETTINGS",
+        "fullFile": "E:\\ProgrammingProjects\\gbr-mern\\server\\tests\\settings.test.js",
+        "file": "\\server\\tests\\settings.test.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [],
+        "suites": [
+          {
+            "uuid": "6d4e297a-c2fd-4f7d-a4cd-e5de29498131",
+            "title": "Purchase Types",
+            "fullFile": "E:\\ProgrammingProjects\\gbr-mern\\server\\tests\\settings.test.js",
+            "file": "\\server\\tests\\settings.test.js",
+            "beforeHooks": [],
+            "afterHooks": [],
+            "tests": [],
+            "suites": [
+              {
+                "uuid": "55854a2a-d259-4928-bcb8-2b41cd5b31ee",
+                "title": "GET /settings/purchasetypes/",
+                "fullFile": "E:\\ProgrammingProjects\\gbr-mern\\server\\tests\\settings.test.js",
+                "file": "\\server\\tests\\settings.test.js",
+                "beforeHooks": [],
+                "afterHooks": [],
+                "tests": [
+                  {
+                    "title": "should return an array of purchase types",
+                    "fullTitle": "SETTINGS Purchase Types GET /settings/purchasetypes/ should return an array of purchase types",
+                    "timedOut": false,
+                    "duration": 115,
+                    "state": "passed",
+                    "speed": "slow",
+                    "pass": true,
+                    "fail": false,
+                    "pending": false,
+                    "code": "done => {\n        request(app)\n          .get(\"/api/settings/purchasetypes\")\n          .expect(200)\n          .expect(res => {\n            expect(res.body.purchaseTypes).toBeTruthy();\n            expect(res.body.purchaseTypes.length).toBe(2);\n          })\n          .end(done);",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "b224d79f-0511-4a7e-b52e-16d6ab017636",
+                    "isHook": false,
+                    "skipped": false
+                  }
+                ],
+                "suites": [],
+                "passes": [
+                  "b224d79f-0511-4a7e-b52e-16d6ab017636"
+                ],
+                "failures": [],
+                "pending": [],
+                "skipped": [],
+                "duration": 115,
+                "root": false,
+                "rootEmpty": false,
+                "_timeout": 5000
+              },
+              {
+                "uuid": "6a305404-70b2-4ab9-8bb3-8571064922c6",
+                "title": "POST /settings/purchasetypes/",
+                "fullFile": "E:\\ProgrammingProjects\\gbr-mern\\server\\tests\\settings.test.js",
+                "file": "\\server\\tests\\settings.test.js",
+                "beforeHooks": [],
+                "afterHooks": [],
+                "tests": [
+                  {
+                    "title": "should create a purchase type",
+                    "fullTitle": "SETTINGS Purchase Types POST /settings/purchasetypes/ should create a purchase type",
+                    "timedOut": false,
+                    "duration": 0,
+                    "pass": false,
+                    "fail": false,
+                    "pending": true,
+                    "code": "",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "ed8fc0f9-3abc-4d6d-b0fe-90e95ef97552",
+                    "isHook": false,
+                    "skipped": false
+                  },
+                  {
+                    "title": "should not create a purchase type with validation errors",
+                    "fullTitle": "SETTINGS Purchase Types POST /settings/purchasetypes/ should not create a purchase type with validation errors",
+                    "timedOut": false,
+                    "duration": 0,
+                    "pass": false,
+                    "fail": false,
+                    "pending": true,
+                    "code": "",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "823a19e7-3429-4f98-b7dc-a3e33732f420",
+                    "isHook": false,
+                    "skipped": false
+                  }
+                ],
+                "suites": [],
+                "passes": [],
+                "failures": [],
+                "pending": [
+                  "ed8fc0f9-3abc-4d6d-b0fe-90e95ef97552",
+                  "823a19e7-3429-4f98-b7dc-a3e33732f420"
+                ],
+                "skipped": [],
+                "duration": null,
+                "root": false,
+                "rootEmpty": false,
+                "_timeout": 5000
+              },
+              {
+                "uuid": "74c35e9c-da67-4c6c-995d-b4574504b78e",
+                "title": "GET /settings/purchasetypes/:id",
+                "fullFile": "E:\\ProgrammingProjects\\gbr-mern\\server\\tests\\settings.test.js",
+                "file": "\\server\\tests\\settings.test.js",
+                "beforeHooks": [],
+                "afterHooks": [],
+                "tests": [
+                  {
+                    "title": "should return a purchase type",
+                    "fullTitle": "SETTINGS Purchase Types GET /settings/purchasetypes/:id should return a purchase type",
+                    "timedOut": false,
+                    "duration": 92,
+                    "state": "passed",
+                    "speed": "slow",
+                    "pass": true,
+                    "fail": false,
+                    "pending": false,
+                    "code": "done => {\n        request(app)\n          .get(\n            `/api/settings/purchasetypes/${purchaseTypes[0]._id.toHexString()}`\n          )\n          .expect(200)\n          .expect(res => {\n            expect(res.body.purchaseType.type).toBe(purchaseTypes[0].type);\n          })\n          .end(done);",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "7501b958-82a9-48b7-b130-ebcdf39c1671",
+                    "isHook": false,
+                    "skipped": false
+                  },
+                  {
+                    "title": "should not return a purchase type with invalid ID",
+                    "fullTitle": "SETTINGS Purchase Types GET /settings/purchasetypes/:id should not return a purchase type with invalid ID",
+                    "timedOut": false,
+                    "duration": 5,
+                    "state": "passed",
+                    "speed": "fast",
+                    "pass": true,
+                    "fail": false,
+                    "pending": false,
+                    "code": "done => {\n        request(app)\n          .get(\n            `/api/settings/purchasetypes/${purchaseTypes[0]._id.toHexString()}sss`\n          )\n          .expect(400)\n          .expect(res => {\n            expect(res.body.purchaseType).toBe(\n              \"There was no purchase type found\"\n            );\n          })\n          .end(done);",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "486552dd-4dc4-4b4d-a245-48e3be14a956",
+                    "isHook": false,
+                    "skipped": false
+                  }
+                ],
+                "suites": [],
+                "passes": [
+                  "7501b958-82a9-48b7-b130-ebcdf39c1671",
+                  "486552dd-4dc4-4b4d-a245-48e3be14a956"
+                ],
+                "failures": [],
+                "pending": [],
+                "skipped": [],
+                "duration": 97,
+                "root": false,
+                "rootEmpty": false,
+                "_timeout": 5000
+              },
+              {
+                "uuid": "65a8eee4-4a3c-474b-9043-092644cc7c3d",
+                "title": "PATCH /settings/purchasetypes/:id",
+                "fullFile": "E:\\ProgrammingProjects\\gbr-mern\\server\\tests\\settings.test.js",
+                "file": "\\server\\tests\\settings.test.js",
+                "beforeHooks": [],
+                "afterHooks": [],
+                "tests": [
+                  {
+                    "title": "should update a purchase type",
+                    "fullTitle": "SETTINGS Purchase Types PATCH /settings/purchasetypes/:id should update a purchase type",
+                    "timedOut": false,
+                    "duration": 0,
+                    "pass": false,
+                    "fail": false,
+                    "pending": true,
+                    "code": "",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "fcbdd798-064c-4260-ae66-bb9b1f5be836",
+                    "isHook": false,
+                    "skipped": false
+                  },
+                  {
+                    "title": "should not update a purchase type with invalid ID",
+                    "fullTitle": "SETTINGS Purchase Types PATCH /settings/purchasetypes/:id should not update a purchase type with invalid ID",
+                    "timedOut": false,
+                    "duration": 0,
+                    "pass": false,
+                    "fail": false,
+                    "pending": true,
+                    "code": "",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "bafc090b-6db0-49fc-89e8-8a9377e47ea7",
+                    "isHook": false,
+                    "skipped": false
+                  },
+                  {
+                    "title": "should not update a purchase type with validation errors",
+                    "fullTitle": "SETTINGS Purchase Types PATCH /settings/purchasetypes/:id should not update a purchase type with validation errors",
+                    "timedOut": false,
+                    "duration": 0,
+                    "pass": false,
+                    "fail": false,
+                    "pending": true,
+                    "code": "",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "50d84598-67dc-4ee9-b110-6e7a1a626381",
+                    "isHook": false,
+                    "skipped": false
+                  }
+                ],
+                "suites": [],
+                "passes": [],
+                "failures": [],
+                "pending": [
+                  "fcbdd798-064c-4260-ae66-bb9b1f5be836",
+                  "bafc090b-6db0-49fc-89e8-8a9377e47ea7",
+                  "50d84598-67dc-4ee9-b110-6e7a1a626381"
+                ],
+                "skipped": [],
+                "duration": null,
+                "root": false,
+                "rootEmpty": false,
+                "_timeout": 5000
+              },
+              {
+                "uuid": "230d3ce9-b793-4d4e-a91f-0cdd92a6452c",
+                "title": "DELETE /settings/purchasetypes/:id",
+                "fullFile": "E:\\ProgrammingProjects\\gbr-mern\\server\\tests\\settings.test.js",
+                "file": "\\server\\tests\\settings.test.js",
+                "beforeHooks": [],
+                "afterHooks": [],
+                "tests": [
+                  {
+                    "title": "should delete a purchase type",
+                    "fullTitle": "SETTINGS Purchase Types DELETE /settings/purchasetypes/:id should delete a purchase type",
+                    "timedOut": false,
+                    "duration": 0,
+                    "pass": false,
+                    "fail": false,
+                    "pending": true,
+                    "code": "",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "17af187b-04d0-4dfd-acff-2626210fb1d8",
+                    "isHook": false,
+                    "skipped": false
+                  },
+                  {
+                    "title": "should not delete a purchase type with invalid ID",
+                    "fullTitle": "SETTINGS Purchase Types DELETE /settings/purchasetypes/:id should not delete a purchase type with invalid ID",
+                    "timedOut": false,
+                    "duration": 0,
+                    "pass": false,
+                    "fail": false,
+                    "pending": true,
+                    "code": "",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "8b610499-9141-406b-9b92-60050f9c2e08",
+                    "isHook": false,
+                    "skipped": false
+                  }
+                ],
+                "suites": [],
+                "passes": [],
+                "failures": [],
+                "pending": [
+                  "17af187b-04d0-4dfd-acff-2626210fb1d8",
+                  "8b610499-9141-406b-9b92-60050f9c2e08"
+                ],
+                "skipped": [],
+                "duration": null,
+                "root": false,
+                "rootEmpty": false,
+                "_timeout": 5000
+              }
+            ],
+            "passes": [],
+            "failures": [],
+            "pending": [],
+            "skipped": [],
+            "duration": 0,
+            "root": false,
+            "rootEmpty": false,
+            "_timeout": 5000
+          }
+        ],
+        "passes": [],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 5000
+      }
+    ],
+    "passes": [],
+    "failures": [],
+    "pending": [],
+    "skipped": [],
+    "duration": 0,
+    "root": true,
+    "rootEmpty": true,
+    "_timeout": 5000
+  },
+  "copyrightYear": 2018
+}
