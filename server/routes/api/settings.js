@@ -22,3 +22,5 @@ router
   .get(helpers.getPurchaseType)
   .patch(helpers.patchPurchaseType)
   .delete(helpers.deletePurchaseType);
+
+module.exports = router;

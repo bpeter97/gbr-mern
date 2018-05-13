@@ -9,6 +9,7 @@ const products = require("./server/routes/api/products");
 const containers = require("./server/routes/api/containers");
 const users = require("./server/routes/api/users");
 const events = require("./server/routes/api/events");
+const settings = require("./server/routes/api/settings");
 
 // Set the port if no environment port is set.
 const port = process.env.PORT || 5000;
@@ -35,6 +36,7 @@ app.use("/api/products", products);
 app.use("/api/containers", containers);
 app.use("/api/users", users);
 app.use("/api/events", events);
+app.use("/api/settings", settings);
 
 // Start the server
 app.listen(port, () => console.log(`Server running on port ${port}`));
