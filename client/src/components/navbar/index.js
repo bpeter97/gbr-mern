@@ -61,7 +61,7 @@ class NavBar extends Component {
     if (icon) {
       navbar = (
         <nav
-          className="navbar navbar-expand p-1 flex-md-nowrap rounded-0"
+          className="navbar navbar-expand py-1 flex-md-nowrap rounded-0"
           style={{ backgroundColor: "#006400" }}
         >
           <ul id="toggleSide" className="navbar-nav px-3 mr-auto ">
@@ -93,7 +93,7 @@ class NavBar extends Component {
               </a>
             </li>
           </ul>
-          <ul className="navbar-nav px-3 ml-auto ml-sm-0">
+          <ul className="navbar-nav px-3 ml-auto">
             <li className="nav-item dropdown">
               <a
                 href="#"

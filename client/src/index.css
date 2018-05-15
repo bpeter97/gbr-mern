@@ -65,6 +65,9 @@ button {
   border-width: 0;
   border-radius: 0;
 }
+.navbar {
+  padding: 0;
+}
 .navbar-expand {
   flex-flow: wrap;
 }
