@@ -9,10 +9,7 @@ import {
   QuotesIcon,
   CalendarIcon,
   OrdersIcon,
-  DashboardIcon,
-  LogoutIcon,
-  CollapsedIcon,
-  notCollapsedIcon
+  DashboardIcon
 } from "../../icons/";
 
 import SideNavHeader from "./SideNavHeader";

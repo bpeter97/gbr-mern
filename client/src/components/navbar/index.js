@@ -7,6 +7,7 @@ import { logoutUser } from "../../actions/defaultsActions";
 import SvgIcon from "react-icons-kit";
 import { MenuIcon } from "../../icons";
 import SearchBar from "../common/SearchBar";
+import IconSection from "./IconSection";
 
 const Icon24 = props => <SvgIcon size={24} icon={props.icon} />;
 
@@ -48,79 +49,12 @@ class NavBar extends Component {
   render() {
     const { errors } = this.state;
     const { isAuthenticated } = this.props.auth;
-    const { icon } = this.props;
     let navbar = "";
 
-    if (icon && isAuthenticated) {
+    if (isAuthenticated) {
       navbar = (
         <nav
           className="navbar navbar-expand py-1 flex-md-nowrap rounded-0"
-          style={{ backgroundColor: "#006400" }}
-        >
-          <ul id="toggleSide" className="navbar-nav px-3 mr-auto ">
-            <li className="nav-item">
-              <a onClick={this.props.handleClick}>
-                <Icon24 size={24} icon={MenuIcon} />
-              </a>
-            </li>
-          </ul>
-          {/* <form className="form-inline mx-auto w-75" onSubmit={this.onSubmit}> */}
-          <SearchBar
-            placeholder="Search..."
-            className="form-control w-75 "
-            name="query"
-            type="text"
-            // value={this.state.query}
-            onChange={this.onChange}
-            error={errors.login}
-          />
-          {/* <button type="submit">
-              <Icon24 size={24} icon={SearchIcon} />
-            </button> */}
-          {/* </form> */}
-
-          <ul id="icon-section" className="navbar-nav px-3 mr-auto">
-            <li className="nav-item">
-              <a href="">
-                <Icon24 size={24} icon={icon} />
-              </a>
-            </li>
-          </ul>
-          <ul className="navbar-nav px-3 ml-auto">
-            <li className="nav-item dropdown">
-              <a
-                href=""
-                className="nav-item nav-link dropdown-toggle"
-                id="account"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Account
-              </a>
-              <div
-                className="dropdown-menu dropdown-menu-right"
-                aria-labelledby="account"
-              >
-                <a className="dropdown-item" href="">
-                  Settings
-                </a>
-
-                <a
-                  className="dropdown-item"
-                  onClick={this.onLogoutClick.bind(this)}
-                >
-                  Log off
-                </a>
-              </div>
-            </li>
-          </ul>
-        </nav>
-      );
-    } else if (isAuthenticated) {
-      navbar = (
-        <nav
-          className="navbar navbar-expand p-1 flex-md-nowrap rounded-0"
           style={{ backgroundColor: "#006400" }}
         >
           <ul id="toggleSide" className="navbar-nav px-3 mr-auto ">
@@ -145,6 +79,7 @@ class NavBar extends Component {
             </button> */}
           {/* </form> */}
 
+          <IconSection />
           <ul className="navbar-nav px-3 ml-auto">
             <li className="nav-item dropdown">
               <a
