@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { logoutUser } from "../../actions/defaultsActions";
 import {
   CustomersIcon,
   ContainersIcon,
@@ -16,23 +15,9 @@ import SideNavHeader from "./SideNavHeader";
 import SideNavItem from "./SideNavItem";
 
 class SideNav extends Component {
-  constructor() {
-    super();
-    this.state = {
-      activePath: "/"
-    };
-  }
-
-  navClick = path => {
-    let activePath = this.state.activePath;
-    this.setState({
-      activePath: path
-    });
-  };
-
   render() {
     let navbarContent;
-
+    const { location } = this.props;
     const { isAuthenticated, user } = this.props.auth;
     const { collapsed } = this.props;
 
@@ -61,43 +46,37 @@ class SideNav extends Component {
                 name="Dashboard"
                 icon={DashboardIcon}
                 pathname="/"
-                isActive={this.state.activePath === "/"}
-                onClick={this.navClick}
+                isActive={location.pathname === "/"}
               />
               <SideNavItem
                 name="Customers"
                 icon={CustomersIcon}
                 pathname="/customers"
-                isActive={this.state.activePath === "/customers"}
-                onClick={this.navClick}
+                isActive={location.pathname === "/customers"}
               />
               <SideNavItem
                 name="Quotes"
                 icon={QuotesIcon}
                 pathname="/quotes"
-                isActive={this.state.activePath === "/quotes"}
-                onClick={this.navClick}
+                isActive={location.pathname === "/quotes"}
               />
               <SideNavItem
                 name="Orders"
                 icon={OrdersIcon}
                 pathname="/orders"
-                isActive={this.state.activePath === "/orders"}
-                onClick={this.navClick}
+                isActive={location.pathname === "/orders"}
               />
               <SideNavItem
                 name="Products"
                 icon={ProductsIcon}
                 pathname="/products"
-                isActive={this.state.activePath === "/products"}
-                onClick={this.navClick}
+                isActive={location.pathname === "/products"}
               />
               <SideNavItem
                 name="Calendar"
                 icon={CalendarIcon}
                 pathname="/calendar"
-                isActive={this.state.activePath === "/calendar"}
-                onClick={this.navClick}
+                isActive={location.pathname === "/calendar"}
               />
             </ul>
           </div>
@@ -111,12 +90,13 @@ class SideNav extends Component {
 }
 
 SideNav.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  logoutUser: PropTypes.func.isRequired
+  location: state.router.location
 });
 
-export default connect(mapStateToProps, { logoutUser })(SideNav);
+export default connect(mapStateToProps)(SideNav);

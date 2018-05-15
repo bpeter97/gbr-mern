@@ -25,7 +25,7 @@ class IconSection extends Component {
         break;
       case "/customers":
         iconSection = (
-          <ul id="icon-section" className="navbar-nav px-3">
+          <ul id="icon-section" className="navbar-nav px-3 mr-auto">
             <li className="nav-item">
               <a href="">
                 <SvgIcon size={24} icon={addCustomerIcon} />
