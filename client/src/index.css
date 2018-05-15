@@ -40,6 +40,38 @@ a:hover li {
   font-size: 15px;
 }
 
+button {
+  background-color: #006400;
+  color: white;
+  border: none;
+  font-size: 24px;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.mh-100vh {
+  min-height: 100vh;
+}
+
+.col-md {
+  padding: 0;
+}
+.navbar .form-control {
+  padding: 0.75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+.navbar {
+  padding: 0;
+}
+.navbar-expand {
+  flex-flow: wrap;
+}
+
 .navHeader {
   text-align: center;
   background-color: #006400;
@@ -92,26 +124,16 @@ a:hover li {
   margin-left: 10px;
   align-items: center;
 }
-
 .btn {
   margin-top: 10px;
   background-color: #006400;
   border-color: #006400;
 }
-
 .btn:hover,
 .btn:active,
 .btn:focus {
   background-color: #006500;
   border-color: #006500;
-}
-
-.mh-100vh {
-  min-height: 100vh;
-}
-
-.col-md {
-  padding: 0;
 }
 
 #login-block {
@@ -160,6 +182,34 @@ a:hover li {
 
 #sideNav.collapsed .navItemText {
   margin: 0;
+}
+
+#icon-section {
+  margin-left: 3rem;
+}
+
+@media (max-width: 768px) {
+  #sideNav {
+    min-width: 80px;
+    max-width: 80px;
+    margin-left: -80px;
+  }
+  #sideNav.collapsed {
+    margin-left: 0;
+  }
+  #sideNav .navItem {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  #sideNav .navItemText {
+    margin: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  #icon-section {
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 991.98px) {

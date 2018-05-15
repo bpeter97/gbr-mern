@@ -9,7 +9,9 @@ import {
   CollapsedIcon,
   notCollapsedIcon,
   SearchIcon,
-  LogoutIcon
+  LogoutIcon,
+  MenuIcon,
+  CloseIcon
 } from "../../icons";
 import SearchBar from "../common/SearchBar";
 
@@ -53,41 +55,45 @@ class NavBar extends Component {
   render() {
     const { errors } = this.state;
     const { icon } = this.props;
+    const sideIcon = { MenuIcon };
     let navbar = "";
 
     if (icon) {
       navbar = (
         <nav
-          className="navbar navbar-expand py-0 px-2  flex-column flex-md-row bd-navbar rounded-0"
+          className="navbar navbar-expand py-1 flex-md-nowrap rounded-0"
           style={{ backgroundColor: "#006400" }}
         >
-          <form
-            className="form-inline"
-            style={{ flex: " 3 0 auto" }}
-            onSubmit={this.onSubmit}
-          >
-            <SearchBar
-              placeholder="Search..."
-              className="form-control w-75"
-              name="query"
-              type="text"
-              value={this.state.query}
-              onChange={this.onChange}
-              error={errors.login}
-            />
-            <button type="submit" className="btn btn-primary my-2 my-sm-0">
+          <ul id="toggleSide" className="navbar-nav px-3 mr-auto ">
+            <li className="nav-item">
+              <a href="">
+                <Icon24 size={24} icon={MenuIcon} />
+              </a>
+            </li>
+          </ul>
+          {/* <form className="form-inline mx-auto w-75" onSubmit={this.onSubmit}> */}
+          <SearchBar
+            placeholder="Search..."
+            className="form-control w-75 "
+            name="query"
+            type="text"
+            value={this.state.query}
+            onChange={this.onChange}
+            error={errors.login}
+          />
+          {/* <button type="submit">
               <Icon24 size={24} icon={SearchIcon} />
-            </button>
-          </form>
-          <ul className="navbar-nav px-3" style={{ flex: "1 0 auto" }}>
+            </button> */}
+          {/* </form> */}
+
+          <ul id="icon-section" className="navbar-nav px-3 mr-auto">
             <li className="nav-item">
               <a href="">
                 <Icon24 size={24} icon={icon} />
               </a>
             </li>
           </ul>
-
-          <ul className="navbar-nav px-3">
+          <ul className="navbar-nav px-3 ml-auto">
             <li className="nav-item dropdown">
               <a
                 href="#"
@@ -121,25 +127,32 @@ class NavBar extends Component {
     } else {
       navbar = (
         <nav
-          className="navbar navbar-expand py-0 px-2 flex-column flex-md-row bd-navbar rounded-0"
+          className="navbar navbar-expand p-1 flex-md-nowrap rounded-0"
           style={{ backgroundColor: "#006400" }}
         >
-          <form className="form-inline m-auto " style={{ flex: " 3 0 auto" }}>
-            <SearchBar
-              placeholder="Search..."
-              className="form-control w-75"
-              name="query"
-              type="text"
-              value={this.state.query}
-              onChange={this.onChange}
-              error={errors.login}
-            />
-            <button type="submit" className="btn btn-primary my-2 my-sm-0">
+          <ul id="toggleSide" className="navbar-nav px-3 mr-auto ">
+            <li className="nav-item">
+              <a href="">
+                <Icon24 size={24} icon={MenuIcon} />
+              </a>
+            </li>
+          </ul>
+          {/* <form className="form-inline mx-auto w-75" onSubmit={this.onSubmit}> */}
+          <SearchBar
+            placeholder="Search..."
+            className="form-control w-75 "
+            name="query"
+            type="text"
+            value={this.state.query}
+            onChange={this.onChange}
+            error={errors.login}
+          />
+          {/* <button type="submit">
               <Icon24 size={24} icon={SearchIcon} />
-            </button>
-          </form>
+            </button> */}
+          {/* </form> */}
 
-          <ul className="navbar-nav px-3">
+          <ul className="navbar-nav px-3 ml-auto">
             <li className="nav-item dropdown">
               <a
                 href="#"
@@ -158,6 +171,7 @@ class NavBar extends Component {
                 <a className="dropdown-item" href="#">
                   Settings
                 </a>
+
                 <a
                   className="dropdown-item"
                   onClick={this.onLogoutClick.bind(this)}
