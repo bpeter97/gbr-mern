@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/defaultsActions";
 
 import SvgIcon from "react-icons-kit";
-import { MenuIcon } from "../../icons";
+import { MenuIcon, AccountIcon } from "../../icons";
 import SearchBar from "../common/SearchBar";
 import IconSection from "./IconSection";
 
@@ -90,7 +90,7 @@ class NavBar extends Component {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Account
+                <Icon24 size={24} icon={AccountIcon} />
               </a>
               <div
                 className="dropdown-menu dropdown-menu-right"

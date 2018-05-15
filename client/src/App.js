@@ -54,7 +54,6 @@ class App extends Component {
         <Router history={history}>
           <div className="wrapper">
             <SideNav collapsed={this.state.collapsed} />
-
             <div className="col-md">
               <NavBar handleClick={this.handleClick} />
               <Route exact path="/login" component={Login} />

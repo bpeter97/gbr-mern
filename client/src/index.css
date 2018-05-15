@@ -162,7 +162,6 @@ button {
   flex-direction: column;
   min-width: 160px;
   max-width: 160px;
-  font-family: "Roboto";
   background-color: #006400;
   transition: all 0.3s;
   padding-top: 0.5rem;
