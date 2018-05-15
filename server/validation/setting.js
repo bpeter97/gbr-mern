@@ -10,7 +10,7 @@ module.exports = function validateSettingInput(option, data) {
     case "purchaseType":
       // Check to see if type has validation errors.
       if (validator.isEmpty(data.type)) {
-        errors.type = "Purchase type is required.";
+        errors.type = "Purchase type is required";
       }
       break;
 

@@ -14,7 +14,7 @@ exports.getPurchaseTypes = (req, res) => {
   PurchaseType.find({})
     .then(purchaseTypes => {
       if (!purchaseTypes) {
-        return res.send("No purchase types found.");
+        return res.send("No purchase types found");
       }
       res.json({ purchaseTypes });
     })
@@ -78,7 +78,7 @@ exports.patchPurchaseType = (req, res) => {
   // send 400 error with validation errors if not valid.
   if (!isValid || !ObjectID.isValid(req.params.id)) {
     if (!ObjectID.isValid(req.params.id)) {
-      errors.purchaseType = "No purchase type found with that ID in the URL";
+      errors.purchaseType = "No purchase type found";
     }
     return res.status(400).json(errors);
   }
@@ -86,7 +86,7 @@ exports.patchPurchaseType = (req, res) => {
   // find that document and update the type field.
   PurchaseType.findByIdAndUpdate(
     req.params.id,
-    { $set: { type: type } },
+    { $set: { type: req.body.type } },
     { new: true }
   )
     .then(purchaseType => {
@@ -107,10 +107,8 @@ exports.deletePurchaseType = (req, res) => {
   let errors = {};
 
   // send 400 error with validation errors if not valid.
-  if (!isValid || !ObjectID.isValid(req.params.id)) {
-    if (!ObjectID.isValid(req.params.id)) {
-      errors.purchaseType = "No purchase type found with that ID in the URL";
-    }
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.purchaseType = "No purchase type found";
     return res.status(400).json(errors);
   }
 

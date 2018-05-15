@@ -28,8 +28,38 @@ describe("SETTINGS", () => {
     });
 
     describe("POST /settings/purchasetypes/", () => {
-      it("should create a purchase type");
-      it("should not create a purchase type with validation errors");
+      it("should create a purchase type", done => {
+        request(app)
+          .post("/api/settings/purchasetypes")
+          .send({ type: "Resale" })
+          .expect(200)
+          .expect(res => {
+            expect(res.body.purchaseType.type).toBe("Resale");
+          })
+          .end(err => {
+            if (err) {
+              return done(err);
+            }
+
+            PurchaseType.findOne({ type: "Resale" })
+              .then(purchaseType => {
+                expect(purchaseType).toBeTruthy();
+                expect(purchaseType.type).toBe("Resale");
+                done();
+              })
+              .catch(e => done(e));
+          });
+      });
+      it("should not create a purchase type with validation errors", done => {
+        request(app)
+          .post("/api/settings/purchasetypes")
+          .send({ type: "" })
+          .expect(400)
+          .expect(res => {
+            expect(res.body.type).toBe("Purchase type is required");
+          })
+          .end(done);
+      });
     });
 
     describe("GET /settings/purchasetypes/:id", () => {
@@ -61,14 +91,114 @@ describe("SETTINGS", () => {
     });
 
     describe("PATCH /settings/purchasetypes/:id", () => {
-      it("should update a purchase type");
-      it("should not update a purchase type with invalid ID");
-      it("should not update a purchase type with validation errors");
+      it("should update a purchase type", done => {
+        request(app)
+          .patch(`/api/settings/purchasetypes/${purchaseTypes[1]._id}`)
+          .send({ type: "Resale" })
+          .expect(200)
+          .expect(res => {
+            expect(res.body.purchaseType.type).toBe("Resale");
+          })
+          .end(err => {
+            if (err) {
+              return done(err);
+            }
+
+            PurchaseType.findById(purchaseTypes[1]._id)
+              .then(purchaseType => {
+                expect(purchaseType).toBeTruthy();
+                expect(purchaseType.type).toBe("Resale");
+                done();
+              })
+              .catch(e => done(e));
+          });
+      });
+      it("should not update a purchase type with invalid ID", done => {
+        request(app)
+          .patch(`/api/settings/purchasetypes/${purchaseTypes[1]._id}ssss`)
+          .send({ type: "Resale" })
+          .expect(400)
+          .expect(res => {
+            expect(res.body.purchaseType).toBe("No purchase type found");
+          })
+          .end(err => {
+            if (err) {
+              return done(err);
+            }
+
+            PurchaseType.findById(purchaseTypes[1]._id)
+              .then(purchaseType => {
+                expect(purchaseType.type).toBe(purchaseTypes[1].type);
+                done();
+              })
+              .catch(e => done(e));
+          });
+      });
+      it("should not update a purchase type with validation errors", done => {
+        request(app)
+          .patch(`/api/settings/purchasetypes/${purchaseTypes[1]._id}`)
+          .send({ type: "" })
+          .expect(400)
+          .expect(res => {
+            expect(res.body.type).toBe("Purchase type is required");
+          })
+          .end(err => {
+            if (err) {
+              return done(err);
+            }
+
+            PurchaseType.findById(purchaseTypes[1]._id)
+              .then(purchaseType => {
+                expect(purchaseType.type).toBe(purchaseTypes[1].type);
+                done();
+              })
+              .catch(e => done(e));
+          });
+      });
     });
 
     describe("DELETE /settings/purchasetypes/:id", () => {
-      it("should delete a purchase type");
-      it("should not delete a purchase type with invalid ID");
+      it("should delete a purchase type", done => {
+        request(app)
+          .delete(`/api/settings/purchasetypes/${purchaseTypes[0]._id}`)
+          .expect(200)
+          .expect(res => {
+            expect(res.body.purchaseType.type).toBe(purchaseTypes[0].type);
+          })
+          .end(err => {
+            if (err) {
+              return done(err);
+            }
+
+            PurchaseType.findById(purchaseTypes[0]._id)
+              .then(purchaseType => {
+                expect(purchaseType).toBeFalsy();
+                done();
+              })
+              .catch(e => done(e));
+          });
+      });
+      it("should not delete a purchase type with invalid ID", done => {
+        request(app)
+          .delete(`/api/settings/purchasetypes/${purchaseTypes[0]._id}sss`)
+          .expect(400)
+          .expect(res => {
+            expect(res.body.purchaseType).toBe("No purchase type found");
+          })
+          .end(err => {
+            if (err) {
+              return done(err);
+            }
+
+            PurchaseType.findById(purchaseTypes[0]._id)
+              .then(purchaseType => {
+                expect(purchaseType).toBeTruthy();
+                expect(purchaseType.type).toBe(purchaseTypes[0].type);
+                done();
+              })
+              .catch(e => done(e));
+          });
+      });
     });
   });
 });
