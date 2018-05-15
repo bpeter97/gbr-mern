@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
+import { Route, Switch } from "react-router-dom";
+import {
+  ConnectedRouter as Router,
+  routerMiddleware
+} from "react-router-redux";
+
+import store from "./store";
+import createHistory from "history/createBrowserHistory";
+
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/defaultsActions";
-
-import { Provider } from "react-redux";
-import store from "./store";
 
 import Login from "./components/defaults/Login";
 import PrivateRoute from "./components/common/PrivateRoute";
@@ -16,6 +22,8 @@ import Customers from "./components/customers";
 import NavBar from "./components/navbar";
 
 import "./App.css";
+
+const history = createHistory();
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -46,7 +54,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
+        <Router history={history}>
           <div className="wrapper">
             <SideNav collapsed={this.state.collapsed} />
 
