@@ -63,14 +63,13 @@ const populateUsers = done => {
           users[0].password = hash;
           users[1].password = hash;
           users[2].password = hash;
-
-          var userOne = new User(users[0]).save();
-          var userTwo = new User(users[1]).save();
-          var userThree = new User(users[2]).save();
-
-          return Promise.all([userOne, userTwo, userThree]);
         });
       });
+      var userOne = new User(users[0]).save();
+      var userTwo = new User(users[1]).save();
+      var userThree = new User(users[2]).save();
+
+      return Promise.all([userOne, userTwo, userThree]);
     })
     .then(() => done())
     .catch(e => console.log(e));
