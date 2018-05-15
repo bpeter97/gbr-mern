@@ -10,8 +10,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="col-md">
-        <NavBar />
+      <div className="content">
         <h1 className="text-center align-middle">DASHBOARD PAGE!</h1>
       </div>
     );

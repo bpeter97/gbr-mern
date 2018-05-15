@@ -10,9 +10,8 @@ class Customers extends Component {
 
   render() {
     return (
-      <div className="col-md">
-        <NavBar icon={addCustomerIcon} />
-        <h1>Customers PAGE</h1>
+      <div className="content">
+        <h1 className="text-center">Customers PAGE</h1>
       </div>
     );
   }

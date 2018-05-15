@@ -54,11 +54,12 @@ class NavBar extends Component {
   }
   render() {
     const { errors } = this.state;
+    const { isAuthenticated, user } = this.props.auth;
     const { icon } = this.props;
     const sideIcon = { MenuIcon };
     let navbar = "";
 
-    if (icon) {
+    if (icon && isAuthenticated) {
       navbar = (
         <nav
           className="navbar navbar-expand py-1 flex-md-nowrap rounded-0"
@@ -66,7 +67,7 @@ class NavBar extends Component {
         >
           <ul id="toggleSide" className="navbar-nav px-3 mr-auto ">
             <li className="nav-item">
-              <a href="">
+              <a onClick={this.props.handleClick}>
                 <Icon24 size={24} icon={MenuIcon} />
               </a>
             </li>
@@ -124,7 +125,7 @@ class NavBar extends Component {
           </ul>
         </nav>
       );
-    } else {
+    } else if (isAuthenticated) {
       navbar = (
         <nav
           className="navbar navbar-expand p-1 flex-md-nowrap rounded-0"
@@ -132,7 +133,7 @@ class NavBar extends Component {
         >
           <ul id="toggleSide" className="navbar-nav px-3 mr-auto ">
             <li className="nav-item">
-              <a href="">
+              <a onClick={this.props.handleClick}>
                 <Icon24 size={24} icon={MenuIcon} />
               </a>
             </li>

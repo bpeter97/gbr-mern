@@ -22,19 +22,10 @@ class SideNav extends Component {
   constructor() {
     super();
     this.state = {
-      collapsed: false,
       activePath: "/"
     };
   }
 
-  onLogoutClick(e) {
-    e.preventDefault();
-    this.props.logoutUser();
-  }
-  onMinimizeClick(e) {
-    const currentState = this.state.collapsed;
-    this.setState({ collapsed: !currentState });
-  }
   navClick = path => {
     let activePath = this.state.activePath;
     this.setState({
@@ -44,12 +35,9 @@ class SideNav extends Component {
 
   render() {
     let navbarContent;
-    let minimizedIcon;
-    let minimizedText;
+
     const { isAuthenticated, user } = this.props.auth;
-    const collapsed = this.state.collapsed;
-    minimizedIcon = collapsed ? CollapsedIcon : notCollapsedIcon;
-    minimizedText = collapsed ? "Expand" : "Minimize";
+    const { collapsed } = this.props;
 
     if (isAuthenticated) {
       navbarContent = (
@@ -114,19 +102,6 @@ class SideNav extends Component {
                 isActive={this.state.activePath === "/calendar"}
                 onClick={this.navClick}
               />
-
-              <a onClick={this.onLogoutClick.bind(this)}>
-                <SideNavItem name="Logout" icon={LogoutIcon} pathname="" />
-              </a>
-
-              {/* Add minimize button */}
-              <a onClick={this.onMinimizeClick.bind(this)}>
-                <SideNavItem
-                  name={minimizedText}
-                  icon={minimizedIcon}
-                  pathname=""
-                />
-              </a>
             </ul>
           </div>
         </nav>

@@ -13,6 +13,7 @@ import Dashboard from "./components/dashboard";
 import SideNav from "./components/sidenav/SideNav";
 import Calendar from "./components/calendar";
 import Customers from "./components/customers";
+import NavBar from "./components/navbar";
 
 import "./App.css";
 
@@ -28,22 +29,40 @@ if (localStorage.jwtToken) {
 }
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      collapsed: false
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  }
+
   render() {
     return (
       <Provider store={store}>
         <Router>
           <div className="wrapper">
-            <SideNav />
-            <Route exact path="/login" component={Login} />
-            <Switch>
-              <PrivateRoute exact path="/" component={Dashboard} />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path="/calendar" component={Calendar} />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path="/customers" component={Customers} />
-            </Switch>
+            <SideNav collapsed={this.state.collapsed} />
+
+            <div className="col-md">
+              <NavBar handleClick={this.handleClick} />
+              <Route exact path="/login" component={Login} />
+              <Switch>
+                <PrivateRoute exact path="/" component={Dashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/calendar" component={Calendar} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/customers" component={Customers} />
+              </Switch>
+            </div>
           </div>
         </Router>
       </Provider>
