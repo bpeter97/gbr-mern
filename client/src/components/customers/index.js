@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import NavBar from "../navbar";
-import { addCustomerIcon } from "../../icons";
 
 class Customers extends Component {
   constructor() {

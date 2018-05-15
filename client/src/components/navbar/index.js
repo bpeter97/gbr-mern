@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import TextFieldGroup from "../common/TextFieldGroup";
+
 import { logoutUser } from "../../actions/defaultsActions";
-import ErrorDisplay from "../error/ErrorDisplay";
+
 import SvgIcon from "react-icons-kit";
-import {
-  CollapsedIcon,
-  notCollapsedIcon,
-  SearchIcon,
-  LogoutIcon,
-  MenuIcon,
-  CloseIcon
-} from "../../icons";
+import { MenuIcon } from "../../icons";
 import SearchBar from "../common/SearchBar";
 
 const Icon24 = props => <SvgIcon size={24} icon={props.icon} />;
@@ -25,7 +18,7 @@ class NavBar extends Component {
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
     this.onLogoutClick = this.onLogoutClick.bind(this);
   }
 
@@ -40,23 +33,22 @@ class NavBar extends Component {
     this.props.logoutUser();
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  // onSubmit(e) {
+  //   e.preventDefault();
 
-    const query = {
-      query: this.state.query
-    };
-    // this.props.search(query);
-  }
+  //   const query = {
+  //     query: this.state.query
+  //   };
+  //   this.props.search(query);
+  // }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
   render() {
     const { errors } = this.state;
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
     const { icon } = this.props;
-    const sideIcon = { MenuIcon };
     let navbar = "";
 
     if (icon && isAuthenticated) {
@@ -78,7 +70,7 @@ class NavBar extends Component {
             className="form-control w-75 "
             name="query"
             type="text"
-            value={this.state.query}
+            // value={this.state.query}
             onChange={this.onChange}
             error={errors.login}
           />
@@ -97,7 +89,7 @@ class NavBar extends Component {
           <ul className="navbar-nav px-3 ml-auto">
             <li className="nav-item dropdown">
               <a
-                href="#"
+                href=""
                 className="nav-item nav-link dropdown-toggle"
                 id="account"
                 data-toggle="dropdown"
@@ -110,7 +102,7 @@ class NavBar extends Component {
                 className="dropdown-menu dropdown-menu-right"
                 aria-labelledby="account"
               >
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="">
                   Settings
                 </a>
 
@@ -156,7 +148,7 @@ class NavBar extends Component {
           <ul className="navbar-nav px-3 ml-auto">
             <li className="nav-item dropdown">
               <a
-                href="#"
+                href=""
                 className="nav-item nav-link dropdown-toggle"
                 id="account"
                 data-toggle="dropdown"
@@ -169,7 +161,7 @@ class NavBar extends Component {
                 className="dropdown-menu dropdown-menu-right"
                 aria-labelledby="account"
               >
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="">
                   Settings
                 </a>
 
