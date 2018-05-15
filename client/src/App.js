@@ -32,20 +32,18 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className="container-fluid">
-            <div className="row">
-              <SideNav />
-              <Route exact path="/login" component={Login} />
-              <Switch>
-                <PrivateRoute exact path="/" component={Dashboard} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/calendar" component={Calendar} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/customers" component={Customers} />
-              </Switch>
-            </div>
+          <div className="wrapper">
+            <SideNav />
+            <Route exact path="/login" component={Login} />
+            <Switch>
+              <PrivateRoute exact path="/" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/calendar" component={Calendar} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/customers" component={Customers} />
+            </Switch>
           </div>
         </Router>
       </Provider>
