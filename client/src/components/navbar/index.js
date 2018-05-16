@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
+import { Link } from "react-router-dom";
 import { logoutUser } from "../../actions/defaultsActions";
 
 import SvgIcon from "react-icons-kit";
@@ -9,7 +9,7 @@ import { MenuIcon, AccountIcon } from "../../icons";
 import SearchBar from "../common/SearchBar";
 import IconSection from "./IconSection";
 
-const Icon24 = props => <SvgIcon size={24} icon={props.icon} />;
+const Icon24 = props => <SvgIcon size={20} icon={props.icon} />;
 
 class NavBar extends Component {
   constructor() {
@@ -55,21 +55,51 @@ class NavBar extends Component {
     if (isAuthenticated) {
       navbar = (
         <nav
-          className="navbar navbar-expand py-1 flex-md-nowrap top-nav"
+          className="navbar navbar-expand top-nav flex-column flex-md-row"
           style={{ backgroundColor: "#006400" }}
         >
-          <ul id="toggleSide" className="navbar-nav px-3 mr-auto d-md-none">
+          <a
+            className="mr-auto d-md-none order-1"
+            data-toggle="collapse"
+            data-target="#route-links"
+            aria-controls="route-links"
+            aria-expanded="true"
+          >
+            <Icon24 size={24} icon={MenuIcon} />
+          </a>
+          <ul className="navbar-nav flex-row navbar-mobile  order-0 order-md-1">
             <li className="nav-item">
-              <a
-                data-toggle="collapse"
-                data-target="#route-links"
-                aria-controls="route-links"
-                aria-expanded="true"
-              >
-                <Icon24 size={24} icon={MenuIcon} />
-              </a>
+              <Link className="nav-link" to="/">
+                Dashboard
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/customers">
+                Customers
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/quotes">
+                Quotes
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/orders">
+                Orders
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/products">
+                Products{" "}
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/calendar">
+                Calendar
+              </Link>
             </li>
           </ul>
+
           {/* <form onSubmit={this.onSubmit} className="d-flex w-75">
             <SearchBar
               placeholder="Search..."
@@ -81,9 +111,7 @@ class NavBar extends Component {
               error={errors.login}
             />
           </form> */}
-
-          <IconSection />
-          <ul className="navbar-nav px-3 ml-auto">
+          <ul className="navbar-nav flex-row ml-md-auto d-none d-md-flex order-3">
             <li className="nav-item dropdown">
               <a
                 href=""
