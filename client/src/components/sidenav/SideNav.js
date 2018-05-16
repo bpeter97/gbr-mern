@@ -48,18 +48,18 @@ class SideNav extends Component {
     if (isAuthenticated) {
       navbarContent = (
         <div className="col-12 col-md-3 side-nav">
-          <form onSubmit={this.onSubmit} className="nav-search d-flex">
-            <SearchBar
-              placeholder="Search..."
-              className="form-control w-100"
-              name="query"
-              type="text"
-              value={this.state.query}
-              onChange={this.onChange}
-              error={errors.login}
-            />
-          </form>
           <nav className="links" id="route-links">
+            <form onSubmit={this.onSubmit} className="nav-search d-flex">
+              <SearchBar
+                placeholder="Search..."
+                className="form-control w-100"
+                name="query"
+                type="text"
+                value={this.state.query}
+                onChange={this.onChange}
+                error={errors.login}
+              />
+            </form>
             {/* <SideNavHeader
               firstName={user.firstName}
               lastName={user.lastName}
