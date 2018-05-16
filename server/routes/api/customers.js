@@ -1,22 +1,24 @@
 const express = require("express");
 const router = express.Router();
 
-// @route   GET api/customers/
-// @desc    Retrieves all of the customers
-// @access  Private
+const helpers = require("./../../helpers/customers");
 
-// @route   POST api/customers/
-// @desc    Creates a new customer.
+// @route   api/customers/
+// @GET     Retrieves all of the customers
+// @POST    Creates a new customer
 // @access  Private
+router
+  .route("/")
+  .get(helpers.getCustomers)
+  .post(helpers.postCustomer);
 
-// @route   GET api/customers/:id
-// @desc    Retrieves a single customer.
+// @route   api/customers/:id
+// @GET     Retrieves a single customer.
+// @PATCH   Updates all or part of a single customer.
+// @DELETE  Deletes a single customer from the database.
 // @access  Private
-
-// @route   PATCH api/customers/:id
-// @desc    Updates all or part of a single customer.
-// @access  Private
-
-// @route   DELETE api/customers/:id
-// @desc    Deletes a single customer from the database.
-// @access  Private
+router
+  .route("/:id")
+  .get(helpers.getCustomer)
+  .patch(helpers.patchCustomer)
+  .delete(helpers.deleteCustomer);
