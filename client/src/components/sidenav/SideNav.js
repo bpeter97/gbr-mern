@@ -11,18 +11,54 @@ import {
   DashboardIcon
 } from "../../icons/";
 
+import SearchBar from "../common/SearchBar";
 import SideNavHeader from "./SideNavHeader";
 import SideNavItem from "./SideNavItem";
 
 class SideNav extends Component {
+  constructor() {
+    super();
+    this.state = {
+      query: "",
+      errors: {}
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    // this.onLogoutClick = this.onLogoutClick.bind(this);
+  }
+  onSubmit(e) {
+    e.preventDefault();
+
+    const query = {
+      query: this.state.query
+    };
+    console.log(query);
+    // this.props.search(query);
+  }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
     let navbarContent;
     const { location } = this.props;
     const { isAuthenticated, user } = this.props.auth;
+    const { errors } = this.state;
 
     if (isAuthenticated) {
       navbarContent = (
         <div className="col-12 col-md-3 side-nav">
+          <form onSubmit={this.onSubmit} className="nav-search d-flex">
+            <SearchBar
+              placeholder="Search..."
+              className="form-control w-100"
+              name="query"
+              type="text"
+              value={this.state.query}
+              onChange={this.onChange}
+              error={errors.login}
+            />
+          </form>
           <nav className="links" id="route-links">
             {/* <SideNavHeader
               firstName={user.firstName}
@@ -83,11 +119,13 @@ class SideNav extends Component {
 
 SideNav.propTypes = {
   auth: PropTypes.object.isRequired,
+
   location: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  errors: state.errors,
   location: state.router.location
 });
 

@@ -46,6 +46,13 @@ button {
   border: none;
   font-size: 24px;
 }
+.nav-search {
+  position: relative;
+  padding: 1rem 15px;
+  margin-right: -15px;
+  margin-left: -15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
 
 .mh-100vh {
   min-height: 100vh;
@@ -93,7 +100,6 @@ button {
   background-color: white;
   padding-left: 0;
   padding-right: 0;
-  max-width: 160px;
 }
 
 .side-nav .navItem {
@@ -174,6 +180,7 @@ button {
     z-index: 0;
     height: calc(100vh - 4rem);
     border-right: 1px solid rgba(0, 0, 0, 0.1);
+    max-width: 250px;
   }
 
   .links {

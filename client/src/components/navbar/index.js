@@ -18,8 +18,8 @@ class NavBar extends Component {
       query: "",
       errors: {}
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    // this.onChange = this.onChange.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
     this.onLogoutClick = this.onLogoutClick.bind(this);
   }
 
@@ -70,7 +70,7 @@ class NavBar extends Component {
               </a>
             </li>
           </ul>
-          <form onSubmit={this.onSubmit} className="d-flex w-75">
+          {/* <form onSubmit={this.onSubmit} className="d-flex w-75">
             <SearchBar
               placeholder="Search..."
               className="form-control w-100"
@@ -80,7 +80,7 @@ class NavBar extends Component {
               onChange={this.onChange}
               error={errors.login}
             />
-          </form>
+          </form> */}
 
           <IconSection />
           <ul className="navbar-nav px-3 ml-auto">
