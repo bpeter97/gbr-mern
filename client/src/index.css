@@ -47,31 +47,13 @@ button {
   font-size: 24px;
 }
 
-.wrapper {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-}
-
 .mh-100vh {
   min-height: 100vh;
 }
-
-.col-md {
-  padding: 0;
+.col {
+  padding-right: 0;
+  padding-left: 0;
 }
-.navbar .form-control {
-  padding: 0.75rem 1rem;
-  border-width: 0;
-  border-radius: 0;
-}
-.navbar {
-  padding: 0;
-}
-.navbar-expand {
-  flex-flow: wrap;
-}
-
 .navHeader {
   text-align: center;
   background-color: #006400;
@@ -100,6 +82,23 @@ button {
 #navHeaderTitle {
   font-size: 12px;
 }
+.top-nav {
+  min-height: 2rem;
+  background-color: #006400;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.side-nav {
+  background-color: white;
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 160px;
+}
+
+.side-nav .navItem {
+  color: #006400;
+}
 
 .navSection {
   box-sizing: border-box;
@@ -112,10 +111,12 @@ button {
   vertical-align: middle;
   width: 100%;
   text-align: center;
+  color: white;
 }
 
 .navItem.active {
-  background-color: #fff;
+  font-size: 18px;
+  font-weight: 500;
   color: #006400;
 }
 
@@ -157,51 +158,26 @@ button {
   background-position: center center;
 }
 
-#sideNav {
-  align-items: stretch;
-  flex-direction: column;
-  min-width: 160px;
-  max-width: 160px;
-  background-color: #006400;
-  transition: all 0.3s;
-  padding-top: 0.5rem;
-  position: sticky;
-  height: 100vh;
-}
-
-#sideNav.collapsed {
-  min-width: 80px;
-  max-width: 80px;
-}
-
-#sideNav.collapsed .navItem {
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-#sideNav.collapsed .navItemText {
-  margin: 0;
-}
-
 #icon-section {
   margin-left: 3rem;
 }
+@media (min-width: 768px) {
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  .side-nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem;
+    z-index: 0;
+    height: calc(100vh - 4rem);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
 
-@media (max-width: 768px) {
-  #sideNav {
-    min-width: 80px;
-    max-width: 80px;
-    margin-left: -80px;
-  }
-  #sideNav.collapsed {
-    margin-left: 0;
-  }
-  #sideNav .navItem {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  #sideNav .navItemText {
-    margin: 0;
+  .links {
+    display: block !important;
   }
 }
 

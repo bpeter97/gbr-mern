@@ -19,7 +19,7 @@ class NavBar extends Component {
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.onLogoutClick = this.onLogoutClick.bind(this);
   }
 
@@ -34,14 +34,15 @@ class NavBar extends Component {
     this.props.logoutUser();
   }
 
-  // onSubmit(e) {
-  //   e.preventDefault();
+  onSubmit(e) {
+    e.preventDefault();
 
-  //   const query = {
-  //     query: this.state.query
-  //   };
-  //   this.props.search(query);
-  // }
+    const query = {
+      query: this.state.query
+    };
+    console.log(query);
+    // this.props.search(query);
+  }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -54,30 +55,32 @@ class NavBar extends Component {
     if (isAuthenticated) {
       navbar = (
         <nav
-          className="navbar navbar-expand py-1 flex-md-nowrap rounded-0"
+          className="navbar navbar-expand py-1 flex-md-nowrap top-nav"
           style={{ backgroundColor: "#006400" }}
         >
-          <ul id="toggleSide" className="navbar-nav px-3 mr-auto ">
+          <ul id="toggleSide" className="navbar-nav px-3 mr-auto d-md-none">
             <li className="nav-item">
-              <a onClick={this.props.handleClick}>
+              <a
+                data-toggle="collapse"
+                data-target="#route-links"
+                aria-controls="route-links"
+                aria-expanded="true"
+              >
                 <Icon24 size={24} icon={MenuIcon} />
               </a>
             </li>
           </ul>
-          {/* <form className="form-inline mx-auto w-75" onSubmit={this.onSubmit}> */}
-          <SearchBar
-            placeholder="Search..."
-            className="form-control w-75 "
-            name="query"
-            type="text"
-            value={this.state.query}
-            onChange={this.onChange}
-            error={errors.login}
-          />
-          {/* <button type="submit">
-              <Icon24 size={24} icon={SearchIcon} />
-            </button> */}
-          {/* </form> */}
+          <form onSubmit={this.onSubmit} className="d-flex w-75">
+            <SearchBar
+              placeholder="Search..."
+              className="form-control w-100"
+              name="query"
+              type="text"
+              value={this.state.query}
+              onChange={this.onChange}
+              error={errors.login}
+            />
+          </form>
 
           <IconSection />
           <ul className="navbar-nav px-3 ml-auto">
