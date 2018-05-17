@@ -27,11 +27,11 @@ module.exports = function validateCustomerInput(data) {
   }
 
   if (validator.isEmpty(data.address1)) {
-    errors.address1 = "Address is required";
+    errors.address = "Address is required";
   }
 
-  if (validator.isEmpty(data.citry)) {
-    errors.citry = "City is required";
+  if (validator.isEmpty(data.city)) {
+    errors.city = "City is required";
   }
 
   if (validator.isEmpty(data.zipcode)) {
@@ -44,6 +44,10 @@ module.exports = function validateCustomerInput(data) {
 
   if (validator.isEmpty(data.phone)) {
     errors.phone = "Phone is required";
+  }
+
+  if (!validator.isEmpty(data.email) && !validator.isEmail(data.email)) {
+    errors.email = "Email is invalid";
   }
 
   if (!validator.isBoolean(String(data.isFlagged))) {

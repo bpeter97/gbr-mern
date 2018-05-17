@@ -22,3 +22,5 @@ router
   .get(helpers.getCustomer)
   .patch(helpers.patchCustomer)
   .delete(helpers.deleteCustomer);
+
+module.exports = router;

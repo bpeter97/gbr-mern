@@ -52,17 +52,25 @@ exports.postCustomer = (req, res) => {
 
   // save the customer
   var newCustomer = new Customer(body);
+  newCustomer.lastViewed = new Date();
 
-  newCustomer
-    .save()
-    .then(customer => {
-      if (!customer) {
-        errors.customers = "Unable to create the new customer";
-        return res.status(400).json(errors);
-      }
-      res.json({ customer });
-    })
-    .catch(e => console.log(e));
+  Customer.findOne({ name: body.name }).then(cust => {
+    if (cust) {
+      errors.customer = "This customer has already been created";
+      return res.status(400).json(errors);
+    }
+
+    newCustomer
+      .save()
+      .then(customer => {
+        if (!customer) {
+          errors.customers = "Unable to create the new customer";
+          return res.status(400).json(errors);
+        }
+        res.json({ customer });
+      })
+      .catch(e => console.log(e));
+  });
 };
 
 // @route   GET api/customers/:id
@@ -78,12 +86,17 @@ exports.getCustomer = (req, res) => {
   }
 
   // find the customer and return results
-  Customer.findById(req.params.id)
+  Customer.findByIdAndUpdate(
+    req.params.id,
+    { $set: { lastViewed: new Date() } },
+    { new: true }
+  )
     .then(customer => {
       if (!customer) {
         errors.customer = "There was no customer found";
         return res.status(400).json(errors);
       }
+
       res.json({ customer });
     })
     .catch(e => console.log(e));

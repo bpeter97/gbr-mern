@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 // require the routes
 const defaults = require("./server/routes/api/defaults");
 const products = require("./server/routes/api/products");
+const customers = require("./server/routes/api/customers");
 const containers = require("./server/routes/api/containers");
 const users = require("./server/routes/api/users");
 const events = require("./server/routes/api/events");
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV == "test") {
 // Assign routes!
 app.use("/api", defaults);
 app.use("/api/products", products);
+app.use("/api/customers", customers);
 app.use("/api/containers", containers);
 app.use("/api/users", users);
 app.use("/api/events", events);
