@@ -59,6 +59,12 @@ class NavBar extends Component {
           style={{ backgroundColor: "#006400" }}
         >
           <a
+            className="mr-5 d-none d-md-block order-1"
+            onClick={this.props.handleClick}
+          >
+            <Icon24 size={24} icon={MenuIcon} />
+          </a>
+          <a
             className="mr-auto d-md-none order-1"
             data-toggle="collapse"
             data-target="#route-links"

@@ -41,13 +41,18 @@ class SideNav extends Component {
 
   render() {
     let navbarContent;
-    const { location } = this.props;
+    const { location, collapsed } = this.props;
     const { isAuthenticated, user } = this.props.auth;
     const { errors } = this.state;
-
     if (isAuthenticated) {
       navbarContent = (
-        <div className="col-12 col-md-3 side-nav">
+        <div
+          className={
+            collapsed
+              ? "collapsed col-12 col-md-3 side-nav "
+              : "col-12 col-md-3 side-nav"
+          }
+        >
           <nav className="links" id="route-links">
             <form onSubmit={this.onSubmit} className="nav-search d-flex">
               <SearchBar

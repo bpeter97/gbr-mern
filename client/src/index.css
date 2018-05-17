@@ -190,6 +190,12 @@ button {
     height: calc(100vh - 4rem);
     border-right: 1px solid rgba(0, 0, 0, 0.1);
     max-width: 250px;
+    margin-left: 0px;
+    transition: all 0.3s;
+  }
+
+  .side-nav.collapsed {
+    margin-left: -250px;
   }
 
   .links {

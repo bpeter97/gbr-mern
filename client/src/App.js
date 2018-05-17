@@ -34,16 +34,29 @@ if (localStorage.jwtToken) {
 }
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      collapsed: false
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  }
+
   render() {
     return (
       <Provider store={store}>
         <Router history={history}>
           <div className="wrapper">
-            <NavBar />
+            <NavBar handleClick={this.handleClick} />
             <div className="container-fluid">
               <div className="row flex-xl-nowrap">
-                <SideNav />
-
+                <SideNav collapsed={this.state.collapsed} />
                 <Route exact path="/login" component={Login} />
                 <Switch>
                   <PrivateRoute exact path="/" component={Dashboard} />
