@@ -12,8 +12,7 @@ import {
 } from "../../icons/";
 
 import SearchBar from "../common/SearchBar";
-import SideNavHeader from "./SideNavHeader";
-import SideNavItem from "./SideNavItem";
+import SideNavSection from "./SideNavSection";
 
 class SideNav extends Component {
   constructor() {
@@ -65,53 +64,25 @@ class SideNav extends Component {
                 error={errors.login}
               />
             </form>
-            {/* <SideNavHeader
-              firstName={user.firstName}
-              lastName={user.lastName}
-              title={user.title}
-              avatar={
-                user.avatar
-                // "https://avatars1.githubusercontent.com/u/17460785?s=400&u=d8b0d093c1d4ad51c2700d15cdf3898cdee42006&v=4"
-              }
-            /> */}
-            <ul className="nav flex-column">
-              <SideNavItem
-                name="Dashboard"
-                icon={DashboardIcon}
-                pathname="/"
-                isActive={location.pathname === "/"}
-              />
-              <SideNavItem
-                name="Customers"
-                icon={CustomersIcon}
-                pathname="/customers"
-                isActive={location.pathname === "/customers"}
-              />
-              <SideNavItem
-                name="Quotes"
-                icon={QuotesIcon}
-                pathname="/quotes"
-                isActive={location.pathname === "/quotes"}
-              />
-              <SideNavItem
-                name="Orders"
-                icon={OrdersIcon}
-                pathname="/orders"
-                isActive={location.pathname === "/orders"}
-              />
-              <SideNavItem
-                name="Products"
-                icon={ProductsIcon}
-                pathname="/products"
-                isActive={location.pathname === "/products"}
-              />
-              <SideNavItem
-                name="Calendar"
-                icon={CalendarIcon}
-                pathname="/calendar"
-                isActive={location.pathname === "/calendar"}
-              />
-            </ul>
+            <SideNavSection name="Upcoming Events">
+              <ul className="nav flex-column">
+                <li>Event 1</li>
+                <li>Event 2</li>
+              </ul>
+            </SideNavSection>
+            <SideNavSection name="Flagged Customers">
+              <ul className="nav flex-column">
+                <li>Customer 1</li>
+                <li>Customer 2</li>
+              </ul>
+            </SideNavSection>
+
+            <SideNavSection name="Recently Viewed">
+              <ul className="nav flex-column">
+                <li>Customer 5</li>
+                <li>Customer 6</li>
+              </ul>
+            </SideNavSection>
           </nav>
         </div>
       );
