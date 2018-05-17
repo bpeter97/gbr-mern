@@ -6,7 +6,7 @@ const isEmpty = require("./../validation/is-empty");
 const Customer = require("./../models/Customer");
 
 // validation files
-// const validateCustomerInput = require("../validation/customer");
+const validateCustomerInput = require("../validation/customer");
 
 // @route   GET api/customers/
 // @desc    Retrieves all of the customers

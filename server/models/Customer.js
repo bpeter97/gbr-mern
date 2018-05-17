@@ -51,6 +51,9 @@ const CustomerSchema = new Schema({
   },
   flagReason: {
     type: String
+  },
+  lastViewed: {
+    type: String
   }
 });
 
