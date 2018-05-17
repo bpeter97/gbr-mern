@@ -7,7 +7,11 @@ class Calendar extends Component {
   }
 
   render() {
-    return <div className="col-md-10">Calendar goes here</div>;
+    return (
+      <div className="content">
+        <h1 className="text-center align-middle">Calendar</h1>
+      </div>
+    );
   }
 }
 

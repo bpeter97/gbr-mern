@@ -9,8 +9,6 @@ import { MenuIcon, AccountIcon } from "../../icons";
 import SearchBar from "../common/SearchBar";
 import IconSection from "./IconSection";
 
-const Icon24 = props => <SvgIcon size={20} icon={props.icon} />;
-
 class NavBar extends Component {
   constructor() {
     super();
@@ -59,21 +57,23 @@ class NavBar extends Component {
           style={{ backgroundColor: "#006400" }}
         >
           <a
-            className="mr-5 d-none d-md-block order-1"
+            className="mr-5 d-none d-md-block order-1 "
+            id="collapse-icon"
             onClick={this.props.handleClick}
           >
-            <Icon24 size={24} icon={MenuIcon} />
+            <SvgIcon size={20} icon={MenuIcon} />
           </a>
           <a
             className="mr-auto d-md-none order-1"
+            id="collapse-icon"
             data-toggle="collapse"
             data-target="#route-links"
             aria-controls="route-links"
             aria-expanded="true"
           >
-            <Icon24 size={24} icon={MenuIcon} />
+            <SvgIcon size={20} icon={MenuIcon} />
           </a>
-          <ul className="navbar-nav flex-row navbar-mobile  order-0 order-md-1">
+          <ul className="navbar-nav flex-row navbar-mobile order-0 order-md-1">
             <li className="nav-item">
               <Link className="nav-link" to="/">
                 Dashboard
@@ -117,7 +117,7 @@ class NavBar extends Component {
               error={errors.login}
             />
           </form> */}
-          <ul className="navbar-nav flex-row ml-md-auto d-none d-md-flex order-3">
+          <ul className="navbar-nav flex-row ml-md-auto ml-auto order-3">
             <li className="nav-item dropdown">
               <a
                 href=""
@@ -127,7 +127,7 @@ class NavBar extends Component {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <Icon24 size={24} icon={AccountIcon} />
+                <SvgIcon size={20} icon={AccountIcon} />
               </a>
               <div
                 className="dropdown-menu dropdown-menu-right"
