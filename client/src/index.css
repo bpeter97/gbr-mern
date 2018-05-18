@@ -75,6 +75,10 @@ button {
   padding-left: 0;
 }
 
+#side-nav-reg nav {
+  padding: 1rem;
+}
+
 .side-nav-section {
   color: #006400;
   font-size: 12px;
@@ -135,6 +139,9 @@ button {
 }
 .MainContentContainer {
   height: 100vh;
+}
+.DrawerContentContainer div {
+  padding: 1rem;
 }
 
 #login-block {
