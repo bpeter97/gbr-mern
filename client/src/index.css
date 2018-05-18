@@ -5,7 +5,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  color: #006400;
+  color: black;
   font-family: "Open Sans", sans-serif;
   line-height: 1.5;
   font-size: 1rem;
@@ -30,6 +30,10 @@ a {
   user-select: none;
 }
 
+nav a {
+  color: #fff;
+}
+
 a:hover {
   text-decoration: none;
   color: white;
@@ -48,6 +52,12 @@ button {
 
 #collapse-icon {
   color: #fff;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255);
+}
+#navbarNav a {
+  color: #006400;
 }
 
 .nav-search {
@@ -114,6 +124,11 @@ button {
   margin-top: 10px;
   background-color: #006400;
   border-color: #006400;
+}
+
+.nav.btn {
+  background-color: #fff;
+  border-color: #fff;
 }
 .btn:hover,
 .btn:active,

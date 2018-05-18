@@ -52,101 +52,169 @@ class NavBar extends Component {
 
     if (isAuthenticated) {
       navbar = (
-        <nav
-          className="navbar navbar-expand top-nav flex-column flex-md-row"
-          style={{ backgroundColor: "#006400" }}
-        >
-          <a
-            className="mr-5 d-none d-md-block order-1 "
-            id="collapse-icon"
-            onClick={this.props.handleClick}
+        <div>
+          <nav
+            className="navbar navbar-expand-md navbar-dark"
+            style={{ backgroundColor: "#006400" }}
           >
-            <SvgIcon size={20} icon={MenuIcon} />
-          </a>
-          <a
-            className="mr-auto d-md-none order-1"
-            id="collapse-icon"
-            data-toggle="collapse"
-            data-target="#route-links"
-            aria-controls="route-links"
-            aria-expanded="true"
-          >
-            <SvgIcon size={20} icon={MenuIcon} />
-          </a>
-          <ul className="navbar-nav flex-row navbar-mobile order-0 order-md-1">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Dashboard
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/customers">
-                Customers
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/quotes">
-                Quotes
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/orders">
-                Orders
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/products">
-                Products{" "}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/calendar">
-                Calendar
-              </Link>
-            </li>
-          </ul>
+            {/* SIDE NAV TOGGLE > MD, USED TO CHANGE COLLAPSE  */}
+            <a
+              className="d-none d-md-block navbar-toggler"
+              id="collapse-icon"
+              onClick={this.props.handleClick}
+            >
+              <SvgIcon size={20} icon={MenuIcon} />
+            </a>
+            {/* SIDE NAV TOGGLE < MD */}
+            <a
+              className=" d-md-none order-1 navbar-toggler"
+              id="collapse-icon"
+              data-toggle="collapse"
+              data-target="#route-links"
+              aria-controls="route-links"
+              aria-expanded="true"
+            >
+              <SvgIcon size={20} icon={MenuIcon} />
+            </a>
+            {/* BOOTSTRAP NAVBAR TOGGLE */}
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"> </span>
+            </button>
+            {/* DISAPPEARS WHEN < MD OR < 768px */}
+            <div className="collapse navbar-collapse">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">
+                    Dashboard
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/customers">
+                    Customers
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/quotes">
+                    Quotes
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/orders">
+                    Orders
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/products">
+                    Products{" "}
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/calendar">
+                    Calendar
+                  </Link>
+                </li>
+              </ul>
+              <ul className="navbar-nav  ">
+                <li className="dropdown">
+                  <a
+                    href=""
+                    className="dropdown-toggle"
+                    id="account"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <SvgIcon size={20} icon={AccountIcon} />
+                  </a>
+                  <div className="dropdown-menu" aria-labelledby="account">
+                    <a className="dropdown-item" href="">
+                      Settings
+                    </a>
 
-          {/* <form onSubmit={this.onSubmit} className="d-flex w-75">
-            <SearchBar
-              placeholder="Search..."
-              className="form-control w-100"
-              name="query"
-              type="text"
-              value={this.state.query}
-              onChange={this.onChange}
-              error={errors.login}
-            />
-          </form> */}
-          <ul className="navbar-nav flex-row ml-md-auto ml-auto order-3">
-            <li className="nav-item dropdown">
-              <a
-                href=""
-                className="nav-item nav-link dropdown-toggle"
-                id="account"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <SvgIcon size={20} icon={AccountIcon} />
-              </a>
-              <div
-                className="dropdown-menu dropdown-menu-right"
-                aria-labelledby="account"
-              >
-                <a className="dropdown-item" href="">
-                  Settings
-                </a>
-
+                    <a
+                      className="dropdown-item"
+                      onClick={this.onLogoutClick.bind(this)}
+                    >
+                      Log off
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          {/* DROP DOWN NAV WHEN < MD OR < 768px*/}
+          <nav className="navbar collapse d-md-none" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">
+                  Dashboard
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/customers">
+                  Customers
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/quotes">
+                  Quotes
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/orders">
+                  Orders
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/products">
+                  Products{" "}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/calendar">
+                  Calendar
+                </Link>
+              </li>
+            </ul>
+            <ul className="navbar-nav ml-auto ">
+              <li className="nav-item dropdown">
                 <a
-                  className="dropdown-item"
-                  onClick={this.onLogoutClick.bind(this)}
+                  href=""
+                  className="nav-item nav-link dropdown-toggle"
+                  id="account"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
-                  Log off
+                  <SvgIcon size={20} icon={AccountIcon} />
                 </a>
-              </div>
-            </li>
-          </ul>
-        </nav>
+                <div
+                  className="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="account"
+                >
+                  <a className="dropdown-item" href="">
+                    Settings
+                  </a>
+
+                  <a
+                    className="dropdown-item"
+                    onClick={this.onLogoutClick.bind(this)}
+                  >
+                    Log off
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
       );
     }
 
