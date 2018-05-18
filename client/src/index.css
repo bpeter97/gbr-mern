@@ -56,9 +56,6 @@ button {
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255);
 }
-#navbarNav a {
-  color: #006400;
-}
 
 .nav-search {
   position: relative;
@@ -136,6 +133,9 @@ button {
   background-color: #006500;
   border-color: #006500;
 }
+.MainContentContainer {
+  height: 100vh;
+}
 
 #login-block {
   -webkit-box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.4);
@@ -164,6 +164,12 @@ button {
 @media (max-width: 768px) {
   .navbar-mobile {
     font-size: 0.65rem;
+  }
+  #side-nav-reg {
+    display: none;
+  }
+  #side-nav-drawer {
+    display: block;
   }
 }
 

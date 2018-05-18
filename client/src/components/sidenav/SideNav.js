@@ -40,7 +40,7 @@ class SideNav extends Component {
 
   render() {
     let navbarContent;
-    const { location, collapsed } = this.props;
+    const { location, collapsed, id } = this.props;
     const { isAuthenticated, user } = this.props.auth;
     const { errors } = this.state;
     if (isAuthenticated) {
@@ -51,6 +51,8 @@ class SideNav extends Component {
               ? "collapsed col-12 col-md-3 side-nav "
               : "col-12 col-md-3 side-nav"
           }
+          //if in drawer, display = true, else regular = none.
+          id={id}
         >
           <nav className="links" id="route-links">
             <form onSubmit={this.onSubmit} className="nav-search d-flex">
