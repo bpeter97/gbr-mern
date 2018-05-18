@@ -11,76 +11,82 @@ import {
   DashboardIcon
 } from "../../icons/";
 
-import SideNavHeader from "./SideNavHeader";
-import SideNavItem from "./SideNavItem";
+import SearchBar from "../common/SearchBar";
+import SideNavSection from "./SideNavSection";
 
 class SideNav extends Component {
+  constructor() {
+    super();
+    this.state = {
+      query: "",
+      errors: {}
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    // this.onLogoutClick = this.onLogoutClick.bind(this);
+  }
+  onSubmit(e) {
+    e.preventDefault();
+
+    const query = {
+      query: this.state.query
+    };
+    console.log(query);
+    // this.props.search(query);
+  }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
     let navbarContent;
-    const { location } = this.props;
+    const { location, collapsed, id } = this.props;
     const { isAuthenticated, user } = this.props.auth;
-    const { collapsed } = this.props;
-
+    const { errors } = this.state;
     if (isAuthenticated) {
       navbarContent = (
-        <nav
-          id="sideNav"
+        <div
           className={
             collapsed
-              ? "collapsed d-flex col-md-2 pl-0 pr-0 sidebar rounded-0"
-              : "col-md-2 d-flex pl-0 pr-0 d-md-block sidebar rounded-0"
+              ? "collapsed col-12 col-md-3 side-nav "
+              : "col-12 col-md-3 side-nav"
           }
+          //if in drawer, display = true, else regular = none.
+          id={id}
         >
-          <div className="sidebar-sticky justify-content-between">
-            <SideNavHeader
-              firstName={user.firstName}
-              lastName={user.lastName}
-              title={user.title}
-              avatar={
-                user.avatar
-                // "https://avatars1.githubusercontent.com/u/17460785?s=400&u=d8b0d093c1d4ad51c2700d15cdf3898cdee42006&v=4"
-              }
-            />
-            <ul className="nav flex-column">
-              <SideNavItem
-                name="Dashboard"
-                icon={DashboardIcon}
-                pathname="/"
-                isActive={location.pathname === "/"}
+          <nav className="links" id="route-links">
+            <form onSubmit={this.onSubmit} className="nav-search d-flex">
+              <SearchBar
+                placeholder="Search..."
+                className="form-control w-100"
+                name="query"
+                type="text"
+                value={this.state.query}
+                onChange={this.onChange}
+                error={errors.login}
               />
-              <SideNavItem
-                name="Customers"
-                icon={CustomersIcon}
-                pathname="/customers"
-                isActive={location.pathname === "/customers"}
-              />
-              <SideNavItem
-                name="Quotes"
-                icon={QuotesIcon}
-                pathname="/quotes"
-                isActive={location.pathname === "/quotes"}
-              />
-              <SideNavItem
-                name="Orders"
-                icon={OrdersIcon}
-                pathname="/orders"
-                isActive={location.pathname === "/orders"}
-              />
-              <SideNavItem
-                name="Products"
-                icon={ProductsIcon}
-                pathname="/products"
-                isActive={location.pathname === "/products"}
-              />
-              <SideNavItem
-                name="Calendar"
-                icon={CalendarIcon}
-                pathname="/calendar"
-                isActive={location.pathname === "/calendar"}
-              />
-            </ul>
-          </div>
-        </nav>
+            </form>
+            <SideNavSection name="Upcoming Events">
+              <ul className="nav flex-column">
+                <li>Event 1</li>
+                <li>Event 2</li>
+              </ul>
+            </SideNavSection>
+            <SideNavSection name="Flagged Customers">
+              <ul className="nav flex-column">
+                <li>Customer 1</li>
+                <li>Customer 2</li>
+              </ul>
+            </SideNavSection>
+
+            <SideNavSection name="Recently Viewed">
+              <ul className="nav flex-column">
+                <li>Customer 5</li>
+                <li>Customer 6</li>
+              </ul>
+            </SideNavSection>
+          </nav>
+        </div>
       );
     } else {
       navbarContent = "";
@@ -91,11 +97,13 @@ class SideNav extends Component {
 
 SideNav.propTypes = {
   auth: PropTypes.object.isRequired,
+
   location: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  errors: state.errors,
   location: state.router.location
 });
 

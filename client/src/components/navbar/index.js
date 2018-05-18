@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
+import { Link } from "react-router-dom";
 import { logoutUser } from "../../actions/defaultsActions";
 
 import SvgIcon from "react-icons-kit";
 import { MenuIcon, AccountIcon } from "../../icons";
 import SearchBar from "../common/SearchBar";
 import IconSection from "./IconSection";
-
-const Icon24 = props => <SvgIcon size={24} icon={props.icon} />;
 
 class NavBar extends Component {
   constructor() {
@@ -18,7 +16,7 @@ class NavBar extends Component {
       query: "",
       errors: {}
     };
-    this.onChange = this.onChange.bind(this);
+    // this.onChange = this.onChange.bind(this);
     // this.onSubmit = this.onSubmit.bind(this);
     this.onLogoutClick = this.onLogoutClick.bind(this);
   }
@@ -34,14 +32,15 @@ class NavBar extends Component {
     this.props.logoutUser();
   }
 
-  // onSubmit(e) {
-  //   e.preventDefault();
+  onSubmit(e) {
+    e.preventDefault();
 
-  //   const query = {
-  //     query: this.state.query
-  //   };
-  //   this.props.search(query);
-  // }
+    const query = {
+      query: this.state.query
+    };
+    console.log(query);
+    // this.props.search(query);
+  }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -54,61 +53,90 @@ class NavBar extends Component {
     if (isAuthenticated) {
       navbar = (
         <nav
-          className="navbar navbar-expand py-1 flex-md-nowrap rounded-0"
+          className="navbar navbar-expand-md navbar-dark"
           style={{ backgroundColor: "#006400" }}
         >
-          <ul id="toggleSide" className="navbar-nav px-3 mr-auto ">
-            <li className="nav-item">
-              <a onClick={this.props.handleClick}>
-                <Icon24 size={24} icon={MenuIcon} />
-              </a>
-            </li>
-          </ul>
-          {/* <form className="form-inline mx-auto w-75" onSubmit={this.onSubmit}> */}
-          <SearchBar
-            placeholder="Search..."
-            className="form-control w-75 "
-            name="query"
-            type="text"
-            value={this.state.query}
-            onChange={this.onChange}
-            error={errors.login}
-          />
-          {/* <button type="submit">
-              <Icon24 size={24} icon={SearchIcon} />
-            </button> */}
-          {/* </form> */}
-
-          <IconSection />
-          <ul className="navbar-nav px-3 ml-auto">
-            <li className="nav-item dropdown">
-              <a
-                href=""
-                className="nav-item nav-link dropdown-toggle"
-                id="account"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <Icon24 size={24} icon={AccountIcon} />
-              </a>
-              <div
-                className="dropdown-menu dropdown-menu-right"
-                aria-labelledby="account"
-              >
-                <a className="dropdown-item" href="">
-                  Settings
-                </a>
-
+          {/* SIDE NAV TOGGLE > MD, USED TO CHANGE COLLAPSE  */}
+          <a
+            className="d-none d-md-block navbar-toggler"
+            id="collapse-icon"
+            onClick={this.props.handleClick}
+          >
+            <SvgIcon size={20} icon={MenuIcon} />
+          </a>
+          {/* BOOTSTRAP NAVBAR TOGGLE */}
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"> </span>
+          </button>
+          {/* DISAPPEARS WHEN < MD OR < 768px */}
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">
+                  Dashboard
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/customers">
+                  Customers
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/quotes">
+                  Quotes
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/orders">
+                  Orders
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/products">
+                  Products{" "}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/calendar">
+                  Calendar
+                </Link>
+              </li>
+            </ul>
+            <ul className="navbar-nav ml-auto">
+              <li className="dropdown">
                 <a
-                  className="dropdown-item"
-                  onClick={this.onLogoutClick.bind(this)}
+                  href=""
+                  className="dropdown-toggle"
+                  id="account"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
-                  Log off
+                  <SvgIcon size={20} icon={AccountIcon} />
                 </a>
-              </div>
-            </li>
-          </ul>
+                <div className="dropdown-menu" aria-labelledby="account">
+                  <a className="dropdown-item" href="">
+                    Settings
+                  </a>
+
+                  <a
+                    className="dropdown-item"
+                    onClick={this.onLogoutClick.bind(this)}
+                  >
+                    Log off
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
         </nav>
       );
     }

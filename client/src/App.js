@@ -18,6 +18,11 @@ import Calendar from "./components/calendar";
 import Customers from "./components/customers";
 import NavBar from "./components/navbar";
 
+import Drawer, {
+  DrawerContainer,
+  MainContentContainer
+} from "react-swipeable-drawer";
+
 import "./App.css";
 
 const history = createHistory();
@@ -53,20 +58,70 @@ class App extends Component {
       <Provider store={store}>
         <Router history={history}>
           <div className="wrapper">
-            <SideNav collapsed={this.state.collapsed} />
-            <div className="col-md">
-              <NavBar handleClick={this.handleClick} />
-              <Route exact path="/login" component={Login} />
-              <Switch>
-                <PrivateRoute exact path="/" component={Dashboard} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/calendar" component={Calendar} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/customers" component={Customers} />
-              </Switch>
-            </div>
+            <Drawer position="left" size={80}>
+              {({
+                position,
+                size,
+                swiping,
+                translation,
+                mainContentScroll,
+                toggleDrawer,
+                handleTouchStart,
+                handleTouchMove,
+                handleTouchEnd
+              }) => (
+                <div>
+                  <DrawerContainer
+                    position={position}
+                    size={size}
+                    swiping={swiping}
+                    translation={translation}
+                    toggleDrawer={toggleDrawer}
+                    handleTouchStart={handleTouchStart}
+                    handleTouchMove={handleTouchMove}
+                    handleTouchEnd={handleTouchEnd}
+                    drawerContent={
+                      <SideNav
+                        collapsed={this.state.collapsed}
+                        id={"side-nav-drawer"}
+                      />
+                    }
+                  />
+                  <MainContentContainer
+                    translation={translation}
+                    mainContentScroll={mainContentScroll}
+                  >
+                    <NavBar handleClick={this.handleClick} />
+                    <div className="container-fluid">
+                      <div className="row flex-xl-nowrap">
+                        <SideNav
+                          collapsed={this.state.collapsed}
+                          id={"side-nav-reg"}
+                        />
+                        <Route exact path="/login" component={Login} />
+                        <Switch>
+                          <PrivateRoute exact path="/" component={Dashboard} />
+                        </Switch>
+                        <Switch>
+                          <PrivateRoute
+                            exact
+                            path="/calendar"
+                            component={Calendar}
+                          />
+                        </Switch>
+                        <Switch>
+                          <PrivateRoute
+                            exact
+                            path="/customers"
+                            component={Customers}
+                          />
+                        </Switch>
+                      </div>
+                    </div>
+                  </MainContentContainer>
+                </div>
+              )}
+            </Drawer>
           </div>
         </Router>
       </Provider>

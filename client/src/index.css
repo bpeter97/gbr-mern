@@ -5,7 +5,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  color: #006400;
+  color: black;
   font-family: "Open Sans", sans-serif;
   line-height: 1.5;
   font-size: 1rem;
@@ -16,10 +16,6 @@ button:disabled {
   opacity: 0.5;
 }
 
-nav,
-a {
-  color: #fff;
-}
 nav {
   font-size: 14px;
   padding-left: 0;
@@ -30,7 +26,14 @@ nav {
 a {
   text-decoration: none;
   cursor: pointer;
+  color: #fff;
+  user-select: none;
 }
+
+nav a {
+  color: #fff;
+}
+
 a:hover {
   text-decoration: none;
   color: white;
@@ -47,79 +50,73 @@ button {
   font-size: 24px;
 }
 
-.wrapper {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
+#collapse-icon {
+  color: #fff;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255);
+}
+
+.nav-search {
+  position: relative;
+  padding: 1rem 15px;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.links {
+  overflow: hidden;
 }
 
 .mh-100vh {
   min-height: 100vh;
 }
-
-.col-md {
-  padding: 0;
-}
-.navbar .form-control {
-  padding: 0.75rem 1rem;
-  border-width: 0;
-  border-radius: 0;
-}
-.navbar {
-  padding: 0;
-}
-.navbar-expand {
-  flex-flow: wrap;
+.col {
+  padding-right: 0;
+  padding-left: 0;
 }
 
-.navHeader {
-  text-align: center;
+#side-nav-reg nav {
+  padding: 1rem;
+}
+
+.side-nav-section {
+  color: #006400;
+  font-size: 12px;
+  padding: 1rem;
+}
+
+.side-nav-section ul {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.side-nav-section h6 {
+  font-weight: 500;
+  font-size: 16px;
+}
+.top-nav {
+  min-height: 2rem;
   background-color: #006400;
-  border-bottom: 1px solid #fff;
-  flex: 0 1;
-  padding-bottom: 16px;
-}
-.navHeaderImgDiv {
-  display: inline;
-}
-#navHeaderImg {
-  border-radius: 30px;
-  width: 40px;
-  height: 40px;
-  vertical-align: middle;
-  border-style: none;
-}
-.navHeaderText {
-  padding-top: 6px;
-  font-size: 12px;
-  color: #fff;
-}
-#navHeaderName {
-  font-size: 14px;
-}
-#navHeaderTitle {
-  font-size: 12px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
-.navSection {
-  box-sizing: border-box;
-  flex: 1 1;
+.side-nav {
+  background-color: white;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.navItem {
-  padding: 8px 12px;
-  display: inline-flex;
-  vertical-align: middle;
-  width: 100%;
-  text-align: center;
-}
-
-.navItem.active {
-  background-color: #fff;
+.side-nav .nav-item {
   color: #006400;
 }
 
-.navItemText {
+.nav-item.active {
+  font-size: 18px;
+  font-weight: 500;
+  color: #006400;
+}
+
+.nav-item-text {
   display: inherit;
   margin-left: 10px;
   align-items: center;
@@ -129,11 +126,22 @@ button {
   background-color: #006400;
   border-color: #006400;
 }
+
+.nav.btn {
+  background-color: #fff;
+  border-color: #fff;
+}
 .btn:hover,
 .btn:active,
 .btn:focus {
   background-color: #006500;
   border-color: #006500;
+}
+.MainContentContainer {
+  height: 100vh;
+}
+.DrawerContentContainer div {
+  padding: 1rem;
 }
 
 #login-block {
@@ -157,51 +165,45 @@ button {
   background-position: center center;
 }
 
-#sideNav {
-  align-items: stretch;
-  flex-direction: column;
-  min-width: 160px;
-  max-width: 160px;
-  background-color: #006400;
-  transition: all 0.3s;
-  padding-top: 0.5rem;
-  position: sticky;
-  height: 100vh;
-}
-
-#sideNav.collapsed {
-  min-width: 80px;
-  max-width: 80px;
-}
-
-#sideNav.collapsed .navItem {
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-#sideNav.collapsed .navItemText {
-  margin: 0;
-}
-
 #icon-section {
   margin-left: 3rem;
 }
-
 @media (max-width: 768px) {
-  #sideNav {
-    min-width: 80px;
-    max-width: 80px;
-    margin-left: -80px;
+  .navbar-mobile {
+    font-size: 0.65rem;
   }
-  #sideNav.collapsed {
-    margin-left: 0;
+  #side-nav-reg {
+    display: none;
   }
-  #sideNav .navItem {
-    justify-content: center;
-    flex-wrap: wrap;
+  #side-nav-drawer {
+    display: block;
   }
-  #sideNav .navItemText {
-    margin: 0;
+}
+
+@media (min-width: 768px) {
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  .side-nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem;
+    z-index: 0;
+    height: calc(100vh - 4rem);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    max-width: 250px;
+    margin-left: 0px;
+    transition: all 0.3s;
+  }
+
+  .side-nav.collapsed {
+    margin-left: -250px;
+  }
+
+  .links {
+    display: block !important;
   }
 }
 
@@ -215,9 +217,6 @@ button {
   #login-block {
     opacity: 0.95;
   }
-}
-
-@media (max-width: 991.98px) {
   #bg-block {
     position: fixed;
     top: 0;
