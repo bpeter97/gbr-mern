@@ -6,7 +6,7 @@ import { logoutUser } from "../../actions/defaultsActions";
 
 import SvgIcon from "react-icons-kit";
 import { MenuIcon, AccountIcon } from "../../icons";
-import SearchBar from "../common/SearchBar";
+import TextFieldInput from "../common/TextFieldInput";
 import IconSection from "./IconSection";
 
 class NavBar extends Component {
