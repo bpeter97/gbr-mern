@@ -140,9 +140,6 @@ button {
 .MainContentContainer {
   height: 100vh;
 }
-.DrawerContentContainer div {
-  padding: 1rem;
-}
 
 .new-todo-input {
   padding: 10px;
