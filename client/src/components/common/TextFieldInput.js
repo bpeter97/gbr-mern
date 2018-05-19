@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SearchBar = ({
+const TextFieldInput = ({
   name,
   placeholder,
   value,
@@ -9,7 +9,8 @@ const SearchBar = ({
   label,
   type,
   onChange,
-  disabled
+  disabled,
+  autoComplete
 }) => {
   return (
     <input
@@ -20,21 +21,23 @@ const SearchBar = ({
       value={value}
       onChange={onChange}
       disabled={disabled}
+      autoComplete={autoComplete}
     />
   );
 };
 
-SearchBar.propTypes = {
+TextFieldInput.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.string
+  disabled: PropTypes.string,
+  autoComplete: PropTypes.string
 };
 
-SearchBar.defaultProps = {
+TextFieldInput.defaultProps = {
   type: "text"
 };
 
-export default SearchBar;
+export default TextFieldInput;
