@@ -50,6 +50,10 @@ button {
   font-size: 24px;
 }
 
+*:focus {
+  outline: none;
+}
+
 #collapse-icon {
   color: #fff;
 }
@@ -73,10 +77,6 @@ button {
 .col {
   padding-right: 0;
   padding-left: 0;
-}
-
-#side-nav-reg nav {
-  padding: 1rem;
 }
 
 .side-nav-section {
@@ -142,6 +142,24 @@ button {
 }
 .DrawerContentContainer div {
   padding: 1rem;
+}
+
+.new-todo-input {
+  padding: 10px;
+  border: none;
+  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+}
+.new-todo-form {
+  border: none;
+}
+.todo-list {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.todo {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 #login-block {

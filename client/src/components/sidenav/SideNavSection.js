@@ -18,7 +18,7 @@ class SideNavSection extends Component {
 }
 
 SideNavSection.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string
 };
 
 export default SideNavSection;

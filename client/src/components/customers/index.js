@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 
 class Customers extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-
   render() {
     return (
       <div className="content">

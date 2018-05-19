@@ -11,8 +11,9 @@ import {
   DashboardIcon
 } from "../../icons/";
 
-import SearchBar from "../common/SearchBar";
+import TextFieldInput from "../common/TextFieldInput";
 import SideNavSection from "./SideNavSection";
+import TodoList from "../todos/TodoList";
 
 class SideNav extends Component {
   constructor() {
@@ -50,13 +51,12 @@ class SideNav extends Component {
             collapsed
               ? "collapsed col-12 col-md-3 side-nav "
               : "col-12 col-md-3 side-nav"
-          }
-          //if in drawer, display = true, else regular = none.
+          } //if in drawer, display = true, else regular = none.
           id={id}
         >
           <nav className="links" id="route-links">
             <form onSubmit={this.onSubmit} className="nav-search d-flex">
-              <SearchBar
+              <TextFieldInput
                 placeholder="Search..."
                 className="form-control w-100"
                 name="query"
@@ -84,6 +84,13 @@ class SideNav extends Component {
                 <li>Customer 5</li>
                 <li>Customer 6</li>
               </ul>
+            </SideNavSection>
+
+            <SideNavSection>
+              {/* get todos
+              put them into list
+              render */}
+              <TodoList />
             </SideNavSection>
           </nav>
         </div>
