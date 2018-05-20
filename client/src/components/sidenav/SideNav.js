@@ -13,7 +13,7 @@ import {
 
 import TextFieldInput from "../common/TextFieldInput";
 import SideNavSection from "./SideNavSection";
-import TodoList from "../todos/TodoList";
+import Todos from "../todos/Todos";
 
 class SideNav extends Component {
   constructor() {
@@ -90,7 +90,7 @@ class SideNav extends Component {
               {/* get todos
               put them into list
               render */}
-              <TodoList />
+              <Todos />
             </SideNavSection>
           </nav>
         </div>
