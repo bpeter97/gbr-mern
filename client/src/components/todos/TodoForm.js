@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { addTodo } from "../../actions/todoActions";
 import TextFieldInput from "../common/TextFieldInput";
 
 class TodoForm extends Component {
@@ -29,8 +30,8 @@ class TodoForm extends Component {
     debugger;
     //send to backend
     //attach to user object
-    // this.props.createTodo(todoData);
-    //this.setState({todoDesc : ''});
+    this.props.addTodo(todoData);
+    this.setState({ todoDesc: "" });
   }
 
   onChange(e) {
@@ -67,5 +68,4 @@ const mapStateToProps = state => ({
   location: state.router.location
 });
 
-export default connect(mapStateToProps)(TodoForm);
-// export default connect(mapStateToProps, {createTodo})(TodoList);
+export default connect(mapStateToProps, { addTodo })(TodoForm);
