@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import SvgIcon from "react-icons-kit";
 import TextFieldGroup from "../common/TextFieldGroup";
 import PropTypes from "prop-types";
+import { deleteTodo, completeTodo } from "../../actions/todoActions";
 
 class TodoItem extends Component {
   onDeleteClick(id) {
@@ -15,8 +16,6 @@ class TodoItem extends Component {
 
   render() {
     const { todo } = this.props;
-
-    let newtodo = "";
     return (
       <div>
         <li className="todo">
@@ -40,4 +39,4 @@ const mapStateToProps = state => ({
   location: state.router.location
 });
 
-export default connect(mapStateToProps)(TodoItem);
+export default connect(mapStateToProps, { deleteTodo, completeTodo })(TodoItem);

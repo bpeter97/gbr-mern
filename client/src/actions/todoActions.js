@@ -30,7 +30,6 @@ export const addTodo = todoData => dispatch => {
 
 // Get Todos
 export const getTodos = () => dispatch => {
-  let todos = [];
   //   axios
   //     .get("/api/Todos")
   //     .then(res =>
@@ -40,10 +39,10 @@ export const getTodos = () => dispatch => {
   //       })
   //     )
   //     .catch(err =>
-  //       dispatch({
-  //         type: GET_TODOS,
-  //         payload: null
-  //       })
+  dispatch({
+    type: GET_TODOS,
+    payload: null
+  });
   //     );
 };
 
@@ -58,15 +57,31 @@ export const getTodo = id => dispatch => {
   //       })
   //     )
   //     .catch(err =>
-  //       dispatch({
-  //         type: GET_TODO,
-  //         payload: null
-  //       })
+  dispatch({
+    type: GET_TODO,
+    payload: null
+  });
   //     );
 };
 
 // Delete Post
 export const deleteTodo = id => dispatch => {
+  //   axios
+  //     .delete(`/api/todos/${id}`)
+  //     .then(res =>
+  //       dispatch({
+  //         type: DELETE_TODO,
+  //         payload: id
+  //       })
+  //     )
+  //     .catch(err =>
+  // dispatch({
+  //   type: GET_ERRORS,
+  //   payload: err.response.data
+  // })
+  //     );
+};
+export const completeTodo = id => dispatch => {
   //   axios
   //     .delete(`/api/todos/${id}`)
   //     .then(res =>

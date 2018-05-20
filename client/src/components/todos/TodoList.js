@@ -9,7 +9,11 @@ import TodoItem from "./TodoItem";
 class TodoList extends Component {
   render() {
     const { todos } = this.props;
-    return todos.map(todo => <TodoItem key={todo._id} todo={todo} />);
+    if (todos) {
+      return todos.map(todo => <TodoItem key={todo._id} todo={todo} />);
+    } else {
+      return "";
+    }
   }
 }
 
