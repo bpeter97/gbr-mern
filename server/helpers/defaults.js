@@ -99,40 +99,12 @@ exports.login = (req, res) => {
       // If it matches, setup payload for JWT, sign the token, and send it.
       if (isMatch) {
         if (user.validated == true) {
-          // the payload - same as user except without password prop
-          // const payload = {
-          //   _id: user._id,
-          //   firstName: user.firstName,
-          //   lastName: user.lastName,
-          //   middleInitial: user.middleInitial,
-          //   suffix: user.suffix,
-          //   username: user.username,
-          //   email: user.email,
-          //   phone: user.phone,
-          //   title: user.title,
-          //   type: user.type,
-          //   validated: user.validated
-          // };
-
           user.generateAuthToken().then(token => {
             res.json({
               success: true,
               token
             });
           });
-
-          // // sign and send the token
-          // jwt.sign(
-          //   payload,
-          //   process.env.secretKey,
-          //   { expiresIn: 3600 },
-          //   (err, token) => {
-          //     res.json({
-          //       success: true,
-          //       token
-          //     });
-          //   }
-          // );
         } else {
           errors.login = "Your account is not validated yet";
           return res.status(401).json(errors);
