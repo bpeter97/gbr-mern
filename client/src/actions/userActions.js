@@ -9,7 +9,7 @@ export const getUsers = () => dispatch => {
     .then(res =>
       dispatch({
         type: GET_USERS,
-        payload: res.data
+        payload: res.data.users
       })
     )
     .catch(err =>

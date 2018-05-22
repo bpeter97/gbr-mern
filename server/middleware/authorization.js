@@ -1,7 +1,7 @@
 const User = require("./../models/User");
 
-const authenticate = (req, res, next) => {
-  let token = req.header("x-auth");
+const authorization = (req, res, next) => {
+  let token = req.header("authorization");
 
   User.findByToken(token)
     .then(user => {
@@ -17,3 +17,5 @@ const authenticate = (req, res, next) => {
       res.status(401).send();
     });
 };
+
+module.exports = authorization;

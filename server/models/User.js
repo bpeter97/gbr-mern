@@ -74,7 +74,7 @@ UserSchema.statics.findByToken = function(token) {
   var decoded;
 
   try {
-    decoded = jwt.verify(token, process.env.JWT_SECRET);
+    decoded = jwt.verify(token, process.env.secretKey);
   } catch (e) {
     return Promise.reject();
   }
@@ -90,7 +90,23 @@ UserSchema.methods.generateAuthToken = function() {
   var user = this;
   var access = "auth";
   var token = jwt
-    .sign({ _id: user._id.toHexString(), access }, process.env.JWT_SECRET)
+    .sign(
+      {
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        middleInitial: user.middleInitial,
+        suffix: user.suffix,
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        title: user.title,
+        type: user.type,
+        validated: user.validated
+      },
+      process.env.secretKey,
+      { expiresIn: 3600 }
+    )
     .toString();
 
   user.tokens = user.tokens.concat({ access, token });
