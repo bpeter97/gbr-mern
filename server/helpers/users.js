@@ -12,6 +12,12 @@ const validateUserInput = require("../validation/user");
 // @desc    Retrieves all of the users
 // @access  Private
 exports.getUsers = (req, res) => {
+  if (req.header("Authentication")) {
+    console.log(req.header("Authentication"));
+  } else {
+    console.log("No header");
+  }
+
   User.find({})
     .then(users => {
       if (!users) {

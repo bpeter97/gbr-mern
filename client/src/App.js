@@ -16,6 +16,7 @@ import Dashboard from "./components/dashboard";
 import SideNav from "./components/sidenav/SideNav";
 import Calendar from "./components/calendar";
 import Customers from "./components/customers";
+import Users from "./components/users";
 import NavBar from "./components/navbar";
 
 import Drawer, {
@@ -115,6 +116,9 @@ class App extends Component {
                             path="/customers"
                             component={Customers}
                           />
+                        </Switch>
+                        <Switch>
+                          <PrivateRoute exact path="/users" component={Users} />
                         </Switch>
                       </div>
                     </div>

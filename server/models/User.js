@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 // Create the user Schema
 const UserSchema = new Schema({
@@ -95,6 +97,16 @@ UserSchema.methods.generateAuthToken = function() {
 
   return user.save().then(() => {
     return token;
+  });
+};
+
+UserSchema.methods.removeToken = function(token) {
+  var user = this;
+
+  return user.update({
+    $pull: {
+      tokens: { token }
+    }
   });
 };
 

@@ -101,6 +101,7 @@ exports.login = (req, res) => {
         if (user.validated == true) {
           // the payload - same as user except without password prop
           const payload = {
+            _id: user._id,
             firstName: user.firstName,
             lastName: user.lastName,
             middleInitial: user.middleInitial,
