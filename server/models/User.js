@@ -54,19 +54,7 @@ const UserSchema = new Schema({
     type: Boolean,
     required: true,
     default: false
-  },
-  tokens: [
-    {
-      access: {
-        type: String,
-        required: true
-      },
-      token: {
-        type: String,
-        required: true
-      }
-    }
-  ]
+  }
 });
 
 UserSchema.statics.findByToken = function(token) {
@@ -79,11 +67,7 @@ UserSchema.statics.findByToken = function(token) {
     return Promise.reject();
   }
 
-  return User.findOne({
-    _id: decoded._id,
-    "tokens.token": token,
-    "tokens.access": "auth"
-  });
+  return User.findById(decoded._id);
 };
 
 UserSchema.methods.generateAuthToken = function() {
@@ -109,21 +93,7 @@ UserSchema.methods.generateAuthToken = function() {
     )
     .toString();
 
-  user.tokens = user.tokens.concat({ access, token });
-
-  return user.save().then(() => {
-    return token;
-  });
-};
-
-UserSchema.methods.removeToken = function(token) {
-  var user = this;
-
-  return user.update({
-    $pull: {
-      tokens: { token }
-    }
-  });
+  return token;
 };
 
 UserSchema.pre("save", function(next) {

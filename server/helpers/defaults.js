@@ -99,12 +99,8 @@ exports.login = (req, res) => {
       // If it matches, setup payload for JWT, sign the token, and send it.
       if (isMatch) {
         if (user.validated == true) {
-          user.generateAuthToken().then(token => {
-            res.json({
-              success: true,
-              token
-            });
-          });
+          let token = user.generateAuthToken();
+          res.json({ success: true, token });
         } else {
           errors.login = "Your account is not validated yet";
           return res.status(401).json(errors);
