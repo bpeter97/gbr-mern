@@ -10,14 +10,11 @@ const {
 } = require("./seed/purchaseTypeSeed");
 const { populateUsers, users } = require("./seed/userSeed");
 
-// call beforeEach() to run functions before each test.
-beforeEach(populateUsers);
-
-// call beforeEach() to run functions before each test.
-beforeEach(populatePurchaseTypes);
-
 describe("SETTINGS", () => {
+  before(populateUsers);
   describe("Purchase Types", () => {
+    // call beforeEach() to run functions before each test.
+    beforeEach(populatePurchaseTypes);
     describe("GET /settings/purchasetypes/", () => {
       it("should return an array of purchase types", done => {
         request(app)

@@ -5,9 +5,9 @@
     "passes": 10,
     "pending": 0,
     "failures": 0,
-    "start": "2018-05-23T02:52:06.315Z",
-    "end": "2018-05-23T02:52:17.377Z",
-    "duration": 11062,
+    "start": "2018-05-23T03:47:56.724Z",
+    "end": "2018-05-23T03:48:01.864Z",
+    "duration": 5140,
     "testsRegistered": 10,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -19,38 +19,23 @@
     "pendingPercentClass": "danger"
   },
   "suites": {
-    "uuid": "582b51ae-0a66-4f4d-bbc7-f6c26398f333",
+    "uuid": "172ec93c-92c4-426a-a1e5-21048c4250cb",
     "title": "",
     "fullFile": "",
     "file": "",
     "beforeHooks": [
       {
-        "title": "\"before each\" hook: populateUsers",
-        "fullTitle": "\"before each\" hook: populateUsers",
-        "timedOut": false,
-        "duration": 593,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      bcrypt.genSalt(10, (err, salt) => {\n        // Now hash the password with the salt.\n        bcrypt.hash(\"thePassword\", salt, (err, hash) => {\n          if (err) throw err;\n          // Assign the newly hashed password to the new User object\n          users[0].password = hash;\n          users[1].password = hash;\n          users[2].password = hash;\n        });\n      });\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
-        "err": {},
-        "isRoot": true,
-        "uuid": "30a0a4fd-f9ee-47ae-aacd-f5994e1565b8",
-        "isHook": true,
-        "skipped": false
-      },
-      {
         "title": "\"before each\" hook: populateEvents",
         "fullTitle": "\"before each\" hook: populateEvents",
         "timedOut": false,
-        "duration": 169,
+        "duration": 167,
         "pass": false,
         "fail": false,
         "pending": false,
         "code": "done => {\n  CalendarEvent.remove({})\n    .then(() => {\n      var eventOne = new CalendarEvent(events[0]).save();\n      var eventTwo = new CalendarEvent(events[1]).save();\n      var eventThree = new CalendarEvent(events[2]).save();\n      return Promise.all([eventOne, eventTwo, eventThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
         "err": {},
         "isRoot": true,
-        "uuid": "9ccd19ae-8519-4a95-9195-8e9fa03707b0",
+        "uuid": "839e5db7-8faa-40db-bc2e-6112ee18b7a9",
         "isHook": true,
         "skipped": false
       }
@@ -59,16 +44,32 @@
     "tests": [],
     "suites": [
       {
-        "uuid": "4a745d85-6988-4a99-85a7-fa43824bc830",
+        "uuid": "582d6416-9417-4707-9bf4-68deeb9c1748",
         "title": "EVENTS",
         "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
         "file": "\\server\\tests\\events.test.js",
-        "beforeHooks": [],
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook: populateUsers",
+            "fullTitle": "EVENTS \"before all\" hook: populateUsers",
+            "timedOut": false,
+            "duration": 1337,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "done => {\n  console.log(\"populateUsers\");\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+            "err": {},
+            "isRoot": false,
+            "uuid": "39a1887e-0e03-4e09-bb5d-724fad3c98ad",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
         "afterHooks": [],
         "tests": [],
         "suites": [
           {
-            "uuid": "2f831f8c-2445-4ada-b5e7-73a245c58fb8",
+            "uuid": "3c871db2-4447-4611-a6dc-db356fc0c6d4",
             "title": "GET /events",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
             "file": "\\server\\tests\\events.test.js",
@@ -79,7 +80,7 @@
                 "title": "should return a list of events",
                 "fullTitle": "EVENTS GET /events should return a list of events",
                 "timedOut": false,
-                "duration": 195,
+                "duration": 194,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -88,25 +89,25 @@
                 "code": "done => {\n      request(app)\n        .get(\"/api/events\")\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.events).toBeTruthy();\n          expect(res.body.events.length).toBe(events.length);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "427a93ca-8dc9-411b-807f-3d363984b514",
+                "uuid": "11906207-d368-4837-803d-37176c4910cf",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "427a93ca-8dc9-411b-807f-3d363984b514"
+              "11906207-d368-4837-803d-37176c4910cf"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 195,
+            "duration": 194,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "6b8725ed-f5ab-45df-9e2e-fb2bb9907afe",
+            "uuid": "2003ff45-191d-4fa2-b927-edad917938cb",
             "title": "POST /events",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
             "file": "\\server\\tests\\events.test.js",
@@ -117,7 +118,7 @@
                 "title": "should create a new event",
                 "fullTitle": "EVENTS POST /events should create a new event",
                 "timedOut": false,
-                "duration": 273,
+                "duration": 279,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -126,7 +127,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/events\")\n        .set(\"Authorization\", users[0].token)\n        .send(newEvent)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.event).toBeTruthy();\n          expect(res.body.event.title).toBe(newEvent.title);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          CalendarEvent.findOne({ title: newEvent.title })\n            .then(event => {\n              expect(event).toBeTruthy();\n              expect(event.title).toBe(newEvent.title);\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d6a43dc0-6560-40f4-8162-628086446d90",
+                "uuid": "d4c2de2d-278d-43c0-a480-13ae863ef797",
                 "isHook": false,
                 "skipped": false
               },
@@ -134,7 +135,7 @@
                 "title": "should not create a new event with validation errors",
                 "fullTitle": "EVENTS POST /events should not create a new event with validation errors",
                 "timedOut": false,
-                "duration": 166,
+                "duration": 168,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -143,26 +144,26 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/events\")\n        .set(\"Authorization\", users[0].token)\n        .send(badEvent)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.title).toBe(\"Title must be at least 3 characters\");\n          expect(res.body.color).toBe(\"Color is required\");\n          expect(res.body.start).toBe(\"Start is required\");\n          expect(res.body.end).toBe(\"End is required\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          CalendarEvent.findOne({ title: badEvent.title })\n            .then(event => {\n              expect(event).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2b7ac061-1316-459c-b67f-e28b766e5056",
+                "uuid": "b8c5dbfb-2aa8-4b49-b113-e55889bd4e20",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "d6a43dc0-6560-40f4-8162-628086446d90",
-              "2b7ac061-1316-459c-b67f-e28b766e5056"
+              "d4c2de2d-278d-43c0-a480-13ae863ef797",
+              "b8c5dbfb-2aa8-4b49-b113-e55889bd4e20"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 439,
+            "duration": 447,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "a48c9b59-90bf-4a1b-aecd-a2eed2dd551d",
+            "uuid": "55b8fc90-f908-45b5-8d87-a787a5ac935a",
             "title": "GET /events/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
             "file": "\\server\\tests\\events.test.js",
@@ -173,7 +174,7 @@
                 "title": "should return a single event",
                 "fullTitle": "EVENTS GET /events/:id should return a single event",
                 "timedOut": false,
-                "duration": 167,
+                "duration": 168,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -182,7 +183,7 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/events/${events[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.event).toBeTruthy();\n          expect(res.body.event._id).toBe(events[0]._id.toHexString());\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "bbcfa33a-8a3f-4d3e-a995-2d9ee6818b94",
+                "uuid": "5f9435de-2f03-49c7-a012-174144decd58",
                 "isHook": false,
                 "skipped": false
               },
@@ -190,7 +191,7 @@
                 "title": "should not return a single event with invalid id",
                 "fullTitle": "EVENTS GET /events/:id should not return a single event with invalid id",
                 "timedOut": false,
-                "duration": 86,
+                "duration": 84,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -199,26 +200,26 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/events/${events[0]._id.toHexString()}sssss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.event).toBeTruthy();\n          expect(res.body.event).toBe(\"There was no event found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "b672fa4b-a7af-4786-8a15-d924f3d9f35f",
+                "uuid": "86749998-5b16-4bc6-831e-ab5e398b9495",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "bbcfa33a-8a3f-4d3e-a995-2d9ee6818b94",
-              "b672fa4b-a7af-4786-8a15-d924f3d9f35f"
+              "5f9435de-2f03-49c7-a012-174144decd58",
+              "86749998-5b16-4bc6-831e-ab5e398b9495"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 253,
+            "duration": 252,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "d7047ef6-937a-436e-b93f-517254d5576e",
+            "uuid": "632a241a-5d06-4698-b93d-b16a81f0e2d4",
             "title": "PATCH /events/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
             "file": "\\server\\tests\\events.test.js",
@@ -229,7 +230,7 @@
                 "title": "should update a single event with new information",
                 "fullTitle": "EVENTS PATCH /events/:id should update a single event with new information",
                 "timedOut": false,
-                "duration": 266,
+                "duration": 252,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -238,7 +239,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/events/${events[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .send({\n          title: \"New title\",\n          color: events[0].color,\n          start: events[0].start,\n          end: events[0].end,\n          order: events[0].order\n        })\n        .expect(200)\n        .expect(res => {\n          expect(res.body.event.title).toBe(\"New title\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          CalendarEvent.findById(events[0]._id.toHexString())\n            .then(event => {\n              expect(event.title).toBe(\"New title\");\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d522ddcf-053c-48a2-ac6e-909fd1937f26",
+                "uuid": "8932e039-edd9-4e99-bff0-aa44b2d828ac",
                 "isHook": false,
                 "skipped": false
               },
@@ -246,7 +247,7 @@
                 "title": "should not update a single event with validation errors",
                 "fullTitle": "EVENTS PATCH /events/:id should not update a single event with validation errors",
                 "timedOut": false,
-                "duration": 173,
+                "duration": 167,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -255,7 +256,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/events/${events[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .send({\n          title: \"\",\n          color: \"\",\n          start: \"\",\n          end: \"\",\n          order: null\n        })\n        .expect(400)\n        .expect(res => {\n          expect(res.body.title).toBe(\"Title must be at least 3 characters\");\n          expect(res.body.color).toBe(\"Color is required\");\n          expect(res.body.start).toBe(\"Start is required\");\n          expect(res.body.end).toBe(\"End is required\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          CalendarEvent.findById(events[0]._id.toHexString())\n            .then(event => {\n              expect(event.title).toBe(events[0].title);\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "b47f851c-4c66-4c42-81f9-6952b55dba08",
+                "uuid": "593b2c04-c543-43d7-ba71-9d039b409d7b",
                 "isHook": false,
                 "skipped": false
               },
@@ -263,7 +264,7 @@
                 "title": "should not update a single event with invalid ID",
                 "fullTitle": "EVENTS PATCH /events/:id should not update a single event with invalid ID",
                 "timedOut": false,
-                "duration": 89,
+                "duration": 93,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -272,27 +273,27 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/events/${events[0]._id.toHexString()}sssss`)\n        .set(\"Authorization\", users[0].token)\n        .send(events[0])\n        .expect(400)\n        .expect(res => {\n          expect(res.body.event).toBe(\"There was no event found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "0ad7f6f6-76c3-41b6-8503-6423fd622194",
+                "uuid": "28a38a5d-07ca-4552-9f93-a551d2278c39",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "d522ddcf-053c-48a2-ac6e-909fd1937f26",
-              "b47f851c-4c66-4c42-81f9-6952b55dba08",
-              "0ad7f6f6-76c3-41b6-8503-6423fd622194"
+              "8932e039-edd9-4e99-bff0-aa44b2d828ac",
+              "593b2c04-c543-43d7-ba71-9d039b409d7b",
+              "28a38a5d-07ca-4552-9f93-a551d2278c39"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 528,
+            "duration": 512,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "e3cd5eff-b1e3-48e6-b74c-b6d98b3e7ebc",
+            "uuid": "9aee0df3-169b-4a3e-b4c7-6189a6aac349",
             "title": "DELETE /events/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
             "file": "\\server\\tests\\events.test.js",
@@ -303,7 +304,7 @@
                 "title": "should delete a single event",
                 "fullTitle": "EVENTS DELETE /events/:id should delete a single event",
                 "timedOut": false,
-                "duration": 257,
+                "duration": 259,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -312,7 +313,7 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/events/${events[1]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.event).toBeTruthy();\n          expect(res.body.event._id).toBe(events[1]._id.toHexString());\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          CalendarEvent.findById(events[1]._id.toHexString())\n            .then(event => {\n              expect(event).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "95c92e3a-042f-4c30-a72c-58a7318bebfe",
+                "uuid": "1c927990-5f38-4f55-8c6d-5b0aadeaa18f",
                 "isHook": false,
                 "skipped": false
               },
@@ -320,7 +321,7 @@
                 "title": "should not delete an event with invalid ID",
                 "fullTitle": "EVENTS DELETE /events/:id should not delete an event with invalid ID",
                 "timedOut": false,
-                "duration": 86,
+                "duration": 84,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -329,15 +330,15 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/events/${events[1]._id.toHexString()}sss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.event).toBeTruthy();\n          expect(res.body.event).toBe(\"There was no event found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2b8bb5c1-db6d-4164-a1f9-3779e33c9d43",
+                "uuid": "5639899d-d194-46c1-82d9-f962f9086053",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "95c92e3a-042f-4c30-a72c-58a7318bebfe",
-              "2b8bb5c1-db6d-4164-a1f9-3779e33c9d43"
+              "1c927990-5f38-4f55-8c6d-5b0aadeaa18f",
+              "5639899d-d194-46c1-82d9-f962f9086053"
             ],
             "failures": [],
             "pending": [],

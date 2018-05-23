@@ -5,9 +5,6 @@ const { app } = require("./../../server");
 const User = require("./../models/User");
 const { populateUsers, users } = require("./seed/userSeed");
 
-// call beforeEach() to run functions before each test.
-beforeEach(populateUsers);
-
 // New user object used for the register test.
 var newUser = {
   firstName: "Johnny",
@@ -24,6 +21,8 @@ var newUser = {
 };
 
 describe("USERS", () => {
+  // call beforeEach() to run functions before each test.
+  beforeEach(populateUsers);
   describe("GET /users", () => {
     it("should return an array of users", done => {
       request(app)

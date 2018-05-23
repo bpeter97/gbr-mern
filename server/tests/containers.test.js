@@ -31,7 +31,7 @@ var newContainer = {
 };
 
 describe("CONTAINERS", () => {
-  beforeEach(populateUsers);
+  before(populateUsers);
   beforeEach(populateContainerSizes);
   beforeEach(populateContainerStats);
   beforeEach(populateContainers);

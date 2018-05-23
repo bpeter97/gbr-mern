@@ -5,25 +5,25 @@ const { app } = require("./../../server");
 const User = require("./../models/User");
 const { populateUsers, users } = require("./seed/userSeed");
 
-// call beforeEach() to run functions before each test.
-beforeEach(populateUsers);
-
-// New user object used for the register test.
-var newUser = {
-  firstName: "Johnny",
-  lastName: "Boy",
-  middleInitial: "",
-  suffix: "",
-  username: "jboy",
-  password: "thePassword",
-  email: "jboy@test.com",
-  phone: "5559992222",
-  title: "Driver",
-  type: "Driver",
-  validated: false
-};
-
 describe("DEFAULTS", () => {
+  // call beforeEach() to run functions before each test.
+  beforeEach(populateUsers);
+
+  // New user object used for the register test.
+  var newUser = {
+    firstName: "Johnny",
+    lastName: "Boy",
+    middleInitial: "",
+    suffix: "",
+    username: "jboy",
+    password: "thePassword",
+    email: "jboy@test.com",
+    phone: "5559992222",
+    title: "Driver",
+    type: "Driver",
+    validated: false
+  };
+
   // Test the post /register route.
   describe("POST /register", () => {
     it("should register a new user", done => {

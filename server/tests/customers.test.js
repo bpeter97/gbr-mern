@@ -6,10 +6,6 @@ const Customer = require("./../models/Customer");
 const { populateCustomers, customers } = require("./seed/customerSeed");
 const { populateUsers, users } = require("./seed/userSeed");
 
-// call beforeEach() to run functions before each test.
-beforeEach(populateUsers);
-beforeEach(populateCustomers);
-
 // New customer object used for the post test.
 newCustomer = {
   name: "George Terrens",
@@ -49,6 +45,8 @@ badCustomer = {
 };
 
 describe("CUSTOMERS", () => {
+  before(populateUsers);
+  beforeEach(populateCustomers);
   describe("GET /customers", () => {
     it("should return an array of customers", done => {
       request(app)

@@ -5,9 +5,9 @@
     "passes": 91,
     "pending": 0,
     "failures": 0,
-    "start": "2018-05-23T03:11:15.957Z",
-    "end": "2018-05-23T03:17:28.227Z",
-    "duration": 372270,
+    "start": "2018-05-23T04:05:56.730Z",
+    "end": "2018-05-23T04:06:46.182Z",
+    "duration": 49452,
     "testsRegistered": 91,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -19,183 +19,32 @@
     "pendingPercentClass": "danger"
   },
   "suites": {
-    "uuid": "4da6acbb-1537-48c0-ad5d-bf7d840931e6",
+    "uuid": "6c32232d-ccef-4369-a69e-152bfe07b003",
     "title": "",
     "fullFile": "",
     "file": "",
-    "beforeHooks": [
-      {
-        "title": "\"before each\" hook: populateUsers",
-        "fullTitle": "\"before each\" hook: populateUsers",
-        "timedOut": false,
-        "duration": 476,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
-        "err": {},
-        "isRoot": true,
-        "uuid": "01a706fd-867b-4edd-9b18-84ab869bf6d9",
-        "isHook": true,
-        "skipped": false
-      },
-      {
-        "title": "\"before each\" hook: populateCustomers",
-        "fullTitle": "\"before each\" hook: populateCustomers",
-        "timedOut": false,
-        "duration": 166,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "done => {\n  Customer.remove({})\n    .then(() => {\n      var customerOne = new Customer(customers[0]).save();\n      var customerTwo = new Customer(customers[1]).save();\n      var customerThree = new Customer(customers[2]).save();\n      return Promise.all([customerOne, customerTwo, customerThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
-        "err": {},
-        "isRoot": true,
-        "uuid": "48ed46b4-9bb7-4c8b-8803-e43702ce04fa",
-        "isHook": true,
-        "skipped": false
-      },
-      {
-        "title": "\"before each\" hook: populateUsers",
-        "fullTitle": "\"before each\" hook: populateUsers",
-        "timedOut": false,
-        "duration": 493,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
-        "err": {},
-        "isRoot": true,
-        "uuid": "3a4675d5-7100-486a-b897-fc8b341add99",
-        "isHook": true,
-        "skipped": false
-      },
-      {
-        "title": "\"before each\" hook: populateUsers",
-        "fullTitle": "\"before each\" hook: populateUsers",
-        "timedOut": false,
-        "duration": 496,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
-        "err": {},
-        "isRoot": true,
-        "uuid": "dcc69781-6193-4e6c-a18a-fb8a2a5ff1c2",
-        "isHook": true,
-        "skipped": false
-      },
-      {
-        "title": "\"before each\" hook: populateEvents",
-        "fullTitle": "\"before each\" hook: populateEvents",
-        "timedOut": false,
-        "duration": 171,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "done => {\n  CalendarEvent.remove({})\n    .then(() => {\n      var eventOne = new CalendarEvent(events[0]).save();\n      var eventTwo = new CalendarEvent(events[1]).save();\n      var eventThree = new CalendarEvent(events[2]).save();\n      return Promise.all([eventOne, eventTwo, eventThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
-        "err": {},
-        "isRoot": true,
-        "uuid": "f2c9cfa0-30fb-4c51-a9fc-4c0e7a0c2a45",
-        "isHook": true,
-        "skipped": false
-      },
-      {
-        "title": "\"before each\" hook: populateUsers",
-        "fullTitle": "\"before each\" hook: populateUsers",
-        "timedOut": false,
-        "duration": 479,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
-        "err": {},
-        "isRoot": true,
-        "uuid": "db1b68e4-b24e-45f4-ad9e-9d82cb17dda5",
-        "isHook": true,
-        "skipped": false
-      },
-      {
-        "title": "\"before each\" hook: populateProductTypes",
-        "fullTitle": "\"before each\" hook: populateProductTypes",
-        "timedOut": false,
-        "duration": 166,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "done => {\n  ProductType.remove({})\n    .then(() => {\n      var modification = new ProductType(productTypes[0]).save();\n      var container = new ProductType(productTypes[1]).save();\n      var rentalModification = new ProductType(productTypes[2]).save();\n      var delivery = new ProductType(productTypes[3]).save();\n      var pickup = new ProductType(productTypes[4]).save();\n      return Promise.all([\n        modification,\n        container,\n        rentalModification,\n        delivery,\n        pickup\n      ]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
-        "err": {},
-        "isRoot": true,
-        "uuid": "40439a90-ea36-40f0-b15f-579e522aa2f9",
-        "isHook": true,
-        "skipped": false
-      },
-      {
-        "title": "\"before each\" hook: populateUsers",
-        "fullTitle": "\"before each\" hook: populateUsers",
-        "timedOut": false,
-        "duration": 479,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
-        "err": {},
-        "isRoot": true,
-        "uuid": "b7f83f1d-f89e-4f42-a9ce-a2edfc62446e",
-        "isHook": true,
-        "skipped": false
-      },
-      {
-        "title": "\"before each\" hook: populatePurchaseTypes",
-        "fullTitle": "\"before each\" hook: populatePurchaseTypes",
-        "timedOut": false,
-        "duration": 164,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "done => {\n  PurchaseType.remove({})\n    .then(() => {\n      var purchaseTypeOne = new PurchaseType(purchaseTypes[0]).save();\n      var purchaseTypeTwo = new PurchaseType(purchaseTypes[1]).save();\n      return Promise.all([purchaseTypeOne, purchaseTypeTwo]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
-        "err": {},
-        "isRoot": true,
-        "uuid": "024cb253-1e98-4ec8-9825-9226cfc8d9a8",
-        "isHook": true,
-        "skipped": false
-      },
-      {
-        "title": "\"before each\" hook: populateUsers",
-        "fullTitle": "\"before each\" hook: populateUsers",
-        "timedOut": false,
-        "duration": 498,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
-        "err": {},
-        "isRoot": true,
-        "uuid": "0c1bd557-eb51-4847-b95e-eccd4350087e",
-        "isHook": true,
-        "skipped": false
-      }
-    ],
+    "beforeHooks": [],
     "afterHooks": [],
     "tests": [],
     "suites": [
       {
-        "uuid": "61ae60d9-b834-4b97-b416-2f18a24c33a4",
+        "uuid": "51e04f24-2d71-4d83-a3bc-7e8755aa73bb",
         "title": "CONTAINERS",
         "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\containers.test.js",
         "file": "\\server\\tests\\containers.test.js",
         "beforeHooks": [
           {
-            "title": "\"before each\" hook: populateUsers",
-            "fullTitle": "CONTAINERS \"before each\" hook: populateUsers",
+            "title": "\"before all\" hook: populateUsers",
+            "fullTitle": "CONTAINERS \"before all\" hook: populateUsers",
             "timedOut": false,
-            "duration": 471,
+            "duration": 1287,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "ef369037-030a-4666-a831-a4838b6de378",
+            "uuid": "877689eb-9281-4040-847d-a6e43b9b210a",
             "isHook": true,
             "skipped": false
           },
@@ -210,7 +59,7 @@
             "code": "done => {\n  ContainerSize.remove({})\n    .then(() => {\n      var twenty = new ContainerSize(containerSizes[0]).save();\n      var fourty = new ContainerSize(containerSizes[1]).save();\n      var twentydoubledoors = new ContainerSize(containerSizes[2]).save();\n      return Promise.all([twenty, fourty, twentydoubledoors]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "a0746799-0a7a-4d30-bed5-5db67c819670",
+            "uuid": "21bb12b4-6cc5-4320-a58a-13c7859ebdcb",
             "isHook": true,
             "skipped": false
           },
@@ -218,14 +67,14 @@
             "title": "\"before each\" hook: populateContainerStats",
             "fullTitle": "CONTAINERS \"before each\" hook: populateContainerStats",
             "timedOut": false,
-            "duration": 181,
+            "duration": 170,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "done => {\n  ContainerStats.remove({})\n    .then(() => {\n      var twenty = new ContainerStats(containerStats[0]).save();\n      var fourty = new ContainerStats(containerStats[1]).save();\n      var twentydoubledoors = new ContainerStats(containerStats[2]).save();\n      return Promise.all([twenty, fourty, twentydoubledoors]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "f784d4a6-67d9-449d-808c-4db20f96f637",
+            "uuid": "0fa9a247-0fa5-418d-9b48-98826bf33f65",
             "isHook": true,
             "skipped": false
           },
@@ -233,14 +82,14 @@
             "title": "\"before each\" hook: populateContainers",
             "fullTitle": "CONTAINERS \"before each\" hook: populateContainers",
             "timedOut": false,
-            "duration": 166,
+            "duration": 167,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "done => {\n  Container.remove({})\n    .then(() => {\n      var twenty = new Container(containers[0]).save();\n      var fourty = new Container(containers[1]).save();\n      var twentydoubledoors = new Container(containers[2]).save();\n      return Promise.all([twenty, fourty, twentydoubledoors]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "7224e1ab-5316-41a3-bada-918f21c9a875",
+            "uuid": "cb4b486f-8423-4dce-b02c-08cb78a3d0c6",
             "isHook": true,
             "skipped": false
           }
@@ -249,7 +98,7 @@
         "tests": [],
         "suites": [
           {
-            "uuid": "6b8d497d-da07-45b1-91f5-12d5537d0b53",
+            "uuid": "0ddbaaf3-c8a1-4910-8d6f-6582ade2a8cc",
             "title": "GET /containers/sizes",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\containers.test.js",
             "file": "\\server\\tests\\containers.test.js",
@@ -260,7 +109,7 @@
                 "title": "should return an array of container sizes",
                 "fullTitle": "CONTAINERS GET /containers/sizes should return an array of container sizes",
                 "timedOut": false,
-                "duration": 197,
+                "duration": 200,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -269,25 +118,25 @@
                 "code": "done => {\n      request(app)\n        .get(\"/api/containers/sizes\")\n        .set(\"Authorization\", users[0].token)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.containerSizes.length).toBe(3);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "7ee7737b-6505-4581-bf31-e9044de85099",
+                "uuid": "cf7afee1-aee5-41f7-a3ff-2eea8b815ced",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "7ee7737b-6505-4581-bf31-e9044de85099"
+              "cf7afee1-aee5-41f7-a3ff-2eea8b815ced"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 197,
+            "duration": 200,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "21505730-bc03-4d16-8be0-76ae713d5f68",
+            "uuid": "be86d8b7-bf79-4c5b-95be-74a0f9928c02",
             "title": "POST /containers/sizes",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\containers.test.js",
             "file": "\\server\\tests\\containers.test.js",
@@ -298,7 +147,7 @@
                 "title": "should create a new container size",
                 "fullTitle": "CONTAINERS POST /containers/sizes should create a new container size",
                 "timedOut": false,
-                "duration": 355,
+                "duration": 347,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -307,7 +156,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/containers/sizes\")\n        .set(\"Authorization\", users[0].token)\n        .send({ size: \"20C\" })\n        .expect(200)\n        .expect(res => {\n          expect(res.body.containerSize).toBeTruthy();\n          expect(res.body.containerSize.size).toBe(\"20C\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          ContainerSize.findOne({ size: \"20C\" })\n            .then(size => {\n              expect(size).toBeTruthy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "f6391571-c8a3-444e-818c-ec448f83dc99",
+                "uuid": "c44cdad0-6a01-459a-ab8e-8010a04194fe",
                 "isHook": false,
                 "skipped": false
               },
@@ -315,7 +164,7 @@
                 "title": "should not create a new container size with invalid input",
                 "fullTitle": "CONTAINERS POST /containers/sizes should not create a new container size with invalid input",
                 "timedOut": false,
-                "duration": 168,
+                "duration": 166,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -324,26 +173,26 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/containers/sizes\")\n        .set(\"Authorization\", users[0].token)\n        .send({ size: \"\" })\n        .expect(400)\n        .expect(res => {\n          expect(res.body.size).toBe(\"Size is required\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          ContainerSize.findOne({ size: \"20C\" })\n            .then(size => {\n              expect(size).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2bc09c2c-2153-479e-ae23-7f73c9b3a668",
+                "uuid": "1dd23473-a384-4987-bfb9-c9ee9272679a",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "f6391571-c8a3-444e-818c-ec448f83dc99",
-              "2bc09c2c-2153-479e-ae23-7f73c9b3a668"
+              "c44cdad0-6a01-459a-ab8e-8010a04194fe",
+              "1dd23473-a384-4987-bfb9-c9ee9272679a"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 523,
+            "duration": 513,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "bca2c0cb-3375-47fe-98b6-6419974a0811",
+            "uuid": "9a8f7303-ee8c-4883-b94f-8b53d33f3ffd",
             "title": "GET /containers/sizes/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\containers.test.js",
             "file": "\\server\\tests\\containers.test.js",
@@ -354,7 +203,7 @@
                 "title": "should return a specific container size",
                 "fullTitle": "CONTAINERS GET /containers/sizes/:id should return a specific container size",
                 "timedOut": false,
-                "duration": 172,
+                "duration": 165,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -363,7 +212,7 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/containers/sizes/${containerSizes[0]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.containerSize._id).toBe(\n            containerSizes[0]._id.toHexString()\n          );\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "727ee053-01c8-422d-97e9-02ec6fafa143",
+                "uuid": "1ee8aada-ecc1-46f8-9ad2-451f6b204b85",
                 "isHook": false,
                 "skipped": false
               },
@@ -371,7 +220,7 @@
                 "title": "should not return a specific container size with invalid :id",
                 "fullTitle": "CONTAINERS GET /containers/sizes/:id should not return a specific container size with invalid :id",
                 "timedOut": false,
-                "duration": 85,
+                "duration": 92,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -380,15 +229,15 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/containers/sizes/${containerSizes[0]._id}sss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.size).toBe(\"There was no size found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a77151a0-b335-40f7-b6bd-35f376f8c4dc",
+                "uuid": "4d2fde3b-f1b8-4c3f-ac57-80e2eed66669",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "727ee053-01c8-422d-97e9-02ec6fafa143",
-              "a77151a0-b335-40f7-b6bd-35f376f8c4dc"
+              "1ee8aada-ecc1-46f8-9ad2-451f6b204b85",
+              "4d2fde3b-f1b8-4c3f-ac57-80e2eed66669"
             ],
             "failures": [],
             "pending": [],
@@ -399,7 +248,7 @@
             "_timeout": 5000
           },
           {
-            "uuid": "32e2a9e7-0e84-4b9f-ad7f-9aea49734354",
+            "uuid": "60dbd39b-9dd5-4067-b6e1-4eb2b54f120a",
             "title": "PATCH /containers/sizes/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\containers.test.js",
             "file": "\\server\\tests\\containers.test.js",
@@ -410,7 +259,7 @@
                 "title": "should patch a container size successfully",
                 "fullTitle": "CONTAINERS PATCH /containers/sizes/:id should patch a container size successfully",
                 "timedOut": false,
-                "duration": 339,
+                "duration": 335,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -419,7 +268,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/containers/sizes/${containerSizes[0]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .send({ size: \"10\" })\n        .expect(200)\n        .expect(res => {\n          expect(res.body.containerSize).toBeTruthy();\n          expect(res.body.containerSize.size).toBe(\"10\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          ContainerSize.findById(containerSizes[0]._id)\n            .then(containerSize => {\n              expect(containerSize).toBeTruthy();\n              expect(containerSize.size).toBe(\"10\");\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "7370bc82-28ac-40aa-a75a-bdfae4fdfff7",
+                "uuid": "fcfb4e6a-4905-48f6-b86e-f4697cd22842",
                 "isHook": false,
                 "skipped": false
               },
@@ -427,7 +276,7 @@
                 "title": "should not patch a container size with errors",
                 "fullTitle": "CONTAINERS PATCH /containers/sizes/:id should not patch a container size with errors",
                 "timedOut": false,
-                "duration": 174,
+                "duration": 166,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -436,7 +285,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/containers/sizes/${containerSizes[0]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .send({ size: \"\" })\n        .expect(400)\n        .expect(res => {\n          expect(res.body.size).toBeTruthy();\n          expect(res.body.size).toBe(\"Size is required\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          ContainerSize.findById(containerSizes[0]._id)\n            .then(containerSize => {\n              expect(containerSize).toBeTruthy();\n              expect(containerSize.size).toBe(\"20\");\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "4258e5d2-20e6-448b-b04b-b20a2687f2bb",
+                "uuid": "27d7471c-1e76-4550-9ef3-4b3613b6d28f",
                 "isHook": false,
                 "skipped": false
               },
@@ -453,7 +302,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/containers/sizes/${containerSizes[0]._id}ss`)\n        .set(\"Authorization\", users[0].token)\n        .send({ size: \"\" })\n        .expect(400)\n        .expect(res => {\n          expect(res.body.size).toBeTruthy();\n          expect(res.body.size).toBe(\"There was no size found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d790febc-a0aa-4067-ad72-d3c0243254b0",
+                "uuid": "de759c63-f816-46a9-98e8-865344ffafa0",
                 "isHook": false,
                 "skipped": false
               },
@@ -461,7 +310,7 @@
                 "title": "should not patch a container size with size that exists",
                 "fullTitle": "CONTAINERS PATCH /containers/sizes/:id should not patch a container size with size that exists",
                 "timedOut": false,
-                "duration": 165,
+                "duration": 172,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -470,28 +319,28 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/containers/sizes/${containerSizes[0]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .send({ size: \"40\" })\n        .expect(400)\n        .expect(res => {\n          expect(res.body.size).toBeTruthy();\n          expect(res.body.size).toBe(\"That size already exists\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "f79f4ef2-440a-4d94-9abb-b6d4aff84e88",
+                "uuid": "ed589aac-b8a1-4606-85b2-d9255b7a9091",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "7370bc82-28ac-40aa-a75a-bdfae4fdfff7",
-              "4258e5d2-20e6-448b-b04b-b20a2687f2bb",
-              "d790febc-a0aa-4067-ad72-d3c0243254b0",
-              "f79f4ef2-440a-4d94-9abb-b6d4aff84e88"
+              "fcfb4e6a-4905-48f6-b86e-f4697cd22842",
+              "27d7471c-1e76-4550-9ef3-4b3613b6d28f",
+              "de759c63-f816-46a9-98e8-865344ffafa0",
+              "ed589aac-b8a1-4606-85b2-d9255b7a9091"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 763,
+            "duration": 758,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "e028d0d5-d7ef-48d9-a093-d3a9fd6fa0ba",
+            "uuid": "feea7268-21cd-483f-b3d8-f454b4d748a3",
             "title": "DELETE /containers/sizes/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\containers.test.js",
             "file": "\\server\\tests\\containers.test.js",
@@ -502,7 +351,7 @@
                 "title": "should delete the container size",
                 "fullTitle": "CONTAINERS DELETE /containers/sizes/:id should delete the container size",
                 "timedOut": false,
-                "duration": 246,
+                "duration": 273,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -511,7 +360,7 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/containers/sizes/${containerSizes[0]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.containerSize).toBeTruthy();\n          expect(res.body.containerSize.size).toBe(containerSizes[0].size);\n        })\n        .end(err => {\n          if (err) {\n            done(err);\n          }\n          ContainerSize.findById(containerSizes[0]._id)\n            .then(containerSize => {\n              expect(containerSize).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "11c0a025-2d46-4791-b78e-4af33a9fd795",
+                "uuid": "a157d90d-0c8e-4c0d-beeb-fa7947226f1f",
                 "isHook": false,
                 "skipped": false
               },
@@ -519,7 +368,7 @@
                 "title": "should not delete the container size with invalid id",
                 "fullTitle": "CONTAINERS DELETE /containers/sizes/:id should not delete the container size with invalid id",
                 "timedOut": false,
-                "duration": 169,
+                "duration": 172,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -528,26 +377,26 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/containers/sizes/${containerSizes[0]._id}ssss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.size).toBeTruthy();\n          expect(res.body.size).toBe(\"There was no size found\");\n        })\n        .end(err => {\n          if (err) {\n            done(err);\n          }\n          ContainerSize.findById(containerSizes[0]._id)\n            .then(containerSize => {\n              expect(containerSize).toBeTruthy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "69d4ccab-00b3-4f09-a060-8ba24ebac0b2",
+                "uuid": "1b4e7eaf-0918-456d-ac68-67654c5577f5",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "11c0a025-2d46-4791-b78e-4af33a9fd795",
-              "69d4ccab-00b3-4f09-a060-8ba24ebac0b2"
+              "a157d90d-0c8e-4c0d-beeb-fa7947226f1f",
+              "1b4e7eaf-0918-456d-ac68-67654c5577f5"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 415,
+            "duration": 445,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "09851c45-a498-469b-885d-a9a039ba7978",
+            "uuid": "a4f3297e-1417-4fbd-9317-854741dbd1e0",
             "title": "GET /containers/",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\containers.test.js",
             "file": "\\server\\tests\\containers.test.js",
@@ -558,7 +407,7 @@
                 "title": "should return an array of containers",
                 "fullTitle": "CONTAINERS GET /containers/ should return an array of containers",
                 "timedOut": false,
-                "duration": 260,
+                "duration": 255,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -567,25 +416,25 @@
                 "code": "done => {\n      request(app)\n        .get(\"/api/containers/\")\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.containers.length).toBe(3);\n          // Check to see if each container has a size and stats.\n          expect(res.body.containers[0].size).not.toBe(null);\n          expect(res.body.containers[1].size).not.toBe(null);\n          expect(res.body.containers[2].size).not.toBe(null);\n          expect(res.body.containers[0].stats).not.toBe(null);\n          expect(res.body.containers[1].stats).not.toBe(null);\n          expect(res.body.containers[2].stats).not.toBe(null);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46292d8b-8ab3-41d5-b590-71962923aeb3",
+                "uuid": "469d3843-551e-4a8c-bd21-d15863bd8f27",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "46292d8b-8ab3-41d5-b590-71962923aeb3"
+              "469d3843-551e-4a8c-bd21-d15863bd8f27"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 260,
+            "duration": 255,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "08e1dcdd-8765-472b-9ad9-9bec559d94cc",
+            "uuid": "50d04b25-fe7a-4f4c-987a-79aa2450eaf5",
             "title": "POST /containers/",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\containers.test.js",
             "file": "\\server\\tests\\containers.test.js",
@@ -605,7 +454,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/containers/\")\n        .set(\"Authorization\", users[0].token)\n        .send(newContainer)\n        // .expect(200)\n        .expect(res => {\n          expect(res.body.container).toBeTruthy();\n          // Check to see if each container has a size and stats.\n          expect(res.body.container.size).not.toBe(null);\n          expect(res.body.container.stats).not.toBe(null);\n        })\n        .end(err => {\n          if (err) {\n            done(err);\n          }\n          Container.findOne({ serialNumber: \"123456727\" })\n            .then(container => {\n              expect(container).toBeTruthy();\n              expect(container.size).not.toBe(null);\n              expect(container.stats).not.toBe(null);\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "593f62fa-f43b-46eb-b760-62bc880c765f",
+                "uuid": "a9906bf2-fc2f-4757-99cc-68ccb4673be7",
                 "isHook": false,
                 "skipped": false
               },
@@ -613,7 +462,7 @@
                 "title": "should not create a new container with validation errors",
                 "fullTitle": "CONTAINERS POST /containers/ should not create a new container with validation errors",
                 "timedOut": false,
-                "duration": 172,
+                "duration": 166,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -622,26 +471,26 @@
                 "code": "done => {\n      newContainer.rentalResale = \"\";\n      newContainer.hasOnBoxNumbers = 123;\n      newContainer.hasShelves = 123;\n      newContainer.hasSigns = 123;\n      newContainer.isPainted = 123;\n      request(app)\n        .post(\"/api/containers/\")\n        .set(\"Authorization\", users[0].token)\n        .send(newContainer)\n        // .expect(200)\n        .expect(res => {\n          expect(res.body.container).toBeFalsy();\n          // Check to see if each container has a size and stats.\n          expect(res.body.rentalResale).toBe(\"Select rental or resale\");\n          expect(res.body.hasShelves).toBe(\n            \"You must select whether the container has shelves or not\"\n          );\n          expect(res.body.isPainted).toBe(\n            \"You must select whether the container is painted or not\"\n          );\n          expect(res.body.hasOnBoxNumbers).toBe(\n            \"You must select whether the container has GBR numbers or not\"\n          );\n          expect(res.body.hasSigns).toBe(\n            \"You must select whether the container has signs or not\"\n          );\n        })\n        .end(err => {\n          if (err) {\n            done(err);\n          }\n          Container.findOne({ serialNumber: \"123456727\" })\n            .then(container => {\n              expect(container).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e491e040-7228-4809-a14a-6c56a5af4c4e",
+                "uuid": "3b9c1d13-2f92-48c8-b519-f2cdf62f32b6",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "593f62fa-f43b-46eb-b760-62bc880c765f",
-              "e491e040-7228-4809-a14a-6c56a5af4c4e"
+              "a9906bf2-fc2f-4757-99cc-68ccb4673be7",
+              "3b9c1d13-2f92-48c8-b519-f2cdf62f32b6"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 504,
+            "duration": 498,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "880dc064-9a26-4de5-bf36-b480f629c707",
+            "uuid": "661dab7c-c801-46dd-83ce-07f187f23aaa",
             "title": "GET /containers/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\containers.test.js",
             "file": "\\server\\tests\\containers.test.js",
@@ -652,7 +501,7 @@
                 "title": "should return a container",
                 "fullTitle": "CONTAINERS GET /containers/:id should return a container",
                 "timedOut": false,
-                "duration": 252,
+                "duration": 249,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -661,7 +510,7 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/containers/${containers[0]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.container).toBeTruthy();\n          expect(res.body.container.serialNumber).toBe(\n            containers[0].serialNumber\n          );\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "b51d2814-094f-4fef-b98a-ce9a56a6bf94",
+                "uuid": "5e307ba7-73dc-496a-b6c5-58591de6f003",
                 "isHook": false,
                 "skipped": false
               },
@@ -669,7 +518,7 @@
                 "title": "should not return a container with invalid id",
                 "fullTitle": "CONTAINERS GET /containers/:id should not return a container with invalid id",
                 "timedOut": false,
-                "duration": 86,
+                "duration": 85,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -678,26 +527,26 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/containers/${containers[0]._id}sss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.container).toBeTruthy();\n          expect(res.body.container).toBe(\"There was no container found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "33348ad9-f076-4a47-ae27-ff64317db4f3",
+                "uuid": "0fb9623a-b3d8-4d61-ad4f-52868c9f4603",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "b51d2814-094f-4fef-b98a-ce9a56a6bf94",
-              "33348ad9-f076-4a47-ae27-ff64317db4f3"
+              "5e307ba7-73dc-496a-b6c5-58591de6f003",
+              "0fb9623a-b3d8-4d61-ad4f-52868c9f4603"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 338,
+            "duration": 334,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "2f0e2faf-5910-4012-b83d-65b1f9e9e8db",
+            "uuid": "29bb7f20-fdc4-4b93-a997-6344530071e7",
             "title": "PATCH /containers/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\containers.test.js",
             "file": "\\server\\tests\\containers.test.js",
@@ -708,7 +557,7 @@
                 "title": "should return a container",
                 "fullTitle": "CONTAINERS PATCH /containers/:id should return a container",
                 "timedOut": false,
-                "duration": 515,
+                "duration": 500,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -717,24 +566,7 @@
                 "code": "done => {\n      patchData = {\n        gbrNumber: containers[1].gbrNumber,\n        releaseNumber: containers[1].releaseNumber,\n        size: containers[1].size.toHexString(),\n        serialNumber: containers[1].serialNumber,\n        hasShelves: true,\n        isPainted: true,\n        hasOnBoxNumbers: true,\n        hasSigns: true,\n        rentalResale: \"Rental\",\n        isFlagged: true,\n        flagReason: \"Container is super damaged\",\n        stats: containers[1].stats.toHexString(),\n        currentRentee: null,\n        previousRentees:\n          \"5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427\",\n        currentAddress: \"1733 S. Casablanca St., Visalia, CA 93292\",\n        currentlyRented: false\n      };\n      request(app)\n        .patch(`/api/containers/${containers[1]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .send(patchData)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.container).toBeTruthy();\n          expect(res.body.container.hasOnBoxNumbers).toBe(\n            patchData.hasOnBoxNumbers\n          );\n          expect(res.body.container.hasSigns).toBe(patchData.hasSigns);\n          expect(res.body.container.hasShelves).toBe(patchData.hasShelves);\n          expect(res.body.container.isPainted).toBe(patchData.isPainted);\n          expect(res.body.container.isFlagged).toBe(patchData.isFlagged);\n          expect(res.body.container.flagReason).toBe(patchData.flagReason);\n          expect(res.body.container.stats.currentAddress).toBe(\n            patchData.currentAddress\n          );\n          expect(res.body.container.stats.currentRentee).toBe(null);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "76d86d26-33db-45ac-aa70-0c23ae18184d",
-                "isHook": false,
-                "skipped": false
-              },
-              {
-                "title": "should not patch a container with invalid fields",
-                "fullTitle": "CONTAINERS PATCH /containers/:id should not patch a container with invalid fields",
-                "timedOut": false,
-                "duration": 86,
-                "state": "passed",
-                "speed": "slow",
-                "pass": true,
-                "fail": false,
-                "pending": false,
-                "code": "done => {\n      patchData = {\n        gbrNumber: containers[1].gbrNumber,\n        releaseNumber: containers[1].releaseNumber,\n        size: \"\",\n        serialNumber: containers[1].serialNumber,\n        hasShelves: true,\n        isPainted: true,\n        hasOnBoxNumbers: true,\n        hasSigns: true,\n        isFlagged: true,\n        flagReason: \"Container is super damaged\",\n        stats: containers[1].stats.toHexString(),\n        currentRentee: null,\n        rentalResale: \"\",\n        currentAddress: \"\",\n        currentlyRented: \"\",\n        previousRentees:\n          \"5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427\"\n      };\n      request(app)\n        .patch(`/api/containers/${containers[1]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .send(patchData)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.container).toBeFalsy();\n          expect(res.body.size).toBe(\"Size is required\");\n          expect(res.body.currentlyRented).toBe(\n            \"You must select whether the container is currently rented\"\n          );\n          expect(res.body.currentAddress).toBe(\"Current address is required\");\n          expect(res.body.rentalResale).toBe(\"Select rental or resale\");\n        })\n        .end(done);",
-                "err": {},
-                "isRoot": false,
-                "uuid": "6329102e-5657-4042-9f98-b7e734e2dc7e",
+                "uuid": "af5324c9-80e4-42ea-850a-73f300c6e3db",
                 "isHook": false,
                 "skipped": false
               },
@@ -748,30 +580,47 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
+                "code": "done => {\n      patchData = {\n        gbrNumber: containers[1].gbrNumber,\n        releaseNumber: containers[1].releaseNumber,\n        size: \"\",\n        serialNumber: containers[1].serialNumber,\n        hasShelves: true,\n        isPainted: true,\n        hasOnBoxNumbers: true,\n        hasSigns: true,\n        isFlagged: true,\n        flagReason: \"Container is super damaged\",\n        stats: containers[1].stats.toHexString(),\n        currentRentee: null,\n        rentalResale: \"\",\n        currentAddress: \"\",\n        currentlyRented: \"\",\n        previousRentees:\n          \"5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427\"\n      };\n      request(app)\n        .patch(`/api/containers/${containers[1]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .send(patchData)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.container).toBeFalsy();\n          expect(res.body.size).toBe(\"Size is required\");\n          expect(res.body.currentlyRented).toBe(\n            \"You must select whether the container is currently rented\"\n          );\n          expect(res.body.currentAddress).toBe(\"Current address is required\");\n          expect(res.body.rentalResale).toBe(\"Select rental or resale\");\n        })\n        .end(done);",
+                "err": {},
+                "isRoot": false,
+                "uuid": "3e20274b-095b-4517-acb2-7a4adc49fa76",
+                "isHook": false,
+                "skipped": false
+              },
+              {
+                "title": "should not patch a container with invalid fields",
+                "fullTitle": "CONTAINERS PATCH /containers/:id should not patch a container with invalid fields",
+                "timedOut": false,
+                "duration": 83,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
                 "code": "done => {\n      patchData = {\n        gbrNumber: containers[1].gbrNumber,\n        releaseNumber: containers[1].releaseNumber,\n        size: containers[1].size.toHexString(),\n        serialNumber: containers[1].serialNumber,\n        hasShelves: true,\n        isPainted: true,\n        hasOnBoxNumbers: true,\n        hasSigns: true,\n        rentalResale: \"Rental\",\n        isFlagged: true,\n        flagReason: \"Container is super damaged\",\n        stats: containers[1].stats.toHexString(),\n        currentRentee: null,\n        previousRentees:\n          \"5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427\",\n        currentAddress: \"1733 S. Casablanca St., Visalia, CA 93292\",\n        currentlyRented: false\n      };\n      request(app)\n        .patch(`/api/containers/${containers[1]._id}ss`)\n        .set(\"Authorization\", users[0].token)\n        .send(patchData)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.container).toBe(\"There was no container found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "39c4a655-f1d1-4f0c-b759-1059ad9a8710",
+                "uuid": "4a1462a0-8926-4dbf-b77e-648414107bc6",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "76d86d26-33db-45ac-aa70-0c23ae18184d",
-              "6329102e-5657-4042-9f98-b7e734e2dc7e",
-              "39c4a655-f1d1-4f0c-b759-1059ad9a8710"
+              "af5324c9-80e4-42ea-850a-73f300c6e3db",
+              "3e20274b-095b-4517-acb2-7a4adc49fa76",
+              "4a1462a0-8926-4dbf-b77e-648414107bc6"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 685,
+            "duration": 667,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "2bafa941-b41c-4a2a-863f-2ad553660366",
+            "uuid": "1379f0b8-c605-452e-b6e3-50016bc93868",
             "title": "DELETE /containers/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\containers.test.js",
             "file": "\\server\\tests\\containers.test.js",
@@ -791,7 +640,7 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/containers/${containers[1]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.container._id).toBe(containers[1]._id.toHexString());\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          Container.findById(containers[1]._id)\n            .then(container => {\n              expect(container).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "0149247f-a8c0-4300-9e8c-2df21c699e93",
+                "uuid": "d8e7d5b9-0e4e-4267-952a-1b99f460088c",
                 "isHook": false,
                 "skipped": false
               },
@@ -799,7 +648,7 @@
                 "title": "should not delete a container with invalid ID",
                 "fullTitle": "CONTAINERS DELETE /containers/:id should not delete a container with invalid ID",
                 "timedOut": false,
-                "duration": 85,
+                "duration": 83,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -808,20 +657,20 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/containers/${containers[1]._id}sss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.container).toBe(\"There was no container found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "0c853d6d-99f9-45cc-a72b-0aa03b8f90d4",
+                "uuid": "ec408217-07e9-4fea-bb2b-d8db033d150e",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "0149247f-a8c0-4300-9e8c-2df21c699e93",
-              "0c853d6d-99f9-45cc-a72b-0aa03b8f90d4"
+              "d8e7d5b9-0e4e-4267-952a-1b99f460088c",
+              "ec408217-07e9-4fea-bb2b-d8db033d150e"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 415,
+            "duration": 413,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
@@ -837,16 +686,47 @@
         "_timeout": 5000
       },
       {
-        "uuid": "5fb87e0e-8b74-43b2-9e91-3d065c0fdaae",
+        "uuid": "c1000de8-6bea-4507-adae-b1873014c1b6",
         "title": "CUSTOMERS",
         "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\customers.test.js",
         "file": "\\server\\tests\\customers.test.js",
-        "beforeHooks": [],
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook: populateUsers",
+            "fullTitle": "CUSTOMERS \"before all\" hook: populateUsers",
+            "timedOut": false,
+            "duration": 474,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+            "err": {},
+            "isRoot": false,
+            "uuid": "b6c8542b-61ee-4089-b555-5b191ff01aec",
+            "isHook": true,
+            "skipped": false
+          },
+          {
+            "title": "\"before each\" hook: populateCustomers",
+            "fullTitle": "CUSTOMERS \"before each\" hook: populateCustomers",
+            "timedOut": false,
+            "duration": 167,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "done => {\n  Customer.remove({})\n    .then(() => {\n      var customerOne = new Customer(customers[0]).save();\n      var customerTwo = new Customer(customers[1]).save();\n      var customerThree = new Customer(customers[2]).save();\n      return Promise.all([customerOne, customerTwo, customerThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+            "err": {},
+            "isRoot": false,
+            "uuid": "de36a46f-c205-4cf3-8191-563d8aa771a9",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
         "afterHooks": [],
         "tests": [],
         "suites": [
           {
-            "uuid": "31fd40b4-ebc0-4df4-8e74-4be98ef2388f",
+            "uuid": "64070d4c-1e9e-4774-ab5a-f4c6488b81ec",
             "title": "GET /customers",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\customers.test.js",
             "file": "\\server\\tests\\customers.test.js",
@@ -857,7 +737,7 @@
                 "title": "should return an array of customers",
                 "fullTitle": "CUSTOMERS GET /customers should return an array of customers",
                 "timedOut": false,
-                "duration": 166,
+                "duration": 169,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -866,25 +746,25 @@
                 "code": "done => {\n      request(app)\n        .get(\"/api/customers\")\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.customers.length).toBe(customers.length);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2dca593c-5765-4bc0-b1c1-6d7078f84881",
+                "uuid": "04e0f83a-d32c-4187-8b09-62778d799d72",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "2dca593c-5765-4bc0-b1c1-6d7078f84881"
+              "04e0f83a-d32c-4187-8b09-62778d799d72"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 166,
+            "duration": 169,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "37582331-95d8-4947-a398-724671a981e9",
+            "uuid": "4e5edcb6-25f6-44f2-bab4-66c164a05914",
             "title": "POST /customers",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\customers.test.js",
             "file": "\\server\\tests\\customers.test.js",
@@ -904,7 +784,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/customers\")\n        .set(\"Authorization\", users[0].token)\n        .send(newCustomer)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.customer.name).toBe(newCustomer.name);\n          expect(res.body.customer.lastViewed).not.toBe(null);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          Customer.findOne({ name: newCustomer.name })\n            .then(customer => {\n              expect(customer).toBeTruthy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "461dba3d-90b8-4bbb-bf67-5bf0ee2e2df7",
+                "uuid": "afae4533-0284-4a1c-9e22-d2c44f93f15b",
                 "isHook": false,
                 "skipped": false
               },
@@ -912,7 +792,7 @@
                 "title": "should not create a new customer with validation errors",
                 "fullTitle": "CUSTOMERS POST /customers should not create a new customer with validation errors",
                 "timedOut": false,
-                "duration": 167,
+                "duration": 171,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -921,26 +801,26 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/customers\")\n        .set(\"Authorization\", users[0].token)\n        .send(badCustomer)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.name).toBe(\"Name is required\");\n          expect(res.body.address).toBe(\"Address is required\");\n          expect(res.body.city).toBe(\"City is required\");\n          expect(res.body.zipcode).toBe(\"Zipcode is required\");\n          expect(res.body.state).toBe(\"State is required\");\n          expect(res.body.phone).toBe(\"Phone is required\");\n          expect(res.body.email).toBe(\"Email is invalid\");\n          expect(res.body.isFlagged).toBe(\n            \"You must select whether the customer has a flag or not\"\n          );\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          Customer.findOne({ name: newCustomer.name })\n            .then(customer => {\n              expect(customer).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "3b020670-650b-47ba-b0d4-a65db763ccb5",
+                "uuid": "e6c3c673-e335-4936-b2e0-71442b577eb1",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "461dba3d-90b8-4bbb-bf67-5bf0ee2e2df7",
-              "3b020670-650b-47ba-b0d4-a65db763ccb5"
+              "afae4533-0284-4a1c-9e22-d2c44f93f15b",
+              "e6c3c673-e335-4936-b2e0-71442b577eb1"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 509,
+            "duration": 513,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "34c6f940-1750-4afe-842e-eeb3dc0f971b",
+            "uuid": "2aa9f83a-6ffd-48eb-a1f7-0ad3f9066fa2",
             "title": "GET /customers/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\customers.test.js",
             "file": "\\server\\tests\\customers.test.js",
@@ -960,7 +840,7 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/customers/${customers[0]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.customer.name).toBe(customers[0].name);\n          expect(res.body.customer.lastViewed).not.toBe(null);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "7d133bda-4b6d-4a16-8fc6-05ec0bff0714",
+                "uuid": "14b7aee5-118f-4982-8d8f-cb5ac0acf05e",
                 "isHook": false,
                 "skipped": false
               },
@@ -968,7 +848,7 @@
                 "title": "should not return user with invalid ID",
                 "fullTitle": "CUSTOMERS GET /customers/:id should not return user with invalid ID",
                 "timedOut": false,
-                "duration": 84,
+                "duration": 86,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -977,26 +857,26 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/customers/${customers[0]._id}ssss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.customer).toBe(\"There was no customer found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "b09fa181-78bf-4891-9973-03a1ed9dc833",
+                "uuid": "116f3e8f-b04a-4aa6-b4f2-72937aec335f",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "7d133bda-4b6d-4a16-8fc6-05ec0bff0714",
-              "b09fa181-78bf-4891-9973-03a1ed9dc833"
+              "14b7aee5-118f-4982-8d8f-cb5ac0acf05e",
+              "116f3e8f-b04a-4aa6-b4f2-72937aec335f"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 250,
+            "duration": 252,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "eb0a4c4c-0f36-4f6a-bfd1-31f27a66003a",
+            "uuid": "3b9a854b-7b61-4123-bc2c-4811df73197c",
             "title": "PATCH /customers/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\customers.test.js",
             "file": "\\server\\tests\\customers.test.js",
@@ -1007,7 +887,7 @@
                 "title": "should update a customer & return the customer",
                 "fullTitle": "CUSTOMERS PATCH /customers/:id should update a customer & return the customer",
                 "timedOut": false,
-                "duration": 261,
+                "duration": 250,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1016,7 +896,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/customers/${customers[1]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .send({\n          name: \"Jacob Belmont\",\n          address1: \"1234 Loopy St\",\n          address2: \"\",\n          city: \"Hanford\",\n          zipcode: \"93230\",\n          state: \"CA\",\n          phone: \"559-444-4444\",\n          ext: \"123\",\n          fax: \"559-444-4448\",\n          email: \"another@fake.com\",\n          rdp: \"\",\n          notes: \"Customer requires quote everytime before orders\",\n          isFlagged: false,\n          flagReason: \"\",\n          lastViewed: null\n        })\n        .expect(200)\n        .expect(res => {\n          expect(res.body.customer.name).toBe(\"Jacob Belmont\");\n          expect(res.body.customer.isFlagged).toBe(false);\n          expect(res.body.customer.flagReason).toBe(\"\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          Customer.findById(customers[1]._id)\n            .then(customer => {\n              expect(customer).toBeTruthy();\n              expect(customer.name).toBe(\"Jacob Belmont\");\n              expect(customer.isFlagged).toBe(false);\n              expect(customer.flagReason).toBe(\"\");\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "ac819103-d5a6-4132-bd5f-14d9ee6636ac",
+                "uuid": "a7ffb556-b88c-4a27-a750-9a7e506b676c",
                 "isHook": false,
                 "skipped": false
               },
@@ -1024,7 +904,7 @@
                 "title": "should not update the customer with validation errors",
                 "fullTitle": "CUSTOMERS PATCH /customers/:id should not update the customer with validation errors",
                 "timedOut": false,
-                "duration": 91,
+                "duration": 84,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1033,7 +913,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/customers/${customers[2]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .send({\n          name: \"\",\n          address1: \"\",\n          address2: \"\",\n          city: \"\",\n          zipcode: \"\",\n          state: \"\",\n          phone: \"\",\n          ext: \"123\",\n          fax: \"559-444-4448\",\n          email: \"failemail.com\",\n          rdp: \"\",\n          notes: \"Customer requires quote everytime before orders\",\n          isFlagged: \"messedup\",\n          flagReason: \"Do not rent, patient hasn't paid bill.\",\n          lastViewed: null\n        })\n        .expect(400)\n        .expect(res => {\n          expect(res.body.name).toBe(\"Name is required\");\n          expect(res.body.address).toBe(\"Address is required\");\n          expect(res.body.city).toBe(\"City is required\");\n          expect(res.body.zipcode).toBe(\"Zipcode is required\");\n          expect(res.body.state).toBe(\"State is required\");\n          expect(res.body.phone).toBe(\"Phone is required\");\n          expect(res.body.email).toBe(\"Email is invalid\");\n          expect(res.body.isFlagged).toBe(\n            \"You must select whether the customer has a flag or not\"\n          );\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "b1e15dc9-b3e6-4973-b7da-fab8afbef6cb",
+                "uuid": "361f1304-f6ae-4cb9-bb64-7e8053bbb55a",
                 "isHook": false,
                 "skipped": false
               },
@@ -1041,7 +921,7 @@
                 "title": "should not update customer with incorrect ID.",
                 "fullTitle": "CUSTOMERS PATCH /customers/:id should not update customer with incorrect ID.",
                 "timedOut": false,
-                "duration": 85,
+                "duration": 84,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1050,27 +930,27 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/customers/${customers[0]._id}ssss`)\n        .set(\"Authorization\", users[0].token)\n        .send({})\n        .expect(400)\n        .expect(res => {\n          expect(res.body.customer).toBe(\"There was no customer found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "bd4e63cc-2fa3-4bb4-8740-e9147b88626f",
+                "uuid": "3dc303cb-20c1-4d89-bd6e-ee5dbc9e2ab2",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "ac819103-d5a6-4132-bd5f-14d9ee6636ac",
-              "b1e15dc9-b3e6-4973-b7da-fab8afbef6cb",
-              "bd4e63cc-2fa3-4bb4-8740-e9147b88626f"
+              "a7ffb556-b88c-4a27-a750-9a7e506b676c",
+              "361f1304-f6ae-4cb9-bb64-7e8053bbb55a",
+              "3dc303cb-20c1-4d89-bd6e-ee5dbc9e2ab2"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 437,
+            "duration": 418,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "3e6d542f-e1ba-4b3f-a69d-89b97bd0ddb0",
+            "uuid": "3a2fa482-3693-440d-8577-fb2712e1d6ba",
             "title": "DELETE /customers/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\customers.test.js",
             "file": "\\server\\tests\\customers.test.js",
@@ -1081,7 +961,7 @@
                 "title": "should delete a customer return the customers data",
                 "fullTitle": "CUSTOMERS DELETE /customers/:id should delete a customer return the customers data",
                 "timedOut": false,
-                "duration": 254,
+                "duration": 247,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1090,7 +970,7 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/customers/${customers[0]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.customer.name).toBe(customers[0].name);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          Customer.findById(customers[0]._id)\n            .then(customer => {\n              expect(customer).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "66779ca1-d08f-4f3d-b9a2-33e5a01ff03e",
+                "uuid": "0167644a-81b6-4a33-b311-906ed96dfa5f",
                 "isHook": false,
                 "skipped": false
               },
@@ -1098,7 +978,7 @@
                 "title": "should not delete customer with incorrect ID.",
                 "fullTitle": "CUSTOMERS DELETE /customers/:id should not delete customer with incorrect ID.",
                 "timedOut": false,
-                "duration": 176,
+                "duration": 166,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1107,20 +987,20 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/customers/${customers[0]._id}ssss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.customer).toBe(\"There was no customer found\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          Customer.findById(customers[0]._id)\n            .then(customer => {\n              expect(customer).toBeTruthy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "bcb72e08-723b-47a1-bfaf-517bb9d702eb",
+                "uuid": "290fd10c-302a-4e71-a676-641a0f85dfea",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "66779ca1-d08f-4f3d-b9a2-33e5a01ff03e",
-              "bcb72e08-723b-47a1-bfaf-517bb9d702eb"
+              "0167644a-81b6-4a33-b311-906ed96dfa5f",
+              "290fd10c-302a-4e71-a676-641a0f85dfea"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 430,
+            "duration": 413,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
@@ -1136,16 +1016,32 @@
         "_timeout": 5000
       },
       {
-        "uuid": "f2784b78-08eb-4842-8848-76487f1ef982",
+        "uuid": "9ce82bc9-a3a0-4dbf-bdd5-51ae894e78dc",
         "title": "DEFAULTS",
         "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\defaults.test.js",
         "file": "\\server\\tests\\defaults.test.js",
-        "beforeHooks": [],
+        "beforeHooks": [
+          {
+            "title": "\"before each\" hook: populateUsers",
+            "fullTitle": "DEFAULTS \"before each\" hook: populateUsers",
+            "timedOut": false,
+            "duration": 481,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+            "err": {},
+            "isRoot": false,
+            "uuid": "ee667ac5-3e68-4424-989e-855a09c2d9a1",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
         "afterHooks": [],
         "tests": [],
         "suites": [
           {
-            "uuid": "0f080f3e-8ed9-4dbf-91b1-03c357902d9e",
+            "uuid": "65888d6a-abc4-4300-8a3f-ff28c6060db0",
             "title": "POST /register",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\defaults.test.js",
             "file": "\\server\\tests\\defaults.test.js",
@@ -1156,7 +1052,7 @@
                 "title": "should register a new user",
                 "fullTitle": "DEFAULTS POST /register should register a new user",
                 "timedOut": false,
-                "duration": 444,
+                "duration": 450,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1165,7 +1061,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/register\")\n        .send(newUser)\n        .expect(200)\n        .expect(res => {\n          // Check to see if body contains users information. If so,\n          // then the user's information was passed back meaning it succeeded.\n          expect(res.body.username).toBe(newUser.username);\n          expect(res.body.password).not.toBe(newUser.password);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          // Check if user was saved in DB.\n          User.findOne({ username: newUser.username })\n            .then(user => {\n              expect(user).toBeTruthy();\n              expect(user.password).not.toBe(newUser.password);\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "aa4e430b-aed8-4d16-bb14-dee45d6fa763",
+                "uuid": "ff7c0601-30a7-4d31-89b2-20bbcf5b2760",
                 "isHook": false,
                 "skipped": false
               },
@@ -1173,7 +1069,7 @@
                 "title": "should not register a new user with validation errors",
                 "fullTitle": "DEFAULTS POST /register should not register a new user with validation errors",
                 "timedOut": false,
-                "duration": 85,
+                "duration": 86,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1182,7 +1078,7 @@
                 "code": "done => {\n      // Set invalid properties to newUser.\n      newUser.email = \"amessedupemail\";\n      newUser.phone = \"(559) 999-1111\";\n      request(app)\n        .post(\"/api/register\")\n        .send(newUser)\n        .expect(400)\n        .expect(res => {\n          // Check to see if validation errors are there.\n          expect(res.body.email).toBe(\"Must enter a valid email.\");\n          expect(res.body.phone).toBe(\n            \"Must contain 10 digits, no dashes or parenthesis. ex: 5591234567\"\n          );\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          // Check if user was saved in DB.\n          User.findOne({ username: newUser.username })\n            .then(user => {\n              expect(user).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "05d76fd0-b901-48af-9248-e999e19fbc75",
+                "uuid": "b6cf4785-93b6-423f-83c2-9413638b3c86",
                 "isHook": false,
                 "skipped": false
               },
@@ -1190,7 +1086,7 @@
                 "title": "should not register a new user with an already taken username",
                 "fullTitle": "DEFAULTS POST /register should not register a new user with an already taken username",
                 "timedOut": false,
-                "duration": 165,
+                "duration": 170,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1199,7 +1095,7 @@
                 "code": "done => {\n      newUser.email = \"jboy@test.com\";\n      newUser.phone = \"5559992222\";\n      newUser.username = users[0].username;\n      request(app)\n        .post(\"/api/register\")\n        .send(newUser)\n        .expect(400)\n        .expect(res => {\n          // Check to see if validation errors are there.\n          expect(res.body.username).toBe(\"Username already exists.\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          // Check if user was saved in DB.\n          User.findOne({ email: newUser.email })\n            .then(user => {\n              expect(user).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "34433614-3cbb-4ee5-a28b-f0a13d7c53db",
+                "uuid": "966baa7e-5db1-48c2-934a-3f7413fd573b",
                 "isHook": false,
                 "skipped": false
               },
@@ -1207,7 +1103,7 @@
                 "title": "should not register a new user with an already used email",
                 "fullTitle": "DEFAULTS POST /register should not register a new user with an already used email",
                 "timedOut": false,
-                "duration": 250,
+                "duration": 251,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1216,28 +1112,28 @@
                 "code": "done => {\n      newUser.email = users[0].email;\n      newUser.phone = \"5559992222\";\n      newUser.username = \"jboy\";\n      request(app)\n        .post(\"/api/register\")\n        .send(newUser)\n        .expect(400)\n        .expect(res => {\n          // Check to see if validation errors are there.\n          expect(res.body.email).toBe(\"Email already exists.\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          // If no errors during registration, check to see if newUser was\n          // stored in the database properly.\n          User.findOne({ username: newUser.username })\n            .then(user => {\n              expect(user).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5ffe28f2-c64e-4cff-adec-8e26ff254f04",
+                "uuid": "2db71759-64ff-462d-aa20-99c5a5387821",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "aa4e430b-aed8-4d16-bb14-dee45d6fa763",
-              "05d76fd0-b901-48af-9248-e999e19fbc75",
-              "34433614-3cbb-4ee5-a28b-f0a13d7c53db",
-              "5ffe28f2-c64e-4cff-adec-8e26ff254f04"
+              "ff7c0601-30a7-4d31-89b2-20bbcf5b2760",
+              "b6cf4785-93b6-423f-83c2-9413638b3c86",
+              "966baa7e-5db1-48c2-934a-3f7413fd573b",
+              "2db71759-64ff-462d-aa20-99c5a5387821"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 944,
+            "duration": 957,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "1b6cbd61-4f5e-4b09-877b-ead1d35b9297",
+            "uuid": "37da229e-51f1-46d3-889a-567c61600633",
             "title": "POST /login",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\defaults.test.js",
             "file": "\\server\\tests\\defaults.test.js",
@@ -1248,7 +1144,7 @@
                 "title": "should log a user in and return a token",
                 "fullTitle": "DEFAULTS POST /login should log a user in and return a token",
                 "timedOut": false,
-                "duration": 191,
+                "duration": 187,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1257,7 +1153,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/login\")\n        .send({\n          username: \"blpj\",\n          password: \"thePassword\"\n        })\n        .expect(200)\n        .expect(res => {\n          // check to see if success & token has been created.\n          expect(res.body.success).toBe(true);\n          expect(res.body.token).toBeTruthy();\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "6f3fa2b4-0377-4bd0-bf15-c23a388a7e53",
+                "uuid": "52fc4633-9a64-4dfa-af8b-2d6fd6f25d71",
                 "isHook": false,
                 "skipped": false
               },
@@ -1274,7 +1170,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/login\")\n        .send({\n          username: \"wrongusername\",\n          password: \"thePassword\"\n        })\n        .expect(401)\n        .expect(res => {\n          // check to see if success & token has been created.\n          expect(res.body.success).toBeFalsy();\n          expect(res.body.token).toBeFalsy();\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e54619d2-2197-4232-9989-4b9fa6a071ce",
+                "uuid": "3c67ed63-b21e-48ee-a995-ba79e5b61ad2",
                 "isHook": false,
                 "skipped": false
               },
@@ -1282,7 +1178,7 @@
                 "title": "should not log user in with incorrect password and return error",
                 "fullTitle": "DEFAULTS POST /login should not log user in with incorrect password and return error",
                 "timedOut": false,
-                "duration": 188,
+                "duration": 193,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1291,7 +1187,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/login\")\n        .send({\n          username: \"blpj\",\n          password: \"theWrongPassword\"\n        })\n        .expect(401)\n        .expect(res => {\n          // check to see if success & token has been created.\n          expect(res.body.success).toBeFalsy();\n          expect(res.body.token).toBeFalsy();\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "bdb55ce8-741c-49e2-bdeb-7d18afae41e0",
+                "uuid": "34185624-8197-45f3-8f18-73e53c85d19a",
                 "isHook": false,
                 "skipped": false
               },
@@ -1308,22 +1204,22 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/login\")\n        .send({\n          username: \"blpsr\",\n          password: \"thePassword\"\n        })\n        .expect(401)\n        .expect(res => {\n          // check to see if success & token has been created.\n          expect(res.body.success).toBeFalsy();\n          expect(res.body.token).toBeFalsy();\n          expect(res.body.login).toBe(\"Your account is not validated yet\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "46ca6f02-d28c-415c-9539-ef64a82a3237",
+                "uuid": "605a5944-4046-4900-b724-534c5d5503ab",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "6f3fa2b4-0377-4bd0-bf15-c23a388a7e53",
-              "e54619d2-2197-4232-9989-4b9fa6a071ce",
-              "bdb55ce8-741c-49e2-bdeb-7d18afae41e0",
-              "46ca6f02-d28c-415c-9539-ef64a82a3237"
+              "52fc4633-9a64-4dfa-af8b-2d6fd6f25d71",
+              "3c67ed63-b21e-48ee-a995-ba79e5b61ad2",
+              "34185624-8197-45f3-8f18-73e53c85d19a",
+              "605a5944-4046-4900-b724-534c5d5503ab"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 650,
+            "duration": 651,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
@@ -1339,16 +1235,47 @@
         "_timeout": 5000
       },
       {
-        "uuid": "d352c37b-4f4b-4d63-85be-8dceee1c5b4f",
+        "uuid": "ff92cf3c-8e56-4fc7-8fc6-e0898a00c51d",
         "title": "EVENTS",
         "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
         "file": "\\server\\tests\\events.test.js",
-        "beforeHooks": [],
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook: populateUsers",
+            "fullTitle": "EVENTS \"before all\" hook: populateUsers",
+            "timedOut": false,
+            "duration": 475,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+            "err": {},
+            "isRoot": false,
+            "uuid": "67e0838e-bb51-48c7-ab12-0d0d131adff1",
+            "isHook": true,
+            "skipped": false
+          },
+          {
+            "title": "\"before each\" hook: populateEvents",
+            "fullTitle": "EVENTS \"before each\" hook: populateEvents",
+            "timedOut": false,
+            "duration": 168,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "done => {\n  CalendarEvent.remove({})\n    .then(() => {\n      var eventOne = new CalendarEvent(events[0]).save();\n      var eventTwo = new CalendarEvent(events[1]).save();\n      var eventThree = new CalendarEvent(events[2]).save();\n      return Promise.all([eventOne, eventTwo, eventThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+            "err": {},
+            "isRoot": false,
+            "uuid": "32c38e5c-0bf4-49b0-a88c-f947dbd9284e",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
         "afterHooks": [],
         "tests": [],
         "suites": [
           {
-            "uuid": "7319719d-ec3d-4a39-b435-354abd0192e8",
+            "uuid": "138dfe11-e0ba-4473-bdf3-cc97a359e371",
             "title": "GET /events",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
             "file": "\\server\\tests\\events.test.js",
@@ -1359,7 +1286,7 @@
                 "title": "should return a list of events",
                 "fullTitle": "EVENTS GET /events should return a list of events",
                 "timedOut": false,
-                "duration": 167,
+                "duration": 165,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1368,25 +1295,25 @@
                 "code": "done => {\n      request(app)\n        .get(\"/api/events\")\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.events).toBeTruthy();\n          expect(res.body.events.length).toBe(events.length);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "c6dab953-73b1-40d7-8880-88d6074223b2",
+                "uuid": "f3efa338-0b34-4cce-ae32-c17e6f2ffd3e",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "c6dab953-73b1-40d7-8880-88d6074223b2"
+              "f3efa338-0b34-4cce-ae32-c17e6f2ffd3e"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 167,
+            "duration": 165,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "2263e1de-964a-492e-bcb4-907deee04e1c",
+            "uuid": "9524d6ab-03a2-4403-b1f4-35f8cb14a5c8",
             "title": "POST /events",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
             "file": "\\server\\tests\\events.test.js",
@@ -1397,7 +1324,7 @@
                 "title": "should create a new event",
                 "fullTitle": "EVENTS POST /events should create a new event",
                 "timedOut": false,
-                "duration": 250,
+                "duration": 256,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1406,7 +1333,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/events\")\n        .set(\"Authorization\", users[0].token)\n        .send(newEvent)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.event).toBeTruthy();\n          expect(res.body.event.title).toBe(newEvent.title);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          CalendarEvent.findOne({ title: newEvent.title })\n            .then(event => {\n              expect(event).toBeTruthy();\n              expect(event.title).toBe(newEvent.title);\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "f23a2d22-601e-4b39-89ed-b5204e512c0e",
+                "uuid": "a6bb3259-04c5-42a5-a337-363744c73585",
                 "isHook": false,
                 "skipped": false
               },
@@ -1414,7 +1341,7 @@
                 "title": "should not create a new event with validation errors",
                 "fullTitle": "EVENTS POST /events should not create a new event with validation errors",
                 "timedOut": false,
-                "duration": 166,
+                "duration": 167,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1423,26 +1350,26 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/events\")\n        .set(\"Authorization\", users[0].token)\n        .send(badEvent)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.title).toBe(\"Title must be at least 3 characters\");\n          expect(res.body.color).toBe(\"Color is required\");\n          expect(res.body.start).toBe(\"Start is required\");\n          expect(res.body.end).toBe(\"End is required\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          CalendarEvent.findOne({ title: badEvent.title })\n            .then(event => {\n              expect(event).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "520c80c3-3e82-4938-a3bb-9ce81ce4e930",
+                "uuid": "092b5105-59d0-4da3-8a73-e48c4fcecf87",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "f23a2d22-601e-4b39-89ed-b5204e512c0e",
-              "520c80c3-3e82-4938-a3bb-9ce81ce4e930"
+              "a6bb3259-04c5-42a5-a337-363744c73585",
+              "092b5105-59d0-4da3-8a73-e48c4fcecf87"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 416,
+            "duration": 423,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "fed4d698-ac4d-439c-bea3-11ce8488592a",
+            "uuid": "9a339b15-f135-43e2-9520-4bf7b1649411",
             "title": "GET /events/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
             "file": "\\server\\tests\\events.test.js",
@@ -1453,7 +1380,7 @@
                 "title": "should return a single event",
                 "fullTitle": "EVENTS GET /events/:id should return a single event",
                 "timedOut": false,
-                "duration": 170,
+                "duration": 165,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1462,7 +1389,7 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/events/${events[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.event).toBeTruthy();\n          expect(res.body.event._id).toBe(events[0]._id.toHexString());\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "9ee04a83-318c-4456-849c-594eac7b7fbc",
+                "uuid": "db100c42-1ec0-481a-8777-dadc8e5c68ee",
                 "isHook": false,
                 "skipped": false
               },
@@ -1470,7 +1397,7 @@
                 "title": "should not return a single event with invalid id",
                 "fullTitle": "EVENTS GET /events/:id should not return a single event with invalid id",
                 "timedOut": false,
-                "duration": 87,
+                "duration": 94,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1479,26 +1406,26 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/events/${events[0]._id.toHexString()}sssss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.event).toBeTruthy();\n          expect(res.body.event).toBe(\"There was no event found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "510b78d6-7e38-4698-bc42-9c5254ff9193",
+                "uuid": "1dad80e7-2488-4f1e-8c8e-d23f105c565d",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "9ee04a83-318c-4456-849c-594eac7b7fbc",
-              "510b78d6-7e38-4698-bc42-9c5254ff9193"
+              "db100c42-1ec0-481a-8777-dadc8e5c68ee",
+              "1dad80e7-2488-4f1e-8c8e-d23f105c565d"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 257,
+            "duration": 259,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "a06ad262-353a-4002-b55d-09fb7a3f3fac",
+            "uuid": "9317b588-5693-4f7a-9974-ac21ad937f30",
             "title": "PATCH /events/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
             "file": "\\server\\tests\\events.test.js",
@@ -1509,7 +1436,7 @@
                 "title": "should update a single event with new information",
                 "fullTitle": "EVENTS PATCH /events/:id should update a single event with new information",
                 "timedOut": false,
-                "duration": 253,
+                "duration": 246,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1518,7 +1445,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/events/${events[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .send({\n          title: \"New title\",\n          color: events[0].color,\n          start: events[0].start,\n          end: events[0].end,\n          order: events[0].order\n        })\n        .expect(200)\n        .expect(res => {\n          expect(res.body.event.title).toBe(\"New title\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          CalendarEvent.findById(events[0]._id.toHexString())\n            .then(event => {\n              expect(event.title).toBe(\"New title\");\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "42c206d7-a09e-4a32-a448-cbc4079e7e33",
+                "uuid": "6c5f580c-285d-4402-ac08-16701216bfe2",
                 "isHook": false,
                 "skipped": false
               },
@@ -1535,7 +1462,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/events/${events[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .send({\n          title: \"\",\n          color: \"\",\n          start: \"\",\n          end: \"\",\n          order: null\n        })\n        .expect(400)\n        .expect(res => {\n          expect(res.body.title).toBe(\"Title must be at least 3 characters\");\n          expect(res.body.color).toBe(\"Color is required\");\n          expect(res.body.start).toBe(\"Start is required\");\n          expect(res.body.end).toBe(\"End is required\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          CalendarEvent.findById(events[0]._id.toHexString())\n            .then(event => {\n              expect(event.title).toBe(events[0].title);\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "588a433a-3d8a-4372-abc1-7f32a3bfcd4b",
+                "uuid": "eb8c3ca1-f6d8-41da-b598-30c0ce6a336c",
                 "isHook": false,
                 "skipped": false
               },
@@ -1543,7 +1470,7 @@
                 "title": "should not update a single event with invalid ID",
                 "fullTitle": "EVENTS PATCH /events/:id should not update a single event with invalid ID",
                 "timedOut": false,
-                "duration": 84,
+                "duration": 90,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1552,27 +1479,27 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/events/${events[0]._id.toHexString()}sssss`)\n        .set(\"Authorization\", users[0].token)\n        .send(events[0])\n        .expect(400)\n        .expect(res => {\n          expect(res.body.event).toBe(\"There was no event found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "520221a3-f22d-43a5-a64a-05749832d1d7",
+                "uuid": "ed369a35-2e40-45fd-a318-99e5e449bdac",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "42c206d7-a09e-4a32-a448-cbc4079e7e33",
-              "588a433a-3d8a-4372-abc1-7f32a3bfcd4b",
-              "520221a3-f22d-43a5-a64a-05749832d1d7"
+              "6c5f580c-285d-4402-ac08-16701216bfe2",
+              "eb8c3ca1-f6d8-41da-b598-30c0ce6a336c",
+              "ed369a35-2e40-45fd-a318-99e5e449bdac"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 502,
+            "duration": 501,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "3ebff13e-8858-42cb-9f4d-f9db86bbf131",
+            "uuid": "2c233f40-843d-48d4-bcf9-850308e1d826",
             "title": "DELETE /events/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\events.test.js",
             "file": "\\server\\tests\\events.test.js",
@@ -1583,7 +1510,7 @@
                 "title": "should delete a single event",
                 "fullTitle": "EVENTS DELETE /events/:id should delete a single event",
                 "timedOut": false,
-                "duration": 261,
+                "duration": 252,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1592,7 +1519,7 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/events/${events[1]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.event).toBeTruthy();\n          expect(res.body.event._id).toBe(events[1]._id.toHexString());\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          CalendarEvent.findById(events[1]._id.toHexString())\n            .then(event => {\n              expect(event).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2691883c-fb48-4f0b-ab07-4e0cd3136d9b",
+                "uuid": "8317f31a-7be3-4d87-873d-87ba60dd1c47",
                 "isHook": false,
                 "skipped": false
               },
@@ -1600,7 +1527,7 @@
                 "title": "should not delete an event with invalid ID",
                 "fullTitle": "EVENTS DELETE /events/:id should not delete an event with invalid ID",
                 "timedOut": false,
-                "duration": 85,
+                "duration": 90,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1609,20 +1536,20 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/events/${events[1]._id.toHexString()}sss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.event).toBeTruthy();\n          expect(res.body.event).toBe(\"There was no event found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "0b568b59-0d78-4628-a32e-472e93a5d99e",
+                "uuid": "24258f08-3eaf-48f2-9181-9fed19d58162",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "2691883c-fb48-4f0b-ab07-4e0cd3136d9b",
-              "0b568b59-0d78-4628-a32e-472e93a5d99e"
+              "8317f31a-7be3-4d87-873d-87ba60dd1c47",
+              "24258f08-3eaf-48f2-9181-9fed19d58162"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 346,
+            "duration": 342,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
@@ -1638,16 +1565,47 @@
         "_timeout": 5000
       },
       {
-        "uuid": "e01bff63-5117-4e2b-9732-542874f48ab8",
+        "uuid": "23503360-2274-4ac8-ab49-9bc934d3a754",
         "title": "PRODUCT TYPES",
         "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
         "file": "\\server\\tests\\products.test.js",
-        "beforeHooks": [],
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook: populateUsers",
+            "fullTitle": "PRODUCT TYPES \"before all\" hook: populateUsers",
+            "timedOut": false,
+            "duration": 473,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+            "err": {},
+            "isRoot": false,
+            "uuid": "73f90e2a-8dcd-4d83-a860-ffb2665bdf66",
+            "isHook": true,
+            "skipped": false
+          },
+          {
+            "title": "\"before each\" hook: populateProductTypes",
+            "fullTitle": "PRODUCT TYPES \"before each\" hook: populateProductTypes",
+            "timedOut": false,
+            "duration": 165,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "done => {\n  ProductType.remove({})\n    .then(() => {\n      var modification = new ProductType(productTypes[0]).save();\n      var container = new ProductType(productTypes[1]).save();\n      var rentalModification = new ProductType(productTypes[2]).save();\n      var delivery = new ProductType(productTypes[3]).save();\n      var pickup = new ProductType(productTypes[4]).save();\n      return Promise.all([\n        modification,\n        container,\n        rentalModification,\n        delivery,\n        pickup\n      ]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+            "err": {},
+            "isRoot": false,
+            "uuid": "7f3ef2c9-c426-425a-ba6c-8b531cba06c1",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
         "afterHooks": [],
         "tests": [],
         "suites": [
           {
-            "uuid": "551c45b8-112d-4887-8279-bfc4de248ed7",
+            "uuid": "966cabaa-8a38-4d29-9206-ce349b38fc73",
             "title": "GET /products/types",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
             "file": "\\server\\tests\\products.test.js",
@@ -1658,7 +1616,7 @@
                 "title": "should retrieve a array of product types",
                 "fullTitle": "PRODUCT TYPES GET /products/types should retrieve a array of product types",
                 "timedOut": false,
-                "duration": 166,
+                "duration": 170,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1667,25 +1625,25 @@
                 "code": "done => {\n      request(app)\n        .get(\"/api/products/types\")\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          // check to see if product types array exists.\n          expect(res.body.productTypes).toBeTruthy();\n          expect(res.body.productTypes.length).toBe(5);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "ee9e4011-cf87-4454-9951-71bad5386558",
+                "uuid": "7636d116-40bd-41ac-ab57-66df820ab5a0",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "ee9e4011-cf87-4454-9951-71bad5386558"
+              "7636d116-40bd-41ac-ab57-66df820ab5a0"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 166,
+            "duration": 170,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "a1d381f6-dc10-4e14-aa97-40c67960b08b",
+            "uuid": "c56975c9-7cbd-4bed-a5f7-f19b5f985df9",
             "title": "POST /products/types",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
             "file": "\\server\\tests\\products.test.js",
@@ -1696,7 +1654,7 @@
                 "title": "should create a new product type",
                 "fullTitle": "PRODUCT TYPES POST /products/types should create a new product type",
                 "timedOut": false,
-                "duration": 328,
+                "duration": 335,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1705,7 +1663,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/products/types\")\n        .set(\"Authorization\", users[0].token)\n        .send(newProductType)\n        .expect(200)\n        .expect(res => {\n          // check to see if new product type exists.\n          expect(res.body.productType.type).toBe(newProductType.type);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          // Check to see if it was inserted into db properly.\n          ProductType.findOne({ type: newProductType.type })\n            .then(result => {\n              expect(result.type).toBe(newProductType.type);\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "6e96f853-b15e-4c72-8358-0e7f9a76bebb",
+                "uuid": "4da4238f-a237-490c-b5c0-342f7fdf0a0b",
                 "isHook": false,
                 "skipped": false
               },
@@ -1713,7 +1671,7 @@
                 "title": "should not create a new product type with empty values",
                 "fullTitle": "PRODUCT TYPES POST /products/types should not create a new product type with empty values",
                 "timedOut": false,
-                "duration": 166,
+                "duration": 165,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1722,26 +1680,26 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/products/types\")\n        .set(\"Authorization\", users[0].token)\n        .send({ type: \"\" })\n        .expect(400)\n        .expect(res => {\n          // check to see if new product type exists.\n          expect(res.body.type).toBe(\"Type is required\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          // Check to see if it was inserted into db properly.\n          ProductType.findOne({ type: newProductType.type })\n            .then(result => {\n              expect(result).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "9154449c-189c-4b5f-993a-5ff3c464a3be",
+                "uuid": "f4d2acf6-06dc-4e0a-98a3-aa2bf3f5a643",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "6e96f853-b15e-4c72-8358-0e7f9a76bebb",
-              "9154449c-189c-4b5f-993a-5ff3c464a3be"
+              "4da4238f-a237-490c-b5c0-342f7fdf0a0b",
+              "f4d2acf6-06dc-4e0a-98a3-aa2bf3f5a643"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 494,
+            "duration": 500,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "51c33192-d0ee-433d-98eb-0667e12cdd61",
+            "uuid": "6e950c2f-17d8-48f2-b778-79ec272cad6f",
             "title": "GET /products/types/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
             "file": "\\server\\tests\\products.test.js",
@@ -1752,7 +1710,7 @@
                 "title": "should retrieve a specific type",
                 "fullTitle": "PRODUCT TYPES GET /products/types/:id should retrieve a specific type",
                 "timedOut": false,
-                "duration": 172,
+                "duration": 164,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1761,7 +1719,7 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/products/types/${productTypes[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.type.type).toBe(\"modification\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e7a28da3-85db-4c6c-92e0-68c293b32c1c",
+                "uuid": "6c8dfaa9-3967-4423-82d9-2c4e90829fa3",
                 "isHook": false,
                 "skipped": false
               },
@@ -1769,7 +1727,7 @@
                 "title": "should return a 400 error if type not found and error message",
                 "fullTitle": "PRODUCT TYPES GET /products/types/:id should return a 400 error if type not found and error message",
                 "timedOut": false,
-                "duration": 99,
+                "duration": 92,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1778,26 +1736,26 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/products/types/${productTypes[0]._id.toHexString()}sss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.type).toBe(\"There was no product type found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e646727a-8654-477d-b883-fb426e452d9c",
+                "uuid": "6b3170fb-3b03-49b1-bc05-338e5d6a0777",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "e7a28da3-85db-4c6c-92e0-68c293b32c1c",
-              "e646727a-8654-477d-b883-fb426e452d9c"
+              "6c8dfaa9-3967-4423-82d9-2c4e90829fa3",
+              "6b3170fb-3b03-49b1-bc05-338e5d6a0777"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 271,
+            "duration": 256,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "be87697f-e63e-4132-a7ff-574a82625a98",
+            "uuid": "1bb787aa-f71d-4d1c-be91-d6a8d7d29a43",
             "title": "PATCH /products/types/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
             "file": "\\server\\tests\\products.test.js",
@@ -1808,7 +1766,7 @@
                 "title": "should update a specific type",
                 "fullTitle": "PRODUCT TYPES PATCH /products/types/:id should update a specific type",
                 "timedOut": false,
-                "duration": 254,
+                "duration": 258,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1817,7 +1775,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/products/types/${productTypes[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .send({\n          type: \"new modification\"\n        })\n        .expect(200)\n        .expect(res => {\n          expect(res.body.type.type).toBe(\"new modification\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "7a72d9f9-4c15-43fb-be6d-300161c6d88c",
+                "uuid": "4a5d311e-3f79-4050-a111-75a87c979f9e",
                 "isHook": false,
                 "skipped": false
               },
@@ -1825,7 +1783,7 @@
                 "title": "should return a 400 error if no type is entered",
                 "fullTitle": "PRODUCT TYPES PATCH /products/types/:id should return a 400 error if no type is entered",
                 "timedOut": false,
-                "duration": 85,
+                "duration": 86,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1834,7 +1792,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/products/types/${productTypes[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.type).toBe(\"Type is required\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d215c1fb-72ee-4705-97b8-4a92a76f865e",
+                "uuid": "8074ae67-1a0f-4a2c-a315-6db1b711089b",
                 "isHook": false,
                 "skipped": false
               },
@@ -1842,7 +1800,7 @@
                 "title": "should not update a type with a type that is in use",
                 "fullTitle": "PRODUCT TYPES PATCH /products/types/:id should not update a type with a type that is in use",
                 "timedOut": false,
-                "duration": 165,
+                "duration": 167,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1851,7 +1809,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/products/types/${productTypes[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .send({\n          type: \"container\"\n        })\n        .expect(400)\n        .expect(res => {\n          expect(res.body.type).toBe(\"That type is already being used\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "8c484ada-93b3-48c6-8cf0-38b44a7da2c1",
+                "uuid": "18e1a0a9-d0df-463f-b533-5b75de1bdfe4",
                 "isHook": false,
                 "skipped": false
               },
@@ -1859,7 +1817,7 @@
                 "title": "should not update a type with a messed up ID",
                 "fullTitle": "PRODUCT TYPES PATCH /products/types/:id should not update a type with a messed up ID",
                 "timedOut": false,
-                "duration": 85,
+                "duration": 87,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1868,28 +1826,28 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/products/types/${productTypes[0]._id.toHexString()}sss`)\n        .set(\"Authorization\", users[0].token)\n        .send({\n          type: \"some new mod\"\n        })\n        .expect(400)\n        .expect(res => {\n          expect(res.body.type).toBe(\n            \"No product found with that ID in the URL\"\n          );\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "91282c01-b13e-4328-b347-3478f41e3c9d",
+                "uuid": "942651ba-8c26-4302-aff3-d9c778887f18",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "7a72d9f9-4c15-43fb-be6d-300161c6d88c",
-              "d215c1fb-72ee-4705-97b8-4a92a76f865e",
-              "8c484ada-93b3-48c6-8cf0-38b44a7da2c1",
-              "91282c01-b13e-4328-b347-3478f41e3c9d"
+              "4a5d311e-3f79-4050-a111-75a87c979f9e",
+              "8074ae67-1a0f-4a2c-a315-6db1b711089b",
+              "18e1a0a9-d0df-463f-b533-5b75de1bdfe4",
+              "942651ba-8c26-4302-aff3-d9c778887f18"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 589,
+            "duration": 598,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "b1340230-acf5-4070-a7b8-0a9d769414fb",
+            "uuid": "7143e3d6-7fc8-4c01-a455-d2e896e2e30c",
             "title": "DELETE /products/types/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
             "file": "\\server\\tests\\products.test.js",
@@ -1900,7 +1858,7 @@
                 "title": "should remove a specific type",
                 "fullTitle": "PRODUCT TYPES DELETE /products/types/:id should remove a specific type",
                 "timedOut": false,
-                "duration": 259,
+                "duration": 249,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1909,7 +1867,7 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/products/types/${productTypes[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.type.type).toBe(productTypes[0].type);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          ProductType.findById(productTypes[0]._id.toHexString())\n            .then(type => {\n              expect(type).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "ad8aeda4-f308-4000-a968-115df3a5c779",
+                "uuid": "9f4cd006-cff0-4bc7-96cb-488f41cdffb3",
                 "isHook": false,
                 "skipped": false
               },
@@ -1917,7 +1875,7 @@
                 "title": "should return 400 and an error message if id is invalid",
                 "fullTitle": "PRODUCT TYPES DELETE /products/types/:id should return 400 and an error message if id is invalid",
                 "timedOut": false,
-                "duration": 85,
+                "duration": 84,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1926,7 +1884,7 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/products/types/${productTypes[0]._id.toHexString()}ss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.type).toBe(\"There was no product type found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "cb420f00-2759-460c-ab28-1c6064b1c4c7",
+                "uuid": "4465a41b-bf8f-452c-a071-1b50a8127d48",
                 "isHook": false,
                 "skipped": false
               },
@@ -1934,7 +1892,7 @@
                 "title": "should return 404 and an error message if id is not found",
                 "fullTitle": "PRODUCT TYPES DELETE /products/types/:id should return 404 and an error message if id is not found",
                 "timedOut": false,
-                "duration": 177,
+                "duration": 164,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -1943,21 +1901,21 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/products/types/${new ObjectID().toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(404)\n        .expect(res => {\n          expect(res.body.type).toBe(\n            \"Unable to find and remove the product type\"\n          );\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "55f3270a-9e58-491b-b23a-a45fa7121fc7",
+                "uuid": "fb53ec2a-54e7-41b3-ba70-6699a86271ff",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "ad8aeda4-f308-4000-a968-115df3a5c779",
-              "cb420f00-2759-460c-ab28-1c6064b1c4c7",
-              "55f3270a-9e58-491b-b23a-a45fa7121fc7"
+              "9f4cd006-cff0-4bc7-96cb-488f41cdffb3",
+              "4465a41b-bf8f-452c-a071-1b50a8127d48",
+              "fb53ec2a-54e7-41b3-ba70-6699a86271ff"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 521,
+            "duration": 497,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
@@ -1973,7 +1931,7 @@
         "_timeout": 5000
       },
       {
-        "uuid": "b71917a8-e297-4216-960e-247c5f6dabe7",
+        "uuid": "ba32f1ee-2935-4f20-b611-07bfdaf5f40f",
         "title": "PRODUCTS",
         "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
         "file": "\\server\\tests\\products.test.js",
@@ -1989,7 +1947,7 @@
             "code": "done => {\n  Product.remove({})\n    .then(() => {\n      var lockbox = new Product(products[0]).save();\n      var delivery = new Product(products[1]).save();\n      var container = new Product(products[2]).save();\n      return Promise.all([lockbox, delivery, container]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "aafdb121-7fb2-407b-b7ec-ede3649959da",
+            "uuid": "80252dcd-3c37-4227-9765-edeb833ab76b",
             "isHook": true,
             "skipped": false
           }
@@ -1998,7 +1956,7 @@
         "tests": [],
         "suites": [
           {
-            "uuid": "dbfaf801-170c-42ce-b262-ad047ed583bd",
+            "uuid": "9d78d179-5c69-4758-a0bf-ab762671b864",
             "title": "GET /products",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
             "file": "\\server\\tests\\products.test.js",
@@ -2009,7 +1967,7 @@
                 "title": "should retrieve a array of products",
                 "fullTitle": "PRODUCTS GET /products should retrieve a array of products",
                 "timedOut": false,
-                "duration": 257,
+                "duration": 250,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2018,25 +1976,25 @@
                 "code": "done => {\n      request(app)\n        .get(\"/api/products\")\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.products).toBeTruthy();\n          expect(res.body.products.length).toBe(3);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "ca2a1405-ec12-4024-b111-d71cbf42ac5d",
+                "uuid": "1d87404a-c9b9-4c2a-b494-9ebc949697eb",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "ca2a1405-ec12-4024-b111-d71cbf42ac5d"
+              "1d87404a-c9b9-4c2a-b494-9ebc949697eb"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 257,
+            "duration": 250,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "498710f9-8d14-4aa7-ab52-ad05e749daba",
+            "uuid": "6733f819-ecfa-460a-a774-ed762c9ae469",
             "title": "POST /products",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
             "file": "\\server\\tests\\products.test.js",
@@ -2047,7 +2005,7 @@
                 "title": "should create a product",
                 "fullTitle": "PRODUCTS POST /products should create a product",
                 "timedOut": false,
-                "duration": 331,
+                "duration": 333,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2056,7 +2014,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/products\")\n        .set(\"Authorization\", users[0].token)\n        .send(newProduct)\n        .expect(200)\n        .expect(res => {\n          // check to see if new product exists.\n          expect(res.body.product.name).toBe(newProduct.name);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          // Check to see if it was inserted into db properly.\n          Product.findOne({ name: newProduct.name })\n            .then(result => {\n              expect(result).toBeTruthy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "51d6e2db-4510-48f5-ad6f-ca57ac83c3ab",
+                "uuid": "fa64cabe-d437-40a9-86ea-14fdb475a280",
                 "isHook": false,
                 "skipped": false
               },
@@ -2064,7 +2022,7 @@
                 "title": "should not create a product with validation errors",
                 "fullTitle": "PRODUCTS POST /products should not create a product with validation errors",
                 "timedOut": false,
-                "duration": 172,
+                "duration": 166,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2073,26 +2031,26 @@
                 "code": "done => {\n      newProduct.name = \"\";\n      newProduct.shortName = \"\";\n      newProduct.rental = \"\";\n      newProduct.type = \"\";\n      request(app)\n        .post(\"/api/products\")\n        .set(\"Authorization\", users[0].token)\n        .send(newProduct)\n        .expect(400)\n        .expect(res => {\n          // check to see if new product exists.\n          expect(res.body.name).toBe(\"Name is required\");\n          expect(res.body.shortName).toBe(\"Short name is required\");\n          expect(res.body.rental).toBe(\"Must select a rental type\");\n          expect(res.body.type).toBe(\"Must select a product type\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          // Check to see if it was inserted into db properly.\n          Product.findOne({ name: newProduct.name })\n            .then(result => {\n              expect(result).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "33f451b8-2c5d-4632-816f-a3ce3fd676d0",
+                "uuid": "0a37e877-7e80-47b4-b752-cc67c5dec8f0",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "51d6e2db-4510-48f5-ad6f-ca57ac83c3ab",
-              "33f451b8-2c5d-4632-816f-a3ce3fd676d0"
+              "fa64cabe-d437-40a9-86ea-14fdb475a280",
+              "0a37e877-7e80-47b4-b752-cc67c5dec8f0"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 503,
+            "duration": 499,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "d2d8d811-913a-4b10-a2f5-e71b4f55eaa2",
+            "uuid": "959f186e-0196-43c6-a3af-13bbb7edce98",
             "title": "GET /products/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
             "file": "\\server\\tests\\products.test.js",
@@ -2103,7 +2061,7 @@
                 "title": "should retrieve a specific product",
                 "fullTitle": "PRODUCTS GET /products/:id should retrieve a specific product",
                 "timedOut": false,
-                "duration": 173,
+                "duration": 166,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2112,7 +2070,7 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/products/${products[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.product).toBeTruthy();\n          expect(res.body.product.name).toBe(products[0].name);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "783e4b60-6812-49a1-86fc-d6280ff0d2e4",
+                "uuid": "8c6211a6-ad9a-4a75-b0a7-0a64d77d3b07",
                 "isHook": false,
                 "skipped": false
               },
@@ -2120,7 +2078,7 @@
                 "title": "should have 400 status and error message if id doesn't exist",
                 "fullTitle": "PRODUCTS GET /products/:id should have 400 status and error message if id doesn't exist",
                 "timedOut": false,
-                "duration": 86,
+                "duration": 85,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2129,26 +2087,26 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/products/${products[0]._id.toHexString()}ss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.product).toBe(\"There was no product found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "8eacd5ab-7793-41e9-b0da-438fa09a606e",
+                "uuid": "54430b65-f763-4566-be41-beeadcfa5d9c",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "783e4b60-6812-49a1-86fc-d6280ff0d2e4",
-              "8eacd5ab-7793-41e9-b0da-438fa09a606e"
+              "8c6211a6-ad9a-4a75-b0a7-0a64d77d3b07",
+              "54430b65-f763-4566-be41-beeadcfa5d9c"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 259,
+            "duration": 251,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "482613c3-008c-4649-b8d0-6cfc759bbc83",
+            "uuid": "db4b17cc-6913-49a1-baef-927c3980092f",
             "title": "PATCH /products/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
             "file": "\\server\\tests\\products.test.js",
@@ -2159,7 +2117,7 @@
                 "title": "should update a specific product",
                 "fullTitle": "PRODUCTS PATCH /products/:id should update a specific product",
                 "timedOut": false,
-                "duration": 165,
+                "duration": 167,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2168,7 +2126,7 @@
                 "code": "done => {\n      newProduct = {\n        name: \"40' Pickup\",\n        shortName: \"40PU\",\n        price: 110.0,\n        monthlyPrice: 0.0,\n        rental: false,\n        type: `${productTypes[0]._id.toHexString()}`\n      };\n      request(app)\n        .patch(`/api/products/${products[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .send(newProduct)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.product).toBeTruthy();\n          expect(res.body.product.name).toBe(\"40' Pickup\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "ccb7ab13-2514-473b-83a4-3c286f2aeca6",
+                "uuid": "3565d405-895b-4ddc-9367-cb8dc506c726",
                 "isHook": false,
                 "skipped": false
               },
@@ -2176,7 +2134,7 @@
                 "title": "should have 400 status and error message if id doesn't exist",
                 "fullTitle": "PRODUCTS PATCH /products/:id should have 400 status and error message if id doesn't exist",
                 "timedOut": false,
-                "duration": 93,
+                "duration": 87,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2185,7 +2143,7 @@
                 "code": "done => {\n      newProduct = {\n        name: \"40' Pickup\",\n        shortName: \"40PU\",\n        price: 110.0,\n        monthlyPrice: 0.0,\n        rental: false,\n        type: `${productTypes[0]._id.toHexString()}`\n      };\n      request(app)\n        .patch(`/api/products/${products[0]._id.toHexString()}ss`)\n        .set(\"Authorization\", users[0].token)\n        .send(newProduct)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.product).toBe(\"No product found.\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "240b2c2a-058b-428f-947e-741517188c6c",
+                "uuid": "644f8a6b-3c98-4254-8591-c063cc082b2d",
                 "isHook": false,
                 "skipped": false
               },
@@ -2193,7 +2151,7 @@
                 "title": "should not update a product with validation errors",
                 "fullTitle": "PRODUCTS PATCH /products/:id should not update a product with validation errors",
                 "timedOut": false,
-                "duration": 168,
+                "duration": 167,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2202,27 +2160,27 @@
                 "code": "done => {\n      newProduct = {\n        name: \"\",\n        shortName: \"\",\n        price: 110.0,\n        monthlyPrice: 0.0,\n        rental: \"\",\n        type: \"\"\n      };\n      request(app)\n        .patch(`/api/products/${products[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .send(newProduct)\n        .expect(400)\n        .expect(res => {\n          // check to see if new product exists.\n          expect(res.body.name).toBe(\"Name is required\");\n          expect(res.body.shortName).toBe(\"Short name is required\");\n          expect(res.body.rental).toBe(\"Must select a rental type\");\n          expect(res.body.type).toBe(\"Must select a product type\");\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          // Check to see if it was inserted into db properly.\n          Product.findOne({ name: newProduct.name })\n            .then(result => {\n              expect(result).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "2dcad14c-9cdc-4c77-912c-e2a11a0b3d43",
+                "uuid": "2d713745-2f23-43b9-a2d9-20e68f1a863d",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "ccb7ab13-2514-473b-83a4-3c286f2aeca6",
-              "240b2c2a-058b-428f-947e-741517188c6c",
-              "2dcad14c-9cdc-4c77-912c-e2a11a0b3d43"
+              "3565d405-895b-4ddc-9367-cb8dc506c726",
+              "644f8a6b-3c98-4254-8591-c063cc082b2d",
+              "2d713745-2f23-43b9-a2d9-20e68f1a863d"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 426,
+            "duration": 421,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "09f91a82-025e-41c8-9d93-77eaece08367",
+            "uuid": "9787ca73-9a71-4ada-96a9-26250f707130",
             "title": "DELETE /products/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\products.test.js",
             "file": "\\server\\tests\\products.test.js",
@@ -2233,7 +2191,7 @@
                 "title": "should delete a specific product",
                 "fullTitle": "PRODUCTS DELETE /products/:id should delete a specific product",
                 "timedOut": false,
-                "duration": 248,
+                "duration": 245,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2242,7 +2200,7 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/products/${products[0]._id.toHexString()}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.product).toBeTruthy();\n          expect(res.body.product.name).toBe(products[0].name);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          Product.findById(products[0]._id.toHexString())\n            .then(product => {\n              expect(product).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "b6777b2e-fda9-4490-8511-2d6b3b40000a",
+                "uuid": "2e59f4e8-306f-48a4-8726-724efdf95ef8",
                 "isHook": false,
                 "skipped": false
               },
@@ -2250,7 +2208,7 @@
                 "title": "should have 400 status and error message if id doesn't exist",
                 "fullTitle": "PRODUCTS DELETE /products/:id should have 400 status and error message if id doesn't exist",
                 "timedOut": false,
-                "duration": 86,
+                "duration": 83,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2259,20 +2217,20 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/products/${products[0]._id.toHexString()}ss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.product).toBe(\"There was no product found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "4285cb1d-1610-4931-899a-1714e74b3349",
+                "uuid": "a1a68d2f-55bc-4eb4-bbaf-23cd77562742",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "b6777b2e-fda9-4490-8511-2d6b3b40000a",
-              "4285cb1d-1610-4931-899a-1714e74b3349"
+              "2e59f4e8-306f-48a4-8726-724efdf95ef8",
+              "a1a68d2f-55bc-4eb4-bbaf-23cd77562742"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 334,
+            "duration": 328,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
@@ -2288,25 +2246,57 @@
         "_timeout": 5000
       },
       {
-        "uuid": "88c154d9-9045-449c-a122-5c5a53d7fdd4",
+        "uuid": "65c6f6f2-2d7e-400f-850b-6a8e68fae545",
         "title": "SETTINGS",
         "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\settings.test.js",
         "file": "\\server\\tests\\settings.test.js",
-        "beforeHooks": [],
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook: populateUsers",
+            "fullTitle": "SETTINGS \"before all\" hook: populateUsers",
+            "timedOut": false,
+            "duration": 474,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+            "err": {},
+            "isRoot": false,
+            "uuid": "6bb6dab6-d5e8-4e85-ac5a-8bb2b0247b88",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
         "afterHooks": [],
         "tests": [],
         "suites": [
           {
-            "uuid": "b0ce7d2c-cb64-40b9-98dd-407e5ec7273a",
+            "uuid": "51bd34dc-8211-45d3-8745-1ee90f46405e",
             "title": "Purchase Types",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\settings.test.js",
             "file": "\\server\\tests\\settings.test.js",
-            "beforeHooks": [],
+            "beforeHooks": [
+              {
+                "title": "\"before each\" hook: populatePurchaseTypes",
+                "fullTitle": "SETTINGS Purchase Types \"before each\" hook: populatePurchaseTypes",
+                "timedOut": false,
+                "duration": 165,
+                "pass": false,
+                "fail": false,
+                "pending": false,
+                "code": "done => {\n  PurchaseType.remove({})\n    .then(() => {\n      var purchaseTypeOne = new PurchaseType(purchaseTypes[0]).save();\n      var purchaseTypeTwo = new PurchaseType(purchaseTypes[1]).save();\n      return Promise.all([purchaseTypeOne, purchaseTypeTwo]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+                "err": {},
+                "isRoot": false,
+                "uuid": "462d3b88-fe5e-4f55-86f8-efe73878a7c9",
+                "isHook": true,
+                "skipped": false
+              }
+            ],
             "afterHooks": [],
             "tests": [],
             "suites": [
               {
-                "uuid": "eb9ad3d2-7905-4503-89df-dc6c64a5c16f",
+                "uuid": "6b371504-5804-4044-ad41-5c0cbe499313",
                 "title": "GET /settings/purchasetypes/",
                 "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\settings.test.js",
                 "file": "\\server\\tests\\settings.test.js",
@@ -2317,7 +2307,7 @@
                     "title": "should return an array of purchase types",
                     "fullTitle": "SETTINGS Purchase Types GET /settings/purchasetypes/ should return an array of purchase types",
                     "timedOut": false,
-                    "duration": 168,
+                    "duration": 172,
                     "state": "passed",
                     "speed": "slow",
                     "pass": true,
@@ -2326,25 +2316,25 @@
                     "code": "done => {\n        request(app)\n          .get(\"/api/settings/purchasetypes\")\n          .set(\"Authorization\", users[0].token)\n          .expect(200)\n          .expect(res => {\n            expect(res.body.purchaseTypes).toBeTruthy();\n            expect(res.body.purchaseTypes.length).toBe(2);\n          })\n          .end(done);",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "7e171d4b-d968-4376-8d11-3f26f500d383",
+                    "uuid": "1ff912b1-01b9-4c07-99af-d74844adcd66",
                     "isHook": false,
                     "skipped": false
                   }
                 ],
                 "suites": [],
                 "passes": [
-                  "7e171d4b-d968-4376-8d11-3f26f500d383"
+                  "1ff912b1-01b9-4c07-99af-d74844adcd66"
                 ],
                 "failures": [],
                 "pending": [],
                 "skipped": [],
-                "duration": 168,
+                "duration": 172,
                 "root": false,
                 "rootEmpty": false,
                 "_timeout": 5000
               },
               {
-                "uuid": "a20ddf9f-a9ec-49ef-bc80-792045e9398d",
+                "uuid": "85377403-ee2e-466d-874c-5f85ea0ccc0b",
                 "title": "POST /settings/purchasetypes/",
                 "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\settings.test.js",
                 "file": "\\server\\tests\\settings.test.js",
@@ -2355,7 +2345,7 @@
                     "title": "should create a purchase type",
                     "fullTitle": "SETTINGS Purchase Types POST /settings/purchasetypes/ should create a purchase type",
                     "timedOut": false,
-                    "duration": 251,
+                    "duration": 254,
                     "state": "passed",
                     "speed": "slow",
                     "pass": true,
@@ -2364,7 +2354,7 @@
                     "code": "done => {\n        request(app)\n          .post(\"/api/settings/purchasetypes\")\n          .set(\"Authorization\", users[0].token)\n          .send({ type: \"Resale\" })\n          .expect(200)\n          .expect(res => {\n            expect(res.body.purchaseType.type).toBe(\"Resale\");\n          })\n          .end(err => {\n            if (err) {\n              return done(err);\n            }\n            PurchaseType.findOne({ type: \"Resale\" })\n              .then(purchaseType => {\n                expect(purchaseType).toBeTruthy();\n                expect(purchaseType.type).toBe(\"Resale\");\n                done();\n              })\n              .catch(e => done(e));\n          });",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "146c7bfb-9656-41f2-96af-4f77456cca94",
+                    "uuid": "d07bf19d-578e-4603-9ebb-f3c78679063c",
                     "isHook": false,
                     "skipped": false
                   },
@@ -2372,7 +2362,7 @@
                     "title": "should not create a purchase type with validation errors",
                     "fullTitle": "SETTINGS Purchase Types POST /settings/purchasetypes/ should not create a purchase type with validation errors",
                     "timedOut": false,
-                    "duration": 84,
+                    "duration": 93,
                     "state": "passed",
                     "speed": "slow",
                     "pass": true,
@@ -2381,26 +2371,26 @@
                     "code": "done => {\n        request(app)\n          .post(\"/api/settings/purchasetypes\")\n          .set(\"Authorization\", users[0].token)\n          .send({ type: \"\" })\n          .expect(400)\n          .expect(res => {\n            expect(res.body.type).toBe(\"Purchase type is required\");\n          })\n          .end(done);",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "2efecfbc-96ba-4d1f-a2ff-920376d813a2",
+                    "uuid": "20741957-62b8-45b1-aa23-d80429232488",
                     "isHook": false,
                     "skipped": false
                   }
                 ],
                 "suites": [],
                 "passes": [
-                  "146c7bfb-9656-41f2-96af-4f77456cca94",
-                  "2efecfbc-96ba-4d1f-a2ff-920376d813a2"
+                  "d07bf19d-578e-4603-9ebb-f3c78679063c",
+                  "20741957-62b8-45b1-aa23-d80429232488"
                 ],
                 "failures": [],
                 "pending": [],
                 "skipped": [],
-                "duration": 335,
+                "duration": 347,
                 "root": false,
                 "rootEmpty": false,
                 "_timeout": 5000
               },
               {
-                "uuid": "70f674e3-c283-40ee-a394-7ced823e9860",
+                "uuid": "3979c475-2e09-4b7b-a2af-8c295e589142",
                 "title": "GET /settings/purchasetypes/:id",
                 "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\settings.test.js",
                 "file": "\\server\\tests\\settings.test.js",
@@ -2411,7 +2401,7 @@
                     "title": "should return a purchase type",
                     "fullTitle": "SETTINGS Purchase Types GET /settings/purchasetypes/:id should return a purchase type",
                     "timedOut": false,
-                    "duration": 167,
+                    "duration": 166,
                     "state": "passed",
                     "speed": "slow",
                     "pass": true,
@@ -2420,7 +2410,7 @@
                     "code": "done => {\n        request(app)\n          .get(\n            `/api/settings/purchasetypes/${purchaseTypes[0]._id.toHexString()}`\n          )\n          .set(\"Authorization\", users[0].token)\n          .expect(200)\n          .expect(res => {\n            expect(res.body.purchaseType.type).toBe(purchaseTypes[0].type);\n          })\n          .end(done);",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "b451f568-172a-4beb-b0fd-7c4f402cf027",
+                    "uuid": "64a2e65a-7020-4013-a154-835bfacbf461",
                     "isHook": false,
                     "skipped": false
                   },
@@ -2428,7 +2418,7 @@
                     "title": "should not return a purchase type with invalid ID",
                     "fullTitle": "SETTINGS Purchase Types GET /settings/purchasetypes/:id should not return a purchase type with invalid ID",
                     "timedOut": false,
-                    "duration": 90,
+                    "duration": 85,
                     "state": "passed",
                     "speed": "slow",
                     "pass": true,
@@ -2437,26 +2427,26 @@
                     "code": "done => {\n        request(app)\n          .get(\n            `/api/settings/purchasetypes/${purchaseTypes[0]._id.toHexString()}sss`\n          )\n          .set(\"Authorization\", users[0].token)\n          .expect(400)\n          .expect(res => {\n            expect(res.body.purchaseType).toBe(\n              \"There was no purchase type found\"\n            );\n          })\n          .end(done);",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "aebe3deb-392a-4156-84d2-792500803e11",
+                    "uuid": "bcf73fc5-1af3-4f71-8a87-a3f3b2642864",
                     "isHook": false,
                     "skipped": false
                   }
                 ],
                 "suites": [],
                 "passes": [
-                  "b451f568-172a-4beb-b0fd-7c4f402cf027",
-                  "aebe3deb-392a-4156-84d2-792500803e11"
+                  "64a2e65a-7020-4013-a154-835bfacbf461",
+                  "bcf73fc5-1af3-4f71-8a87-a3f3b2642864"
                 ],
                 "failures": [],
                 "pending": [],
                 "skipped": [],
-                "duration": 257,
+                "duration": 251,
                 "root": false,
                 "rootEmpty": false,
                 "_timeout": 5000
               },
               {
-                "uuid": "a73a8529-349e-4e89-a245-9316c6e05268",
+                "uuid": "0570b15b-daee-4a32-9b82-ecc197d06093",
                 "title": "PATCH /settings/purchasetypes/:id",
                 "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\settings.test.js",
                 "file": "\\server\\tests\\settings.test.js",
@@ -2467,7 +2457,7 @@
                     "title": "should update a purchase type",
                     "fullTitle": "SETTINGS Purchase Types PATCH /settings/purchasetypes/:id should update a purchase type",
                     "timedOut": false,
-                    "duration": 258,
+                    "duration": 248,
                     "state": "passed",
                     "speed": "slow",
                     "pass": true,
@@ -2476,7 +2466,7 @@
                     "code": "done => {\n        request(app)\n          .patch(`/api/settings/purchasetypes/${purchaseTypes[1]._id}`)\n          .set(\"Authorization\", users[0].token)\n          .send({ type: \"Resale\" })\n          .expect(200)\n          .expect(res => {\n            expect(res.body.purchaseType.type).toBe(\"Resale\");\n          })\n          .end(err => {\n            if (err) {\n              return done(err);\n            }\n            PurchaseType.findById(purchaseTypes[1]._id)\n              .then(purchaseType => {\n                expect(purchaseType).toBeTruthy();\n                expect(purchaseType.type).toBe(\"Resale\");\n                done();\n              })\n              .catch(e => done(e));\n          });",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "b2b74e41-d668-40e4-a4a7-994e9dd94f24",
+                    "uuid": "37a90b23-8124-43b5-bb7e-7e6ff15c860d",
                     "isHook": false,
                     "skipped": false
                   },
@@ -2493,7 +2483,7 @@
                     "code": "done => {\n        request(app)\n          .patch(`/api/settings/purchasetypes/${purchaseTypes[1]._id}ssss`)\n          .set(\"Authorization\", users[0].token)\n          .send({ type: \"Resale\" })\n          .expect(400)\n          .expect(res => {\n            expect(res.body.purchaseType).toBe(\"No purchase type found\");\n          })\n          .end(err => {\n            if (err) {\n              return done(err);\n            }\n            PurchaseType.findById(purchaseTypes[1]._id)\n              .then(purchaseType => {\n                expect(purchaseType.type).toBe(purchaseTypes[1].type);\n                done();\n              })\n              .catch(e => done(e));\n          });",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "2f1b1149-fbfb-42c0-9209-0bff6cd1fa1d",
+                    "uuid": "a3f20316-a9ba-4660-bda3-27fa773216a7",
                     "isHook": false,
                     "skipped": false
                   },
@@ -2501,7 +2491,7 @@
                     "title": "should not update a purchase type with validation errors",
                     "fullTitle": "SETTINGS Purchase Types PATCH /settings/purchasetypes/:id should not update a purchase type with validation errors",
                     "timedOut": false,
-                    "duration": 167,
+                    "duration": 173,
                     "state": "passed",
                     "speed": "slow",
                     "pass": true,
@@ -2510,27 +2500,27 @@
                     "code": "done => {\n        request(app)\n          .patch(`/api/settings/purchasetypes/${purchaseTypes[1]._id}`)\n          .set(\"Authorization\", users[0].token)\n          .send({ type: \"\" })\n          .expect(400)\n          .expect(res => {\n            expect(res.body.type).toBe(\"Purchase type is required\");\n          })\n          .end(err => {\n            if (err) {\n              return done(err);\n            }\n            PurchaseType.findById(purchaseTypes[1]._id)\n              .then(purchaseType => {\n                expect(purchaseType.type).toBe(purchaseTypes[1].type);\n                done();\n              })\n              .catch(e => done(e));\n          });",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "02b56aa2-a10a-4f7f-965b-d99b369e7260",
+                    "uuid": "d84162ce-d414-45f1-a017-ff82ac5cb264",
                     "isHook": false,
                     "skipped": false
                   }
                 ],
                 "suites": [],
                 "passes": [
-                  "b2b74e41-d668-40e4-a4a7-994e9dd94f24",
-                  "2f1b1149-fbfb-42c0-9209-0bff6cd1fa1d",
-                  "02b56aa2-a10a-4f7f-965b-d99b369e7260"
+                  "37a90b23-8124-43b5-bb7e-7e6ff15c860d",
+                  "a3f20316-a9ba-4660-bda3-27fa773216a7",
+                  "d84162ce-d414-45f1-a017-ff82ac5cb264"
                 ],
                 "failures": [],
                 "pending": [],
                 "skipped": [],
-                "duration": 591,
+                "duration": 587,
                 "root": false,
                 "rootEmpty": false,
                 "_timeout": 5000
               },
               {
-                "uuid": "cc9371ac-7604-4d5a-83c1-0a52b66b6208",
+                "uuid": "369fb99c-f2ed-4c6a-8cd4-84dcaeff1969",
                 "title": "DELETE /settings/purchasetypes/:id",
                 "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\settings.test.js",
                 "file": "\\server\\tests\\settings.test.js",
@@ -2541,7 +2531,7 @@
                     "title": "should delete a purchase type",
                     "fullTitle": "SETTINGS Purchase Types DELETE /settings/purchasetypes/:id should delete a purchase type",
                     "timedOut": false,
-                    "duration": 248,
+                    "duration": 250,
                     "state": "passed",
                     "speed": "slow",
                     "pass": true,
@@ -2550,7 +2540,7 @@
                     "code": "done => {\n        request(app)\n          .delete(`/api/settings/purchasetypes/${purchaseTypes[0]._id}`)\n          .set(\"Authorization\", users[0].token)\n          .expect(200)\n          .expect(res => {\n            expect(res.body.purchaseType.type).toBe(purchaseTypes[0].type);\n          })\n          .end(err => {\n            if (err) {\n              return done(err);\n            }\n            PurchaseType.findById(purchaseTypes[0]._id)\n              .then(purchaseType => {\n                expect(purchaseType).toBeFalsy();\n                done();\n              })\n              .catch(e => done(e));\n          });",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "e6ca5b7a-68c8-42eb-ad92-250d950b75e7",
+                    "uuid": "513a1a98-aef5-4205-a2c9-fcec06181b3e",
                     "isHook": false,
                     "skipped": false
                   },
@@ -2567,20 +2557,20 @@
                     "code": "done => {\n        request(app)\n          .delete(`/api/settings/purchasetypes/${purchaseTypes[0]._id}sss`)\n          .set(\"Authorization\", users[0].token)\n          .expect(400)\n          .expect(res => {\n            expect(res.body.purchaseType).toBe(\"No purchase type found\");\n          })\n          .end(err => {\n            if (err) {\n              return done(err);\n            }\n            PurchaseType.findById(purchaseTypes[0]._id)\n              .then(purchaseType => {\n                expect(purchaseType).toBeTruthy();\n                expect(purchaseType.type).toBe(purchaseTypes[0].type);\n                done();\n              })\n              .catch(e => done(e));\n          });",
                     "err": {},
                     "isRoot": false,
-                    "uuid": "3438ee7a-d349-4964-97e4-5648b646008b",
+                    "uuid": "fc0a9d0e-d91b-4ac0-8203-f05c11e9f326",
                     "isHook": false,
                     "skipped": false
                   }
                 ],
                 "suites": [],
                 "passes": [
-                  "e6ca5b7a-68c8-42eb-ad92-250d950b75e7",
-                  "3438ee7a-d349-4964-97e4-5648b646008b"
+                  "513a1a98-aef5-4205-a2c9-fcec06181b3e",
+                  "fc0a9d0e-d91b-4ac0-8203-f05c11e9f326"
                 ],
                 "failures": [],
                 "pending": [],
                 "skipped": [],
-                "duration": 413,
+                "duration": 415,
                 "root": false,
                 "rootEmpty": false,
                 "_timeout": 5000
@@ -2606,16 +2596,32 @@
         "_timeout": 5000
       },
       {
-        "uuid": "0e4e4da4-caf5-4ddf-b9f1-50d756db84c6",
+        "uuid": "6712c4f9-3ab6-4dc8-b224-24c9df68d1e2",
         "title": "USERS",
         "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\users.test.js",
         "file": "\\server\\tests\\users.test.js",
-        "beforeHooks": [],
+        "beforeHooks": [
+          {
+            "title": "\"before each\" hook: populateUsers",
+            "fullTitle": "USERS \"before each\" hook: populateUsers",
+            "timedOut": false,
+            "duration": 483,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save();\n      var userThree = new User(users[2]).save();\n      return Promise.all([userOne, userTwo, userThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
+            "err": {},
+            "isRoot": false,
+            "uuid": "83c5d9f9-d2fb-43b6-a139-e5e7cd9702d3",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
         "afterHooks": [],
         "tests": [],
         "suites": [
           {
-            "uuid": "3f630945-ee9a-4e44-a386-2d6242d93def",
+            "uuid": "4f8b70da-28de-429d-9868-b8762da6c9d1",
             "title": "GET /users",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\users.test.js",
             "file": "\\server\\tests\\users.test.js",
@@ -2626,7 +2632,7 @@
                 "title": "should return an array of users",
                 "fullTitle": "USERS GET /users should return an array of users",
                 "timedOut": false,
-                "duration": 167,
+                "duration": 165,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2635,25 +2641,25 @@
                 "code": "done => {\n      request(app)\n        .get(\"/api/users\")\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.users).toBeTruthy();\n          expect(res.body.users.length).toBe(users.length);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "a04c3c98-bd5a-4ed0-86a6-705a705f75d3",
+                "uuid": "0be6afc7-6e46-4b01-b6c5-dc052cb40d36",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "a04c3c98-bd5a-4ed0-86a6-705a705f75d3"
+              "0be6afc7-6e46-4b01-b6c5-dc052cb40d36"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 167,
+            "duration": 165,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "2a21547f-d007-4d5c-9369-829f2da9aec8",
+            "uuid": "f674af2b-5f2f-491b-b85c-e577405cd504",
             "title": "POST /users",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\users.test.js",
             "file": "\\server\\tests\\users.test.js",
@@ -2664,7 +2670,7 @@
                 "title": "should create a new user",
                 "fullTitle": "USERS POST /users should create a new user",
                 "timedOut": false,
-                "duration": 699,
+                "duration": 627,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2673,7 +2679,7 @@
                 "code": "done => {\n      request(app)\n        .post(\"/api/users\")\n        .set(\"Authorization\", users[0].token)\n        .send(newUser)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.user).toBeTruthy();\n          expect(res.body.user.username).toBe(newUser.username);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          User.findOne({ username: newUser.username })\n            .then(user => {\n              expect(user).toBeTruthy();\n              expect(user.firstName).toBe(newUser.firstName);\n              expect(user.password).not.toBe(newUser.password);\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "fe991c9d-35c9-479c-aca6-0a603651d8b8",
+                "uuid": "0e8836e8-cbdc-434b-8762-fde949aae815",
                 "isHook": false,
                 "skipped": false
               },
@@ -2681,7 +2687,7 @@
                 "title": "should not create a new user with validation errors",
                 "fullTitle": "USERS POST /users should not create a new user with validation errors",
                 "timedOut": false,
-                "duration": 167,
+                "duration": 171,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2690,26 +2696,26 @@
                 "code": "done => {\n      newUser.email = \"amessedupemail\";\n      newUser.phone = \"(559) 999-1111\";\n      newUser.validated = \"hello\";\n      request(app)\n        .post(\"/api/users\")\n        .set(\"Authorization\", users[0].token)\n        .send(newUser)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.email).toBe(\"Must enter a valid email\");\n          expect(res.body.phone).toBe(\n            \"Must contain 10 digits, no dashes or parenthesis. ex: 5591234567\"\n          );\n          expect(res.body.validated).toBe(\n            \"You must select whether the user is validated\"\n          );\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          User.findOne({ username: newUser.username })\n            .then(user => {\n              expect(user).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "160bef65-69af-40bf-8e11-15bf70220f0a",
+                "uuid": "c2a4ac45-30bc-4d18-bf97-b89d7cf9801d",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "fe991c9d-35c9-479c-aca6-0a603651d8b8",
-              "160bef65-69af-40bf-8e11-15bf70220f0a"
+              "0e8836e8-cbdc-434b-8762-fde949aae815",
+              "c2a4ac45-30bc-4d18-bf97-b89d7cf9801d"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 866,
+            "duration": 798,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "58cdc05d-73e0-4781-89c7-2dd0e83c83c7",
+            "uuid": "b995def5-a024-4aec-8be6-9af9f8da4336",
             "title": "GET /users/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\users.test.js",
             "file": "\\server\\tests\\users.test.js",
@@ -2720,7 +2726,7 @@
                 "title": "should return a single user",
                 "fullTitle": "USERS GET /users/:id should return a single user",
                 "timedOut": false,
-                "duration": 169,
+                "duration": 164,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2729,7 +2735,7 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/users/${users[0]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.user._id).toBe(users[0]._id.toHexString());\n          expect(res.body.user.username).toBe(users[0].username);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "4dc10d24-0eda-48a7-81c4-c71b55545388",
+                "uuid": "ab7ec014-8f0c-4422-aa26-6a190f2a5aff",
                 "isHook": false,
                 "skipped": false
               },
@@ -2737,7 +2743,7 @@
                 "title": "should not return a user with invalid ID",
                 "fullTitle": "USERS GET /users/:id should not return a user with invalid ID",
                 "timedOut": false,
-                "duration": 85,
+                "duration": 84,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2746,26 +2752,26 @@
                 "code": "done => {\n      request(app)\n        .get(`/api/users/${users[0]._id}ssss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.user).toBe(\"There was no user found\");\n          expect(res.body.user.username).not.toBe(users[0].username);\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "47ce16bc-56fa-4ced-aa89-74faae2d053e",
+                "uuid": "7ba9872b-97b4-4495-bd05-f31b8d480d1d",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "4dc10d24-0eda-48a7-81c4-c71b55545388",
-              "47ce16bc-56fa-4ced-aa89-74faae2d053e"
+              "ab7ec014-8f0c-4422-aa26-6a190f2a5aff",
+              "7ba9872b-97b4-4495-bd05-f31b8d480d1d"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 254,
+            "duration": 248,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "25904f5c-67a5-4b35-b37f-cb23e4b8eeb4",
+            "uuid": "4f6ddf64-5f9f-4941-ae69-ae9028010ccf",
             "title": "PATCH /users/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\users.test.js",
             "file": "\\server\\tests\\users.test.js",
@@ -2776,7 +2782,7 @@
                 "title": "should update and return a single user",
                 "fullTitle": "USERS PATCH /users/:id should update and return a single user",
                 "timedOut": false,
-                "duration": 250,
+                "duration": 254,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2785,7 +2791,7 @@
                 "code": "done => {\n      users[1].validated = true;\n      request(app)\n        .patch(`/api/users/${users[1]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .send(users[1])\n        .expect(200)\n        .expect(res => {\n          expect(res.body.user.username).toBe(users[1].username);\n          expect(res.body.user.validated).toBe(true);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          User.findById(users[1]._id.toHexString())\n            .then(user => {\n              expect(user.validated).toBe(true);\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "184065b4-04fe-455f-a286-d2727358d455",
+                "uuid": "74647af9-4a5c-45b9-b71c-062bf3dcfa63",
                 "isHook": false,
                 "skipped": false
               },
@@ -2793,7 +2799,7 @@
                 "title": "should not update and return a user with invalid ID",
                 "fullTitle": "USERS PATCH /users/:id should not update and return a user with invalid ID",
                 "timedOut": false,
-                "duration": 86,
+                "duration": 83,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2802,7 +2808,7 @@
                 "code": "done => {\n      request(app)\n        .patch(`/api/users/${users[1]._id}ssss`)\n        .set(\"Authorization\", users[0].token)\n        .send(users[1])\n        .expect(400)\n        .expect(res => {\n          expect(res.body.user).toBe(\"There was no user found\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "8f2fb11f-bbc7-4b81-b21d-403e3e381231",
+                "uuid": "331ca3d6-4835-46eb-83a4-70358f6f82c0",
                 "isHook": false,
                 "skipped": false
               },
@@ -2810,7 +2816,7 @@
                 "title": "should not update and return a user with validation errors",
                 "fullTitle": "USERS PATCH /users/:id should not update and return a user with validation errors",
                 "timedOut": false,
-                "duration": 164,
+                "duration": 170,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2819,27 +2825,27 @@
                 "code": "done => {\n      userData = {\n        firstName: \"Brian\",\n        lastName: \"Peter\",\n        middleInitial: \"L\",\n        suffix: \"Sr\",\n        username: \"blpsr\",\n        password: \"thePassword\",\n        email: \"gbr@test.com\",\n        phone: \"5559991224\",\n        title: \"Manager\",\n        type: \"Staff\",\n        validated: \"someWrongValidation\"\n      };\n      request(app)\n        .patch(`/api/users/${users[1]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .send(userData)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.validated).toBe(\n            \"You must select whether the user is validated\"\n          );\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          User.findById(users[1]._id.toHexString())\n            .then(user => {\n              expect(user.validated).toBe(true);\n              expect(user.firstName).toBe(\"Brian\");\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "75669176-ca28-4fd9-9653-c3ac66e72784",
+                "uuid": "b11ffa3a-0607-454d-bbee-d59bf4bdbf33",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "184065b4-04fe-455f-a286-d2727358d455",
-              "8f2fb11f-bbc7-4b81-b21d-403e3e381231",
-              "75669176-ca28-4fd9-9653-c3ac66e72784"
+              "74647af9-4a5c-45b9-b71c-062bf3dcfa63",
+              "331ca3d6-4835-46eb-83a4-70358f6f82c0",
+              "b11ffa3a-0607-454d-bbee-d59bf4bdbf33"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 500,
+            "duration": 507,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "a49f8ce4-3704-4e7f-9e0b-2d0faffb4a9b",
+            "uuid": "f5e22989-f5b5-40ba-9bf8-24947e29e299",
             "title": "DELETE /users/:id",
             "fullFile": "E:\\ProgrammingProjects\\gbr-mern-master\\server\\tests\\users.test.js",
             "file": "\\server\\tests\\users.test.js",
@@ -2850,7 +2856,7 @@
                 "title": "should delete and return a single user",
                 "fullTitle": "USERS DELETE /users/:id should delete and return a single user",
                 "timedOut": false,
-                "duration": 268,
+                "duration": 251,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2859,7 +2865,7 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/users/${users[0]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body.user._id).toBe(users[0]._id.toHexString());\n          expect(res.body.user.username).toBe(users[0].username);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          User.findById(users[0]._id.toHexString())\n            .then(user => {\n              expect(user).toBeFalsy();\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e69f5115-aaca-4e8e-8dc6-6fcf0a5be17b",
+                "uuid": "733cb2aa-a7b5-43c9-9460-220903e49efb",
                 "isHook": false,
                 "skipped": false
               },
@@ -2867,7 +2873,7 @@
                 "title": "should not delete and return a user with invalid ID",
                 "fullTitle": "USERS DELETE /users/:id should not delete and return a user with invalid ID",
                 "timedOut": false,
-                "duration": 164,
+                "duration": 167,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -2876,20 +2882,20 @@
                 "code": "done => {\n      request(app)\n        .delete(`/api/users/${users[1]._id}sss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.user).toBe(\"There was no user found\");\n          expect(res.body.user.username).not.toBe(users[1].username);\n        })\n        .end(err => {\n          if (err) {\n            return done(err);\n          }\n          User.findById(users[1]._id.toHexString())\n            .then(user => {\n              expect(user).toBeTruthy();\n              expect(user.username).toBe(users[1].username);\n              done();\n            })\n            .catch(e => done(e));\n        });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "141efe0c-3b30-4b49-9cd2-224da40ecae9",
+                "uuid": "5e191c9b-fae8-4a11-ae23-725f3b28aaf9",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "e69f5115-aaca-4e8e-8dc6-6fcf0a5be17b",
-              "141efe0c-3b30-4b49-9cd2-224da40ecae9"
+              "733cb2aa-a7b5-43c9-9460-220903e49efb",
+              "5e191c9b-fae8-4a11-ae23-725f3b28aaf9"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 432,
+            "duration": 418,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000

@@ -13,10 +13,6 @@ const {
 } = require("./seed/productSeed");
 const { populateUsers, users } = require("./seed/userSeed");
 
-// call beforeEach() to run functions before each test.
-beforeEach(populateUsers);
-beforeEach(populateProductTypes);
-
 // New productType object used for the create product type test.
 var newProductType = {
   type: "new type"
@@ -32,6 +28,9 @@ var newProduct = {
 };
 
 describe("PRODUCT TYPES", () => {
+  before(populateUsers);
+  // call beforeEach() to run functions before each test.
+  beforeEach(populateProductTypes);
   describe("GET /products/types", () => {
     it("should retrieve a array of product types", done => {
       request(app)

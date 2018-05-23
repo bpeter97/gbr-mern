@@ -6,10 +6,6 @@ const CalendarEvent = require("./../models/CalendarEvent");
 const { populateEvents, events } = require("./seed/eventSeed");
 const { populateUsers, users } = require("./seed/userSeed");
 
-// call beforeEach() to run functions before each test.
-beforeEach(populateUsers);
-beforeEach(populateEvents);
-
 // New event object used for the post test.
 newEvent = {
   title: "Start testing",
@@ -28,6 +24,10 @@ badEvent = {
 };
 
 describe("EVENTS", () => {
+  // call before to run functions once before all tests.
+  before(populateUsers);
+  // call beforeEach() to run functions before each test.
+  beforeEach(populateEvents);
   describe("GET /events", () => {
     it("should return a list of events", done => {
       request(app)
