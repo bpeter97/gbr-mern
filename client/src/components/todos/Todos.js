@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { getTodos } from "../../actions/todoActions";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
+import Spinner from "../common/Spinner";
 
 class Todos extends Component {
   componentDidMount() {
@@ -11,11 +12,18 @@ class Todos extends Component {
   }
 
   render() {
-    const { todos } = this.props;
+    const { todos, loading } = this.props;
+    let todosContent;
+
+    if (todos === null || loading) {
+      todosContent = <Spinner />;
+    } else {
+      todosContent = <TodoList todos={todos} />;
+    }
     return (
       <div className="todo-list-container">
         <TodoForm />
-        <TodoList todos={todos} />
+        <ul className="todo-list">{todosContent}</ul>
       </div>
     );
   }

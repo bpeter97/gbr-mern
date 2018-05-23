@@ -54,6 +54,16 @@ button {
   outline: none;
 }
 
+li span {
+  float: right;
+  color: #006400;
+  transition: all 0.3s;
+  opacity: 0;
+}
+li span:hover {
+  color: red;
+}
+
 #collapse-icon {
   color: #fff;
 }
@@ -157,6 +167,13 @@ button {
 .todo {
   padding: 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.todo:hover {
+  background: rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+}
+.todo:hover span {
+  opacity: 1;
 }
 
 #login-block {
