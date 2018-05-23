@@ -34,10 +34,7 @@ TodoItem.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  todo: state.todo,
-  auth: state.auth,
-  errors: state.errors,
-  location: state.router.location
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { deleteTodo, completeTodo })(TodoItem);

@@ -5,6 +5,7 @@ import {
   GET_TODOS,
   GET_TODO,
   COMPLETE_TODO,
+  DELETE_TODO,
   TODOS_LOADING
 } from "../actions/types";
 
@@ -15,7 +16,6 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  debugger;
   switch (action.type) {
     case TODOS_LOADING:
       return {
@@ -23,7 +23,6 @@ export default function(state = initialState, action) {
         loading: true
       };
     case GET_TODOS:
-      debugger;
       return {
         ...state,
         todos: action.payload,
