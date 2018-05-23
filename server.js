@@ -11,6 +11,9 @@ const containers = require("./server/routes/api/containers");
 const users = require("./server/routes/api/users");
 const events = require("./server/routes/api/events");
 const settings = require("./server/routes/api/settings");
+const todos = require("./server/routes/api/todos");
+
+// middleware
 const authorization = require("./server/middleware/authorization");
 
 // Set the port if no environment port is set.
@@ -34,12 +37,13 @@ if (process.env.NODE_ENV == "test") {
 
 // Assign routes!
 app.use("/api", defaults);
-app.use("/api/products", products);
-app.use("/api/customers", customers);
-app.use("/api/containers", containers);
+app.use("/api/products", authorization, products);
+app.use("/api/customers", authorization, customers);
+app.use("/api/containers", authorization, containers);
 app.use("/api/users", authorization, users);
-app.use("/api/events", events);
-app.use("/api/settings", settings);
+app.use("/api/events", authorization, events);
+app.use("/api/settings", authorization, settings);
+app.use("/api/todos", authorization, todos);
 
 // Start the server
 app.listen(port, () => console.log(`Server running on port ${port}`));
