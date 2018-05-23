@@ -4,8 +4,10 @@ const request = require("supertest");
 const { app } = require("./../../server");
 const Customer = require("./../models/Customer");
 const { populateCustomers, customers } = require("./seed/customerSeed");
+const { populateUsers, users } = require("./seed/userSeed");
 
 // call beforeEach() to run functions before each test.
+beforeEach(populateUsers);
 beforeEach(populateCustomers);
 
 // New customer object used for the post test.
@@ -51,6 +53,7 @@ describe("CUSTOMERS", () => {
     it("should return an array of customers", done => {
       request(app)
         .get("/api/customers")
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.customers.length).toBe(customers.length);
@@ -63,6 +66,7 @@ describe("CUSTOMERS", () => {
     it("should create a new customer and update last viewed", done => {
       request(app)
         .post("/api/customers")
+        .set("Authorization", users[0].token)
         .send(newCustomer)
         .expect(200)
         .expect(res => {
@@ -85,6 +89,7 @@ describe("CUSTOMERS", () => {
     it("should not create a new customer with validation errors", done => {
       request(app)
         .post("/api/customers")
+        .set("Authorization", users[0].token)
         .send(badCustomer)
         .expect(400)
         .expect(res => {
@@ -118,6 +123,7 @@ describe("CUSTOMERS", () => {
     it("should return a customer with updated last viewed property", done => {
       request(app)
         .get(`/api/customers/${customers[0]._id}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.customer.name).toBe(customers[0].name);
@@ -128,6 +134,7 @@ describe("CUSTOMERS", () => {
     it("should not return user with invalid ID", done => {
       request(app)
         .get(`/api/customers/${customers[0]._id}ssss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.customer).toBe("There was no customer found");
@@ -140,6 +147,7 @@ describe("CUSTOMERS", () => {
     it("should update a customer & return the customer", done => {
       request(app)
         .patch(`/api/customers/${customers[1]._id}`)
+        .set("Authorization", users[0].token)
         .send({
           name: "Jacob Belmont",
           address1: "1234 Loopy St",
@@ -183,6 +191,7 @@ describe("CUSTOMERS", () => {
     it("should not update the customer with validation errors", done => {
       request(app)
         .patch(`/api/customers/${customers[2]._id}`)
+        .set("Authorization", users[0].token)
         .send({
           name: "",
           address1: "",
@@ -219,6 +228,7 @@ describe("CUSTOMERS", () => {
     it("should not update customer with incorrect ID.", done => {
       request(app)
         .patch(`/api/customers/${customers[0]._id}ssss`)
+        .set("Authorization", users[0].token)
         .send({})
         .expect(400)
         .expect(res => {
@@ -232,6 +242,7 @@ describe("CUSTOMERS", () => {
     it("should delete a customer return the customers data", done => {
       request(app)
         .delete(`/api/customers/${customers[0]._id}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.customer.name).toBe(customers[0].name);
@@ -253,6 +264,7 @@ describe("CUSTOMERS", () => {
     it("should not delete customer with incorrect ID.", done => {
       request(app)
         .delete(`/api/customers/${customers[0]._id}ssss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.customer).toBe("There was no customer found");
