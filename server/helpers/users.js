@@ -119,7 +119,7 @@ exports.getUser = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      res.json({ user });
+      res.json(user);
     })
     .catch(e => console.log(e));
 };
@@ -161,7 +161,7 @@ exports.patchUser = (req, res) => {
         return res.status(404).json(errors);
       }
       // Return the newly modified user.
-      res.json({ user });
+      res.json(user);
     })
     .catch(e => res.status(400).send());
 };
@@ -187,7 +187,7 @@ exports.deleteUser = (req, res) => {
         res.status(404).json(errors);
       }
       // Return the user that was just removed.
-      res.json({ user });
+      res.json(user);
     })
     .catch(e => res.status(400).send());
 };
