@@ -19,7 +19,7 @@ export const addTodo = todoData => dispatch => {
     .then(res =>
       dispatch({
         type: ADD_TODO,
-        payload: res.data.todo
+        payload: res.data
       })
     )
     .catch(err =>
@@ -37,7 +37,7 @@ export const getTodos = () => dispatch => {
     .then(res =>
       dispatch({
         type: GET_TODOS,
-        payload: res.data.todos
+        payload: res.data
       })
     )
     .catch(err =>
