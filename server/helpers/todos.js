@@ -24,7 +24,7 @@ exports.getTodos = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      res.json({ todos });
+      res.json(todos);
     })
     .catch(e => res.status(404).json(e));
 };
@@ -56,7 +56,7 @@ exports.postTodo = (req, res) => {
 
   todo
     .save()
-    .then(todo => res.json({ todo }))
+    .then(todo => res.json(todo))
     .catch(e => res.status(404).json(e));
 };
 
@@ -81,7 +81,7 @@ exports.getTodo = (req, res) => {
         return res.status(401).json(errors);
       }
 
-      res.json({ todo });
+      res.json(todo);
     })
     .catch(e => res.status(404).json(e));
 };
@@ -125,7 +125,7 @@ exports.patchTodo = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      res.json({ todo });
+      res.json(todo);
     })
     .catch(e => res.status(404).json(e));
 };
