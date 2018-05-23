@@ -7,7 +7,7 @@ import {
   GET_TODOS,
   GET_TODO,
   DELETE_TODO,
-  // COMPLETE_TODO,
+  COMPLETE_TODO,
   TODOS_LOADING
 } from "./types";
 
@@ -84,21 +84,23 @@ export const deleteTodo = id => dispatch => {
       })
     );
 };
-export const completeTodo = id => dispatch => {
-  //   axios
-  //     .delete(`/api/todos/${id}`)
-  //     .then(res =>
-  //       dispatch({
-  //         type: DELETE_TODO,
-  //         payload: id
-  //       })
-  //     )
-  //     .catch(err =>
-  //       dispatch({
-  //         type: GET_ERRORS,
-  //         payload: err.response.data
-  //       })
-  //     );
+export const completeTodo = (id, completed) => dispatch => {
+  axios
+    .patch(`/api/todos/${id}`, { completed: !completed })
+    .then(res =>
+
+      dispatch({
+        type: GET_TODO,
+        payload: res.data
+      })
+
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };
 
 export const setTodoLoading = () => {
