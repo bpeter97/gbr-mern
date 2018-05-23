@@ -1,7 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
+// route helper functions
 const helpers = require("./../../helpers/settings");
+
+// middleware
+const isAdmin = require("./../../middleware/isAdmin");
+
+// use middleware for every route
+router.use(isAdmin);
 
 // @route   api/settings/purchasetypes
 // @GET     Retrieves all of the purchase types
