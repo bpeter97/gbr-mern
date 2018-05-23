@@ -14,6 +14,7 @@ const {
   containerStats,
   containers
 } = require("./seed/containerSeed");
+const { populateUsers, users } = require("./seed/userSeed");
 
 var newContainer = {
   gbrNumber: "",
@@ -30,6 +31,7 @@ var newContainer = {
 };
 
 describe("CONTAINERS", () => {
+  beforeEach(populateUsers);
   beforeEach(populateContainerSizes);
   beforeEach(populateContainerStats);
   beforeEach(populateContainers);
@@ -38,6 +40,8 @@ describe("CONTAINERS", () => {
     it("should return an array of container sizes", done => {
       request(app)
         .get("/api/containers/sizes")
+        .set("Authorization", users[0].token)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.containerSizes.length).toBe(3);
@@ -50,6 +54,7 @@ describe("CONTAINERS", () => {
     it("should create a new container size", done => {
       request(app)
         .post("/api/containers/sizes")
+        .set("Authorization", users[0].token)
         .send({ size: "20C" })
         .expect(200)
         .expect(res => {
@@ -73,6 +78,7 @@ describe("CONTAINERS", () => {
     it("should not create a new container size with invalid input", done => {
       request(app)
         .post("/api/containers/sizes")
+        .set("Authorization", users[0].token)
         .send({ size: "" })
         .expect(400)
         .expect(res => {
@@ -97,6 +103,7 @@ describe("CONTAINERS", () => {
     it("should return a specific container size", done => {
       request(app)
         .get(`/api/containers/sizes/${containerSizes[0]._id}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.containerSize._id).toBe(
@@ -109,6 +116,7 @@ describe("CONTAINERS", () => {
     it("should not return a specific container size with invalid :id", done => {
       request(app)
         .get(`/api/containers/sizes/${containerSizes[0]._id}sss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.size).toBe("There was no size found");
@@ -121,6 +129,7 @@ describe("CONTAINERS", () => {
     it("should patch a container size successfully", done => {
       request(app)
         .patch(`/api/containers/sizes/${containerSizes[0]._id}`)
+        .set("Authorization", users[0].token)
         .send({ size: "10" })
         .expect(200)
         .expect(res => {
@@ -145,6 +154,7 @@ describe("CONTAINERS", () => {
     it("should not patch a container size with errors", done => {
       request(app)
         .patch(`/api/containers/sizes/${containerSizes[0]._id}`)
+        .set("Authorization", users[0].token)
         .send({ size: "" })
         .expect(400)
         .expect(res => {
@@ -169,6 +179,7 @@ describe("CONTAINERS", () => {
     it("should not patch a container size with invalid ID", done => {
       request(app)
         .patch(`/api/containers/sizes/${containerSizes[0]._id}ss`)
+        .set("Authorization", users[0].token)
         .send({ size: "" })
         .expect(400)
         .expect(res => {
@@ -181,6 +192,7 @@ describe("CONTAINERS", () => {
     it("should not patch a container size with size that exists", done => {
       request(app)
         .patch(`/api/containers/sizes/${containerSizes[0]._id}`)
+        .set("Authorization", users[0].token)
         .send({ size: "40" })
         .expect(400)
         .expect(res => {
@@ -197,6 +209,7 @@ describe("CONTAINERS", () => {
     it("should delete the container size", done => {
       request(app)
         .delete(`/api/containers/sizes/${containerSizes[0]._id}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.containerSize).toBeTruthy();
@@ -219,6 +232,7 @@ describe("CONTAINERS", () => {
     it("should not delete the container size with invalid id", done => {
       request(app)
         .delete(`/api/containers/sizes/${containerSizes[0]._id}ssss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.size).toBeTruthy();
@@ -245,6 +259,7 @@ describe("CONTAINERS", () => {
     it("should return an array of containers", done => {
       request(app)
         .get("/api/containers/")
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.containers.length).toBe(3);
@@ -264,6 +279,7 @@ describe("CONTAINERS", () => {
     it("should create a new container", done => {
       request(app)
         .post("/api/containers/")
+        .set("Authorization", users[0].token)
         .send(newContainer)
         // .expect(200)
         .expect(res => {
@@ -297,6 +313,7 @@ describe("CONTAINERS", () => {
 
       request(app)
         .post("/api/containers/")
+        .set("Authorization", users[0].token)
         .send(newContainer)
         // .expect(200)
         .expect(res => {
@@ -335,6 +352,7 @@ describe("CONTAINERS", () => {
     it("should return a container", done => {
       request(app)
         .get(`/api/containers/${containers[0]._id}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.container).toBeTruthy();
@@ -348,6 +366,7 @@ describe("CONTAINERS", () => {
     it("should not return a container with invalid id", done => {
       request(app)
         .get(`/api/containers/${containers[0]._id}sss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.container).toBeTruthy();
@@ -381,6 +400,7 @@ describe("CONTAINERS", () => {
 
       request(app)
         .patch(`/api/containers/${containers[1]._id}`)
+        .set("Authorization", users[0].token)
         .send(patchData)
         .expect(200)
         .expect(res => {
@@ -424,6 +444,7 @@ describe("CONTAINERS", () => {
 
       request(app)
         .patch(`/api/containers/${containers[1]._id}`)
+        .set("Authorization", users[0].token)
         .send(patchData)
         .expect(400)
         .expect(res => {
@@ -461,6 +482,7 @@ describe("CONTAINERS", () => {
 
       request(app)
         .patch(`/api/containers/${containers[1]._id}ss`)
+        .set("Authorization", users[0].token)
         .send(patchData)
         .expect(400)
         .expect(res => {
@@ -474,6 +496,7 @@ describe("CONTAINERS", () => {
     it("should delete a container", done => {
       request(app)
         .delete(`/api/containers/${containers[1]._id}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.container._id).toBe(containers[1]._id.toHexString());
@@ -494,6 +517,7 @@ describe("CONTAINERS", () => {
     it("should not delete a container with invalid ID", done => {
       request(app)
         .delete(`/api/containers/${containers[1]._id}sss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.container).toBe("There was no container found");
