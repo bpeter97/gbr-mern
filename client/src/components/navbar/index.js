@@ -116,7 +116,7 @@ class NavBar extends Component {
               </li>
             </ul>
             <ul className="navbar-nav ml-auto">
-              <li className="dropdown">
+              <li className="dropdown ">
                 <a
                   href=""
                   className="dropdown-toggle"
@@ -127,7 +127,10 @@ class NavBar extends Component {
                 >
                   <SvgIcon size={20} icon={AccountIcon} />
                 </a>
-                <div className="dropdown-menu" aria-labelledby="account">
+                <div
+                  className="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="account"
+                >
                   <a className="dropdown-item" href="">
                     Settings
                   </a>
