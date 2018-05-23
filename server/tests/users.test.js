@@ -28,6 +28,7 @@ describe("USERS", () => {
     it("should return an array of users", done => {
       request(app)
         .get("/api/users")
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.users).toBeTruthy();
@@ -41,6 +42,7 @@ describe("USERS", () => {
     it("should create a new user", done => {
       request(app)
         .post("/api/users")
+        .set("Authorization", users[0].token)
         .send(newUser)
         .expect(200)
         .expect(res => {
@@ -68,6 +70,7 @@ describe("USERS", () => {
       newUser.validated = "hello";
       request(app)
         .post("/api/users")
+        .set("Authorization", users[0].token)
         .send(newUser)
         .expect(400)
         .expect(res => {
@@ -98,6 +101,7 @@ describe("USERS", () => {
     it("should return a single user", done => {
       request(app)
         .get(`/api/users/${users[0]._id}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.user._id).toBe(users[0]._id.toHexString());
@@ -108,6 +112,7 @@ describe("USERS", () => {
     it("should not return a user with invalid ID", done => {
       request(app)
         .get(`/api/users/${users[0]._id}ssss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.user).toBe("There was no user found");
@@ -122,6 +127,7 @@ describe("USERS", () => {
       users[1].validated = true;
       request(app)
         .patch(`/api/users/${users[1]._id}`)
+        .set("Authorization", users[0].token)
         .send(users[1])
         .expect(200)
         .expect(res => {
@@ -145,6 +151,7 @@ describe("USERS", () => {
     it("should not update and return a user with invalid ID", done => {
       request(app)
         .patch(`/api/users/${users[1]._id}ssss`)
+        .set("Authorization", users[0].token)
         .send(users[1])
         .expect(400)
         .expect(res => {
@@ -169,6 +176,7 @@ describe("USERS", () => {
       };
       request(app)
         .patch(`/api/users/${users[1]._id}`)
+        .set("Authorization", users[0].token)
         .send(userData)
         .expect(400)
         .expect(res => {
@@ -196,6 +204,7 @@ describe("USERS", () => {
     it("should delete and return a single user", done => {
       request(app)
         .delete(`/api/users/${users[0]._id}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.user._id).toBe(users[0]._id.toHexString());
@@ -217,6 +226,7 @@ describe("USERS", () => {
     it("should not delete and return a user with invalid ID", done => {
       request(app)
         .delete(`/api/users/${users[1]._id}sss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.user).toBe("There was no user found");
