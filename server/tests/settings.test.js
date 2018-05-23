@@ -8,6 +8,10 @@ const {
   populatePurchaseTypes,
   purchaseTypes
 } = require("./seed/purchaseTypeSeed");
+const { populateUsers, users } = require("./seed/userSeed");
+
+// call beforeEach() to run functions before each test.
+beforeEach(populateUsers);
 
 // call beforeEach() to run functions before each test.
 beforeEach(populatePurchaseTypes);
@@ -18,6 +22,7 @@ describe("SETTINGS", () => {
       it("should return an array of purchase types", done => {
         request(app)
           .get("/api/settings/purchasetypes")
+          .set("Authorization", users[0].token)
           .expect(200)
           .expect(res => {
             expect(res.body.purchaseTypes).toBeTruthy();
@@ -31,6 +36,7 @@ describe("SETTINGS", () => {
       it("should create a purchase type", done => {
         request(app)
           .post("/api/settings/purchasetypes")
+          .set("Authorization", users[0].token)
           .send({ type: "Resale" })
           .expect(200)
           .expect(res => {
@@ -53,6 +59,7 @@ describe("SETTINGS", () => {
       it("should not create a purchase type with validation errors", done => {
         request(app)
           .post("/api/settings/purchasetypes")
+          .set("Authorization", users[0].token)
           .send({ type: "" })
           .expect(400)
           .expect(res => {
@@ -68,6 +75,7 @@ describe("SETTINGS", () => {
           .get(
             `/api/settings/purchasetypes/${purchaseTypes[0]._id.toHexString()}`
           )
+          .set("Authorization", users[0].token)
           .expect(200)
           .expect(res => {
             expect(res.body.purchaseType.type).toBe(purchaseTypes[0].type);
@@ -80,6 +88,7 @@ describe("SETTINGS", () => {
           .get(
             `/api/settings/purchasetypes/${purchaseTypes[0]._id.toHexString()}sss`
           )
+          .set("Authorization", users[0].token)
           .expect(400)
           .expect(res => {
             expect(res.body.purchaseType).toBe(
@@ -94,6 +103,7 @@ describe("SETTINGS", () => {
       it("should update a purchase type", done => {
         request(app)
           .patch(`/api/settings/purchasetypes/${purchaseTypes[1]._id}`)
+          .set("Authorization", users[0].token)
           .send({ type: "Resale" })
           .expect(200)
           .expect(res => {
@@ -116,6 +126,7 @@ describe("SETTINGS", () => {
       it("should not update a purchase type with invalid ID", done => {
         request(app)
           .patch(`/api/settings/purchasetypes/${purchaseTypes[1]._id}ssss`)
+          .set("Authorization", users[0].token)
           .send({ type: "Resale" })
           .expect(400)
           .expect(res => {
@@ -137,6 +148,7 @@ describe("SETTINGS", () => {
       it("should not update a purchase type with validation errors", done => {
         request(app)
           .patch(`/api/settings/purchasetypes/${purchaseTypes[1]._id}`)
+          .set("Authorization", users[0].token)
           .send({ type: "" })
           .expect(400)
           .expect(res => {
@@ -161,6 +173,7 @@ describe("SETTINGS", () => {
       it("should delete a purchase type", done => {
         request(app)
           .delete(`/api/settings/purchasetypes/${purchaseTypes[0]._id}`)
+          .set("Authorization", users[0].token)
           .expect(200)
           .expect(res => {
             expect(res.body.purchaseType.type).toBe(purchaseTypes[0].type);
@@ -181,6 +194,7 @@ describe("SETTINGS", () => {
       it("should not delete a purchase type with invalid ID", done => {
         request(app)
           .delete(`/api/settings/purchasetypes/${purchaseTypes[0]._id}sss`)
+          .set("Authorization", users[0].token)
           .expect(400)
           .expect(res => {
             expect(res.body.purchaseType).toBe("No purchase type found");
