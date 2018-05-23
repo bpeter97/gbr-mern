@@ -17,7 +17,7 @@ exports.getUsers = (req, res) => {
       if (!users) {
         return res.send("No users found.");
       }
-      res.json({ users });
+      res.json(users);
     })
     .catch(e => res.status(404).json(e));
 };
