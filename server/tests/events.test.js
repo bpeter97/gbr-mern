@@ -4,8 +4,10 @@ const request = require("supertest");
 const { app } = require("./../../server");
 const CalendarEvent = require("./../models/CalendarEvent");
 const { populateEvents, events } = require("./seed/eventSeed");
+const { populateUsers, users } = require("./seed/userSeed");
 
 // call beforeEach() to run functions before each test.
+beforeEach(populateUsers);
 beforeEach(populateEvents);
 
 // New event object used for the post test.
@@ -30,6 +32,7 @@ describe("EVENTS", () => {
     it("should return a list of events", done => {
       request(app)
         .get("/api/events")
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.events).toBeTruthy();
@@ -42,6 +45,7 @@ describe("EVENTS", () => {
     it("should create a new event", done => {
       request(app)
         .post("/api/events")
+        .set("Authorization", users[0].token)
         .send(newEvent)
         .expect(200)
         .expect(res => {
@@ -65,6 +69,7 @@ describe("EVENTS", () => {
     it("should not create a new event with validation errors", done => {
       request(app)
         .post("/api/events")
+        .set("Authorization", users[0].token)
         .send(badEvent)
         .expect(400)
         .expect(res => {
@@ -91,6 +96,7 @@ describe("EVENTS", () => {
     it("should return a single event", done => {
       request(app)
         .get(`/api/events/${events[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.event).toBeTruthy();
@@ -101,6 +107,7 @@ describe("EVENTS", () => {
     it("should not return a single event with invalid id", done => {
       request(app)
         .get(`/api/events/${events[0]._id.toHexString()}sssss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.event).toBeTruthy();
@@ -113,6 +120,7 @@ describe("EVENTS", () => {
     it("should update a single event with new information", done => {
       request(app)
         .patch(`/api/events/${events[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .send({
           title: "New title",
           color: events[0].color,
@@ -140,6 +148,7 @@ describe("EVENTS", () => {
     it("should not update a single event with validation errors", done => {
       request(app)
         .patch(`/api/events/${events[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .send({
           title: "",
           color: "",
@@ -170,6 +179,7 @@ describe("EVENTS", () => {
     it("should not update a single event with invalid ID", done => {
       request(app)
         .patch(`/api/events/${events[0]._id.toHexString()}sssss`)
+        .set("Authorization", users[0].token)
         .send(events[0])
         .expect(400)
         .expect(res => {
@@ -182,6 +192,7 @@ describe("EVENTS", () => {
     it("should delete a single event", done => {
       request(app)
         .delete(`/api/events/${events[1]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.event).toBeTruthy();
@@ -203,6 +214,7 @@ describe("EVENTS", () => {
     it("should not delete an event with invalid ID", done => {
       request(app)
         .delete(`/api/events/${events[1]._id.toHexString()}sss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.event).toBeTruthy();
