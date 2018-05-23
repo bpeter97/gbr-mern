@@ -6,7 +6,7 @@ const userOneID = new ObjectID();
 const userTwoID = new ObjectID();
 const userThreeID = new ObjectID();
 
-const users = [
+var users = [
   {
     _id: userOneID,
     firstName: "Brian",
@@ -65,7 +65,9 @@ const populateUsers = done => {
           users[2].password = hash;
         });
       });
-      var userOne = new User(users[0]).save();
+      var userOne = new User(users[0]).save().then(user => {
+        users[0].token = user.generateAuthToken();
+      });
       var userTwo = new User(users[1]).save();
       var userThree = new User(users[2]).save();
 
