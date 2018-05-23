@@ -6,6 +6,7 @@ import {
   // CLEAR_ERRORS,
   GET_TODOS,
   GET_TODO,
+  DELETE_TODO,
   // COMPLETE_TODO,
   TODOS_LOADING
 } from "./types";
@@ -68,20 +69,20 @@ export const getTodo = id => dispatch => {
 
 // Delete Post
 export const deleteTodo = id => dispatch => {
-  //   axios
-  //     .delete(`/api/todos/${id}`)
-  //     .then(res =>
-  //       dispatch({
-  //         type: DELETE_TODO,
-  //         payload: id
-  //       })
-  //     )
-  //     .catch(err =>
-  // dispatch({
-  //   type: GET_ERRORS,
-  //   payload: err.response.data
-  // })
-  //     );
+  axios
+    .delete(`/api/todos/${id}`)
+    .then(res =>
+      dispatch({
+        type: DELETE_TODO,
+        payload: id
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };
 export const completeTodo = id => dispatch => {
   //   axios
