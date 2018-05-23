@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  CustomersIcon,
-  ContainersIcon,
-  ProductsIcon,
-  QuotesIcon,
-  CalendarIcon,
-  OrdersIcon,
-  DashboardIcon
-} from "../../icons/";
 
 import TextFieldInput from "../common/TextFieldInput";
 import SideNavSection from "./SideNavSection";
@@ -41,8 +32,8 @@ class SideNav extends Component {
 
   render() {
     let navbarContent;
-    const { location, collapsed, id } = this.props;
-    const { isAuthenticated, user } = this.props.auth;
+    const { collapsed, id } = this.props;
+    const { isAuthenticated } = this.props.auth;
     const { errors } = this.state;
     if (isAuthenticated) {
       navbarContent = (
@@ -103,15 +94,11 @@ class SideNav extends Component {
 }
 
 SideNav.propTypes = {
-  auth: PropTypes.object.isRequired,
-
-  location: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors,
-  location: state.router.location
+  auth: state.auth
 });
 
 export default connect(mapStateToProps)(SideNav);

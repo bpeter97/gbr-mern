@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import SvgIcon from "react-icons-kit";
-import PropTypes from "prop-types";
-import TextFieldInput from "../common/TextFieldInput";
-import TodoForm from "./TodoForm";
+// import PropTypes from "prop-types";
 import TodoItem from "./TodoItem";
 
 class TodoList extends Component {
@@ -17,8 +13,8 @@ class TodoList extends Component {
   }
 }
 
-TodoList.propTypes = {
-  todos: PropTypes.array.isRequired
-};
+// TodoList.propTypes = {
+//   todos: PropTypes.array.isRequired
+// };
 
 export default TodoList;

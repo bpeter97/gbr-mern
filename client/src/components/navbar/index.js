@@ -6,8 +6,6 @@ import { logoutUser } from "../../actions/defaultsActions";
 
 import SvgIcon from "react-icons-kit";
 import { MenuIcon, AccountIcon } from "../../icons";
-import TextFieldInput from "../common/TextFieldInput";
-import IconSection from "./IconSection";
 
 class NavBar extends Component {
   constructor() {
@@ -16,15 +14,7 @@ class NavBar extends Component {
       query: "",
       errors: {}
     };
-    // this.onChange = this.onChange.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
     this.onLogoutClick = this.onLogoutClick.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
   }
 
   onLogoutClick(e) {
@@ -32,21 +22,7 @@ class NavBar extends Component {
     this.props.logoutUser();
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-
-    const query = {
-      query: this.state.query
-    };
-    console.log(query);
-    // this.props.search(query);
-  }
-
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
   render() {
-    const { errors } = this.state;
     const { isAuthenticated } = this.props.auth;
     let navbar = "";
 
@@ -154,14 +130,11 @@ class NavBar extends Component {
 }
 
 NavBar.propTypes = {
-  // search: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors,
   logoutUser: PropTypes.func.isRequired
 });
 

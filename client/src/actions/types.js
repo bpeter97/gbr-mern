@@ -8,3 +8,4 @@ export const COMPLETE_TODO = "COMPLETE_TODO";
 export const DELETE_TODO = "DELETE_TODO";
 export const GET_USERS = "GET_USERS";
 export const USERS_LOADING = "USERS_LOADING";
+export const TODOS_LOADING = "TODOS_LOADING";

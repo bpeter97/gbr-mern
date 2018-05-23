@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "axios-debug": "0.0.4",
     "classnames": "^2.2.5",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",

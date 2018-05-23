@@ -8,7 +8,7 @@ class TodoForm extends Component {
   constructor() {
     super();
     this.state = {
-      todoDesc: "",
+      desc: "",
       errors: {}
     };
 
@@ -25,13 +25,12 @@ class TodoForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     const todoData = {
-      todoDesc: this.state.todoDesc
+      desc: this.state.desc
     };
-    debugger;
     //send to backend
     //attach to user object
     this.props.addTodo(todoData);
-    this.setState({ todoDesc: "" });
+    this.setState({ desc: "" });
   }
 
   onChange(e) {
@@ -45,9 +44,9 @@ class TodoForm extends Component {
         <TextFieldInput
           placeholder="Add Todo..."
           className="new-todo-input"
-          name="todoDesc"
+          name="desc"
           type="text"
-          value={this.state.todoDesc}
+          value={this.state.desc}
           onChange={this.onChange}
           autoComplete={"off"}
           error={errors.todo}
@@ -58,14 +57,11 @@ class TodoForm extends Component {
 }
 
 TodoForm.propTypes = {
-  auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors,
-  location: state.router.location
+  errors: state.errors
 });
 
 export default connect(mapStateToProps, { addTodo })(TodoForm);

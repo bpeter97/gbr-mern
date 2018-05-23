@@ -4,7 +4,8 @@ import {
   CLEAR_ERRORS,
   GET_TODOS,
   GET_TODO,
-  COMPLETE_TODO
+  COMPLETE_TODO,
+  TODOS_LOADING
 } from "../actions/types";
 
 const initialState = {
@@ -14,8 +15,15 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
+  debugger;
   switch (action.type) {
+    case TODOS_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
     case GET_TODOS:
+      debugger;
       return {
         ...state,
         todos: action.payload,
