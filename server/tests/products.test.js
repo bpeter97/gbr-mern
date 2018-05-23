@@ -11,8 +11,10 @@ const {
   populateProducts,
   products
 } = require("./seed/productSeed");
+const { populateUsers, users } = require("./seed/userSeed");
 
 // call beforeEach() to run functions before each test.
+beforeEach(populateUsers);
 beforeEach(populateProductTypes);
 
 // New productType object used for the create product type test.
@@ -34,6 +36,7 @@ describe("PRODUCT TYPES", () => {
     it("should retrieve a array of product types", done => {
       request(app)
         .get("/api/products/types")
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           // check to see if product types array exists.
@@ -48,6 +51,7 @@ describe("PRODUCT TYPES", () => {
     it("should create a new product type", done => {
       request(app)
         .post("/api/products/types")
+        .set("Authorization", users[0].token)
         .send(newProductType)
         .expect(200)
         .expect(res => {
@@ -72,6 +76,7 @@ describe("PRODUCT TYPES", () => {
     it("should not create a new product type with empty values", done => {
       request(app)
         .post("/api/products/types")
+        .set("Authorization", users[0].token)
         .send({ type: "" })
         .expect(400)
         .expect(res => {
@@ -98,6 +103,7 @@ describe("PRODUCT TYPES", () => {
     it("should retrieve a specific type", done => {
       request(app)
         .get(`/api/products/types/${productTypes[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.type.type).toBe("modification");
@@ -108,6 +114,7 @@ describe("PRODUCT TYPES", () => {
     it("should return a 400 error if type not found and error message", done => {
       request(app)
         .get(`/api/products/types/${productTypes[0]._id.toHexString()}sss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.type).toBe("There was no product type found");
@@ -120,6 +127,7 @@ describe("PRODUCT TYPES", () => {
     it("should update a specific type", done => {
       request(app)
         .patch(`/api/products/types/${productTypes[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .send({
           type: "new modification"
         })
@@ -133,6 +141,7 @@ describe("PRODUCT TYPES", () => {
     it("should return a 400 error if no type is entered", done => {
       request(app)
         .patch(`/api/products/types/${productTypes[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.type).toBe("Type is required");
@@ -143,6 +152,7 @@ describe("PRODUCT TYPES", () => {
     it("should not update a type with a type that is in use", done => {
       request(app)
         .patch(`/api/products/types/${productTypes[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .send({
           type: "container"
         })
@@ -156,6 +166,7 @@ describe("PRODUCT TYPES", () => {
     it("should not update a type with a messed up ID", done => {
       request(app)
         .patch(`/api/products/types/${productTypes[0]._id.toHexString()}sss`)
+        .set("Authorization", users[0].token)
         .send({
           type: "some new mod"
         })
@@ -173,6 +184,7 @@ describe("PRODUCT TYPES", () => {
     it("should remove a specific type", done => {
       request(app)
         .delete(`/api/products/types/${productTypes[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.type.type).toBe(productTypes[0].type);
@@ -194,6 +206,7 @@ describe("PRODUCT TYPES", () => {
     it("should return 400 and an error message if id is invalid", done => {
       request(app)
         .delete(`/api/products/types/${productTypes[0]._id.toHexString()}ss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.type).toBe("There was no product type found");
@@ -204,6 +217,7 @@ describe("PRODUCT TYPES", () => {
     it("should return 404 and an error message if id is not found", done => {
       request(app)
         .delete(`/api/products/types/${new ObjectID().toHexString()}`)
+        .set("Authorization", users[0].token)
         .expect(404)
         .expect(res => {
           expect(res.body.type).toBe(
@@ -222,6 +236,7 @@ describe("PRODUCTS", () => {
     it("should retrieve a array of products", done => {
       request(app)
         .get("/api/products")
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.products).toBeTruthy();
@@ -235,6 +250,7 @@ describe("PRODUCTS", () => {
     it("should create a product", done => {
       request(app)
         .post("/api/products")
+        .set("Authorization", users[0].token)
         .send(newProduct)
         .expect(200)
         .expect(res => {
@@ -264,6 +280,7 @@ describe("PRODUCTS", () => {
 
       request(app)
         .post("/api/products")
+        .set("Authorization", users[0].token)
         .send(newProduct)
         .expect(400)
         .expect(res => {
@@ -293,6 +310,7 @@ describe("PRODUCTS", () => {
     it("should retrieve a specific product", done => {
       request(app)
         .get(`/api/products/${products[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.product).toBeTruthy();
@@ -304,6 +322,7 @@ describe("PRODUCTS", () => {
     it("should have 400 status and error message if id doesn't exist", done => {
       request(app)
         .get(`/api/products/${products[0]._id.toHexString()}ss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.product).toBe("There was no product found");
@@ -325,6 +344,7 @@ describe("PRODUCTS", () => {
 
       request(app)
         .patch(`/api/products/${products[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .send(newProduct)
         .expect(200)
         .expect(res => {
@@ -346,6 +366,7 @@ describe("PRODUCTS", () => {
 
       request(app)
         .patch(`/api/products/${products[0]._id.toHexString()}ss`)
+        .set("Authorization", users[0].token)
         .send(newProduct)
         .expect(400)
         .expect(res => {
@@ -366,6 +387,7 @@ describe("PRODUCTS", () => {
 
       request(app)
         .patch(`/api/products/${products[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .send(newProduct)
         .expect(400)
         .expect(res => {
@@ -395,6 +417,7 @@ describe("PRODUCTS", () => {
     it("should delete a specific product", done => {
       request(app)
         .delete(`/api/products/${products[0]._id.toHexString()}`)
+        .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
           expect(res.body.product).toBeTruthy();
@@ -417,6 +440,7 @@ describe("PRODUCTS", () => {
     it("should have 400 status and error message if id doesn't exist", done => {
       request(app)
         .delete(`/api/products/${products[0]._id.toHexString()}ss`)
+        .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
           expect(res.body.product).toBe("There was no product found");
