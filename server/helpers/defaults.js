@@ -50,21 +50,10 @@ exports.register = (req, res) => {
             validated: false
           });
 
-          // Hash and salt the password and save the user.
-          bcrypt.genSalt(10, (err, salt) => {
-            // Now hash the password with the salt.
-            bcrypt.hash(newUser.password, salt, (err, hash) => {
-              if (err) throw err;
-              // Assign the newly hashed password to the new User object
-              newUser.password = hash;
-
-              // Now save it to the database.
-              newUser
-                .save()
-                .then(user => res.json(user))
-                .catch(err => console.log(err));
-            });
-          });
+          newUser
+            .save()
+            .then(user => res.json(user))
+            .catch(err => console.log(err));
         }
       });
     }
@@ -87,30 +76,32 @@ exports.login = (req, res) => {
   const loginError = "Wrong username/password combination";
 
   // find the user with that username
-  User.findOne({ username }).then(user => {
-    // If no user, send 401 with generic login error.
-    if (!user) {
-      errors.login = loginError;
-      return res.status(401).json(errors);
-    }
-
-    // check to see if password matches
-    bcrypt.compare(password, user.password).then(isMatch => {
-      // If it matches, setup payload for JWT, sign the token, and send it.
-      if (isMatch) {
-        if (user.validated == true) {
-          let token = user.generateAuthToken();
-          res.json({ success: true, token });
-        } else {
-          errors.login = "Your account is not validated yet";
-          return res.status(401).json(errors);
-        }
-
-        // else, send back 401 error and generic login error
-      } else {
+  User.findOne({ username })
+    .then(user => {
+      // If no user, send 401 with generic login error.
+      if (!user) {
         errors.login = loginError;
         return res.status(401).json(errors);
       }
-    });
-  });
+
+      // check to see if password matches
+      bcrypt.compare(password, user.password).then(isMatch => {
+        // If it matches, setup payload for JWT, sign the token, and send it.
+        if (isMatch) {
+          if (user.validated == true) {
+            let token = user.generateAuthToken();
+            res.json({ success: true, token });
+          } else {
+            errors.login = "Your account is not validated yet";
+            return res.status(401).json(errors);
+          }
+
+          // else, send back 401 error and generic login error
+        } else {
+          errors.login = loginError;
+          return res.status(401).json(errors);
+        }
+      });
+    })
+    .catch(e => res.status(400).json(e));
 };
