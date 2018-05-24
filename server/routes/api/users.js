@@ -3,6 +3,10 @@ const router = express.Router();
 
 const helpers = require("../../helpers/users");
 
+// middleware
+const isAdmin = require("./../../middleware/isAdmin");
+const isSelfOrAdmin = require("./../../middleware/isSelfOrAdmin");
+
 // @route   api/users/
 // @GET     Retrieves all of the users.
 // @POST    Registers a new user.
@@ -10,7 +14,7 @@ const helpers = require("../../helpers/users");
 router
   .route("/")
   .get(helpers.getUsers)
-  .post(helpers.postUser);
+  .post(isAdmin, helpers.postUser);
 
 // @route   GET api/users/:id
 // @GET     Retrieves a single users information.
@@ -20,7 +24,7 @@ router
 router
   .route("/:id")
   .get(helpers.getUser)
-  .patch(helpers.patchUser)
-  .delete(helpers.deleteUser);
+  .patch(isSelfOrAdmin, helpers.patchUser)
+  .delete(isAdmin, helpers.deleteUser);
 
 module.exports = router;

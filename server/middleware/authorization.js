@@ -1,6 +1,7 @@
 const User = require("./../models/User");
 
 const authorization = (req, res, next) => {
+  let errors = {};
   let token = req.header("authorization");
 
   User.findByToken(token)
@@ -14,7 +15,8 @@ const authorization = (req, res, next) => {
       next();
     })
     .catch(e => {
-      res.status(401).send();
+      errors.auth = "Authorization failed";
+      res.status(401).json(errors);
     });
 };
 
