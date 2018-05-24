@@ -10,8 +10,8 @@ class TodoItem extends Component {
   constructor() {
     super();
     this.state = {
-      completed: false,
-    }
+      completed: false
+    };
   }
   componentDidMount() {
     this.setState({ completed: this.props.todo.completed });
@@ -22,9 +22,8 @@ class TodoItem extends Component {
     this.props.deleteTodo(id);
   }
 
-  onCompleteClick(id, todoCompleted) {
-
-    this.props.completeTodo(id, todoCompleted);
+  onCompleteClick(todo) {
+    this.props.completeTodo(todo);
 
     this.setState({ completed: !this.state.completed });
     // this.props.getTodos();
@@ -34,16 +33,16 @@ class TodoItem extends Component {
     const { todo } = this.props;
 
     let todoClass = classNames("todo", this.props.className, {
-      'completed': this.state.completed
+      completed: this.state.completed
     });
     return (
       <div>
         <li
           className={todoClass}
-          onClick={this.onCompleteClick.bind(this, todo._id, todo.completed)}
+          onClick={this.onCompleteClick.bind(this, todo)}
         >
           {todo.desc}
-          <span onClick={this.onDeleteClick.bind(this, todo._id)}>X</span>
+          <span onClick={this.onDeleteClick.bind(this, todo)}>X</span>
         </li>
       </div>
     );
@@ -60,4 +59,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { deleteTodo, completeTodo, getTodos })(TodoItem);
+export default connect(mapStateToProps, { deleteTodo, completeTodo, getTodos })(
+  TodoItem
+);
