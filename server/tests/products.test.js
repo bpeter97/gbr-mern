@@ -39,8 +39,7 @@ describe("PRODUCT TYPES", () => {
         .expect(200)
         .expect(res => {
           // check to see if product types array exists.
-          expect(res.body.productTypes).toBeTruthy();
-          expect(res.body.productTypes.length).toBe(5);
+          expect(res.body.length).toBe(5);
         })
         .end(done);
     });
@@ -55,7 +54,7 @@ describe("PRODUCT TYPES", () => {
         .expect(200)
         .expect(res => {
           // check to see if new product type exists.
-          expect(res.body.productType.type).toBe(newProductType.type);
+          expect(res.body.type).toBe(newProductType.type);
         })
         .end(err => {
           if (err) {
@@ -105,7 +104,7 @@ describe("PRODUCT TYPES", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.type.type).toBe("modification");
+          expect(res.body.type).toBe("modification");
         })
         .end(done);
     });
@@ -132,7 +131,7 @@ describe("PRODUCT TYPES", () => {
         })
         .expect(200)
         .expect(res => {
-          expect(res.body.type.type).toBe("new modification");
+          expect(res.body.type).toBe("new modification");
         })
         .end(done);
     });
@@ -186,7 +185,7 @@ describe("PRODUCT TYPES", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.type.type).toBe(productTypes[0].type);
+          expect(res.body.type).toBe(productTypes[0].type);
         })
         .end(err => {
           if (err) {
@@ -238,8 +237,7 @@ describe("PRODUCTS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.products).toBeTruthy();
-          expect(res.body.products.length).toBe(3);
+          expect(res.body.length).toBe(3);
         })
         .end(done);
     });
@@ -254,7 +252,7 @@ describe("PRODUCTS", () => {
         .expect(200)
         .expect(res => {
           // check to see if new product exists.
-          expect(res.body.product.name).toBe(newProduct.name);
+          expect(res.body.name).toBe(newProduct.name);
         })
         .end(err => {
           if (err) {
@@ -312,8 +310,7 @@ describe("PRODUCTS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.product).toBeTruthy();
-          expect(res.body.product.name).toBe(products[0].name);
+          expect(res.body.name).toBe(products[0].name);
         })
         .end(done);
     });
@@ -347,8 +344,7 @@ describe("PRODUCTS", () => {
         .send(newProduct)
         .expect(200)
         .expect(res => {
-          expect(res.body.product).toBeTruthy();
-          expect(res.body.product.name).toBe("40' Pickup");
+          expect(res.body.name).toBe("40' Pickup");
         })
         .end(done);
     });
@@ -419,8 +415,7 @@ describe("PRODUCTS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.product).toBeTruthy();
-          expect(res.body.product.name).toBe(products[0].name);
+          expect(res.body.name).toBe(products[0].name);
         })
         .end(err => {
           if (err) {

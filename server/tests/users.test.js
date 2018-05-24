@@ -30,8 +30,7 @@ describe("USERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.users).toBeTruthy();
-          expect(res.body.users.length).toBe(users.length);
+          expect(res.body.length).toBe(users.length);
         })
         .end(done);
     });
@@ -45,8 +44,7 @@ describe("USERS", () => {
         .send(newUser)
         .expect(200)
         .expect(res => {
-          expect(res.body.user).toBeTruthy();
-          expect(res.body.user.username).toBe(newUser.username);
+          expect(res.body.username).toBe(newUser.username);
         })
         .end(err => {
           if (err) {
@@ -103,8 +101,8 @@ describe("USERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.user._id).toBe(users[0]._id.toHexString());
-          expect(res.body.user.username).toBe(users[0].username);
+          expect(res.body._id).toBe(users[0]._id.toHexString());
+          expect(res.body.username).toBe(users[0].username);
         })
         .end(done);
     });
@@ -115,7 +113,7 @@ describe("USERS", () => {
         .expect(400)
         .expect(res => {
           expect(res.body.user).toBe("There was no user found");
-          expect(res.body.user.username).not.toBe(users[0].username);
+          expect(res.body.username).not.toBe(users[0].username);
         })
         .end(done);
     });
@@ -130,8 +128,8 @@ describe("USERS", () => {
         .send(users[1])
         .expect(200)
         .expect(res => {
-          expect(res.body.user.username).toBe(users[1].username);
-          expect(res.body.user.validated).toBe(true);
+          expect(res.body.username).toBe(users[1].username);
+          expect(res.body.validated).toBe(true);
         })
         .end(err => {
           if (err) {
@@ -206,8 +204,8 @@ describe("USERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.user._id).toBe(users[0]._id.toHexString());
-          expect(res.body.user.username).toBe(users[0].username);
+          expect(res.body._id).toBe(users[0]._id.toHexString());
+          expect(res.body.username).toBe(users[0].username);
         })
         .end(err => {
           if (err) {
@@ -229,7 +227,7 @@ describe("USERS", () => {
         .expect(400)
         .expect(res => {
           expect(res.body.user).toBe("There was no user found");
-          expect(res.body.user.username).not.toBe(users[1].username);
+          expect(res.body.username).not.toBe(users[1].username);
         })
         .end(err => {
           if (err) {

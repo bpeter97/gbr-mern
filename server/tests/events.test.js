@@ -35,8 +35,7 @@ describe("EVENTS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.events).toBeTruthy();
-          expect(res.body.events.length).toBe(events.length);
+          expect(res.body.length).toBe(events.length);
         })
         .end(done);
     });
@@ -49,8 +48,7 @@ describe("EVENTS", () => {
         .send(newEvent)
         .expect(200)
         .expect(res => {
-          expect(res.body.event).toBeTruthy();
-          expect(res.body.event.title).toBe(newEvent.title);
+          expect(res.body.title).toBe(newEvent.title);
         })
         .end(err => {
           if (err) {
@@ -99,8 +97,7 @@ describe("EVENTS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.event).toBeTruthy();
-          expect(res.body.event._id).toBe(events[0]._id.toHexString());
+          expect(res.body._id).toBe(events[0]._id.toHexString());
         })
         .end(done);
     });
@@ -110,7 +107,6 @@ describe("EVENTS", () => {
         .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
-          expect(res.body.event).toBeTruthy();
           expect(res.body.event).toBe("There was no event found");
         })
         .end(done);
@@ -130,7 +126,7 @@ describe("EVENTS", () => {
         })
         .expect(200)
         .expect(res => {
-          expect(res.body.event.title).toBe("New title");
+          expect(res.body.title).toBe("New title");
         })
         .end(err => {
           if (err) {
@@ -195,8 +191,7 @@ describe("EVENTS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.event).toBeTruthy();
-          expect(res.body.event._id).toBe(events[1]._id.toHexString());
+          expect(res.body._id).toBe(events[1]._id.toHexString());
         })
         .end(err => {
           if (err) {
@@ -217,7 +212,6 @@ describe("EVENTS", () => {
         .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
-          expect(res.body.event).toBeTruthy();
           expect(res.body.event).toBe("There was no event found");
         })
         .end(done);

@@ -44,7 +44,7 @@ describe("CONTAINERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.containerSizes.length).toBe(3);
+          expect(res.body.length).toBe(3);
         })
         .end(done);
     });
@@ -58,8 +58,7 @@ describe("CONTAINERS", () => {
         .send({ size: "20C" })
         .expect(200)
         .expect(res => {
-          expect(res.body.containerSize).toBeTruthy();
-          expect(res.body.containerSize.size).toBe("20C");
+          expect(res.body.size).toBe("20C");
         })
         .end(err => {
           if (err) {
@@ -106,9 +105,7 @@ describe("CONTAINERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.containerSize._id).toBe(
-            containerSizes[0]._id.toHexString()
-          );
+          expect(res.body._id).toBe(containerSizes[0]._id.toHexString());
         })
         .end(done);
     });
@@ -133,8 +130,7 @@ describe("CONTAINERS", () => {
         .send({ size: "10" })
         .expect(200)
         .expect(res => {
-          expect(res.body.containerSize).toBeTruthy();
-          expect(res.body.containerSize.size).toBe("10");
+          expect(res.body.size).toBe("10");
         })
         .end(err => {
           if (err) {
@@ -212,8 +208,7 @@ describe("CONTAINERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.containerSize).toBeTruthy();
-          expect(res.body.containerSize.size).toBe(containerSizes[0].size);
+          expect(res.body.size).toBe(containerSizes[0].size);
         })
         .end(err => {
           if (err) {
@@ -262,14 +257,14 @@ describe("CONTAINERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.containers.length).toBe(3);
+          expect(res.body.length).toBe(3);
           // Check to see if each container has a size and stats.
-          expect(res.body.containers[0].size).not.toBe(null);
-          expect(res.body.containers[1].size).not.toBe(null);
-          expect(res.body.containers[2].size).not.toBe(null);
-          expect(res.body.containers[0].stats).not.toBe(null);
-          expect(res.body.containers[1].stats).not.toBe(null);
-          expect(res.body.containers[2].stats).not.toBe(null);
+          expect(res.body[0].size).not.toBe(null);
+          expect(res.body[1].size).not.toBe(null);
+          expect(res.body[2].size).not.toBe(null);
+          expect(res.body[0].stats).not.toBe(null);
+          expect(res.body[1].stats).not.toBe(null);
+          expect(res.body[2].stats).not.toBe(null);
         })
         .end(done);
     });
@@ -283,10 +278,9 @@ describe("CONTAINERS", () => {
         .send(newContainer)
         // .expect(200)
         .expect(res => {
-          expect(res.body.container).toBeTruthy();
           // Check to see if each container has a size and stats.
-          expect(res.body.container.size).not.toBe(null);
-          expect(res.body.container.stats).not.toBe(null);
+          expect(res.body.size).not.toBe(null);
+          expect(res.body.stats).not.toBe(null);
         })
         .end(err => {
           if (err) {
@@ -355,10 +349,7 @@ describe("CONTAINERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.container).toBeTruthy();
-          expect(res.body.container.serialNumber).toBe(
-            containers[0].serialNumber
-          );
+          expect(res.body.serialNumber).toBe(containers[0].serialNumber);
         })
         .end(done);
     });
@@ -369,7 +360,6 @@ describe("CONTAINERS", () => {
         .set("Authorization", users[0].token)
         .expect(400)
         .expect(res => {
-          expect(res.body.container).toBeTruthy();
           expect(res.body.container).toBe("There was no container found");
         })
         .end(done);
@@ -404,19 +394,14 @@ describe("CONTAINERS", () => {
         .send(patchData)
         .expect(200)
         .expect(res => {
-          expect(res.body.container).toBeTruthy();
-          expect(res.body.container.hasOnBoxNumbers).toBe(
-            patchData.hasOnBoxNumbers
-          );
-          expect(res.body.container.hasSigns).toBe(patchData.hasSigns);
-          expect(res.body.container.hasShelves).toBe(patchData.hasShelves);
-          expect(res.body.container.isPainted).toBe(patchData.isPainted);
-          expect(res.body.container.isFlagged).toBe(patchData.isFlagged);
-          expect(res.body.container.flagReason).toBe(patchData.flagReason);
-          expect(res.body.container.stats.currentAddress).toBe(
-            patchData.currentAddress
-          );
-          expect(res.body.container.stats.currentRentee).toBe(null);
+          expect(res.body.hasOnBoxNumbers).toBe(patchData.hasOnBoxNumbers);
+          expect(res.body.hasSigns).toBe(patchData.hasSigns);
+          expect(res.body.hasShelves).toBe(patchData.hasShelves);
+          expect(res.body.isPainted).toBe(patchData.isPainted);
+          expect(res.body.isFlagged).toBe(patchData.isFlagged);
+          expect(res.body.flagReason).toBe(patchData.flagReason);
+          expect(res.body.stats.currentAddress).toBe(patchData.currentAddress);
+          expect(res.body.stats.currentRentee).toBe(null);
         })
         .end(done);
     });
@@ -499,7 +484,7 @@ describe("CONTAINERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.container._id).toBe(containers[1]._id.toHexString());
+          expect(res.body._id).toBe(containers[1]._id.toHexString());
         })
         .end(err => {
           if (err) {

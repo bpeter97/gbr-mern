@@ -54,7 +54,7 @@ describe("CUSTOMERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.customers.length).toBe(customers.length);
+          expect(res.body.length).toBe(customers.length);
         })
         .end(done);
     });
@@ -68,8 +68,8 @@ describe("CUSTOMERS", () => {
         .send(newCustomer)
         .expect(200)
         .expect(res => {
-          expect(res.body.customer.name).toBe(newCustomer.name);
-          expect(res.body.customer.lastViewed).not.toBe(null);
+          expect(res.body.name).toBe(newCustomer.name);
+          expect(res.body.lastViewed).not.toBe(null);
         })
         .end(err => {
           if (err) {
@@ -124,8 +124,8 @@ describe("CUSTOMERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.customer.name).toBe(customers[0].name);
-          expect(res.body.customer.lastViewed).not.toBe(null);
+          expect(res.body.name).toBe(customers[0].name);
+          expect(res.body.lastViewed).not.toBe(null);
         })
         .end(done);
     });
@@ -165,9 +165,9 @@ describe("CUSTOMERS", () => {
         })
         .expect(200)
         .expect(res => {
-          expect(res.body.customer.name).toBe("Jacob Belmont");
-          expect(res.body.customer.isFlagged).toBe(false);
-          expect(res.body.customer.flagReason).toBe("");
+          expect(res.body.name).toBe("Jacob Belmont");
+          expect(res.body.isFlagged).toBe(false);
+          expect(res.body.flagReason).toBe("");
         })
         .end(err => {
           if (err) {
@@ -243,7 +243,7 @@ describe("CUSTOMERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.customer.name).toBe(customers[0].name);
+          expect(res.body.name).toBe(customers[0].name);
         })
         .end(err => {
           if (err) {

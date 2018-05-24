@@ -22,8 +22,7 @@ describe("SETTINGS", () => {
           .set("Authorization", users[0].token)
           .expect(200)
           .expect(res => {
-            expect(res.body.purchaseTypes).toBeTruthy();
-            expect(res.body.purchaseTypes.length).toBe(2);
+            expect(res.body.length).toBe(2);
           })
           .end(done);
       });
@@ -37,7 +36,7 @@ describe("SETTINGS", () => {
           .send({ type: "Resale" })
           .expect(200)
           .expect(res => {
-            expect(res.body.purchaseType.type).toBe("Resale");
+            expect(res.body.type).toBe("Resale");
           })
           .end(err => {
             if (err) {
@@ -75,7 +74,7 @@ describe("SETTINGS", () => {
           .set("Authorization", users[0].token)
           .expect(200)
           .expect(res => {
-            expect(res.body.purchaseType.type).toBe(purchaseTypes[0].type);
+            expect(res.body.type).toBe(purchaseTypes[0].type);
           })
           .end(done);
       });
@@ -104,7 +103,7 @@ describe("SETTINGS", () => {
           .send({ type: "Resale" })
           .expect(200)
           .expect(res => {
-            expect(res.body.purchaseType.type).toBe("Resale");
+            expect(res.body.type).toBe("Resale");
           })
           .end(err => {
             if (err) {
@@ -173,7 +172,7 @@ describe("SETTINGS", () => {
           .set("Authorization", users[0].token)
           .expect(200)
           .expect(res => {
-            expect(res.body.purchaseType.type).toBe(purchaseTypes[0].type);
+            expect(res.body.type).toBe(purchaseTypes[0].type);
           })
           .end(err => {
             if (err) {
