@@ -69,9 +69,10 @@ exports.getTodo = (req, res) => {
   const user = jwt_decode(req.token);
 
   Todo.findById(req.params.id)
+    .populate("creator")
     .then(todo => {
-      if (todo.creator != user._id) {
-        errors.user = "You cannot access this todo";
+      if (todo.creator._id != user._id) {
+        errors.todo = "You cannot access this todo";
         return res.status(401).json(errors);
       }
 
@@ -90,9 +91,11 @@ exports.patchTodo = (req, res) => {
   // Fetch validation errors.
   const { errors, isValid } = validateTodoInput(req.body);
 
-  // Check to see if error is a valid ObjectID
-  if (!ObjectID.isValid(req.params.id)) {
-    errors.todo = "There was no todo found";
+  // send 400 error with validation errors if not valid.
+  if (!isValid || !ObjectID.isValid(req.params.id)) {
+    if (!ObjectID.isValid(req.params.id)) {
+      errors.todo = "There was no todo found";
+    }
     return res.status(400).json(errors);
   }
 
@@ -115,13 +118,16 @@ exports.patchTodo = (req, res) => {
   )
     .then(todo => {
       if (!todo) {
-        errors.todo = "Unable to update the todo";
-        return res.status(400).json(errors);
+        errors.todo = "You cannot access this todo";
+        return res.status(401).json(errors);
       }
 
       res.json(todo);
     })
-    .catch(e => res.status(404).json(e));
+    .catch(e => {
+      errors.todo = "Unable to update the todo";
+      res.status(400).json(errors);
+    });
 };
 
 // @route   DELETE api/users/:id
@@ -143,11 +149,14 @@ exports.deleteTodo = (req, res) => {
   })
     .then(todo => {
       if (!todo) {
-        errors.todo = "Unable to delete the todo";
-        return res.status(400).json(errors);
+        errors.todo = "You cannot access this todo";
+        return res.status(401).json(errors);
       }
 
-      res.json({ todo });
+      res.json(todo);
     })
-    .catch(e => res.status(404).json(e));
+    .catch(e => {
+      errors.todo = "Unable to delete this todo";
+      res.status(400).json(errors);
+    });
 };

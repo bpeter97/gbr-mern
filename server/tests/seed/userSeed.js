@@ -58,7 +58,9 @@ const populateUsers = done => {
       var userOne = new User(users[0]).save().then(user => {
         users[0].token = user.generateAuthToken();
       });
-      var userTwo = new User(users[1]).save();
+      var userTwo = new User(users[1]).save().then(user => {
+        users[1].token = user.generateAuthToken();
+      });
       var userThree = new User(users[2]).save();
 
       return Promise.all([userOne, userTwo, userThree]);
