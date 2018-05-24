@@ -123,6 +123,7 @@ class App extends Component {
                         </Switch>
                         <Switch>
                           <PrivateRoute
+                            exact
                             path="/customers/edit/"
                             component={EditCustomer}
                           />
