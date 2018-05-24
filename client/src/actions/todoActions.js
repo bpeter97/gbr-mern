@@ -3,17 +3,15 @@ import axios from "axios";
 import {
   ADD_TODO,
   GET_ERRORS,
-  // CLEAR_ERRORS,
   GET_TODOS,
   GET_TODO,
   DELETE_TODO,
-  COMPLETE_TODO,
   TODOS_LOADING
 } from "./types";
+import { clearErrors } from "./commonActions";
 
-// Add Post
 export const addTodo = todoData => dispatch => {
-  // dispatch(clearErrors());
+  dispatch(clearErrors());
   axios
     .post("/api/todos", todoData)
     .then(res =>
@@ -30,7 +28,6 @@ export const addTodo = todoData => dispatch => {
     );
 };
 
-// Get Todos
 export const getTodos = () => dispatch => {
   axios
     .get("/api/todos")
@@ -48,26 +45,8 @@ export const getTodos = () => dispatch => {
     );
 };
 
-// Get Post
-export const getTodo = id => dispatch => {
-  //   axios
-  //     .get(`/api/todos/${id}`)
-  //     .then(res =>
-  //       dispatch({
-  //         type: GET_TODO,
-  //         payload: res.data
-  //       })
-  //     )
-  //     .catch(err =>
-  dispatch({
-    type: GET_TODO,
-    payload: null
-  });
-  //     );
-};
-
-// Delete Post
 export const deleteTodo = id => dispatch => {
+  dispatch(clearErrors());
   axios
     .delete(`/api/todos/${id}`)
     .then(res =>

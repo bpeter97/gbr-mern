@@ -9,8 +9,10 @@ import {
   CUSTOMERS_LOADING,
   GET_ERRORS
 } from "./types";
+import { clearErrors } from "./commonActions";
 
 export const addCustomer = customerData => dispatch => {
+  dispatch(clearErrors());
   axios
     .post("/api/customers", customerData)
     .then(res =>
@@ -61,6 +63,7 @@ export const getCustomer = id => dispatch => {
 };
 
 export const editCustomer = id => dispatch => {
+  dispatch(clearErrors());
   axios
     .patch(`/api/customers/${id}`)
     .then(res =>
@@ -78,6 +81,7 @@ export const editCustomer = id => dispatch => {
 };
 
 export const deleteCustomer = id => dispatch => {
+  dispatch(clearErrors());
   axios
     .delete(`/api/customers/${id}`)
     .then(res =>
