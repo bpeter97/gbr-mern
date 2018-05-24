@@ -74,7 +74,7 @@ export const deleteTodo = id => dispatch => {
     .then(res =>
       dispatch({
         type: DELETE_TODO,
-        payload: id
+        payload: res.data
       })
     )
     .catch(err =>
@@ -88,12 +88,10 @@ export const completeTodo = (id, completed) => dispatch => {
   axios
     .patch(`/api/todos/${id}`, { completed: !completed })
     .then(res =>
-
       dispatch({
         type: GET_TODO,
         payload: res.data
       })
-
     )
     .catch(err =>
       dispatch({
