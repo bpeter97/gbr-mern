@@ -11,7 +11,6 @@ import {
   TODOS_LOADING
 } from "./types";
 
-// require("axios-debug")(axios);
 // Add Post
 export const addTodo = todoData => dispatch => {
   // dispatch(clearErrors());
@@ -84,9 +83,10 @@ export const deleteTodo = id => dispatch => {
       })
     );
 };
-export const completeTodo = (id, completed) => dispatch => {
+export const completeTodo = todo => dispatch => {
+  const url = `/api/todos/${todo._id}`;
   axios
-    .patch(`/api/todos/${id}`, { completed: !completed })
+    .patch(url, { desc: todo.desc, completed: !todo.completed })
     .then(res =>
       dispatch({
         type: GET_TODO,
