@@ -2,11 +2,20 @@ import React, { Component } from "react";
 import Table from "../table/Table";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import PropTypes from "prop-types";
 
 class Customers extends Component {
-
+  static contextTypes = {
+    router: PropTypes.object
+  };
+  editCustomerClickDummy(data) {
+    this.props.history.push({
+      pathname: `/customers/edit/${data.id}`,
+      state: { data: data }
+    });
+  }
   editCustomerClick(value) {
-    console.log(`edit clicked for`, value);
+    this.props.history.push(`/customers/edit/${value}`);
   }
 
   render() {
@@ -15,37 +24,52 @@ class Customers extends Component {
         id: "1",
         first: "Taylor",
         last: "Hartley",
+        address1: "1122 eeee rd",
+        city: "city name",
+        zipcode: "31245",
+        state: "AL",
         phone: "706-555-5555",
         fax: "N/A",
         email: "awesome@awesome.com",
-        flags: {
-          flagged: false,
-          flags: "NONE"
-        }
+        rdp: "",
+        notes: "",
+        isFlagged: false,
+        flagReason: "",
+        lastViewed: ""
       },
       {
         id: "2",
         first: "Brian",
         last: "Peter",
-        phone: "706-555-1234",
+        address1: "1122 eeee rd",
+        city: "city name",
+        zipcode: "31245",
+        state: "AL",
+        phone: "706-555-5555",
         fax: "N/A",
-        email: "admin@awesome.com",
-        flags: {
-          flagged: false,
-          flags: "NONE"
-        }
+        email: "awesome@awesome.com",
+        rdp: "",
+        notes: "",
+        isFlagged: false,
+        flagReason: "",
+        lastViewed: ""
       },
       {
         id: "254",
         first: "Riley",
         last: "Hartley",
-        phone: "706-555-4321",
+        address1: "2211 eeee rd",
+        city: "city name",
+        zipcode: "31245",
+        state: "AL",
+        phone: "706-555-5555",
         fax: "N/A",
-        email: "dog@awesome.com",
-        flags: {
-          flagged: true,
-          flags: "REQUIRES PO"
-        }
+        email: "awesome@awesome.com",
+        rdp: "",
+        notes: "",
+        isFlagged: true,
+        flagReason: "REQUIRES PO",
+        lastViewed: ""
       }
     ];
     const data_history = [
@@ -91,17 +115,21 @@ class Customers extends Component {
       },
       {
         Header: "Flags",
-        id: 'flags',
-        accessor: d => d.flags.flags,
-
-
+        id: "flagReason",
+        accessor: d => d.flagReason
       },
       {
         Header: "Edit",
-        id: 'edit',
-        accessor: 'id',
-        Cell: ({ value }) => (<button className="btn btn-success" onClick={this.editCustomerClick.bind(this, value)}
-        >Edit</button>)
+        id: "edit",
+        accessor: "data",
+        Cell: ({ row }) => (
+          <button
+            className="btn btn-success"
+            onClick={this.editCustomerClickDummy.bind(this, row)}
+          >
+            Edit
+          </button>
+        )
       }
     ];
     const columns_history = [
@@ -139,9 +167,16 @@ class Customers extends Component {
           columns={columns}
           showPagination={false}
           defaultPageSize={10}
+          getTrProps={(s, i) => {
+            let f = false;
+            if (i) {
+              f = i.original.isFlagged;
+            }
+            return { style: { backgroundColor: f ? "#DAE7D7" : "inherit" } };
+          }}
           SubComponent={row => {
+            // CREATE NEW COMPONENT FOR CUSTOMER HISTORY
             return (
-              // CREATE NEW COMPONENT FOR CUSTOMER HISTORY
               <div className="p-3">
                 <ReactTable
                   data={data_history}

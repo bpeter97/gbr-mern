@@ -25,6 +25,7 @@ import Drawer, {
 } from "react-swipeable-drawer";
 
 import "./App.css";
+import EditCustomer from "./components/customers/EditCustomer";
 
 const history = createHistory();
 
@@ -119,6 +120,12 @@ class App extends Component {
                         </Switch>
                         <Switch>
                           <PrivateRoute exact path="/users" component={Users} />
+                        </Switch>
+                        <Switch>
+                          <PrivateRoute
+                            path="/customers/edit/"
+                            component={EditCustomer}
+                          />
                         </Switch>
                       </div>
                     </div>
