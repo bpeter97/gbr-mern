@@ -1,6 +1,7 @@
 import {
   GET_CUSTOMERS,
   GET_CUSTOMER,
+  ADD_CUSTOMER,
   EDIT_CUSTOMER,
   DELETE_CUSTOMER,
   CUSTOMERS_LOADING,
@@ -46,7 +47,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         customers: state.customers.filter(
-          customers => customer._id !== action.payload
+          customer => customer._id !== action.payload
         )
       };
     default:
