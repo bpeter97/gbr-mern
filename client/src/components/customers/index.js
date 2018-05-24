@@ -5,17 +5,12 @@ import "react-table/react-table.css";
 import PropTypes from "prop-types";
 
 class Customers extends Component {
-  static contextTypes = {
-    router: PropTypes.object
-  };
-  editCustomerClickDummy(data) {
-    this.props.history.push({
-      pathname: `/customers/edit/${data.id}`,
-      state: { data: data }
-    });
-  }
-  editCustomerClick(value) {
-    this.props.history.push(`/customers/edit/${value}`);
+  editCustomerClick(id) {
+    const location = {
+      pathname: "/customers/edit",
+      state: { id: id }
+    };
+    this.props.history.push(location);
   }
 
   render() {
@@ -121,11 +116,11 @@ class Customers extends Component {
       {
         Header: "Edit",
         id: "edit",
-        accessor: "data",
-        Cell: ({ row }) => (
+        accessor: "id",
+        Cell: ({ value }) => (
           <button
             className="btn btn-success"
-            onClick={this.editCustomerClickDummy.bind(this, row)}
+            onClick={this.editCustomerClick.bind(this, value)}
           >
             Edit
           </button>
