@@ -2,11 +2,20 @@ import React, { Component } from "react";
 import Table from "../table/Table";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import PropTypes from "prop-types";
 
 class Customers extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
+  editCustomerClickDummy(data) {
+    this.props.history.push({
+      pathname: `/customers/edit/${data.id}`,
+      state: { data: data }
+    });
+  }
   editCustomerClick(value) {
-    console.log(`edit clicked for`, value);
-    this.props.history.push(`/customer/edit/${value}`);
+    this.props.history.push(`/customers/edit/${value}`);
   }
 
   render() {
@@ -112,11 +121,11 @@ class Customers extends Component {
       {
         Header: "Edit",
         id: "edit",
-        accessor: "id",
-        Cell: ({ value }) => (
+        accessor: "data",
+        Cell: ({ row }) => (
           <button
             className="btn btn-success"
-            onClick={this.editCustomerClick.bind(this, value)}
+            onClick={this.editCustomerClickDummy.bind(this, row)}
           >
             Edit
           </button>
