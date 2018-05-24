@@ -4,7 +4,6 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 
 class Customers extends Component {
-
   editCustomerClick(value) {
     console.log(`edit clicked for`, value);
   }
@@ -91,17 +90,21 @@ class Customers extends Component {
       },
       {
         Header: "Flags",
-        id: 'flags',
-        accessor: d => d.flags.flags,
-
-
+        id: "flags",
+        accessor: d => d.flags.flags
       },
       {
         Header: "Edit",
-        id: 'edit',
-        accessor: 'id',
-        Cell: ({ value }) => (<button className="btn btn-success" onClick={this.editCustomerClick.bind(this, value)}
-        >Edit</button>)
+        id: "edit",
+        accessor: "id",
+        Cell: ({ value }) => (
+          <button
+            className="btn btn-success"
+            onClick={this.editCustomerClick.bind(this, value)}
+          >
+            Edit
+          </button>
+        )
       }
     ];
     const columns_history = [
@@ -139,9 +142,16 @@ class Customers extends Component {
           columns={columns}
           showPagination={false}
           defaultPageSize={10}
+          getTrProps={(s, i) => {
+            let f = false;
+            if (i) {
+              f = i.original.flags.flagged;
+            }
+            return { style: { backgroundColor: f ? "#DAE7D7" : "inherit" } };
+          }}
           SubComponent={row => {
+            // CREATE NEW COMPONENT FOR CUSTOMER HISTORY
             return (
-              // CREATE NEW COMPONENT FOR CUSTOMER HISTORY
               <div className="p-3">
                 <ReactTable
                   data={data_history}
