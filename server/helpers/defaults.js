@@ -1,5 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const jwt_decode = require("jwt-decode");
+const _ = require("lodash");
 
 // models
 const User = require("../models/User");
@@ -7,6 +9,7 @@ const User = require("../models/User");
 // validation files
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
+const validateUserInput = require("../validation/user");
 
 // @route   POST api/register
 // @desc    Registers a new user.
@@ -102,6 +105,58 @@ exports.login = (req, res) => {
           return res.status(401).json(errors);
         }
       });
+    })
+    .catch(e => res.status(400).json(e));
+};
+
+// @route   GET api/profile
+// @desc    Retrieves a users information.
+// @access  Public
+exports.getProfile = (req, res) => {
+  // decode logged in user information
+  const user = jwt_decode(req.token);
+
+  // Return the users information
+  res.json(user);
+};
+
+// @route   GET api/profile
+// @desc    Retrieves a users information.
+// @access  Public
+exports.patchProfile = (req, res) => {
+  // Fetch validation errors.
+  const { errors, isValid } = validateUserInput(req.body);
+
+  // send 400 error with validation errors if not valid.
+  if (!isValid) return res.status(400).json(errors);
+
+  // decode logged in user information
+  const user = jwt_decode(req.token);
+
+  // Get the inputs
+  var body = _.pick(req.body, [
+    "firstName",
+    "lastName",
+    "middleInitial",
+    "suffix",
+    "username",
+    "password",
+    "email",
+    "phone",
+    "title",
+    "type",
+    "validated"
+  ]);
+  body._id = user._id;
+
+  User.findByIdAndUpdate(user._id, { $set: body }, { new: true })
+    .then(user => {
+      if (!user) {
+        errors.user = "Unable to find and update the user";
+        return res.status(404).json(errors);
+      }
+      // Return the newly modified user.
+      res.json(user);
     })
     .catch(e => res.status(400).json(e));
 };
