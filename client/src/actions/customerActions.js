@@ -7,7 +7,8 @@ import {
   EDIT_CUSTOMER,
   DELETE_CUSTOMER,
   CUSTOMERS_LOADING,
-  GET_ERRORS
+  GET_ERRORS,
+  CLEAR_CUSTOMER
 } from "./types";
 import { clearErrors } from "./commonActions";
 
@@ -96,6 +97,11 @@ export const deleteCustomer = id => dispatch => {
         payload: err.response.data
       })
     );
+};
+export const clearCustomer = () => {
+  return {
+    type: CLEAR_CUSTOMER
+  };
 };
 
 export const setCustomersLoading = () => {
