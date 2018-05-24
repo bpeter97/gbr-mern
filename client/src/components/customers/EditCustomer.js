@@ -86,7 +86,6 @@ class EditCustomer extends Component {
               <div className="col form-group">
                 <label>First</label>
                 <TextFieldInput
-                  placeholder="First Name"
                   name="first"
                   type="text"
                   className="form-control"
@@ -98,7 +97,6 @@ class EditCustomer extends Component {
               <div className="col">
                 <label>Last</label>
                 <TextFieldInput
-                  placeholder="Last name"
                   name="lastname"
                   type="lastname"
                   className="form-control"
@@ -112,7 +110,6 @@ class EditCustomer extends Component {
             <div className=" form-group">
               <label>Address 1</label>
               <TextFieldInput
-                placeholder="address1"
                 name="address1"
                 type="address1"
                 className="form-control"
@@ -125,7 +122,6 @@ class EditCustomer extends Component {
             <div className="form-group">
               <label>Address 2</label>
               <TextFieldInput
-                placeholder="address2"
                 name="address2"
                 type="address2"
                 className="form-control"
@@ -138,7 +134,6 @@ class EditCustomer extends Component {
               <div className="col form-group">
                 <label>City</label>
                 <TextFieldInput
-                  placeholder="city"
                   name="city"
                   type="city"
                   className="form-control"
@@ -150,7 +145,6 @@ class EditCustomer extends Component {
               <div className="col form-group">
                 <label>State</label>
                 <TextFieldInput
-                  placeholder="state"
                   name="state"
                   type="state"
                   className="form-control"
@@ -162,7 +156,6 @@ class EditCustomer extends Component {
               <div className="col form-group">
                 <label>Zipcode</label>
                 <TextFieldInput
-                  placeholder="zipcode"
                   name="zipcode"
                   type="zipcode"
                   className="form-control"
@@ -177,7 +170,6 @@ class EditCustomer extends Component {
               <div className="col form-group">
                 <label>Phone (Work)</label>
                 <TextFieldInput
-                  placeholder="phone"
                   name="phone"
                   type="phone"
                   className="form-control"
@@ -189,7 +181,6 @@ class EditCustomer extends Component {
               <div className="col form-group">
                 <label>Ext</label>
                 <TextFieldInput
-                  placeholder="ext"
                   name="ext"
                   type="ext"
                   className="form-control"
@@ -201,7 +192,6 @@ class EditCustomer extends Component {
               <div className="col form-group">
                 <label>Fax</label>
                 <TextFieldInput
-                  placeholder="fax"
                   name="fax"
                   type="fax"
                   className="form-control"
@@ -214,7 +204,6 @@ class EditCustomer extends Component {
             <div className="form-group">
               <label>Email</label>
               <TextFieldInput
-                placeholder="email"
                 name="email"
                 type="email"
                 className="form-control"
@@ -227,7 +216,6 @@ class EditCustomer extends Component {
             <div className="form-group">
               <label>RDP</label>
               <TextFieldInput
-                placeholder="rdp"
                 name="rdp"
                 type="rdp"
                 className="form-control"
@@ -239,7 +227,6 @@ class EditCustomer extends Component {
             <div className="form-group">
               <label>Notes</label>
               <TextFieldInput
-                placeholder="notes"
                 name="notes"
                 type="notes"
                 className="form-control"
@@ -252,7 +239,6 @@ class EditCustomer extends Component {
               <div className="col form-group">
                 <label>Flagged?</label>
                 <TextFieldInput
-                  placeholder="isFlagged"
                   name="isFlagged"
                   type="isFlagged"
                   className="form-control"
@@ -264,7 +250,6 @@ class EditCustomer extends Component {
               <div className="col form-group">
                 <label>Flag Reason</label>
                 <TextFieldInput
-                  placeholder="flagReason"
                   name="flagReason"
                   type="flagReason"
                   className="form-control"
