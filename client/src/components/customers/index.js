@@ -1,10 +1,15 @@
 import React, { Component } from "react";
-import Table from "../table/Table";
+import { connect } from "react-redux";
+import { getCustomers } from "../../actions/customerActions";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import PropTypes from "prop-types";
 
 class Customers extends Component {
+  componentDidMount() {
+    this.props.getCustomers();
+  }
+
   editCustomerClick(id) {
     const location = {
       pathname: "/customers/edit",
@@ -14,6 +19,8 @@ class Customers extends Component {
   }
 
   render() {
+    const { customers } = this.props.customers;
+
     const data = [
       {
         id: "1",
@@ -85,16 +92,8 @@ class Customers extends Component {
     ];
     const columns = [
       {
-        Header: "ID#",
-        accessor: "id"
-      },
-      {
-        Header: "First Name",
-        accessor: "first"
-      },
-      {
-        Header: "Last Name",
-        accessor: "last"
+        Header: "Name",
+        accessor: "name"
       },
       {
         Header: "Phone",
@@ -149,7 +148,6 @@ class Customers extends Component {
         accessor: "quote"
       }
     ];
-
     return (
       <div className="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5">
         <div className="d-flex justify-content-end mb-3">
@@ -157,10 +155,9 @@ class Customers extends Component {
         </div>
 
         <ReactTable
-          data={data}
+          data={customers}
           className="-striped -highlight"
           columns={columns}
-          showPagination={false}
           defaultPageSize={10}
           getTrProps={(s, i) => {
             let f = false;
@@ -188,4 +185,17 @@ class Customers extends Component {
   }
 }
 
-export default Customers;
+Customers.propTypes = {
+  auth: PropTypes.object.isRequired,
+  customers: PropTypes.object.isRequired,
+  getCustomers: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  customers: state.customers
+});
+
+export default connect(mapStateToProps, { getCustomers })(Customers);
+
+// export default Customers;
