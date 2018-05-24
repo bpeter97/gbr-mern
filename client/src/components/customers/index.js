@@ -6,6 +6,7 @@ import "react-table/react-table.css";
 class Customers extends Component {
   editCustomerClick(value) {
     console.log(`edit clicked for`, value);
+    this.props.history.push(`/customer/edit/${value}`);
   }
 
   render() {
@@ -14,37 +15,52 @@ class Customers extends Component {
         id: "1",
         first: "Taylor",
         last: "Hartley",
+        address1: "1122 eeee rd",
+        city: "city name",
+        zipcode: "31245",
+        state: "AL",
         phone: "706-555-5555",
         fax: "N/A",
         email: "awesome@awesome.com",
-        flags: {
-          flagged: false,
-          flags: "NONE"
-        }
+        rdp: "",
+        notes: "",
+        isFlagged: false,
+        flagReason: "",
+        lastViewed: ""
       },
       {
         id: "2",
         first: "Brian",
         last: "Peter",
-        phone: "706-555-1234",
+        address1: "1122 eeee rd",
+        city: "city name",
+        zipcode: "31245",
+        state: "AL",
+        phone: "706-555-5555",
         fax: "N/A",
-        email: "admin@awesome.com",
-        flags: {
-          flagged: false,
-          flags: "NONE"
-        }
+        email: "awesome@awesome.com",
+        rdp: "",
+        notes: "",
+        isFlagged: false,
+        flagReason: "",
+        lastViewed: ""
       },
       {
         id: "254",
         first: "Riley",
         last: "Hartley",
-        phone: "706-555-4321",
+        address1: "2211 eeee rd",
+        city: "city name",
+        zipcode: "31245",
+        state: "AL",
+        phone: "706-555-5555",
         fax: "N/A",
-        email: "dog@awesome.com",
-        flags: {
-          flagged: true,
-          flags: "REQUIRES PO"
-        }
+        email: "awesome@awesome.com",
+        rdp: "",
+        notes: "",
+        isFlagged: true,
+        flagReason: "REQUIRES PO",
+        lastViewed: ""
       }
     ];
     const data_history = [
@@ -90,8 +106,8 @@ class Customers extends Component {
       },
       {
         Header: "Flags",
-        id: "flags",
-        accessor: d => d.flags.flags
+        id: "flagReason",
+        accessor: d => d.flagReason
       },
       {
         Header: "Edit",
@@ -145,7 +161,7 @@ class Customers extends Component {
           getTrProps={(s, i) => {
             let f = false;
             if (i) {
-              f = i.original.flags.flagged;
+              f = i.original.isFlagged;
             }
             return { style: { backgroundColor: f ? "#DAE7D7" : "inherit" } };
           }}
