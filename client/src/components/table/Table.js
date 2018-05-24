@@ -32,32 +32,11 @@ class Table extends Component {
       default:
         break;
     }
-    const customers = [
-      {
-        id: "1",
-        first: "Taylor",
-        last: "Hartley",
-        phone: "706-555-5555",
-        fax: "N/A",
-        email: "awesome@awesome.com",
-        Flags: "NONE"
-      },
-      {
-        id: "2",
-        first: "Taylor",
-        last: "Hartley",
-        phone: "706-555-5555",
-        fax: "N/A",
-        email: "awesome@awesome.com",
-        Flags: "NONE"
-      }
-    ];
+
     return (
       <table className="table table-hover">
         {header}
-        <tbody>
-          <TableBody items={customers} />
-        </tbody>
+        <tbody>{/* <TableBody items={customers} /> */}</tbody>
       </table>
     );
   }
