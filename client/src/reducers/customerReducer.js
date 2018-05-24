@@ -4,9 +4,9 @@ import {
   ADD_CUSTOMER,
   EDIT_CUSTOMER,
   DELETE_CUSTOMER,
-  CUSTOMERS_LOADING,
   CLEAR_CUSTOMER,
-  GET_ERRORS
+  GET_ERRORS,
+  CUSTOMER_LOADING
 } from "../actions/types";
 
 const initialState = {
@@ -17,7 +17,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case CUSTOMERS_LOADING:
+    case CUSTOMER_LOADING:
       return {
         ...state,
         loading: true

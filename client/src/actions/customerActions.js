@@ -6,9 +6,9 @@ import {
   ADD_CUSTOMER,
   EDIT_CUSTOMER,
   DELETE_CUSTOMER,
-  CUSTOMERS_LOADING,
   GET_ERRORS,
-  CLEAR_CUSTOMER
+  CLEAR_CUSTOMER,
+  CUSTOMER_LOADING
 } from "./types";
 import { clearErrors } from "./commonActions";
 
@@ -30,6 +30,7 @@ export const addCustomer = customerData => dispatch => {
     );
 };
 export const getCustomers = () => dispatch => {
+  dispatch(setCustomerLoading());
   axios
     .get("/api/customers")
     .then(res =>
@@ -47,6 +48,7 @@ export const getCustomers = () => dispatch => {
 };
 
 export const getCustomer = id => dispatch => {
+  dispatch(setCustomerLoading());
   axios
     .get(`/api/customers/${id}`)
     .then(res =>
@@ -104,8 +106,8 @@ export const clearCustomer = () => {
   };
 };
 
-export const setCustomersLoading = () => {
+export const setCustomerLoading = () => {
   return {
-    type: CUSTOMERS_LOADING
+    type: CUSTOMER_LOADING
   };
 };
