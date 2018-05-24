@@ -3,6 +3,7 @@ import axios from "axios";
 import {
   GET_CUSTOMERS,
   GET_CUSTOMER,
+  ADD_CUSTOMER,
   EDIT_CUSTOMER,
   DELETE_CUSTOMER,
   CUSTOMERS_LOADING,
