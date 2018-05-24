@@ -2,40 +2,41 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldInput from "../common/TextFieldInput";
-import { loginUser } from "../../actions/defaultsActions";
-import ErrorDisplay from "../error/ErrorDisplay";
 
 class EditCustomer extends Component {
-  constructor(props) {
-    super(props);
-    let fillProps = "";
-    if (props.location.state) {
-      fillProps = props.location.state.data._original;
-    }
+  constructor() {
+    super();
+
     this.state = {
-      first: fillProps.first || "",
-      last: fillProps.last || "",
-      address1: fillProps.address1 || "",
-      address2: fillProps.address2 || "",
-      city: fillProps.city || "",
-      zipcode: fillProps.zipcode || "",
-      state: fillProps.state || "",
-      phone: fillProps.phone || "",
-      ext: fillProps.ext || "",
-      fax: fillProps.fax || "",
-      email: fillProps.email || "",
-      rdp: fillProps.rdp || "",
-      notes: fillProps.notes || "",
-      isFlagged: fillProps.isFlagged || "",
-      flagReason: fillProps.flagReason || "",
-      lastViewed: fillProps.lastViewed || ""
+      first: "",
+      last: "",
+      address1: "",
+      address2: "",
+      city: "",
+      zipcode: "",
+      state: "",
+      phone: "",
+      ext: "",
+      fax: "",
+      email: "",
+      rdp: "",
+      notes: "",
+      isFlagged: "",
+      flagReason: "",
+      lastViewed: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
-    //   this.props.getCustomer(value);
+    if (!this.props.location.state) {
+      this.props.history.push("/customers");
+    } else {
+      const { id } = this.props.location.state;
+    }
+
+    // this.props.getCustomer(id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -81,7 +82,6 @@ class EditCustomer extends Component {
         <div className="m-auto w-lg-75 w-xl-50">
           <h2 className="text-center font-weight-light mb-5">Edit Customer</h2>
           <form onSubmit={this.onSubmit}>
-            <ErrorDisplay error={errors} />
             <div className="form-row">
               <div className="col form-group">
                 <label>First</label>
@@ -275,8 +275,7 @@ EditCustomer.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors,
-  location: state.router.location
+  errors: state.errors
 });
 
 export default connect(mapStateToProps, {})(EditCustomer);
