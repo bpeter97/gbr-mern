@@ -29,7 +29,7 @@ class NavBar extends Component {
     if (isAuthenticated) {
       navbar = (
         <nav
-          className="navbar navbar-expand-md navbar-dark"
+          className="navbar navbar-expand-md navbar-dark top-nav"
           style={{ backgroundColor: "#006400" }}
         >
           {/* SIDE NAV TOGGLE > MD, USED TO CHANGE COLLAPSE  */}
