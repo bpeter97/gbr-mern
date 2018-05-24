@@ -9,8 +9,7 @@ class EditCustomer extends Component {
     super();
 
     this.state = {
-      first: "",
-      last: "",
+      name: "",
       address1: "",
       address2: "",
       city: "",
@@ -38,7 +37,6 @@ class EditCustomer extends Component {
     } else {
       id = hasState.id;
     }
-
     this.props.getCustomer(id);
   }
 
@@ -52,8 +50,7 @@ class EditCustomer extends Component {
     e.preventDefault();
 
     const customerData = {
-      first: this.state.first,
-      last: this.state.last,
+      name: this.state.name,
       address1: this.state.address1,
       address2: this.state.address2,
       city: this.state.city,
@@ -85,31 +82,17 @@ class EditCustomer extends Component {
         <div className="m-auto w-lg-75 w-xl-50">
           <h2 className="text-center font-weight-light mb-5">Edit Customer</h2>
           <form onSubmit={this.onSubmit}>
-            <div className="form-row">
-              <div className="col form-group">
-                <label>First</label>
-                <TextFieldInput
-                  name="first"
-                  type="text"
-                  className="form-control"
-                  value={this.state.first}
-                  onChange={this.onChange}
-                  error={errors}
-                />
-              </div>
-              <div className="col">
-                <label>Last</label>
-                <TextFieldInput
-                  name="lastname"
-                  type="lastname"
-                  className="form-control"
-                  value={this.state.last}
-                  onChange={this.onChange}
-                  error={errors}
-                />
-              </div>
+            <div className="form-group">
+              <label>Name</label>
+              <TextFieldInput
+                name="name"
+                type="name"
+                className="form-control"
+                value={this.state.name}
+                onChange={this.onChange}
+                error={errors}
+              />
             </div>
-
             <div className=" form-group">
               <label>Address 1</label>
               <TextFieldInput
@@ -121,7 +104,6 @@ class EditCustomer extends Component {
                 error={errors}
               />
             </div>
-
             <div className="form-group">
               <label>Address 2</label>
               <TextFieldInput
