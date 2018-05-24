@@ -18,7 +18,7 @@ exports.getProducts = (req, res) => {
       if (!products) {
         return res.send("No products found.");
       }
-      res.json({ products });
+      res.json(products);
     })
     .catch(e => res.status(404).json(e));
 };
@@ -57,7 +57,7 @@ exports.postProduct = (req, res) => {
     newProduct
       .save()
       .then(product => {
-        res.json({ product });
+        res.json(product);
       })
       .catch(e => console.log(e));
   });
@@ -73,7 +73,7 @@ exports.getProductTypes = (req, res) => {
         return res.send("No product types found.");
       }
 
-      res.json({ productTypes });
+      res.json(productTypes);
     })
     .catch(e => res.status(404).json(e));
 };
@@ -104,7 +104,7 @@ exports.postProductType = (req, res) => {
     newProductType
       .save()
       .then(productType => {
-        res.json({ productType });
+        res.json(productType);
       })
       .catch(e => console.log(e));
   });
@@ -130,7 +130,7 @@ exports.getProductType = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      res.json({ type });
+      res.json(type);
     })
     .catch(e => console.log(e));
 };
@@ -173,7 +173,7 @@ exports.patchProductType = (req, res) => {
           return res.status(404).json(errors);
         }
         // Return the newly modified type.
-        res.json({ type });
+        res.json(type);
       })
       .catch(e => res.status(400).send());
   });
@@ -200,7 +200,7 @@ exports.deleteProductType = (req, res) => {
         res.status(404).json(errors);
       }
       // Return the type that was just removed.
-      res.json({ type });
+      res.json(type);
     })
     .catch(e => res.status(400).send());
 };
@@ -225,7 +225,7 @@ exports.getProduct = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      res.json({ product });
+      res.json(product);
     })
     .catch(e => console.log(e));
 };
@@ -276,7 +276,7 @@ exports.patchProduct = (req, res) => {
         return res.status(404).json(errors);
       }
       // Return the newly modified product.
-      res.json({ product });
+      res.json(product);
     })
     .catch(e => res.status(400).send());
 };
@@ -302,7 +302,7 @@ exports.deleteProduct = (req, res) => {
         res.status(404).json(errors);
       }
       // Return the product that was just removed.
-      res.json({ product });
+      res.json(product);
     })
     .catch(e => res.status(400).send());
 };

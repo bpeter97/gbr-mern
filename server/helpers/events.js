@@ -17,7 +17,7 @@ exports.getEvents = (req, res) => {
       if (!events) {
         return res.send("No events found.");
       }
-      res.json({ events });
+      res.json(events);
     })
     .catch(e => res.status(404).json(e));
 };
@@ -47,7 +47,7 @@ exports.postEvent = (req, res) => {
   newEvent
     .save()
     .then(event => {
-      res.json({ event });
+      res.json(event);
     })
     .catch(e => console.log(e));
 };
@@ -72,7 +72,7 @@ exports.getEvent = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      res.json({ event });
+      res.json(event);
     })
     .catch(e => console.log(e));
 };
@@ -103,7 +103,7 @@ exports.patchEvent = (req, res) => {
         return res.status(404).json(errors);
       }
       // Return the newly modified event.
-      res.json({ event });
+      res.json(event);
     })
     .catch(e => res.status(400).send());
 };
@@ -129,7 +129,7 @@ exports.deleteEvent = (req, res) => {
         res.status(404).json(errors);
       }
       // Return the event that was just removed.
-      res.json({ event });
+      res.json(event);
     })
     .catch(e => res.status(400).send());
 };

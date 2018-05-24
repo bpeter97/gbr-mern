@@ -89,7 +89,7 @@ exports.postUser = (req, res) => {
               // Now save it to the database.
               newUser
                 .save()
-                .then(user => res.json({ user }))
+                .then(user => res.json(user))
                 .catch(err => console.log(err));
             });
           });

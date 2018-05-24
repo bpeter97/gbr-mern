@@ -17,7 +17,7 @@ exports.getCustomers = (req, res) => {
       if (!customers) {
         return res.status(400).json({ error: "No customers found" });
       }
-      res.json({ customers });
+      res.json(customers);
     })
     .catch(e => res.status(404).json(e));
 };
@@ -67,7 +67,7 @@ exports.postCustomer = (req, res) => {
           errors.customers = "Unable to create the new customer";
           return res.status(400).json(errors);
         }
-        res.json({ customer });
+        res.json(customer);
       })
       .catch(e => console.log(e));
   });
@@ -97,7 +97,7 @@ exports.getCustomer = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      res.json({ customer });
+      res.json(customer);
     })
     .catch(e => console.log(e));
 };
@@ -141,7 +141,7 @@ exports.patchCustomer = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      res.json({ customer });
+      res.json(customer);
     })
     .catch(e => console.log(e));
 };
@@ -167,7 +167,7 @@ exports.deleteCustomer = (req, res) => {
         res.status(404).json(errors);
       }
       // Return the customer that was just removed.
-      res.json({ customer });
+      res.json(customer);
     })
     .catch(e => res.status(400).send());
 };

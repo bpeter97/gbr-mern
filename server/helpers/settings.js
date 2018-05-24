@@ -16,7 +16,7 @@ exports.getPurchaseTypes = (req, res) => {
       if (!purchaseTypes) {
         return res.send("No purchase types found");
       }
-      res.json({ purchaseTypes });
+      res.json(purchaseTypes);
     })
     .catch(e => res.status(404).json(e));
 };
@@ -38,7 +38,7 @@ exports.postPurchaseType = (req, res) => {
   newType
     .save()
     .then(purchaseType => {
-      res.json({ purchaseType });
+      res.json(purchaseType);
     })
     .catch(e => console.log(e));
 };
@@ -63,7 +63,7 @@ exports.getPurchaseType = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      res.json({ purchaseType });
+      res.json(purchaseType);
     })
     .catch(e => console.log(e));
 };
@@ -95,7 +95,7 @@ exports.patchPurchaseType = (req, res) => {
         return res.status(404).json(errors);
       }
       // Return the newly modified purchaseType.
-      res.json({ purchaseType });
+      res.json(purchaseType);
     })
     .catch(e => res.status(400).send());
 };
@@ -120,7 +120,7 @@ exports.deletePurchaseType = (req, res) => {
         res.status(404).json(errors);
       }
       // Return the product that was just removed.
-      res.json({ purchaseType });
+      res.json(purchaseType);
     })
     .catch(e => console.log(e));
 };

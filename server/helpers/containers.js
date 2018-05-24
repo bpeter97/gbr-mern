@@ -21,7 +21,7 @@ exports.getContainers = (req, res) => {
       if (!containers) {
         return res.status(400).json({ error: "No containers found" });
       }
-      res.json({ containers });
+      res.json(containers);
     })
     .catch(e => res.status(404).json(e));
 };
@@ -78,7 +78,7 @@ exports.postContainer = (req, res) => {
           errors.containers = "Unable to create the new container";
           return res.status(400).json(errors);
         }
-        res.json({ container });
+        res.json(container);
       })
       .catch(e => console.log(e));
   });
@@ -93,7 +93,7 @@ exports.getContainerSizes = (req, res) => {
       if (!containerSizes) {
         return res.status(400).json({ error: "No sizes found" });
       }
-      res.json({ containerSizes });
+      res.json(containerSizes);
     })
     .catch(e => res.status(404).json(e));
 };
@@ -124,7 +124,7 @@ exports.postContainerSize = (req, res) => {
     conSize
       .save()
       .then(containerSize => {
-        res.json({ containerSize });
+        res.json(containerSize);
       })
       .catch(e => console.log(e));
   });
@@ -149,7 +149,7 @@ exports.getContainerSize = (req, res) => {
         errors.size = "There was no size found";
         return res.status(400).json(errors);
       }
-      res.json({ containerSize });
+      res.json(containerSize);
     })
     .catch(e => console.log(e));
 };
@@ -190,7 +190,7 @@ exports.patchContainerSize = (req, res) => {
           errors.size = "Unable to find and update the size";
           return res.status(400).json(errors);
         }
-        res.json({ containerSize });
+        res.json(containerSize);
       })
       .catch(e => console.log(e));
   });
@@ -217,7 +217,7 @@ exports.deleteContainerSize = (req, res) => {
         res.status(404).json(errors);
       }
       // Return the size that was just removed.
-      res.json({ containerSize });
+      res.json(containerSize);
     })
     .catch(e => res.status(400).send());
 };
@@ -243,7 +243,7 @@ exports.getContainer = (req, res) => {
         errors.container = "There was no container found";
         return res.status(400).json(errors);
       }
-      res.json({ container });
+      res.json(container);
     });
 };
 
@@ -354,7 +354,7 @@ exports.patchContainer = (req, res) => {
                 return res.status(400).json(errors);
               }
 
-              res.json({ container });
+              res.json(container);
             })
             .catch(e => console.log(e));
         })
@@ -400,7 +400,7 @@ exports.deleteContainer = (req, res) => {
             return res.status(400).json(errors);
           }
           // Return the container for confirmation
-          return res.json({ container });
+          return res.json(container);
         })
         .catch(e => console.log(e));
     })
