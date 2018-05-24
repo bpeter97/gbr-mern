@@ -115,7 +115,7 @@ class Customers extends Component {
       {
         Header: "Edit",
         id: "edit",
-        accessor: "id",
+        accessor: "_id",
         Cell: ({ value }) => (
           <button
             className="btn btn-success"

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldInput from "../common/TextFieldInput";
+import { getCustomer } from "../../actions/customerActions";
 
 class EditCustomer extends Component {
   constructor() {
@@ -30,13 +31,15 @@ class EditCustomer extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.location.state) {
+    let hasState = this.props.location.location.state;
+    let id = "";
+    if (!hasState) {
       this.props.history.push("/customers");
     } else {
-      const { id } = this.props.location.state;
+      id = hasState.id;
     }
 
-    // this.props.getCustomer(id);
+    this.props.getCustomer(id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -275,7 +278,8 @@ EditCustomer.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  location: state.router
 });
 
-export default connect(mapStateToProps, {})(EditCustomer);
+export default connect(mapStateToProps, { getCustomer })(EditCustomer);
