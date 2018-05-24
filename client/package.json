@@ -17,6 +17,7 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.4",
     "react-swipeable-drawer": "^3.1.0",
+    "react-table": "^6.8.6",
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0"
   },
