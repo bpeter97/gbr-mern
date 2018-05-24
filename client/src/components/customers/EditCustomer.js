@@ -38,6 +38,24 @@ class EditCustomer extends Component {
       id = hasState.id;
     }
     this.props.getCustomer(id);
+    let { customer } = this.props.customers;
+    this.setState({
+      name: customer.name || "",
+      address1: customer.address1 || "",
+      address2: customer.address2 || "",
+      city: customer.city || "",
+      zipcode: customer.zipcode || "",
+      state: customer.state || "",
+      phone: customer.phone || "",
+      ext: customer.ext || "",
+      fax: customer.fax || "",
+      email: customer.email || "",
+      rdp: customer.rdp || "",
+      notes: customer.notes || "",
+      isFlagged: customer.isFlagged || "",
+      flagReason: customer.flagReason || "",
+      lastViewed: customer.lastViewed || ""
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -261,7 +279,8 @@ EditCustomer.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
-  location: state.router
+  location: state.router,
+  customers: state.customers
 });
 
 export default connect(mapStateToProps, { getCustomer })(EditCustomer);
