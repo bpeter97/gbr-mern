@@ -37,13 +37,7 @@ exports.postTodo = (req, res) => {
   const { errors, isValid } = validateTodoInput(req.body);
 
   // send 400 error with validation errors if not valid.
-  // if (!isValid || !ObjectID.isValid(req.params.id)) {
-  //   if (!ObjectID.isValid(req.params.id)) {
-  //     debugger;
-  //     errors.todo = "Todo not valid";
-  //   }
-  //   return res.status(400).json(errors);
-  // }
+  if (!isValid) return res.status(400).json(errors);
 
   const user = jwt_decode(req.token);
 
