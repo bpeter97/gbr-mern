@@ -205,4 +205,115 @@ describe("DEFAULTS", () => {
         .end(done);
     });
   });
+
+  describe("GET /profile", () => {
+    it("should return logged in users information", done => {
+      request(app)
+        .get("/api/profile")
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body._id).toBe(users[0]._id.toHexString());
+          expect(res.body.username).toBe(users[0].username);
+        })
+        .end(done);
+    });
+
+    it("should not return user information if not logged in", done => {
+      request(app)
+        .get("/api/profile")
+        .expect(401)
+        .expect(res => {
+          // check to see if success & token has been created.
+          expect(res.body.username).toBeFalsy();
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+  });
+
+  describe("PATCH /profile", () => {
+    it("should update the logged in users information", done => {
+      userData = {
+        firstName: "somename",
+        lastName: "Peter",
+        middleInitial: "L",
+        suffix: "Jr",
+        username: "blpj",
+        password: "thePassword",
+        email: "test@test.com",
+        phone: "5559991234",
+        title: "Web Developer",
+        type: "Admin",
+        validated: true
+      };
+
+      request(app)
+        .patch("/api/profile")
+        .set("Authorization", users[0].token)
+        .send(userData)
+        .expect(200)
+        .expect(res => {
+          expect(res.body._id).toBe(users[0]._id.toHexString());
+          expect(res.body.firstName).toBe("somename");
+        })
+        .end(done);
+    });
+
+    it("should not update user information if not logged in", done => {
+      userData = {
+        firstName: "newname",
+        lastName: "Peter",
+        middleInitial: "L",
+        suffix: "Jr",
+        username: "blpj",
+        password: "thePassword",
+        email: "test@test.com",
+        phone: "5559991234",
+        title: "Web Developer",
+        type: "Admin",
+        validated: true
+      };
+
+      request(app)
+        .patch("/api/profile")
+        .expect(401)
+        .expect(res => {
+          // check to see if success & token has been created.
+          expect(res.body.firstName).toBeFalsy();
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+
+    it("should not update user information with validation errors", done => {
+      userData = {
+        firstName: "newname",
+        lastName: "Peter",
+        middleInitial: "L",
+        suffix: "Jr",
+        username: "blpj",
+        password: "thePassword",
+        email: "bademail",
+        phone: "5559991234",
+        title: "Web Developer",
+        type: "Admin",
+        validated: "badvalidatedvalue"
+      };
+
+      request(app)
+        .patch("/api/profile")
+        .set("Authorization", users[0].token)
+        .send(userData)
+        .expect(400)
+        .expect(res => {
+          // check to see if success & token has been created.
+          expect(res.body.email).toBe("Must enter a valid email");
+          expect(res.body.validated).toBe(
+            "You must select whether the user is validated"
+          );
+        })
+        .end(done);
+    });
+  });
 });
