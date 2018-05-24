@@ -5,6 +5,7 @@ import {
   EDIT_CUSTOMER,
   DELETE_CUSTOMER,
   CUSTOMERS_LOADING,
+  CLEAR_CUSTOMER,
   GET_ERRORS
 } from "../actions/types";
 
@@ -50,6 +51,8 @@ export default function(state = initialState, action) {
           customer => customer._id !== action.payload
         )
       };
+    case CLEAR_CUSTOMER:
+      return {};
     default:
       return state;
   }
