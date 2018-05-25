@@ -2,33 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldInput from "../common/TextFieldInput";
-import { getCustomer } from "../../actions/customerActions";
+import Spinner from "../common/Spinner";
+import { getCustomer, clearCustomer } from "../../actions/customerActions";
+import EditCustomerForm from "./EditCustomerForm";
 
 class EditCustomer extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      name: "",
-      address1: "",
-      address2: "",
-      city: "",
-      zipcode: "",
-      state: "",
-      phone: "",
-      ext: "",
-      fax: "",
-      email: "",
-      rdp: "",
-      notes: "",
-      isFlagged: "",
-      flagReason: "",
-      lastViewed: ""
-    };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
   componentDidMount() {
     let hasState = this.props.location.location.state;
     let id = "";
@@ -36,235 +14,25 @@ class EditCustomer extends Component {
       this.props.history.push("/customers");
     } else {
       id = hasState.id;
-    }
-    this.props.getCustomer(id);
-    let { customer } = this.props.customers;
-    this.setState({
-      name: customer.name || "",
-      address1: customer.address1 || "",
-      address2: customer.address2 || "",
-      city: customer.city || "",
-      zipcode: customer.zipcode || "",
-      state: customer.state || "",
-      phone: customer.phone || "",
-      ext: customer.ext || "",
-      fax: customer.fax || "",
-      email: customer.email || "",
-      rdp: customer.rdp || "",
-      notes: customer.notes || "",
-      isFlagged: customer.isFlagged || "",
-      flagReason: customer.flagReason || "",
-      lastViewed: customer.lastViewed || ""
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+      this.props.getCustomer(id);
     }
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-
-    const customerData = {
-      name: this.state.name,
-      address1: this.state.address1,
-      address2: this.state.address2,
-      city: this.state.city,
-      zipcode: this.state.zipcode,
-      state: this.state.state,
-      phone: this.state.phone,
-      ext: this.state.ext,
-      fax: this.state.fax,
-      email: this.state.email,
-      rdp: this.state.rdp,
-      notes: this.state.notes,
-      isFlagged: this.state.isFlagged,
-      flagReason: this.state.flagReason,
-      lastViewed: Date.now().toString()
-    };
-    console.log(customerData);
-    // this.props.editCustomer(customerData);
-  }
-
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
   render() {
     const { location } = this.props;
-    const { errors } = this.state;
+    const { customer, loading } = this.props.customers;
+    let form = "";
+    if (customer === null || loading) {
+      form = <Spinner />;
+    } else {
+      form = <EditCustomerForm />;
+    }
 
     return (
       <div className="col-10">
         <div className="m-auto w-lg-75 w-xl-50">
           <h2 className="text-center font-weight-light mb-5">Edit Customer</h2>
-          <form onSubmit={this.onSubmit}>
-            <div className="form-group">
-              <label>Name</label>
-              <TextFieldInput
-                name="name"
-                type="name"
-                className="form-control"
-                value={this.state.name}
-                onChange={this.onChange}
-                error={errors}
-              />
-            </div>
-            <div className=" form-group">
-              <label>Address 1</label>
-              <TextFieldInput
-                name="address1"
-                type="address1"
-                className="form-control"
-                value={this.state.address1}
-                onChange={this.onChange}
-                error={errors}
-              />
-            </div>
-            <div className="form-group">
-              <label>Address 2</label>
-              <TextFieldInput
-                name="address2"
-                type="address2"
-                className="form-control"
-                value={this.state.address2}
-                onChange={this.onChange}
-                error={errors}
-              />
-            </div>
-            <div className="form-row">
-              <div className="col form-group">
-                <label>City</label>
-                <TextFieldInput
-                  name="city"
-                  type="city"
-                  className="form-control"
-                  value={this.state.city}
-                  onChange={this.onChange}
-                  error={errors}
-                />
-              </div>
-              <div className="col form-group">
-                <label>State</label>
-                <TextFieldInput
-                  name="state"
-                  type="state"
-                  className="form-control"
-                  value={this.state.state}
-                  onChange={this.onChange}
-                  error={errors}
-                />
-              </div>
-              <div className="col form-group">
-                <label>Zipcode</label>
-                <TextFieldInput
-                  name="zipcode"
-                  type="zipcode"
-                  className="form-control"
-                  value={this.state.zipcode}
-                  onChange={this.onChange}
-                  error={errors}
-                />
-              </div>
-            </div>
-
-            <div className="form-row">
-              <div className="col form-group">
-                <label>Phone (Work)</label>
-                <TextFieldInput
-                  name="phone"
-                  type="phone"
-                  className="form-control"
-                  value={this.state.phone}
-                  onChange={this.onChange}
-                  error={errors}
-                />
-              </div>
-              <div className="col form-group">
-                <label>Ext</label>
-                <TextFieldInput
-                  name="ext"
-                  type="ext"
-                  className="form-control"
-                  value={this.state.ext}
-                  onChange={this.onChange}
-                  error={errors}
-                />
-              </div>
-              <div className="col form-group">
-                <label>Fax</label>
-                <TextFieldInput
-                  name="fax"
-                  type="fax"
-                  className="form-control"
-                  value={this.state.fax}
-                  onChange={this.onChange}
-                  error={errors}
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <label>Email</label>
-              <TextFieldInput
-                name="email"
-                type="email"
-                className="form-control"
-                value={this.state.email}
-                onChange={this.onChange}
-                error={errors}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>RDP</label>
-              <TextFieldInput
-                name="rdp"
-                type="rdp"
-                className="form-control"
-                value={this.state.rdp}
-                onChange={this.onChange}
-                error={errors}
-              />
-            </div>
-            <div className="form-group">
-              <label>Notes</label>
-              <TextFieldInput
-                name="notes"
-                type="notes"
-                className="form-control"
-                value={this.state.notes}
-                onChange={this.onChange}
-                error={errors}
-              />
-            </div>
-            <div className="form-row">
-              <div className="col form-group">
-                <label>Flagged?</label>
-                <TextFieldInput
-                  name="isFlagged"
-                  type="isFlagged"
-                  className="form-control"
-                  value={this.state.isFlagged}
-                  onChange={this.onChange}
-                  error={errors}
-                />
-              </div>
-              <div className="col form-group">
-                <label>Flag Reason</label>
-                <TextFieldInput
-                  name="flagReason"
-                  type="flagReason"
-                  className="form-control"
-                  value={this.state.flagReason}
-                  onChange={this.onChange}
-                  error={errors}
-                />
-              </div>
-            </div>
-
-            <input type="submit" className="btn btn-info mt-2" />
-          </form>
+          {form}
         </div>
       </div>
     );
@@ -273,7 +41,8 @@ class EditCustomer extends Component {
 
 EditCustomer.propTypes = {
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  customer: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -283,4 +52,6 @@ const mapStateToProps = state => ({
   customers: state.customers
 });
 
-export default connect(mapStateToProps, { getCustomer })(EditCustomer);
+export default connect(mapStateToProps, { getCustomer, clearCustomer })(
+  EditCustomer
+);
