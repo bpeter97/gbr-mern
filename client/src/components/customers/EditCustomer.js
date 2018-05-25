@@ -29,9 +29,12 @@ class EditCustomer extends Component {
     }
 
     return (
-      <div className="col-10 col-md-10 col-sm-4">
-        <h6>Edit Customer</h6>
-        {form}
+      <div className="col-12 col-md-10 col-sm-4" style={{}}>
+        <div className="m-3">
+          <h2 class="text-center font-weight-light ">Edit Customer</h2>
+        </div>
+
+        <div className="m-auto w-lg-75 w-xl-50">{form}</div>
       </div>
     );
   }
