@@ -17,9 +17,9 @@ class TodoItem extends Component {
     this.setState({ completed: this.props.todo.completed });
   }
 
-  onDeleteClick(id, e) {
+  onDeleteClick(todo, e) {
     e.stopPropagation();
-    this.props.deleteTodo(id);
+    this.props.deleteTodo(todo);
   }
 
   onCompleteClick(todo) {

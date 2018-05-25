@@ -45,14 +45,14 @@ export const getTodos = () => dispatch => {
     );
 };
 
-export const deleteTodo = id => dispatch => {
+export const deleteTodo = todo => dispatch => {
   dispatch(clearErrors());
   axios
-    .delete(`/api/todos/${id}`)
+    .delete(`/api/todos/${todo._id}`)
     .then(res =>
       dispatch({
         type: DELETE_TODO,
-        payload: res.data
+        payload: todo._id
       })
     )
     .catch(err =>

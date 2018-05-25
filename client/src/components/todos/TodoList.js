@@ -5,7 +5,7 @@ import TodoItem from "./TodoItem";
 class TodoList extends Component {
   render() {
     const { todos } = this.props.todos;
-    if (todos.length > 0) {
+    if (todos) {
       return todos.map(todo => <TodoItem key={todo._id} todo={todo} />);
     } else {
       return "";
