@@ -63,7 +63,6 @@ class EditCustomerForm extends Component {
       flagReason: this.state.flagReason
     };
     this.props.editCustomer(customerData);
-    this.props.history.push("/customers");
   }
 
   onChange(e) {
