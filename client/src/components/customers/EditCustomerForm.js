@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import Spinner from "../common/Spinner";
-import { getCustomerForm } from "../../actions/customerActions";
+import { editCustomer } from "../../actions/customerActions";
 import TextArea from "../common/TextArea";
 
 class EditCustomerForm extends Component {
@@ -46,6 +46,7 @@ class EditCustomerForm extends Component {
     e.preventDefault();
 
     const customerData = {
+      _id: this.props.customer._id,
       name: this.state.name,
       address1: this.state.address1,
       address2: this.state.address2,
@@ -61,8 +62,8 @@ class EditCustomerForm extends Component {
       isFlagged: this.state.isFlagged,
       flagReason: this.state.flagReason
     };
-    console.log(customerData);
-    // this.props.editCustomer(customerData);
+    this.props.editCustomer(customerData);
+    this.props.history.push("/customers");
   }
 
   onChange(e) {
@@ -251,13 +252,15 @@ class EditCustomerForm extends Component {
 
 EditCustomerForm.propTypes = {
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
-  customer: state.customers.customer
+  customer: state.customers.customer,
+  location: state.router
 });
 
-export default connect(mapStateToProps)(EditCustomerForm);
+export default connect(mapStateToProps, { editCustomer })(EditCustomerForm);

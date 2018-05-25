@@ -65,10 +65,10 @@ export const getCustomer = id => dispatch => {
     );
 };
 
-export const editCustomer = id => dispatch => {
+export const editCustomer = customerData => dispatch => {
   dispatch(clearErrors());
   axios
-    .patch(`/api/customers/${id}`)
+    .patch(`/api/customers/${customerData._id}`, customerData)
     .then(res =>
       dispatch({
         type: EDIT_CUSTOMER,
