@@ -9,10 +9,12 @@ const TextFieldGroup = ({
   label,
   type,
   onChange,
-  disabled
+  disabled,
+  divClass
 }) => {
   return (
-    <div className="form-group">
+    <div className={`form-group ${divClass}`}>
+      <label>{label}</label>
       <input
         type={type}
         className={classnames("form-control")}
@@ -32,7 +34,9 @@ TextFieldGroup.propTypes = {
   value: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.string
+  disabled: PropTypes.string,
+  label: PropTypes.string,
+  divClass: PropTypes.string
 };
 
 TextFieldGroup.defaultProps = {
