@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import TextFieldInput from "../common/TextFieldInput";
+import TextFieldGroup from "../common/TextFieldGroup";
 import Spinner from "../common/Spinner";
 import { getCustomerForm } from "../../actions/customerActions";
+import TextArea from "../common/TextArea";
 
 class EditCustomerForm extends Component {
   constructor() {
@@ -90,159 +91,154 @@ class EditCustomerForm extends Component {
   render() {
     const { errors } = this.props;
     let form = (
-      <form onSubmit={this.onSubmit}>
-        <div className="form-group">
-          <label>Name</label>
-          <TextFieldInput
-            name="name"
-            type="name"
-            className="form-control"
-            value={this.state.name}
-            onChange={this.onChange}
-            error={errors}
-          />
-        </div>
-        <div className=" form-group">
-          <label>Address 1</label>
-          <TextFieldInput
-            name="address1"
-            type="address1"
-            className="form-control"
-            value={this.state.address1}
-            onChange={this.onChange}
-            error={errors}
-          />
-        </div>
-        <div className="form-group">
-          <label>Address 2</label>
-          <TextFieldInput
-            name="address2"
-            type="address2"
-            className="form-control"
-            value={this.state.address2}
-            onChange={this.onChange}
-            error={errors}
-          />
-        </div>
+      <form className="" onSubmit={this.onSubmit}>
+        <TextFieldGroup
+          name="name"
+          type="text"
+          label="Name"
+          className="form-control"
+          value={this.state.name}
+          onChange={this.onChange}
+          error={errors}
+        />
+
+        <TextFieldGroup
+          name="address1"
+          type="text"
+          label="Address 1"
+          className="form-control"
+          value={this.state.address1}
+          onChange={this.onChange}
+          error={errors}
+        />
+
+        <TextFieldGroup
+          name="address2"
+          type="text"
+          label="Address 2"
+          className="form-control"
+          value={this.state.address2}
+          onChange={this.onChange}
+          error={errors}
+        />
+
         <div className="form-row">
-          <div className="col form-group">
-            <label>City</label>
-            <TextFieldInput
-              name="city"
-              type="city"
-              className="form-control"
-              value={this.state.city}
-              onChange={this.onChange}
-              error={errors}
-            />
-          </div>
-          <div className="col form-group">
-            <label>State</label>
-            <TextFieldInput
-              name="state"
-              type="state"
-              className="form-control"
-              value={this.state.state}
-              onChange={this.onChange}
-              error={errors}
-            />
-          </div>
-          <div className="col form-group">
-            <label>Zipcode</label>
-            <TextFieldInput
-              name="zipcode"
-              type="zipcode"
-              className="form-control"
-              value={this.state.zipcode}
-              onChange={this.onChange}
-              error={errors}
-            />
-          </div>
+          <TextFieldGroup
+            name="city"
+            type="text"
+            label="City"
+            divClass="col"
+            className="form-control"
+            value={this.state.city}
+            onChange={this.onChange}
+            error={errors}
+          />
+
+          <TextFieldGroup
+            name="state"
+            type="text"
+            label="State"
+            divClass="col"
+            className="form-control"
+            value={this.state.state}
+            onChange={this.onChange}
+            error={errors}
+          />
+
+          <TextFieldGroup
+            name="zipcode"
+            type="text"
+            label="Zipcode"
+            divClass="col"
+            className="form-control"
+            value={this.state.zipcode}
+            onChange={this.onChange}
+            error={errors}
+          />
         </div>
 
         <div className="form-row">
-          <div className="col form-group">
-            <label>Phone (Work)</label>
-            <TextFieldInput
-              name="phone"
-              type="phone"
-              className="form-control"
-              value={this.state.phone}
-              onChange={this.onChange}
-              error={errors}
-            />
-          </div>
-          <div className="col form-group">
-            <label>Ext</label>
-            <TextFieldInput
-              name="ext"
-              type="ext"
-              className="form-control"
-              value={this.state.ext}
-              onChange={this.onChange}
-              error={errors}
-            />
-          </div>
-          <div className="col form-group">
-            <label>Fax</label>
-            <TextFieldInput
-              name="fax"
-              type="fax"
-              className="form-control"
-              value={this.state.fax}
-              onChange={this.onChange}
-              error={errors}
-            />
-          </div>
-        </div>
-        <div className="form-group">
-          <label>Email</label>
-          <TextFieldInput
-            name="email"
-            type="email"
+          <TextFieldGroup
+            name="phone"
+            type="text"
+            label="Phone (Work)"
+            divClass="col"
             className="form-control"
-            value={this.state.email}
+            value={this.state.phone}
+            onChange={this.onChange}
+            error={errors}
+          />
+          <TextFieldGroup
+            name="ext"
+            type="text"
+            label="Ext"
+            divClass="col"
+            className="form-control"
+            value={this.state.ext}
             onChange={this.onChange}
             error={errors}
           />
         </div>
+        <TextFieldGroup
+          name="fax"
+          type="text"
+          label="Fax"
+          className="form-control"
+          value={this.state.fax}
+          onChange={this.onChange}
+          error={errors}
+        />
+        <TextFieldGroup
+          name="email"
+          type="email"
+          label="Email"
+          className="form-control"
+          value={this.state.email}
+          onChange={this.onChange}
+          error={errors}
+        />
 
         <div className="form-group">
           <label>RDP</label>
-          <TextFieldInput
+          <TextArea
             name="rdp"
-            type="rdp"
             className="form-control"
             value={this.state.rdp}
             onChange={this.onChange}
             error={errors}
           />
         </div>
+
         <div className="form-group">
           <label>Notes</label>
-          <TextFieldInput
+          <TextArea
             name="notes"
-            type="notes"
             className="form-control"
             value={this.state.notes}
             onChange={this.onChange}
             error={errors}
           />
         </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label>Flagged?</label>
-            <select name="isFlagged" value={this.state.isFlagged}>
-              <option value="true">True</option>
-              <option value="false">False</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label>
-              Flag Reason
-              <textarea name="flagReason" id="" value={this.state.flagReason} />
-            </label>
-          </div>
+
+        <TextFieldGroup
+          name="isFlagged"
+          type="isFlagged"
+          label="Flagged?"
+          className="form-control"
+          value={this.state.isFlagged}
+          onChange={this.onChange}
+          error={errors}
+        />
+
+        <div className="form-group">
+          <label>Flag Reason</label>
+          <TextArea
+            name="flagReason"
+            className="form-control"
+            value={this.state.flagReason}
+            onChange={this.onChange}
+            error={errors}
+          />
         </div>
 
         <input type="submit" className="btn btn-info mt-2" />
