@@ -29,11 +29,9 @@ class EditCustomer extends Component {
     }
 
     return (
-      <div className="col-10">
-        <div className="m-auto w-lg-75 w-xl-50">
-          <h2 className="text-center font-weight-light mb-5">Edit Customer</h2>
-          {form}
-        </div>
+      <div className="col-10 col-md-10 col-sm-4">
+        <h6>Edit Customer</h6>
+        {form}
       </div>
     );
   }
@@ -42,7 +40,7 @@ class EditCustomer extends Component {
 EditCustomer.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  customer: PropTypes.object.isRequired
+  customers: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
