@@ -17,6 +17,12 @@ class Customers extends Component {
     };
     this.props.history.push(location);
   }
+  addCustomerClick() {
+    const location = {
+      pathname: "/customers/add"
+    };
+    this.props.history.push(location);
+  }
 
   render() {
     const { customers } = this.props.customers;
@@ -151,7 +157,12 @@ class Customers extends Component {
     return (
       <div className="col-10 py-md-3 pl-md-5">
         <div className="d-flex justify-content-end mb-3">
-          <button className="btn btn-primary">Add</button>
+          <button
+            className="btn btn-primary"
+            onClick={this.addCustomerClick.bind(this)}
+          >
+            Add
+          </button>
         </div>
 
         <ReactTable
