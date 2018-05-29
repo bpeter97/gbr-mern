@@ -56,6 +56,7 @@ class AddCustomerForm extends Component {
       flagReason: this.state.flagReason
     };
     this.props.addCustomer(customerData);
+    this.props.redirectFunc();
   }
 
   onChange(e) {

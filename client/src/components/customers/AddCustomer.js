@@ -5,6 +5,10 @@ import { addCustomer } from "../../actions/customerActions";
 import AddCustomerForm from "../customers/AddCustomerForm";
 
 class AddCustomer extends Component {
+  onFormSubmit() {
+    this.props.history.push("/customers");
+  }
+
   render() {
     return (
       <div className="col-12" style={{}}>
@@ -13,7 +17,7 @@ class AddCustomer extends Component {
         </div>
 
         <div className="m-auto w-lg-75">
-          <AddCustomerForm />
+          <AddCustomerForm redirectFunc={this.onFormSubmit.bind(this)} />
         </div>
       </div>
     );
