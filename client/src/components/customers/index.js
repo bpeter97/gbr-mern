@@ -27,59 +27,6 @@ class Customers extends Component {
   render() {
     const { customers } = this.props.customers;
 
-    const data = [
-      {
-        id: "1",
-        first: "Taylor",
-        last: "Hartley",
-        address1: "1122 eeee rd",
-        city: "city name",
-        zipcode: "31245",
-        state: "AL",
-        phone: "706-555-5555",
-        fax: "N/A",
-        email: "awesome@awesome.com",
-        rdp: "",
-        notes: "",
-        isFlagged: false,
-        flagReason: "",
-        lastViewed: ""
-      },
-      {
-        id: "2",
-        first: "Brian",
-        last: "Peter",
-        address1: "1122 eeee rd",
-        city: "city name",
-        zipcode: "31245",
-        state: "AL",
-        phone: "706-555-5555",
-        fax: "N/A",
-        email: "awesome@awesome.com",
-        rdp: "",
-        notes: "",
-        isFlagged: false,
-        flagReason: "",
-        lastViewed: ""
-      },
-      {
-        id: "254",
-        first: "Riley",
-        last: "Hartley",
-        address1: "2211 eeee rd",
-        city: "city name",
-        zipcode: "31245",
-        state: "AL",
-        phone: "706-555-5555",
-        fax: "N/A",
-        email: "awesome@awesome.com",
-        rdp: "",
-        notes: "",
-        isFlagged: true,
-        flagReason: "REQUIRES PO",
-        lastViewed: ""
-      }
-    ];
     const data_history = [
       {
         containerID: "1234234",
