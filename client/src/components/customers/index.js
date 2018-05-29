@@ -149,7 +149,7 @@ class Customers extends Component {
       }
     ];
     return (
-      <div className="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5">
+      <div className="col-10 py-md-3 pl-md-5">
         <div className="d-flex justify-content-end mb-3">
           <button className="btn btn-primary">Add</button>
         </div>

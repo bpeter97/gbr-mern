@@ -12,8 +12,10 @@ const TextFieldGroup = ({
   disabled,
   divClass
 }) => {
+  if (divClass) {
+  }
   return (
-    <div className={`form-group ${divClass}`}>
+    <div className={classnames(divClass ? divClass : "")}>
       <label>{label}</label>
       <input
         type={type}
