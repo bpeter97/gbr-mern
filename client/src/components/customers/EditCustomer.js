@@ -18,6 +18,10 @@ class EditCustomer extends Component {
     }
   }
 
+  onFormSubmit() {
+    this.props.history.push("/customers");
+  }
+
   render() {
     const { location } = this.props;
     const { customer, loading } = this.props.customers;
@@ -25,7 +29,7 @@ class EditCustomer extends Component {
     if (customer === null || loading) {
       form = <Spinner />;
     } else {
-      form = <EditCustomerForm />;
+      form = <EditCustomerForm redirectFunc={this.onFormSubmit.bind(this)} />;
     }
 
     return (

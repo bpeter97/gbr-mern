@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
+
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
@@ -63,6 +65,7 @@ class EditCustomerForm extends Component {
       flagReason: this.state.flagReason
     };
     this.props.editCustomer(customerData);
+    this.props.redirectFunc();
   }
 
   onChange(e) {
@@ -90,6 +93,8 @@ class EditCustomerForm extends Component {
 
   render() {
     const { errors } = this.props;
+    const { onFormSubmit } = this.props;
+
     let form = (
       <form className="customer-form" onSubmit={this.onSubmit}>
         <div className="col-md-6">
