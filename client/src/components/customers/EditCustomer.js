@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import TextFieldInput from "../common/TextFieldInput";
 import Spinner from "../common/Spinner";
 import { getCustomer, clearCustomer } from "../../actions/customerActions";
 import EditCustomerForm from "./EditCustomerForm";
@@ -23,7 +22,6 @@ class EditCustomer extends Component {
   }
 
   render() {
-    const { location } = this.props;
     const { customer, loading } = this.props.customers;
     let form = "";
     if (customer === null || loading) {
@@ -47,7 +45,8 @@ class EditCustomer extends Component {
 EditCustomer.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  customers: PropTypes.object.isRequired
+  customers: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

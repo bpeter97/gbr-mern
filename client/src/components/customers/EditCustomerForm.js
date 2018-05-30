@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router";
-
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
-import Spinner from "../common/Spinner";
 import { editCustomer } from "../../actions/customerActions";
 import TextArea from "../common/TextArea";
 
@@ -93,8 +90,6 @@ class EditCustomerForm extends Component {
 
   render() {
     const { errors } = this.props;
-    const { onFormSubmit } = this.props;
-
     let form = (
       <form className="customer-form" onSubmit={this.onSubmit}>
         <div className="col-md-6">

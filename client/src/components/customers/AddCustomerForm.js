@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
-import Spinner from "../common/Spinner";
 import { addCustomer } from "../../actions/customerActions";
 import TextArea from "../common/TextArea";
 

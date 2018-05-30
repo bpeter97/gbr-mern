@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import SvgIcon from "react-icons-kit";
-import TextFieldGroup from "../common/TextFieldGroup";
 import PropTypes from "prop-types";
 import { deleteTodo, completeTodo, getTodos } from "../../actions/todoActions";
 import classNames from "classnames";

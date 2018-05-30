@@ -1,7 +1,5 @@
 import {
   ADD_TODO,
-  GET_ERRORS,
-  CLEAR_ERRORS,
   GET_TODOS,
   GET_TODO,
   COMPLETE_TODO,

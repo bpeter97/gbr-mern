@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addCustomer } from "../../actions/customerActions";
 import AddCustomerForm from "../customers/AddCustomerForm";
 
 class AddCustomer extends Component {
