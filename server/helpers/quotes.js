@@ -4,6 +4,7 @@ const _ = require("lodash");
 // models
 const Quote = require("../models/Quote");
 const PurchasePrices = require("../models/PurchasePrices");
+const RequestedProduct = require("../models/RequestedProduct");
 
 // validation files
 // const validateQuoteInput = require("../validation/quote");
@@ -29,6 +30,19 @@ exports.getQuotes = (req, res) => {
 // @route   POST api/quotes/
 // @desc    Creates a new quote.
 // @access  Private
+// @expects body to contain:
+//  				customer: ObjectID
+// 					purchaseType: ObjectID
+// 					attention: String
+// 					products: Array consisting of objects, example:
+// 										[ {quantity: int, product: (object)},
+// 											{quantity: int, product: (object)} ]
+// 					priceBeforeTax: Double
+// 					salesTax: Double
+// 					totalPrice: Double
+// 					monthlyPrice: Double
+// 					taxRate: Double
+// 					deliveryTotal: Double
 exports.postQuote = (req, res) => {
 	// // Fetch validation errors.
 	// const { errors, isValid } = validateQuoteInput(req.body);
@@ -39,10 +53,8 @@ exports.postQuote = (req, res) => {
 		"customer",
 		"purchaseType",
 		"attention",
-		"products",
-		"createdBy"
-	]);
-	// Create the creation date
+		"products" // array consisting of: [ {quantity (int), product (obj)} ]);
+	]); // Create the creation date
 	body.creationDate = new Date().getDate();
 	// Create expiration date
 	body.expirationDate = new Date();
@@ -63,15 +75,47 @@ exports.postQuote = (req, res) => {
 		"monthlyPrice",
 		"taxRate",
 		"deliveryTotal"
-  ]);
-  
-  newPurchasePrices = new PurchasePrices(bodyPrices);
+	]);
 
-  newPurchasePrices.save().then(purchasePrices => {
-    
-  }).catch(e => console.log(e));
-	// then
-	// Create the quote
+	var newPurchasePrices = new PurchasePrices(bodyPrices);
+
+	newPurchasePrices
+		.save()
+		.then(purchasePrices => {
+			if (!purchasePrices) {
+				errors.quote = "There was an issue creating the quote";
+				return res.status(400).json(errors);
+			}
+
+			// Create the quote
+			body.purchasePrices = purchasePrices._id;
+
+			var newQuote = new Quote(body);
+			newQuote
+				.save()
+				.then(quote => {
+					if (!quote) {
+						errors.quote = "There was an issue creating the quote";
+						return res.status(400).json(errors);
+					}
+
+					// Add products to requested products collection
+					body.products.map(item => {
+						var newProduct = new RequestedProduct({
+							order: null,
+							quote: quote._id,
+							productQuantity: item.quantity,
+							product: item.product
+						});
+						newProduct.save().catch(e => res.status(404).json(e));
+					});
+
+					// Everything is successful, return the quote.
+					res.json(quote);
+				})
+				.catch(e => res.status(404).json(e));
+		})
+		.catch(e => res.status(404).json(e));
 };
 
 // @route   GET api/quotes/:id
