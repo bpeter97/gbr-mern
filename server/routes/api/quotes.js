@@ -1,22 +1,27 @@
 const express = require("express");
 const router = express.Router();
 
-// @route   GET api/quotes/
-// @desc    Retrieves all of the quotes
-// @access  Private
+// helper
+const helpers = require("./../../helpers/quotes");
 
-// @route   POST api/quotes/
-// @desc    Creates a new quote.
+// @route   api/quotes/
+// @GET     Retrieves all of the quotes
+// @POST    Creates a new quote
 // @access  Private
+router
+	.route("/")
+	.get(helpers.getQuotes)
+	.post(helpers.postQuote);
 
-// @route   GET api/quotes/:id
-// @desc    Retrieves a single quote.
+// @route   api/quotes/:id
+// @GET     Retrieves a single quote
+// @PATCH   Updates all or part of a single quote
+// @DELETE  Deletes a single quote from the database
 // @access  Private
+router
+	.route("/:id")
+	.get(helpers.getQuote)
+	.patch(helpers.patchQuote)
+	.delete(helpers.deleteQuote);
 
-// @route   PATCH api/quotes/:id
-// @desc    Updates all or part of a single quote.
-// @access  Private
-
-// @route   DELETE api/quotes/:id
-// @desc    Deletes a single quote from the database.
-// @access  Private
+module.exports = router;
