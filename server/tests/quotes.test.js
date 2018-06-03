@@ -5,11 +5,18 @@ const { app } = require("./../../server");
 const User = require("./../models/User");
 const { populateUsers, users } = require("./seed/userSeed");
 const { populateCustomers, customers } = require("./seed/customerSeed");
+const { populateProducts, products } = require("./seed/productSeed");
 const { pupulateQuotes, quotes } = require("./seed/quoteSeed");
+const {
+  populatePurchaseTypes,
+  purchaseTypes
+} = require("./seed/purchaseTypeSeed");
 
 describe("QUOTES", () => {
   // call beforeEach() to run functions before each test.
   beforeEach(populateUsers);
+  beforeEach(populateProducts);
+  beforeEach(populatePurchaseTypes);
   beforeEach(populateCustomers);
   beforeEach(pupulateQuotes);
 
