@@ -12,6 +12,7 @@ const users = require("./server/routes/api/users");
 const events = require("./server/routes/api/events");
 const settings = require("./server/routes/api/settings");
 const todos = require("./server/routes/api/todos");
+const quotes = require("./server/routes/api/quotes");
 
 // middleware
 const authorization = require("./server/middleware/authorization");
@@ -44,6 +45,7 @@ app.use("/api/users", authorization, users);
 app.use("/api/events", authorization, events);
 app.use("/api/settings", authorization, settings);
 app.use("/api/todos", authorization, todos);
+app.use("/api/quotes", authorization, quotes);
 
 // Start the server
 app.listen(port, () => console.log(`Server running on port ${port}`));
