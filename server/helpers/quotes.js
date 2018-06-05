@@ -16,6 +16,11 @@ exports.getQuotes = (req, res) => {
   let errors = {};
 
   Quote.find({ isHidden: false })
+    .populate("customer")
+    .populate("purchaseType")
+    .populate("purchasePrices")
+    .populate("createdBy")
+    .populate("products.product")
     .then(quotes => {
       if (!quotes) {
         errors.quotes = "There were no quotes found for this user";

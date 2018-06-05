@@ -4,10 +4,12 @@ const Schema = mongoose.Schema;
 const QuoteSchema = new Schema({
   customer: {
     type: Schema.Types.ObjectId,
+    ref: "Customer",
     required: true
   },
   purchaseType: {
     type: Schema.Types.ObjectId,
+    ref: "PurchaseType",
     required: true
   },
   creationDate: {
@@ -31,6 +33,7 @@ const QuoteSchema = new Schema({
   },
   purchasePrices: {
     type: Schema.Types.ObjectId,
+    ref: "PurchasePrices",
     required: true
   },
   products: [
@@ -48,7 +51,8 @@ const QuoteSchema = new Schema({
   ],
   createdBy: {
     type: Schema.Types.ObjectId,
-    required: true
+    required: true,
+    ref: "User"
   }
 });
 module.exports = Quote = mongoose.model("Quote", QuoteSchema);
