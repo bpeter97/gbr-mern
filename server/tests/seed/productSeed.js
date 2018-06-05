@@ -59,7 +59,7 @@ const products = [
     shortName: "20CON",
     price: 0.0,
     monthlyPrice: 100.0,
-    rental: false,
+    rental: true,
     type: containerID
   }
 ];
