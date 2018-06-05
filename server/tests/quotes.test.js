@@ -6,7 +6,14 @@ const User = require("./../models/User");
 const { populateUsers, users } = require("./seed/userSeed");
 const { populateCustomers, customers } = require("./seed/customerSeed");
 const { populateProducts, products } = require("./seed/productSeed");
-const { pupulateQuotes, quotes } = require("./seed/quoteSeed");
+const {
+  requestedProducts,
+  productPrices,
+  quotes,
+  populateRequestedProducts,
+  populatePurchasePrices,
+  populateQuotes
+} = require("./seed/quoteSeed");
 const {
   populatePurchaseTypes,
   purchaseTypes
@@ -18,13 +25,24 @@ describe("QUOTES", () => {
   beforeEach(populateProducts);
   beforeEach(populatePurchaseTypes);
   beforeEach(populateCustomers);
-  beforeEach(pupulateQuotes);
+  beforeEach(populateRequestedProducts);
+  beforeEach(populatePurchasePrices);
+  beforeEach(populateQuotes);
 
   // New quote object
   var newQuote = {};
 
   describe("GET /quotes", () => {
-    it("should return all quotes that are not hidden");
+    it("should return all quotes that are not hidden", done => {
+      request(app)
+        .get("/api/quotes")
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          console.log(res.body);
+        })
+        .end(done);
+    });
     it("should not return quotes if not logged in");
   });
 
