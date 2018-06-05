@@ -39,7 +39,7 @@ describe("QUOTES", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          console.log(res.body);
+          expect(res.body[0].customer.name).toBe(customers[0].name);
         })
         .end(done);
     });
