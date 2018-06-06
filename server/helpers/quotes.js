@@ -38,7 +38,18 @@ exports.getQuotes = (req, res) => {
 exports.getUserQuotes = (req, res) => {
   let errors = {};
 
+  // Check to see if error is a valid ObjectID
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.quote = "There were no quotes found for this user";
+    return res.status(400).json(errors);
+  }
+
   Quote.find({ createdBy: req.params.id, isHidden: false })
+    .populate("customer")
+    .populate("purchaseType")
+    .populate("purchasePrices")
+    .populate("createdBy")
+    .populate("products.product")
     .then(quotes => {
       if (!quotes) {
         errors.quotes = "There were no quotes found for this user";
@@ -51,15 +62,26 @@ exports.getUserQuotes = (req, res) => {
 };
 
 // @route   GET api/quotes/customer/:id
-// @desc    Retrieves all of the quotes created by a user
+// @desc    Retrieves all of the quotes for a customer
 // @access  Private
 exports.getCustomerQuotes = (req, res) => {
   let errors = {};
 
+  // Check to see if error is a valid ObjectID
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.quote = "There were no quotes found for this customer";
+    return res.status(400).json(errors);
+  }
+
   Quote.find({ customer: req.params.id, isHidden: false })
+    .populate("customer")
+    .populate("purchaseType")
+    .populate("purchasePrices")
+    .populate("createdBy")
+    .populate("products.product")
     .then(quotes => {
       if (!quotes) {
-        errors.quotes = "There were no quotes found for this user";
+        errors.quotes = "There were no quotes found for this customer";
         return res.status(400).json(errors);
       }
 
@@ -172,6 +194,11 @@ exports.getQuote = (req, res) => {
   }
 
   Quote.findById(req.params.id)
+    .populate("customer")
+    .populate("purchaseType")
+    .populate("purchasePrices")
+    .populate("createdBy")
+    .populate("products.product")
     .then(quote => {
       if (!quote) {
         errors.quote = "There was no quote found";
@@ -201,6 +228,11 @@ exports.deleteQuote = (req, res) => {
   }
 
   Quote.findByIdAndRemove(req.params.id)
+    .populate("customer")
+    .populate("purchaseType")
+    .populate("purchasePrices")
+    .populate("createdBy")
+    .populate("products.product")
     .then(quote => {
       if (!quote) {
         errors.quote = "There was no quote found";
