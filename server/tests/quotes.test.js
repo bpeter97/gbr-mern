@@ -43,7 +43,15 @@ describe("QUOTES", () => {
         })
         .end(done);
     });
-    it("should not return quotes if not logged in");
+    it("should not return quotes if not logged in", done => {
+      request(app)
+        .get("/api/quotes")
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
   });
 
   describe("POST /quotes", () => {
@@ -53,21 +61,105 @@ describe("QUOTES", () => {
   });
 
   describe("GET /quotes/customer/:id", () => {
-    it("should return all of a customer's quotes that are not hidden");
-    it("should not return quotes if not logged in");
-    it("should not return quotes with invalid ID");
+    it("should return all of a customer's quotes that are not hidden", done => {
+      request(app)
+        .get(`/api/quotes/customer/${customers[0]._id}`)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body.length).toBe(1);
+          expect(res.body[0].customer.name).toBe(customers[0].name);
+        })
+        .end(done);
+    });
+    it("should not return quotes if not logged in", done => {
+      request(app)
+        .get(`/api/quotes/customer/${customers[0]._id}`)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not return quotes with invalid ID", done => {
+      request(app)
+        .get(`/api/quotes/customer/${customers[0]._id}ss`)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.quote).toBe(
+            "There were no quotes found for this customer"
+          );
+        })
+        .end(done);
+    });
   });
 
   describe("GET /quotes/user/:id", () => {
-    it("should return all of a user's created quotes that are not hidden");
-    it("should not return quotes if not logged in");
-    it("should not return quotes with invalid user ID");
+    it("should return all of a user's created quotes that are not hidden", done => {
+      request(app)
+        .get(`/api/quotes/user/${users[0]._id}`)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body.length).toBe(1);
+          expect(res.body[0].createdBy.firstName).toBe(users[0].firstName);
+        })
+        .end(done);
+    });
+    it("should not return quotes if not logged in", done => {
+      request(app)
+        .get(`/api/quotes/user/${users[0]._id}`)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not return quotes with invalid user ID", done => {
+      request(app)
+        .get(`/api/quotes/user/${users[0]._id}ss`)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.quote).toBe(
+            "There were no quotes found for this user"
+          );
+        })
+        .end(done);
+    });
   });
 
   describe("GET /quotes/:id", () => {
-    it("should return a quote");
-    it("should not return quote if not logged in");
-    it("should not return quote with invalid ID");
+    it("should return a quote", done => {
+      request(app)
+        .get(`/api/quotes/${quotes[0]._id}`)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body.customer._id).toBe(quotes[0].customer.toHexString());
+        })
+        .end(done);
+    });
+    it("should not return quote if not logged in", done => {
+      request(app)
+        .get(`/api/quotes/${quotes[0]._id}`)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not return quote with invalid ID", done => {
+      request(app)
+        .get(`/api/quotes/${quotes[0]._id}ss`)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.quote).toBe("There was no quote found");
+        })
+        .end(done);
+    });
   });
 
   describe("PATCH /quotes/:id", () => {
@@ -78,8 +170,34 @@ describe("QUOTES", () => {
   });
 
   describe("DELETE /quotes/:id", () => {
-    it("should delete a quote");
-    it("should not delete quote if not logged in");
-    it("should not delete quote with invalid ID");
+    it("should delete a quote", done => {
+      request(app)
+        .delete(`/api/quotes/${quotes[0]._id}`)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body.customer.name).toBe(customers[0].name);
+        })
+        .end(done);
+    });
+    it("should not delete quote if not logged in", done => {
+      request(app)
+        .delete(`/api/quotes/${quotes[0]._id}`)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not delete quote with invalid ID", done => {
+      request(app)
+        .delete(`/api/quotes/${quotes[0]._id}ss`)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.quote).toBe("There was no quote found");
+        })
+        .end(done);
+    });
   });
 });
