@@ -1,5 +1,6 @@
 const { ObjectID } = require("mongodb");
 const _ = require("lodash");
+const jwt_decode = require("jwt-decode");
 
 // models
 const Quote = require("../models/Quote");
@@ -7,7 +8,7 @@ const PurchasePrices = require("../models/PurchasePrices");
 const RequestedProduct = require("../models/RequestedProduct");
 
 // validation files
-// const validateQuoteInput = require("../validation/quote");
+const validateQuoteInput = require("../validation/quote");
 
 // @route   GET api/quotes/
 // @desc    Retrieves all of the quotes
@@ -112,13 +113,8 @@ exports.postQuote = (req, res) => {
   // send 400 error with validation errors if not valid.
   if (!isValid) return res.status(400).json(errors);
 
-  var body = _.pick(req.body, [
-    "customer",
-    "purchaseType",
-    "attention",
-    "products" // array consisting of: [ {quantity (int), product (obj)} ]);
-  ]); // Create the creation date
-  body.creationDate = new Date().getDate();
+  var body = _.pick(req.body, ["customer", "purchaseType", "attention"]); // Create the creation date
+  body.creationDate = new Date();
   // Create expiration date
   body.expirationDate = new Date();
   body.expirationDate.setMonth(body.expirationDate.getMonth() + 1);
@@ -130,6 +126,9 @@ exports.postQuote = (req, res) => {
   // Set the createdBy property for the quote.
   body.createdBy = user._id;
 
+  // create an empty array of products in the body to fill later
+  body.products = [];
+
   // Create the purchase prices
   var bodyPrices = _.pick(req.body, [
     "priceBeforeTax",
@@ -140,8 +139,10 @@ exports.postQuote = (req, res) => {
     "deliveryTotal"
   ]);
 
+  // Create the quote's prices object
   var newPurchasePrices = new PurchasePrices(bodyPrices);
 
+  // Save the newly created purchase prices object
   newPurchasePrices
     .save()
     .then(purchasePrices => {
@@ -150,31 +151,55 @@ exports.postQuote = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      // Create the quote
+      // Add the ID to the body variable.
       body.purchasePrices = purchasePrices._id;
 
-      var newQuote = new Quote(body);
-      newQuote
-        .save()
-        .then(quote => {
-          if (!quote) {
-            errors.quote = "There was an issue creating the quote";
-            return res.status(400).json(errors);
-          }
+      // initialize an empty array to store formatted RequestedProduct objects
+      var tempReqProducts = [];
 
-          // Add products to requested products collection
-          body.products.map(item => {
-            var newProduct = new RequestedProduct({
-              order: null,
-              quote: quote._id,
-              productQuantity: item.quantity,
-              product: item.product
+      // Add products to temp requested products array
+      req.body.products.forEach(request => {
+        tempReqProducts.push({
+          order: null,
+          quote: null,
+          productQuantity: request.quantity,
+          product: request.product
+        });
+      });
+
+      // Add products to requested products collection
+      RequestedProduct.insertMany(tempReqProducts)
+        .then(products => {
+          // Add the products to body.products array
+          products.forEach(product => {
+            body.products.push({
+              quantity: product.productQuantity,
+              product: product._id
             });
-            newProduct.save().catch(e => res.status(404).json(e));
           });
 
-          // Everything is successful, return the quote.
-          res.json(quote);
+          // Create the quote
+          var newQuote = new Quote(body);
+
+          newQuote
+            .save()
+            .then(quote => {
+              if (!quote) {
+                errors.quote = "There was an issue creating the quote";
+                return res.status(400).json(errors);
+              }
+
+              // Update requested products with the new quote's ID
+              quote.products.forEach(product => {
+                RequestedProduct.findByIdAndUpdate(product.product, {
+                  $set: { quote: quote._id }
+                }).catch(e => console.log(e));
+              });
+
+              // Send the new quote forward.
+              res.json(quote);
+            })
+            .catch(e => res.status(404).json(e));
         })
         .catch(e => res.status(404).json(e));
     })
