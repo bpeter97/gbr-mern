@@ -27,30 +27,6 @@ module.exports = function validateQuoteInput(data) {
     errors.purchaseType = "Purchase type selected does not exist";
   }
 
-  if (validator.isEmpty(data.priceBeforeTax)) {
-    errors.priceBeforeTax = "Price before tax is required";
-  }
-
-  if (validator.isEmpty(data.salesTax)) {
-    errors.salesTax = "Sales tax is required";
-  }
-
-  if (validator.isEmpty(data.totalPrice)) {
-    errors.totalPrice = "Total price is required";
-  }
-
-  if (validator.isEmpty(data.monthlyPrice)) {
-    errors.monthlyPrice = "Monthly price is required";
-  }
-
-  if (validator.isEmpty(data.taxRate)) {
-    errors.taxRate = "Tax rate is required";
-  }
-
-  if (validator.isEmpty(data.deliveryTotal)) {
-    errors.deliveryTotal = "Delivery total is required";
-  }
-
   if (data.products.constructor !== Array) {
     errors.products = "Products were not passed correctly";
   }
