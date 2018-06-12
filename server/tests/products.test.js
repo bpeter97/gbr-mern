@@ -24,7 +24,7 @@ var newProduct = {
   price: 90.0,
   monthlyPrice: 0.0,
   rental: false,
-  type: `${productTypes[0]._id.toHexString()}`
+  type: `${productTypes[0]._id.toHexString()}`,
 };
 
 describe("PRODUCT TYPES", () => {

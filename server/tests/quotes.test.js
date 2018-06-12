@@ -30,7 +30,39 @@ describe("QUOTES", () => {
   beforeEach(populateQuotes);
 
   // New quote object
-  var newQuote = {};
+  var newQuote = {
+    customer: customers[1]._id.toHexString(),
+    purchaseType: purchaseTypes[1]._id,
+    attention: "Brian",
+    products: [
+      {
+        quantity: 1,
+        product: {
+          name: "20' Delivery",
+          shortName: "20DEL",
+          price: 900.0,
+          rental: false,
+          type: "delivery"
+        }
+      },
+      {
+        quantity: 1,
+        product: {
+          name: "20' Container",
+          shortName: "20CON",
+          price: 1000.0,
+          rental: true,
+          type: "container"
+        }
+      }
+    ],
+    priceBeforeTax: 190.0,
+    salesTax: 7.2,
+    totalPrice: 197.2,
+    monthlyPrice: 100.0,
+    taxRate: 0.08,
+    deliveryTotal: 90.0
+  };
 
   describe("GET /quotes", () => {
     it("should return all quotes that are not hidden", done => {
@@ -55,7 +87,18 @@ describe("QUOTES", () => {
   });
 
   describe("POST /quotes", () => {
-    it("should create a quote and return it");
+    it("should create a quote and return it", done => {
+      request(app)
+        .post("/api/quotes")
+        .send(newQuote)
+        .set("Authorization", users[0].token)
+        .expect(res => {
+          expect(res.body.customer).toBe(newQuote.customer);
+          expect(res.body.attention).toBe(newQuote.attention);
+          expect(res.body.isHidden).toBe(false);
+        })
+        .end(done);
+    });
     it("should not create a quote if not logged in");
     it("should not create a quote with validation errors");
   });
