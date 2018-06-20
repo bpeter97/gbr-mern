@@ -2,3 +2,5 @@
 .env
 
 .eslintrc.json
+.eslintrc
+client/.eslintrc

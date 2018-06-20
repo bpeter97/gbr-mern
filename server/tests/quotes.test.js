@@ -64,6 +64,48 @@ describe("QUOTES", () => {
     deliveryTotal: 90.0
   };
 
+  // Update quote object
+  var updateQuote = {
+    _id: quotes[0]._id.toHexString(),
+    customer: quotes[0].customer.toHexString(),
+    purchaseType: quotes[0].purchaseType.toHexString(),
+    purchasePrices: quotes[0].purchasePrices.toHexString(),
+    createdBy: quotes[0].createdBy.toHexString(),
+    isHidden: quotes[0].isHidden,
+    status: quotes[0].status,
+    attention: quotes[0].attention,
+    creationDate: quotes[0].creationDate,
+    expirationDate: quotes[0].expirationDate,
+    products: [
+      {
+        quantity: 1,
+        product: {
+          name: "20' Delivery",
+          shortName: "20DEL",
+          price: 95.0,
+          rental: false,
+          type: "delivery"
+        }
+      },
+      {
+        quantity: 1,
+        product: {
+          name: "20' Container",
+          shortName: "20CON",
+          price: 150.0,
+          rental: true,
+          type: "container"
+        }
+      }
+    ],
+    priceBeforeTax: 245.0,
+    salesTax: 19.6,
+    totalPrice: 264.6,
+    monthlyPrice: 150.0,
+    taxRate: 0.08,
+    deliveryTotal: 95.0
+  };
+
   describe("GET /quotes", () => {
     it("should return all quotes that are not hidden", done => {
       request(app)
@@ -92,6 +134,7 @@ describe("QUOTES", () => {
         .post("/api/quotes")
         .send(newQuote)
         .set("Authorization", users[0].token)
+        .expect(200)
         .expect(res => {
           expect(res.body.customer).toBe(newQuote.customer);
           expect(res.body.attention).toBe(newQuote.attention);
@@ -99,8 +142,31 @@ describe("QUOTES", () => {
         })
         .end(done);
     });
-    it("should not create a quote if not logged in");
-    it("should not create a quote with validation errors");
+    it("should not create a quote if not logged in", done => {
+      request(app)
+        .post("/api/quotes")
+        .send(newQuote)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not create a quote with validation errors", done => {
+      newQuote.purchaseType = "not a number";
+
+      request(app)
+        .post("/api/quotes")
+        .send(newQuote)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.purchaseType).toBe(
+            "Purchase type selected does not exist"
+          );
+        })
+        .end(done);
+    });
   });
 
   describe("GET /quotes/customer/:id", () => {
@@ -206,10 +272,53 @@ describe("QUOTES", () => {
   });
 
   describe("PATCH /quotes/:id", () => {
-    it("should update a quote");
-    it("should not update quote with validation errors");
-    it("should not update quote if not logged in");
-    it("should not update quote with invalid ID");
+    it("should update a quote", done => {
+      request(app)
+        .patch(`/api/quotes/${updateQuote._id}`)
+        .send(updateQuote)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body._id).toBe(updateQuote._id);
+        })
+        .end(done);
+    });
+    it("should not update quote if not logged in", done => {
+      request(app)
+        .patch(`/api/quotes/${updateQuote._id}`)
+        .send(updateQuote)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not update quote with invalid ID", done => {
+      request(app)
+        .patch(`/api/quotes/${updateQuote._id}sss`)
+        .send(updateQuote)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.quote).toBe("No quote found");
+        })
+        .end(done);
+    });
+    it("should not update quote with validation errors", done => {
+      updateQuote.purchasePrices = "sd235523";
+
+      request(app)
+        .patch(`/api/quotes/${updateQuote._id}`)
+        .send(updateQuote)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.purchasePrices).toBe(
+            "There is an issue with the quote's purchase prices"
+          );
+        })
+        .end(done);
+    });
   });
 
   describe("DELETE /quotes/:id", () => {
