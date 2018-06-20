@@ -152,7 +152,7 @@ describe("USERS", () => {
         .send(users[1])
         .expect(400)
         .expect(res => {
-          expect(res.body.user).toBe("There was no user found");
+          expect(res.body.auth).toBe("Invalid ID");
         })
         .end(done);
     });

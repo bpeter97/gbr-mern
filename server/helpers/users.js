@@ -132,9 +132,10 @@ exports.patchUser = (req, res) => {
   const { errors, isValid } = validateUserInput(req.body);
 
   // send 400 error with validation errors if not valid.
-  if (!isValid) return res.status(400).json(errors);
-  if (!ObjectID.isValid(req.params.id)) {
-    errors.user = "There was no user found";
+  if (!isValid || !ObjectID.isValid(req.params.id)) {
+    if (!ObjectID.isValid(req.params.id)) {
+      errors.user = "There was no user found";
+    }
     return res.status(400).json(errors);
   }
 
