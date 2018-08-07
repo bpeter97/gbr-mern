@@ -6,19 +6,23 @@ const Schema = mongoose.schema;
 const OrderHistorySchema = new Schema({
   orderID: {
     type: Schema.Types.ObjectId,
-    required: true
+    required: true,
+    ref: "Order"
   },
   orderHistory: [
     {
       order: {
         quote: {
-          type: Schema.Types.ObjectId
+          type: Schema.Types.ObjectId,
+          ref: "Quote"
         },
         customer: {
-          type: Schema.Types.ObjectId
+          type: Schema.Types.ObjectId,
+          ref: "Customer"
         },
         purchaseType: {
-          type: Schema.Types.ObjectId
+          type: Schema.Types.ObjectId,
+          ref: "PurchaseType"
         },
         creationDate: {
           type: String
@@ -40,21 +44,25 @@ const OrderHistorySchema = new Schema({
         },
         products: [
           {
-            type: Schema.Types.ObjectId
+            type: Schema.Types.ObjectId,
+            ref: "Product"
           }
         ],
         containers: [
           {
             container: {
-              type: Schema.Types.ObjectId
+              type: Schema.Types.ObjectId,
+              ref: "Container"
             },
             containerDelivery: {
-              type: Schema.Types.ObjectId
+              type: Schema.Types.ObjectId,
+              ref: "ContainerDelivery"
             }
           }
         ],
         createdBy: {
-          type: Schema.Types.ObjectId
+          type: Schema.Types.ObjectId,
+          ref: "User"
         }
       },
       changeDate: {
@@ -65,4 +73,7 @@ const OrderHistorySchema = new Schema({
   ]
 });
 
-module.exports = OrderHistory = mongoose.model("OrderHistory", OrderHistorySchema);
+module.exports = OrderHistory = mongoose.model(
+  "OrderHistory",
+  OrderHistorySchema
+);

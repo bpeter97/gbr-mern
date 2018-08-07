@@ -3,15 +3,18 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema({
   quote: {
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
+    ref: "Quote"
   },
   customer: {
     type: Schema.Types.ObjectId,
-    required: true
+    required: true,
+    ref: "Customer"
   },
   purchaseType: {
     type: Schema.Types.ObjectId,
-    required: true
+    required: true,
+    ref: "PurchaseType"
   },
   creationDate: {
     type: Date,
@@ -45,7 +48,8 @@ const OrderSchema = new Schema({
   },
   purchasePrices: {
     type: Schema.Types.ObjectId,
-    required: true
+    required: true,
+    ref: "PurchasePrices"
   },
   isHidden: {
     type: Boolean,
@@ -54,21 +58,25 @@ const OrderSchema = new Schema({
   },
   products: [
     {
-      type: Schema.Types.ObjectId
+      type: Schema.Types.ObjectId,
+      ref: "RequestedProduct"
     }
   ],
   containers: [
     {
       container: {
-        type: Schema.Types.ObjectId
+        type: Schema.Types.ObjectId,
+        ref: "Container"
       },
       containerDelivery: {
-        type: Schema.Types.ObjectId
+        type: Schema.Types.ObjectId,
+        ref: "ContainerDelivery"
       }
     }
   ],
   createdBy: {
     type: Schema.Types.ObjectId,
+    ref: "User",
     required: true
   }
 });
