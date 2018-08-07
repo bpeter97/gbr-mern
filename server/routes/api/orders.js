@@ -1,22 +1,24 @@
 const express = require("express");
 const router = express.Router();
 
-// @route   GET api/orders/
-// @desc    Retrieves all of the orders
-// @access  Private
+const helpers = require("../../helpers/orders");
 
-// @route   POST api/orders/
-// @desc    Creates a new order.
+// @route   api/orders/
+// @GET     Retrieves all of the orders.
+// @POST    Creates a new order.
 // @access  Private
+router
+  .route("/")
+  .get(helpers.getOrders)
+  .post(helpers.postOrder);
 
-// @route   GET api/orders/:id
-// @desc    Retrieves a single order.
+// @route   api/orders/:id
+// @GET     Retrieves a single order.
+// @PATCH   Updates all or part of a single order.
+// @DELETE  Deletes a single order from the database.
 // @access  Private
-
-// @route   PATCH api/orders/:id
-// @desc    Updates all or part of a single order.
-// @access  Private
-
-// @route   DELETE api/orders/:id
-// @desc    Deletes a single order from the database.
-// @access  Private
+router
+  .route("/")
+  .get(helpers.getOrder)
+  .patch(helpers.patchOrder)
+  .delete(helpers.deleteOrder);
