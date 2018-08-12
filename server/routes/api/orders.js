@@ -22,3 +22,5 @@ router
   .get(helpers.getOrder)
   .patch(helpers.patchOrder)
   .delete(helpers.deleteOrder);
+
+module.exports = router;
