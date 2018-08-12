@@ -5,6 +5,7 @@ const User = require("../../models/User");
 const userOneID = new ObjectID();
 const userTwoID = new ObjectID();
 const userThreeID = new ObjectID();
+const userFourID = new ObjectID();
 
 var users = [
   {
@@ -48,6 +49,20 @@ var users = [
     title: "Web Developer",
     type: "Admin",
     validated: true
+  },
+  {
+    _id: userFourID,
+    firstName: "Jesse",
+    lastName: "Johnson",
+    middleInitial: "",
+    suffix: "",
+    username: "jjohnson",
+    password: "thePassword",
+    email: "jjohnson@test.com",
+    phone: "5598581234",
+    title: "Driver",
+    type: "Staff",
+    validated: true
   }
 ];
 
@@ -62,8 +77,9 @@ const populateUsers = done => {
         users[1].token = user.generateAuthToken();
       });
       var userThree = new User(users[2]).save();
+      var userFour = new User(users[3]).save();
 
-      return Promise.all([userOne, userTwo, userThree]);
+      return Promise.all([userOne, userTwo, userThree, userFour]);
     })
     .then(() => done())
     .catch(e => console.log(e));
