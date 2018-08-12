@@ -2,24 +2,24 @@
   "stats": {
     "suites": 8,
     "tests": 21,
-    "passes": 1,
-    "pending": 19,
-    "failures": 1,
-    "start": "2018-08-12T11:33:40.104Z",
-    "end": "2018-08-12T11:33:51.692Z",
-    "duration": 11588,
+    "passes": 2,
+    "pending": 16,
+    "failures": 3,
+    "start": "2018-08-12T12:13:25.053Z",
+    "end": "2018-08-12T12:13:43.780Z",
+    "duration": 18727,
     "testsRegistered": 21,
-    "passPercent": 50,
-    "pendingPercent": 90.5,
+    "passPercent": 40,
+    "pendingPercent": 76.2,
     "other": 0,
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false,
     "passPercentClass": "danger",
-    "pendingPercentClass": "success"
+    "pendingPercentClass": "warning"
   },
   "suites": {
-    "uuid": "122a2d3f-766c-4ed4-9284-6f0bf8a94049",
+    "uuid": "2ea785c4-b8b8-4ad6-9a0e-a6b67f2bfc96",
     "title": "",
     "fullFile": "",
     "file": "",
@@ -28,7 +28,7 @@
     "tests": [],
     "suites": [
       {
-        "uuid": "77bfee04-12db-4343-b31a-71b34e9a26c7",
+        "uuid": "f41056bb-d94d-4b90-815b-1caee2b4e0f0",
         "title": "ORDERS",
         "fullFile": "C:\\Programming\\gbr-mern\\server\\tests\\orders.test.js",
         "file": "\\server\\tests\\orders.test.js",
@@ -44,7 +44,7 @@
             "code": "done => {\n  User.remove({})\n    .then(() => {\n      // generate the hash/salted password for the users.\n      var userOne = new User(users[0]).save().then(user => {\n        users[0].token = user.generateAuthToken();\n      });\n      var userTwo = new User(users[1]).save().then(user => {\n        users[1].token = user.generateAuthToken();\n      });\n      var userThree = new User(users[2]).save();\n      var userFour = new User(users[3]).save();\n      return Promise.all([userOne, userTwo, userThree, userFour]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "a6751954-4fc5-40c1-a031-82b96d14d518",
+            "uuid": "aefab466-3cb9-470d-88cb-5799232d5995",
             "isHook": true,
             "skipped": false
           },
@@ -52,14 +52,14 @@
             "title": "\"before each\" hook: populateProducts",
             "fullTitle": "ORDERS \"before each\" hook: populateProducts",
             "timedOut": false,
-            "duration": 183,
+            "duration": 168,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "done => {\n  Product.remove({})\n    .then(() => {\n      var lockbox = new Product(products[0]).save();\n      var delivery = new Product(products[1]).save();\n      var container = new Product(products[2]).save();\n      return Promise.all([lockbox, delivery, container]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "023a4867-7f92-495d-bb91-c57ddb50c6d9",
+            "uuid": "ae6b4f4d-9213-41f9-984d-16b0cbe025da",
             "isHook": true,
             "skipped": false
           },
@@ -74,7 +74,7 @@
             "code": "done => {\n  PurchaseType.remove({})\n    .then(() => {\n      var purchaseTypeOne = new PurchaseType(purchaseTypes[0]).save();\n      var purchaseTypeTwo = new PurchaseType(purchaseTypes[1]).save();\n      return Promise.all([purchaseTypeOne, purchaseTypeTwo]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "f43e57e4-5b31-4832-a231-c43fd9676a79",
+            "uuid": "1a842640-59fe-42ce-8166-c8daa2663527",
             "isHook": true,
             "skipped": false
           },
@@ -82,14 +82,14 @@
             "title": "\"before each\" hook: populateCustomers",
             "fullTitle": "ORDERS \"before each\" hook: populateCustomers",
             "timedOut": false,
-            "duration": 178,
+            "duration": 170,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "done => {\n  Customer.remove({})\n    .then(() => {\n      var customerOne = new Customer(customers[0]).save();\n      var customerTwo = new Customer(customers[1]).save();\n      var customerThree = new Customer(customers[2]).save();\n      return Promise.all([customerOne, customerTwo, customerThree]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "9a83b71c-d2fd-44d2-a23b-0f7da18ec562",
+            "uuid": "47cca4eb-f8d1-4e50-8631-e033120255d0",
             "isHook": true,
             "skipped": false
           },
@@ -97,14 +97,14 @@
             "title": "\"before each\" hook: populateRequestedProducts",
             "fullTitle": "ORDERS \"before each\" hook: populateRequestedProducts",
             "timedOut": false,
-            "duration": 177,
+            "duration": 170,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "done => {\n  RequestedProduct.remove({})\n    .then(() => {\n      var requestedProductOne = new RequestedProduct(\n        requestedProducts[0]\n      ).save();\n      var requestedProductTwo = new RequestedProduct(\n        requestedProducts[1]\n      ).save();\n      return Promise.all([requestedProductOne, requestedProductTwo]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "50e2c874-3165-48a9-aad5-54913cdb1de2",
+            "uuid": "2c101d02-b145-4e4d-b7c1-26efd4a1eba5",
             "isHook": true,
             "skipped": false
           },
@@ -119,7 +119,7 @@
             "code": "done => {\n  PurchasePrices.remove({})\n    .then(() => {\n      var ppOne = new PurchasePrices(purchasePrices[0]).save();\n      return Promise.all([ppOne]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "e3167ca2-af86-4ffa-b844-0ebfb5a498b0",
+            "uuid": "f76f2eaa-1eb4-4aa4-bb93-133d13c4b6ba",
             "isHook": true,
             "skipped": false
           },
@@ -127,14 +127,14 @@
             "title": "\"before each\" hook: populateContainerSizes",
             "fullTitle": "ORDERS \"before each\" hook: populateContainerSizes",
             "timedOut": false,
-            "duration": 174,
+            "duration": 171,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "done => {\n  ContainerSize.remove({})\n    .then(() => {\n      var twenty = new ContainerSize(containerSizes[0]).save();\n      var fourty = new ContainerSize(containerSizes[1]).save();\n      var twentydoubledoors = new ContainerSize(containerSizes[2]).save();\n      return Promise.all([twenty, fourty, twentydoubledoors]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "b2e1d181-4ac5-4e3a-974b-918ac6b2b3b9",
+            "uuid": "b5275e92-eb5f-4b5e-94bc-037e61150307",
             "isHook": true,
             "skipped": false
           },
@@ -142,14 +142,14 @@
             "title": "\"before each\" hook: populateContainerStats",
             "fullTitle": "ORDERS \"before each\" hook: populateContainerStats",
             "timedOut": false,
-            "duration": 174,
+            "duration": 171,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "done => {\n  ContainerStats.remove({})\n    .then(() => {\n      var twenty = new ContainerStats(containerStats[0]).save();\n      var fourty = new ContainerStats(containerStats[1]).save();\n      var twentydoubledoors = new ContainerStats(containerStats[2]).save();\n      return Promise.all([twenty, fourty, twentydoubledoors]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "1beddb00-78b3-4013-ad2e-25a982dcdc94",
+            "uuid": "c0c44fc3-5a9e-4beb-9af8-e5eec3049ae1",
             "isHook": true,
             "skipped": false
           },
@@ -157,14 +157,14 @@
             "title": "\"before each\" hook: populateContainers",
             "fullTitle": "ORDERS \"before each\" hook: populateContainers",
             "timedOut": false,
-            "duration": 178,
+            "duration": 171,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "done => {\n  Container.remove({})\n    .then(() => {\n      var twenty = new Container(containers[0]).save();\n      var fourty = new Container(containers[1]).save();\n      var twentydoubledoors = new Container(containers[2]).save();\n      return Promise.all([twenty, fourty, twentydoubledoors]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "22a83119-7836-4f85-ab87-c7f8ac41d1c5",
+            "uuid": "3c268005-14e0-4262-8fcc-bd307c4e78d8",
             "isHook": true,
             "skipped": false
           },
@@ -179,7 +179,7 @@
             "code": "done => {\n  ContainerDelivery.remove({})\n    .then(() => {\n      var cdOne = new ContainerDelivery(containerDeliveries[0]).save();\n      return Promise.all([cdOne]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "ec69e41c-4d30-4efa-83a8-e23901927029",
+            "uuid": "27ce30b4-5a92-460a-8945-a7ae22eaeb97",
             "isHook": true,
             "skipped": false
           },
@@ -187,14 +187,14 @@
             "title": "\"before each\" hook: populateOrders",
             "fullTitle": "ORDERS \"before each\" hook: populateOrders",
             "timedOut": false,
-            "duration": 176,
+            "duration": 169,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "done => {\n  Order.remove({})\n    .then(() => {\n      var orderOne = new Order(orders[0]).save();\n      return Promise.all([orderOne]);\n    })\n    .then(() => done())\n    .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "222ba59a-375e-4285-b6d1-2c11e49da17d",
+            "uuid": "ccd583ff-ae38-4a02-9cd2-231ac610e09f",
             "isHook": true,
             "skipped": false
           }
@@ -203,7 +203,7 @@
         "tests": [],
         "suites": [
           {
-            "uuid": "f3a3d1b3-7afd-4bf0-9666-a31e4d01adb6",
+            "uuid": "6beaa07b-7a77-4a89-9b61-a436e1b1447c",
             "title": "GET /orders",
             "fullFile": "C:\\Programming\\gbr-mern\\server\\tests\\orders.test.js",
             "file": "\\server\\tests\\orders.test.js",
@@ -214,7 +214,7 @@
                 "title": "should return all orders that are not hidden",
                 "fullTitle": "ORDERS GET /orders should return all orders that are not hidden",
                 "timedOut": true,
-                "duration": 5000,
+                "duration": 5001,
                 "state": "failed",
                 "pass": false,
                 "fail": true,
@@ -225,7 +225,7 @@
                   "estack": "Error: Timeout of 5000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (C:\\Programming\\gbr-mern\\server\\tests\\orders.test.js)"
                 },
                 "isRoot": false,
-                "uuid": "3a565b13-58a6-43ed-acea-fc7b8adb6b62",
+                "uuid": "e64c7bc8-c08a-48f8-abb2-1539986248b7",
                 "isHook": false,
                 "skipped": false
               },
@@ -233,7 +233,7 @@
                 "title": "should not return orders if the user is not logged in",
                 "fullTitle": "ORDERS GET /orders should not return orders if the user is not logged in",
                 "timedOut": false,
-                "duration": 27,
+                "duration": 28,
                 "state": "passed",
                 "speed": "fast",
                 "pass": true,
@@ -242,27 +242,27 @@
                 "code": "done => {\n      request(app)\n        .get(\"/api/orders\")\n        .expect(401)\n        .expect(res => {\n          expect(res.body.auth).toBe(\"Authorization failed\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "9eb406b7-236b-46ec-88df-f0cda5d94ba7",
+                "uuid": "7f7a119a-6502-4668-a9cf-81545bf77ad4",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "9eb406b7-236b-46ec-88df-f0cda5d94ba7"
+              "7f7a119a-6502-4668-a9cf-81545bf77ad4"
             ],
             "failures": [
-              "3a565b13-58a6-43ed-acea-fc7b8adb6b62"
+              "e64c7bc8-c08a-48f8-abb2-1539986248b7"
             ],
             "pending": [],
             "skipped": [],
-            "duration": 5027,
+            "duration": 5029,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "5ee466ea-cfb4-4556-a21d-1dc1d9cbaf26",
+            "uuid": "d21774de-b927-4fc2-9e43-60273b0854bf",
             "title": "POST /orders",
             "fullFile": "C:\\Programming\\gbr-mern\\server\\tests\\orders.test.js",
             "file": "\\server\\tests\\orders.test.js",
@@ -280,7 +280,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "b12d9bea-80e9-4b6b-ae42-e6103c5adde8",
+                "uuid": "d5e74119-36d7-4b7d-b3e1-6be1dc4727ce",
                 "isHook": false,
                 "skipped": false
               },
@@ -295,7 +295,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e8904b72-1182-45c2-b111-cac9dd7856b5",
+                "uuid": "e3dc67aa-f96d-415f-97ee-81b0c34846a4",
                 "isHook": false,
                 "skipped": false
               },
@@ -310,7 +310,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "bc247f0f-3bd4-426a-a564-d718f0ccf4fe",
+                "uuid": "0fcbee42-9696-4743-88db-2c14deba23f6",
                 "isHook": false,
                 "skipped": false
               }
@@ -319,9 +319,9 @@
             "passes": [],
             "failures": [],
             "pending": [
-              "b12d9bea-80e9-4b6b-ae42-e6103c5adde8",
-              "e8904b72-1182-45c2-b111-cac9dd7856b5",
-              "bc247f0f-3bd4-426a-a564-d718f0ccf4fe"
+              "d5e74119-36d7-4b7d-b3e1-6be1dc4727ce",
+              "e3dc67aa-f96d-415f-97ee-81b0c34846a4",
+              "0fcbee42-9696-4743-88db-2c14deba23f6"
             ],
             "skipped": [],
             "duration": null,
@@ -330,7 +330,7 @@
             "_timeout": 5000
           },
           {
-            "uuid": "1e59f6b1-a592-4974-888c-05134349f2d6",
+            "uuid": "983e9833-2514-46f7-8a75-b4cb7b03c1a8",
             "title": "GET /orders/customer/:id",
             "fullFile": "C:\\Programming\\gbr-mern\\server\\tests\\orders.test.js",
             "file": "\\server\\tests\\orders.test.js",
@@ -348,7 +348,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "025e9810-e00f-4cc1-a49f-3bee60d924f5",
+                "uuid": "27d7bf17-9041-4986-a781-e88132bfffef",
                 "isHook": false,
                 "skipped": false
               },
@@ -363,7 +363,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "222362a0-96d7-4d5c-88bd-0df797646e40",
+                "uuid": "a85d1855-ba3c-4611-8c89-391ad3fb636f",
                 "isHook": false,
                 "skipped": false
               },
@@ -378,7 +378,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "919b74f7-f645-471b-9c05-fd534a529013",
+                "uuid": "3864ebea-bed1-4aa2-bfc1-8a359bb2406b",
                 "isHook": false,
                 "skipped": false
               }
@@ -387,9 +387,9 @@
             "passes": [],
             "failures": [],
             "pending": [
-              "025e9810-e00f-4cc1-a49f-3bee60d924f5",
-              "222362a0-96d7-4d5c-88bd-0df797646e40",
-              "919b74f7-f645-471b-9c05-fd534a529013"
+              "27d7bf17-9041-4986-a781-e88132bfffef",
+              "a85d1855-ba3c-4611-8c89-391ad3fb636f",
+              "3864ebea-bed1-4aa2-bfc1-8a359bb2406b"
             ],
             "skipped": [],
             "duration": null,
@@ -398,7 +398,7 @@
             "_timeout": 5000
           },
           {
-            "uuid": "2d2e3225-2b54-49cc-a061-2a4fca8b36c8",
+            "uuid": "6bd9b102-b5f8-4fed-9a09-26234c81bb52",
             "title": "GET /orders/user/:id",
             "fullFile": "C:\\Programming\\gbr-mern\\server\\tests\\orders.test.js",
             "file": "\\server\\tests\\orders.test.js",
@@ -416,7 +416,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "f5f1ccc4-e8e6-4066-9747-9b51b8146480",
+                "uuid": "875957c8-2cfe-4a8c-a90b-6b0e2198784e",
                 "isHook": false,
                 "skipped": false
               },
@@ -431,7 +431,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "29475f78-1173-494e-a536-921956ae9e2f",
+                "uuid": "55d444fe-22ec-4276-857c-fed98c2cafbe",
                 "isHook": false,
                 "skipped": false
               },
@@ -446,7 +446,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5794d640-f237-496b-bea9-6edb53047aa8",
+                "uuid": "28f06b7d-520c-4713-b91d-f7d52834adab",
                 "isHook": false,
                 "skipped": false
               }
@@ -455,9 +455,9 @@
             "passes": [],
             "failures": [],
             "pending": [
-              "f5f1ccc4-e8e6-4066-9747-9b51b8146480",
-              "29475f78-1173-494e-a536-921956ae9e2f",
-              "5794d640-f237-496b-bea9-6edb53047aa8"
+              "875957c8-2cfe-4a8c-a90b-6b0e2198784e",
+              "55d444fe-22ec-4276-857c-fed98c2cafbe",
+              "28f06b7d-520c-4713-b91d-f7d52834adab"
             ],
             "skipped": [],
             "duration": null,
@@ -466,7 +466,7 @@
             "_timeout": 5000
           },
           {
-            "uuid": "3fd4b38a-53ae-4e5f-a386-19f1d0ab7119",
+            "uuid": "203f9422-1f52-45fc-b451-0309a0b03fb3",
             "title": "GET /orders/:id",
             "fullFile": "C:\\Programming\\gbr-mern\\server\\tests\\orders.test.js",
             "file": "\\server\\tests\\orders.test.js",
@@ -484,7 +484,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "9727061e-1c6a-42c0-ab64-898a8bfacf44",
+                "uuid": "af1b18d5-5f87-41f2-9785-17e7876743a0",
                 "isHook": false,
                 "skipped": false
               },
@@ -499,7 +499,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "858bc1c7-feda-4ac2-b6cd-88d498fe6de3",
+                "uuid": "96adfa93-3fc8-47ef-a525-b2b232bdd7e1",
                 "isHook": false,
                 "skipped": false
               },
@@ -514,7 +514,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "b2c81a71-f235-4768-a615-8c62f4237074",
+                "uuid": "9a9034b9-445a-493c-98fb-721c186a7b8c",
                 "isHook": false,
                 "skipped": false
               }
@@ -523,9 +523,9 @@
             "passes": [],
             "failures": [],
             "pending": [
-              "9727061e-1c6a-42c0-ab64-898a8bfacf44",
-              "858bc1c7-feda-4ac2-b6cd-88d498fe6de3",
-              "b2c81a71-f235-4768-a615-8c62f4237074"
+              "af1b18d5-5f87-41f2-9785-17e7876743a0",
+              "96adfa93-3fc8-47ef-a525-b2b232bdd7e1",
+              "9a9034b9-445a-493c-98fb-721c186a7b8c"
             ],
             "skipped": [],
             "duration": null,
@@ -534,7 +534,7 @@
             "_timeout": 5000
           },
           {
-            "uuid": "9f020759-d7b8-46ca-b236-9ae6892619d1",
+            "uuid": "9553e6a2-a5f5-4d55-becd-e88f1bf83d06",
             "title": "PATCH /orders/:id",
             "fullFile": "C:\\Programming\\gbr-mern\\server\\tests\\orders.test.js",
             "file": "\\server\\tests\\orders.test.js",
@@ -552,7 +552,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5c4b01d7-6558-462a-bbc5-e000f2c34a7a",
+                "uuid": "0b7d6f34-70c1-4ade-9dc2-ea53433c9d2a",
                 "isHook": false,
                 "skipped": false
               },
@@ -567,7 +567,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "3ed7b670-9baa-4635-bcca-f2458c59f67d",
+                "uuid": "45cb5f7d-1636-4c95-ad18-db2cc34c939d",
                 "isHook": false,
                 "skipped": false
               },
@@ -582,7 +582,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "239d8a6d-5a37-49df-8dc5-545d432c2561",
+                "uuid": "fba43bb8-17be-4b68-bfb5-0aef8a2cff5a",
                 "isHook": false,
                 "skipped": false
               },
@@ -597,7 +597,7 @@
                 "code": "",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5edde993-c857-477d-83c4-38588688cc45",
+                "uuid": "5b67f7cd-f734-4728-90ae-dca48c4eee53",
                 "isHook": false,
                 "skipped": false
               }
@@ -606,10 +606,10 @@
             "passes": [],
             "failures": [],
             "pending": [
-              "5c4b01d7-6558-462a-bbc5-e000f2c34a7a",
-              "3ed7b670-9baa-4635-bcca-f2458c59f67d",
-              "239d8a6d-5a37-49df-8dc5-545d432c2561",
-              "5edde993-c857-477d-83c4-38588688cc45"
+              "0b7d6f34-70c1-4ade-9dc2-ea53433c9d2a",
+              "45cb5f7d-1636-4c95-ad18-db2cc34c939d",
+              "fba43bb8-17be-4b68-bfb5-0aef8a2cff5a",
+              "5b67f7cd-f734-4728-90ae-dca48c4eee53"
             ],
             "skipped": [],
             "duration": null,
@@ -618,7 +618,7 @@
             "_timeout": 5000
           },
           {
-            "uuid": "28328fc5-2032-4672-b71a-e88501f0e81c",
+            "uuid": "033fd558-fcda-496f-9405-99debd8e13c0",
             "title": "DELETE /orders/:id",
             "fullFile": "C:\\Programming\\gbr-mern\\server\\tests\\orders.test.js",
             "file": "\\server\\tests\\orders.test.js",
@@ -629,14 +629,18 @@
                 "title": "should delete an order",
                 "fullTitle": "ORDERS DELETE /orders/:id should delete an order",
                 "timedOut": false,
-                "duration": 0,
+                "duration": 106,
+                "state": "failed",
                 "pass": false,
-                "fail": false,
-                "pending": true,
-                "code": "",
-                "err": {},
+                "fail": true,
+                "pending": false,
+                "code": "done => {\n      console.log(orders);\n      request(app)\n        .del(`/api/orders/${orders[0]._id}`)\n        .set(\"Authorization\", users[0].token)\n        .expect(200)\n        .expect(res => {\n          expect(res.body._id).toBe(orders[0]._id);\n        })\n        .end(done);",
+                "err": {
+                  "message": "Error: expected 200 \"OK\", got 404 \"Not Found\"",
+                  "estack": "Error: expected 200 \"OK\", got 404 \"Not Found\"\n    at Test._assertStatus (node_modules\\supertest\\lib\\test.js:266:12)\n    at Test._assertFunction (node_modules\\supertest\\lib\\test.js:281:11)\n    at Test.assert (node_modules\\supertest\\lib\\test.js:171:18)\n    at Server.assert (node_modules\\supertest\\lib\\test.js:131:12)\n    at emitCloseNT (net.js:1659:8)\n    at _combinedTickCallback (internal/process/next_tick.js:135:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)"
+                },
                 "isRoot": false,
-                "uuid": "e45a96d0-b5cd-46c5-9b95-441a9844285f",
+                "uuid": "3d064a11-549e-47ce-87f7-10766e6d35d2",
                 "isHook": false,
                 "skipped": false
               },
@@ -644,14 +648,16 @@
                 "title": "should not delete an order if not logged in",
                 "fullTitle": "ORDERS DELETE /orders/:id should not delete an order if not logged in",
                 "timedOut": false,
-                "duration": 0,
-                "pass": false,
+                "duration": 3,
+                "state": "passed",
+                "speed": "fast",
+                "pass": true,
                 "fail": false,
-                "pending": true,
-                "code": "",
+                "pending": false,
+                "code": "done => {\n      request(app)\n        .del(`/api/orders/${orders[0]._id}`)\n        .expect(401)\n        .expect(res => {\n          expect(res.body.auth).toBe(\"Authorization failed\");\n        })\n        .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "4f44e47d-bb8c-4494-b696-19eafc5c5ced",
+                "uuid": "61915851-d62d-47f5-877d-c0c513efedd5",
                 "isHook": false,
                 "skipped": false
               },
@@ -659,28 +665,33 @@
                 "title": "should not delete an order with an invalid ID",
                 "fullTitle": "ORDERS DELETE /orders/:id should not delete an order with an invalid ID",
                 "timedOut": false,
-                "duration": 0,
+                "duration": 87,
+                "state": "failed",
                 "pass": false,
-                "fail": false,
-                "pending": true,
-                "code": "",
-                "err": {},
+                "fail": true,
+                "pending": false,
+                "code": "done => {\n      request(app)\n        .del(`/api/orders/${orders[0]._id}sssssss`)\n        .set(\"Authorization\", users[0].token)\n        .expect(400)\n        .expect(res => {\n          expect(res.body.order).toBe(\"There was no order found\");\n        })\n        .end(done);",
+                "err": {
+                  "message": "Error: expected 400 \"Bad Request\", got 404 \"Not Found\"",
+                  "estack": "Error: expected 400 \"Bad Request\", got 404 \"Not Found\"\n    at Test._assertStatus (node_modules\\supertest\\lib\\test.js:266:12)\n    at Test._assertFunction (node_modules\\supertest\\lib\\test.js:281:11)\n    at Test.assert (node_modules\\supertest\\lib\\test.js:171:18)\n    at Server.assert (node_modules\\supertest\\lib\\test.js:131:12)\n    at emitCloseNT (net.js:1659:8)\n    at _combinedTickCallback (internal/process/next_tick.js:135:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)"
+                },
                 "isRoot": false,
-                "uuid": "b296fb10-304e-43ee-824d-83de33c2c511",
+                "uuid": "24d002be-bafe-4134-991d-185e67e3a403",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
-            "passes": [],
-            "failures": [],
-            "pending": [
-              "e45a96d0-b5cd-46c5-9b95-441a9844285f",
-              "4f44e47d-bb8c-4494-b696-19eafc5c5ced",
-              "b296fb10-304e-43ee-824d-83de33c2c511"
+            "passes": [
+              "61915851-d62d-47f5-877d-c0c513efedd5"
             ],
+            "failures": [
+              "3d064a11-549e-47ce-87f7-10766e6d35d2",
+              "24d002be-bafe-4134-991d-185e67e3a403"
+            ],
+            "pending": [],
             "skipped": [],
-            "duration": null,
+            "duration": 196,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000

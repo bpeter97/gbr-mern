@@ -100,8 +100,34 @@ describe("ORDERS", () => {
   });
 
   describe("DELETE /orders/:id", () => {
-    it("should delete an order");
-    it("should not delete an order if not logged in");
-    it("should not delete an order with an invalid ID");
+    it("should delete an order", done => {
+      request(app)
+        .del(`/api/orders/${orders[0]._id}`)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body._id).toBe(orders[0]._id);
+        })
+        .end(done);
+    });
+    it("should not delete an order if not logged in", done => {
+      request(app)
+        .del(`/api/orders/${orders[0]._id}`)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not delete an order with an invalid ID", done => {
+      request(app)
+        .del(`/api/orders/${orders[0]._id}sssssss`)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.order).toBe("There was no order found");
+        })
+        .end(done);
+    });
   });
 });

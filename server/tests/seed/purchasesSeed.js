@@ -239,6 +239,7 @@ module.exports = {
   requestedProducts,
   purchasePrices,
   quotes,
+  orders,
   populateRequestedProducts,
   populatePurchasePrices,
   populateContainerDeliveries,
