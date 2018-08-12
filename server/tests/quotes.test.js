@@ -13,7 +13,7 @@ const {
   populateRequestedProducts,
   populatePurchasePrices,
   populateQuotes
-} = require("./seed/quoteSeed");
+} = require("./seed/purchasesSeed");
 const {
   populatePurchaseTypes,
   purchaseTypes
