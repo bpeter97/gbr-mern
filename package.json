@@ -7,26 +7,17 @@
     "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "test-all":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=alltests --timeout 5000",
-    "test-containers":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/containers.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=containers --timeout 5000",
-    "test-products":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/products.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=products --timeout 5000",
-    "test-users":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/users.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=users --timeout 5000",
-    "test-defaults":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/defaults.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=defaults --timeout 5000",
-    "test-events":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/events.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=events --timeout 5000",
-    "test-settings":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/settings.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=settings --timeout 5000",
-    "test-customers":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/customers.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=customers --timeout 5000",
-    "test-todos":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/todos.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=todos --timeout 5000",
-    "test-quotes":
-      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/quotes.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=quotes --timeout 5000",
+    "test-all": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=alltests --timeout 5000",
+    "test-containers": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/containers.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=containers --timeout 5000",
+    "test-products": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/products.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=products --timeout 5000",
+    "test-users": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/users.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=users --timeout 5000",
+    "test-defaults": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/defaults.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=defaults --timeout 5000",
+    "test-events": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/events.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=events --timeout 5000",
+    "test-settings": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/settings.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=settings --timeout 5000",
+    "test-customers": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/customers.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=customers --timeout 5000",
+    "test-todos": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/todos.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=todos --timeout 5000",
+    "test-quotes": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/quotes.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=quotes --timeout 5000",
+    "test-orders": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/orders.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=orders --timeout 5000",
     "test-watch": "nodemon --exec \"yarn run test-all\"",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \" npm run client\""
