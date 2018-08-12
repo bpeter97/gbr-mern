@@ -74,22 +74,100 @@ describe("ORDERS", () => {
 
   describe("GET /orders/customer/:id", () => {
     // May want to change this to not depend on the orders being hidden.
-    it("should return all of a customer's orders that are not hidden");
-    it("should not return orders if user is not logged in");
-    it("should not return orders if supplied an invalid ID");
+    it("should return all of a customer's orders that are not hidden", done => {
+      request(app)
+        .get(`/api/orders/customer/${customers[0]._id}`)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body.orders[0].customer._id).toBe(orders[0].customer);
+        })
+        .end(done);
+    });
+    it("should not return orders if user is not logged in", done => {
+      request(app)
+        .get(`/api/orders/customer/${customers[0]._id}`)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not return orders if supplied an invalid ID", done => {
+      request(app)
+        .get(`/api/orders/customer/${customers[0]._id}sssssss`)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.customer).toBe("There was no customer found");
+        })
+        .end(done);
+    });
   });
 
   describe("GET /orders/user/:id", () => {
     // May want to change this to not depend on the orders being hidden.
-    it("should return all of a user's created orders that are not hidden");
-    it("should not return orders if user is not logged in");
-    it("should not return orders if supplied an invalid ID");
+    it("should return all of a user's created orders that are not hidden", done => {
+      request(app)
+        .get(`/api/orders/user/${users[0]._id}`)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body.orders[0].user._id).toBe(orders[0].createdBy);
+        })
+        .end(done);
+    });
+    it("should not return orders if user is not logged in", done => {
+      request(app)
+        .get(`/api/orders/user/${users[0]._id}`)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not return orders if supplied an invalid ID", done => {
+      request(app)
+        .get(`/api/orders/user/${users[0]._id}sssssss`)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.user).toBe("There was no user found");
+        })
+        .end(done);
+    });
   });
 
   describe("GET /orders/:id", () => {
-    it("should return an order with the ID matching the provided ID");
-    it("should not return an order if not logged in");
-    it("should not return an order if supplied an invalid ID");
+    it("should return an order with the ID matching the provided ID", done => {
+      request(app)
+        .get(`/api/orders/${orders[0]._id}`)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body._id).toBe(orders[0]._id);
+        })
+        .end(done);
+    });
+    it("should not return an order if not logged in", done => {
+      request(app)
+        .get(`/api/orders/${orders[0]._id}`)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not return an order if supplied an invalid ID", done => {
+      request(app)
+        .get(`/api/orders/${orders[0]._id}ssssssssss`)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.order).toBe("There was no order found");
+        })
+        .end(done);
+    });
   });
 
   describe("PATCH /orders/:id", () => {
