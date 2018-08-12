@@ -58,8 +58,15 @@ const OrderSchema = new Schema({
   },
   products: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "RequestedProduct"
+      quantity: {
+        type: Number,
+        min: 1,
+        required: true
+      },
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: "RequestedProduct"
+      }
     }
   ],
   containers: [

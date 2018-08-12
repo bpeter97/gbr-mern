@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ContainerDelivery = new Schema({
+const ContainerDeliverySchema = new Schema({
   driver: {
     type: Schema.Types.ObjectId,
     ref: "User"
@@ -16,9 +16,6 @@ const ContainerDelivery = new Schema({
   },
   dateDelivered: {
     type: Date
-  },
-  totalPrice: {
-    type: Number
   },
   isPickedUp: {
     type: Boolean,
