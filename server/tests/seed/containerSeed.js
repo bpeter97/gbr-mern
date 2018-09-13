@@ -94,6 +94,14 @@ containers = [
     rentalResale: "Rental",
     isFlagged: false,
     flagReason: "",
+    delivery: {
+      driver: null,
+      notes: null,
+      isDelivered: false,
+      dateDelivered: null,
+      isPickedUp: false,
+      pickupDate: null
+    },
     stats: conOneStatsID
   },
   {
@@ -109,6 +117,14 @@ containers = [
     rentalResale: "Rental",
     isFlagged: false,
     flagReason: "",
+    delivery: {
+      driver: null,
+      notes: null,
+      isDelivered: false,
+      dateDelivered: null,
+      isPickedUp: false,
+      pickupDate: null
+    },
     stats: conTwoStatsID
   },
   {
@@ -124,6 +140,14 @@ containers = [
     rentalResale: "Rental",
     isFlagged: true,
     flagReason: "Container is damaged",
+    delivery: {
+      driver: null,
+      notes: null,
+      isDelivered: false,
+      dateDelivered: null,
+      isPickedUp: false,
+      pickupDate: null
+    },
     stats: conThreeStatsID
   }
 ];

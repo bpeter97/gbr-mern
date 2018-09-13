@@ -27,7 +27,15 @@ var newContainer = {
   hasSigns: false,
   rentalResale: "Resale",
   isFlagged: false,
-  flagReason: ""
+  flagReason: "",
+  delivery: {
+    driver: null,
+    notes: null,
+    isDelivered: false,
+    dateDelivered: null,
+    isPickedUp: false,
+    pickupDate: null
+  }
 };
 
 describe("CONTAINERS", () => {

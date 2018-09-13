@@ -47,7 +47,8 @@ exports.postContainer = (req, res) => {
     "hasSigns",
     "rentalResale",
     "isFlagged",
-    "flagReason"
+    "flagReason",
+    "delivery"
   ]);
   body.size = new ObjectID(req.body.size);
 
