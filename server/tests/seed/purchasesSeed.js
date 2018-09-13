@@ -8,7 +8,6 @@ const Quote = require("./../../models/Quote");
 const Order = require("./../../models/Order");
 const PurchasePrices = require("./../../models/PurchasePrices");
 const RequestedProduct = require("./../../models/RequestedProduct");
-const ContainerDelivery = require("./../../models/ContainerDelivery");
 
 const ppOneID = new ObjectID();
 const ppTwoID = new ObjectID();
@@ -18,7 +17,6 @@ const requestedProductOneID = new ObjectID();
 const requestedProductTwoID = new ObjectID();
 const requestedProductThreeID = new ObjectID();
 const requestedProductFourID = new ObjectID();
-const containerDeliveryOneID = new ObjectID();
 
 const currentDate = new Date();
 const expirationDate = new Date();
@@ -100,18 +98,6 @@ var purchasePrices = [
   }
 ];
 
-const containerDeliveries = [
-  {
-    _id: containerDeliveryOneID,
-    driver: users[3]._id,
-    notes: null,
-    isDelivered: false,
-    dateDelivered: null,
-    isPickedUp: false,
-    pickupDate: null
-  }
-];
-
 var quotes = [
   {
     _id: quoteOneID,
@@ -167,8 +153,7 @@ const orders = [
     ],
     containers: [
       {
-        container: containers[1]._id,
-        containerDelivery: containerDeliveryOneID
+        container: containers[1]._id
       }
     ],
     createdBy: users[0]._id
@@ -197,17 +182,6 @@ const populatePurchasePrices = done => {
       var ppOne = new PurchasePrices(purchasePrices[0]).save();
 
       return Promise.all([ppOne]);
-    })
-    .then(() => done())
-    .catch(e => console.log(e));
-};
-
-const populateContainerDeliveries = done => {
-  ContainerDelivery.remove({})
-    .then(() => {
-      var cdOne = new ContainerDelivery(containerDeliveries[0]).save();
-
-      return Promise.all([cdOne]);
     })
     .then(() => done())
     .catch(e => console.log(e));
@@ -242,7 +216,6 @@ module.exports = {
   orders,
   populateRequestedProducts,
   populatePurchasePrices,
-  populateContainerDeliveries,
   populateQuotes,
   populateOrders
 };

@@ -12,13 +12,16 @@ router
   .get(helpers.getOrders)
   .post(helpers.postOrder);
 
+router.route("/user/:id").get(helpers.getUserOrders);
+router.route("/customer/:id").get(helpers.getCustomerOrders);
+
 // @route   api/orders/:id
 // @GET     Retrieves a single order.
 // @PATCH   Updates all or part of a single order.
 // @DELETE  Deletes a single order from the database.
 // @access  Private
 router
-  .route("/")
+  .route("/:id")
   .get(helpers.getOrder)
   .patch(helpers.patchOrder)
   .delete(helpers.deleteOrder);

@@ -11,10 +11,6 @@ const conOneSizeID = new ObjectID();
 const conTwoSizeID = new ObjectID();
 const conThreeSizeID = new ObjectID();
 
-const conShortNameOneID = new ObjectID();
-const conShortNameTwoID = new ObjectID();
-const conShortNameThreeID = new ObjectID();
-
 const conOneStatsID = new ObjectID();
 const conTwoStatsID = new ObjectID();
 const conThreeStatsID = new ObjectID();
