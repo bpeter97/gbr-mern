@@ -138,4 +138,7 @@ const mapStateToProps = state => ({
   logoutUser: PropTypes.func.isRequired
 });
 
-export default connect(mapStateToProps, { logoutUser })(NavBar);
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(NavBar);
