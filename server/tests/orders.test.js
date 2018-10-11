@@ -257,37 +257,37 @@ describe("ORDERS", () => {
     });
   });
 
-  // describe("GET /orders/:id", () => {
-  //   it("should return an order with the ID matching the provided ID", done => {
-  //     request(app)
-  //       .get(`/api/orders/${orders[0]._id}`)
-  //       .set("Authorization", users[0].token)
-  //       .expect(200)
-  //       .expect(res => {
-  //         expect(res.body._id).toBe(orders[0]._id);
-  //       })
-  //       .end(done);
-  //   });
-  //   it("should not return an order if not logged in", done => {
-  //     request(app)
-  //       .get(`/api/orders/${orders[0]._id}`)
-  //       .expect(401)
-  //       .expect(res => {
-  //         expect(res.body.auth).toBe("Authorization failed");
-  //       })
-  //       .end(done);
-  //   });
-  //   it("should not return an order if supplied an invalid ID", done => {
-  //     request(app)
-  //       .get(`/api/orders/${orders[0]._id}ssssssssss`)
-  //       .set("Authorization", users[0].token)
-  //       .expect(400)
-  //       .expect(res => {
-  //         expect(res.body.order).toBe("There was no order found");
-  //       })
-  //       .end(done);
-  //   });
-  // });
+  describe("GET /orders/:id", () => {
+    it("should return an order with the ID matching the provided ID", done => {
+      request(app)
+        .get(`/api/orders/${orders[0]._id}`)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body._id).toBe(orders[0]._id);
+        })
+        .end(done);
+    });
+    it("should not return an order if not logged in", done => {
+      request(app)
+        .get(`/api/orders/${orders[0]._id}`)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not return an order if supplied an invalid ID", done => {
+      request(app)
+        .get(`/api/orders/${orders[0]._id}ssssssssss`)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body.order).toBe("There was no order found");
+        })
+        .end(done);
+    });
+  });
 
   // describe("PATCH /orders/:id", () => {
   //   it("should update and return an order", done => {
