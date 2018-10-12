@@ -23,7 +23,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated, user } = this.props.auth;
     let navbar = "";
 
     if (isAuthenticated) {
@@ -97,6 +97,10 @@ class NavBar extends Component {
               </li>
             </ul>
             <ul className="navbar-nav ml-auto">
+              <li className="nav-item pr-2 mt-1">
+                Welcome {user.firstName} {user.lastName}{" "}
+                {user.suffix ? user.suffix : ""}!
+              </li>
               <li className="dropdown ">
                 <a
                   href=""
@@ -139,12 +143,14 @@ class NavBar extends Component {
 }
 
 NavBar.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  logoutUser: PropTypes.func.isRequired
+  logoutUser: PropTypes.func.isRequired,
+  user: state.auth.user
 });
 
 export default connect(
