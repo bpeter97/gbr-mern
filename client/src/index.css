@@ -10,6 +10,7 @@ body {
   line-height: 1.5;
   font-size: 1rem;
   text-align: left;
+  background-color: lightgrey;
 }
 
 button:disabled {
@@ -20,7 +21,6 @@ nav {
   font-size: 14px;
   padding-left: 0;
   margin-bottom: 0;
-  border-radius: 3px;
 }
 
 a {
@@ -74,6 +74,24 @@ li span:hover {
 #collapse-icon {
   color: #fff;
 }
+
+.navbar-toggler {
+  background-color: #006400;
+  color: white;
+}
+
+.navbar-toggler:hover {
+  background-color: #008000;
+}
+
+.sidebar-toggler {
+  position: absolute;
+  z-index: 999;
+  right: -50px;
+  top: 10px;
+  background-color: rgba(0, 141, 0, 0.481);
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255);
 }
@@ -84,6 +102,7 @@ li span:hover {
   margin-right: -15px;
   margin-left: -15px;
 }
+
 .links {
   overflow: hidden;
 }
@@ -103,7 +122,7 @@ li span:hover {
 }
 
 .side-nav-section ul {
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid darkgreen;
 }
 
 .side-nav-section h6 {
@@ -111,10 +130,27 @@ li span:hover {
   font-size: 16px;
 }
 .top-nav {
+  font-size: 16px;
   min-height: 2rem;
   background-color: #006400;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05),
+  color: darkgreen;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1),
     inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #008000;
+}
+
+.top-nav .nav-item .nav-link {
+  color: darkgreen;
+}
+
+.top-nav .nav-item .nav-link:hover {
+  color: #00b800;
+}
+.top-nav .nav-item.active {
+  color: darkgreen;
+}
+.top-nav .nav-item .nav-link:visited {
+  color: darkgreen;
 }
 
 .side-nav {
@@ -172,7 +208,9 @@ li span:hover {
 }
 .todo {
   padding: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid darkgreen;
+  border-left: 1px solid darkgreen;
+  border-right: 1px solid darkgreen;
 }
 .todo:hover {
   background: rgba(0, 0, 0, 0.02);
@@ -184,6 +222,106 @@ li span:hover {
 .completed {
   text-decoration: line-through;
   color: #bdc3c7;
+}
+
+.main-content {
+  position: relative;
+  margin-top: 10px;
+  width: 90%;
+}
+
+.bluebox {
+  border: 1px solid blue;
+}
+.greenbox {
+  border: 1px solid green;
+}
+.redbox {
+  border: 1px solid red;
+}
+
+.card {
+  width: 98%;
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: 0px 0px 5px #888888;
+}
+.card.blank-card {
+  border: 1px solid rgba(0, 0, 0, 0.404);
+  box-shadow: 0px 0px 0px black;
+}
+.card.blank-card .card-header h5 button {
+  color: green;
+}
+.card .card-body {
+  padding: 0px;
+}
+.card .card-body .alert {
+  padding-top: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-bottom: 0rem;
+}
+.card .card-body .card-title {
+  background-color: darkgreen;
+  color: white;
+}
+.card .card-body .small-paginator .btn-group {
+  padding-left: 0.5rem !important;
+  padding-bottom: 0.8rem !important;
+}
+.card .card-body .small-paginator .btn-group .btn-gbr {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+.card .card-body .large-paginator .btn-group {
+  padding-left: 2.3rem !important;
+  padding-bottom: 0.8rem !important;
+}
+.card .card-body .btn-gbr {
+  color: white;
+  background-color: darkgreen;
+  border: 1px solid black;
+}
+.card .card-body .btn-gbr:focus,
+.card .card-body .btn-gbr:hover,
+.card .card-body .btn-gbr.active {
+  color: white;
+  background-color: #017e01;
+}
+.card .card-body #historyTab li a {
+  color: darkgreen;
+}
+.card .card-body #historyTab li a:hover {
+  color: white;
+  background-color: green;
+}
+.card .card-body #historyTab li a.active {
+  background-color: green;
+  color: white;
+}
+.card .card-body .table-responsive {
+  width: 96%;
+}
+.card .card-body .table-responsive table {
+  border: 2px solid #e9e9e9;
+}
+.card .card-body .table-responsive table thead tr {
+  border-bottom: 3px solid lightgrey;
+}
+.card .card-body .table-responsive table tr {
+  border: 1px solid #ddd;
+}
+.card .card-body .table-responsive table tr.danger {
+  background-color: #f3cfcf;
+}
+.card .card-body .table-responsive table tr.danger:hover {
+  background-color: #f3cfcf;
+}
+.card .card-body .table-responsive table tr:hover {
+  background-color: #32aa32;
 }
 
 #login-block {
@@ -232,9 +370,9 @@ li span:hover {
     position: -webkit-sticky;
     position: sticky;
     top: 4rem;
-    z-index: 0;
+    z-index: 999;
     height: calc(100vh - 4rem);
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid darkgreen;
     max-width: 250px;
     margin-left: 0px;
     transition: all 0.3s;

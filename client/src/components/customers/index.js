@@ -66,7 +66,7 @@ class Customers extends Component {
         accessor: d => d.flagReason
       },
       {
-        Header: "Edit",
+        Header: "View / Edit",
         id: "edit",
         accessor: "_id",
         Cell: ({ value }) => (
@@ -74,7 +74,7 @@ class Customers extends Component {
             className="btn btn-success"
             onClick={this.editCustomerClick.bind(this, value)}
           >
-            Edit
+            View / Edit
           </button>
         )
       }
@@ -102,42 +102,57 @@ class Customers extends Component {
       }
     ];
     return (
-      <div className="col-10 py-md-3 pl-md-5">
-        <div className="d-flex justify-content-end mb-3">
-          <button
-            className="btn btn-primary"
-            onClick={this.addCustomerClick.bind(this)}
-          >
-            Add
-          </button>
-        </div>
+      <div className="container-fluid main-content">
+        <div className="row justify-content-center">
+          <div className="col-sm-12 pb-4">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title text-center py-2">Customers</h5>
+                <div className="d-flex flex-row justify-content-center">
+                  <div className="col-12 py-md-3 pl-md-5">
+                    <div className="d-flex justify-content-end mb-3">
+                      <button
+                        className="btn btn-primary"
+                        onClick={this.addCustomerClick.bind(this)}
+                      >
+                        Add
+                      </button>
+                    </div>
 
-        <ReactTable
-          data={customers}
-          className="-striped -highlight"
-          columns={columns}
-          defaultPageSize={10}
-          getTrProps={(s, i) => {
-            let f = false;
-            if (i) {
-              f = i.original.isFlagged;
-            }
-            return { style: { backgroundColor: f ? "#DAE7D7" : "inherit" } };
-          }}
-          SubComponent={row => {
-            // CREATE NEW COMPONENT FOR CUSTOMER HISTORY
-            return (
-              <div className="p-3">
-                <ReactTable
-                  data={data_history}
-                  columns={columns_history}
-                  showPagination={false}
-                  defaultPageSize={3}
-                />
+                    <ReactTable
+                      data={customers}
+                      className="-striped -highlight"
+                      columns={columns}
+                      defaultPageSize={10}
+                      getTrProps={(s, i) => {
+                        let f = false;
+                        if (i) {
+                          f = i.original.isFlagged;
+                        }
+                        return {
+                          style: { backgroundColor: f ? "#DAE7D7" : "inherit" }
+                        };
+                      }}
+                      SubComponent={row => {
+                        // CREATE NEW COMPONENT FOR CUSTOMER HISTORY
+                        return (
+                          <div className="p-3">
+                            <ReactTable
+                              data={data_history}
+                              columns={columns_history}
+                              showPagination={false}
+                              defaultPageSize={3}
+                            />
+                          </div>
+                        );
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
-            );
-          }}
-        />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -154,6 +169,9 @@ const mapStateToProps = state => ({
   customers: state.customers
 });
 
-export default connect(mapStateToProps, { getCustomers })(Customers);
+export default connect(
+  mapStateToProps,
+  { getCustomers }
+)(Customers);
 
 // export default Customers;

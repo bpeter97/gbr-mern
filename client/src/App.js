@@ -98,6 +98,7 @@ class App extends Component {
                     <div className="container-fluid">
                       <div className="row flex-xl-nowrap">
                         <SideNav
+                          handleClick={this.handleClick}
                           collapsed={this.state.collapsed}
                           id={"side-nav-reg"}
                         />

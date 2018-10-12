@@ -42,7 +42,7 @@ class TodoForm extends Component {
     return (
       <form className="todo-form" onSubmit={this.onSubmit}>
         <TextFieldInput
-          placeholder="Add Todo..."
+          placeholder="Add a Todo..."
           className="new-todo-input"
           name="desc"
           type="text"
@@ -64,4 +64,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addTodo })(TodoForm);
+export default connect(
+  mapStateToProps,
+  { addTodo }
+)(TodoForm);
