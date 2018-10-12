@@ -4,6 +4,7 @@ import { getCustomers } from "../../actions/customerActions";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import PropTypes from "prop-types";
+import matchSorter from "match-sorter";
 
 class Customers extends Component {
   componentDidMount() {
@@ -46,24 +47,39 @@ class Customers extends Component {
     const columns = [
       {
         Header: "Name",
-        accessor: "name"
+        accessor: "name",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["name"] }),
+        filterAll: true
       },
       {
         Header: "Phone",
-        accessor: "phone"
+        accessor: "phone",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["phone"] }),
+        filterAll: true
       },
       {
         Header: "Fax",
-        accessor: "fax"
+        accessor: "fax",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["fax"] }),
+        filterAll: true
       },
       {
         Header: "Email",
-        accessor: "email"
+        accessor: "email",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["email"] }),
+        filterAll: true
       },
       {
         Header: "Flags",
         id: "flagReason",
-        accessor: d => d.flagReason
+        accessor: d => d.flagReason,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["flagReason"] }),
+        filterAll: true
       },
       {
         Header: "View / Edit",
@@ -121,6 +137,16 @@ class Customers extends Component {
 
                     <ReactTable
                       data={customers}
+                      filterable
+                      defaultFilterMethod={(filter, row) =>
+                        String(row[filter.id]) === filter.value
+                      }
+                      defaultSorted={[
+                        {
+                          id: "Name",
+                          desc: true
+                        }
+                      ]}
                       className="-striped -highlight"
                       columns={columns}
                       defaultPageSize={10}

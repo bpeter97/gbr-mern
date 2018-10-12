@@ -8,6 +8,7 @@
     "classnames": "^2.2.6",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
+    "match-sorter": "^2.3.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-icons-kit": "^1.1.4",
