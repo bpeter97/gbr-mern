@@ -6,6 +6,9 @@ import TextFieldInput from "../common/TextFieldInput";
 import SideNavSection from "./SideNavSection";
 import Todos from "../todos/Todos";
 
+import SvgIcon from "react-icons-kit";
+import { ArrowLeft, ArrowRight } from "../../icons";
+
 class SideNav extends Component {
   constructor() {
     super();
@@ -46,10 +49,19 @@ class SideNav extends Component {
           id={id}
         >
           <nav className="links" id="route-links">
+            {/* SIDE NAV TOGGLE > MD, USED TO CHANGE COLLAPSE  */}
+            <a
+              className="d-none d-md-block navbar-toggler sidebar-toggler"
+              id="collapse-icon"
+              onClick={this.props.handleClick}
+            >
+              <SvgIcon size={20} icon={collapsed ? ArrowRight : ArrowLeft} />
+            </a>
+            {/* BOOTSTRAP NAVBAR TOGGLE */}
             <form onSubmit={this.onSubmit} className="nav-search d-flex">
               <TextFieldInput
                 placeholder="Search..."
-                className="form-control w-100"
+                className="form-control w-75 ml-auto mr-auto"
                 name="query"
                 type="text"
                 value={this.state.query}
@@ -77,7 +89,8 @@ class SideNav extends Component {
               </ul>
             </SideNavSection>
 
-            <SideNavSection>
+            <SideNavSection name="Todos">
+              <ul className="nav flex-column" />
               {/* get todos
               put them into list
               render */}

@@ -13,6 +13,8 @@ import { search } from "react-icons-kit/fa/search";
 import { menu } from "react-icons-kit/icomoon/menu";
 import { ic_close } from "react-icons-kit/md/ic_close";
 import { userCircle } from "react-icons-kit/fa/userCircle";
+import { arrowLeft } from "react-icons-kit/fa/arrowLeft";
+import { arrowRight } from "react-icons-kit/fa/arrowRight";
 
 export const CustomersIcon = users;
 export const ContainersIcon = box;
@@ -29,3 +31,5 @@ export const SearchIcon = search;
 export const MenuIcon = menu;
 export const CloseIcon = ic_close;
 export const AccountIcon = userCircle;
+export const ArrowLeft = arrowLeft;
+export const ArrowRight = arrowRight;

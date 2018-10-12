@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { logoutUser } from "../../actions/defaultsActions";
 
 import SvgIcon from "react-icons-kit";
-import { MenuIcon, AccountIcon } from "../../icons";
+import { AccountIcon } from "../../icons";
 
 class NavBar extends Component {
   constructor() {
@@ -30,17 +30,8 @@ class NavBar extends Component {
       navbar = (
         <nav
           className="navbar navbar-expand-md navbar-dark top-nav"
-          style={{ backgroundColor: "#006400" }}
+          style={{ backgroundColor: "#ffffff" }}
         >
-          {/* SIDE NAV TOGGLE > MD, USED TO CHANGE COLLAPSE  */}
-          <a
-            className="d-none d-md-block navbar-toggler"
-            id="collapse-icon"
-            onClick={this.props.handleClick}
-          >
-            <SvgIcon size={20} icon={MenuIcon} />
-          </a>
-          {/* BOOTSTRAP NAVBAR TOGGLE */}
           <button
             className="navbar-toggler"
             type="button"
@@ -55,6 +46,20 @@ class NavBar extends Component {
           {/* DISAPPEARS WHEN < MD OR < 768px */}
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
+              <li className="nav-item">
+                <img
+                  className="gbr_logo_image d-none d-xl-block ml-3 mr-2 mt-2"
+                  height="25"
+                  src="../../../img/logo.png"
+                  alt="GBR Logo"
+                />
+                <img
+                  className="small_gbr_logo_image d-block d-xl-none mt-2"
+                  height="25"
+                  src="../../../img/logosmall.png"
+                  alt="GBR Logo"
+                />
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/">
                   Dashboard
@@ -101,7 +106,11 @@ class NavBar extends Component {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <SvgIcon size={20} icon={AccountIcon} />
+                  <SvgIcon
+                    size={30}
+                    icon={AccountIcon}
+                    style={{ color: "#008000" }}
+                  />
                 </a>
                 <div
                   className="dropdown-menu dropdown-menu-right"
