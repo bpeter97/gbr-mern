@@ -16,7 +16,7 @@ class Users extends Component {
   }
 
   render() {
-    const { users } = this.props;
+    // const { users } = this.props;
 
     return (
       <div className="content">
@@ -35,4 +35,7 @@ const mapStateToProps = state => ({
   users: state.users
 });
 
-export default connect(mapStateToProps, { getUsers })(Users);
+export default connect(
+  mapStateToProps,
+  { getUsers }
+)(Users);

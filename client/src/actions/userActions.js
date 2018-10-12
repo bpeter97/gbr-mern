@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { GET_USERS, USERS_LOADING } from "./types";
-import { clearErrors } from "./commonActions";
+// import { clearErrors } from "./commonActions";
 
 // Get Todos
 export const getUsers = () => dispatch => {

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getQuotes } from "../../actions/quoteActions";
-import ReactTable from "react-table";
 import "react-table/react-table.css";
 import PropTypes from "prop-types";
-import matchSorter from "match-sorter";
+// import ReactTable from "react-table";
+// import matchSorter from "match-sorter";
 
 class Quotes extends Component {
   componentDidMount() {

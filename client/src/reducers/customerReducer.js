@@ -5,7 +5,6 @@ import {
   EDIT_CUSTOMER,
   DELETE_CUSTOMER,
   CLEAR_CUSTOMER,
-  GET_ERRORS,
   CUSTOMER_LOADING
 } from "../actions/types";
 
