@@ -16,6 +16,7 @@ import Dashboard from "./components/dashboard";
 import SideNav from "./components/sidenav/SideNav";
 import Calendar from "./components/calendar";
 import Customers from "./components/customers";
+import Products from "./components/products";
 import Quotes from "./components/quotes";
 import Users from "./components/users";
 import NavBar from "./components/navbar";
@@ -119,6 +120,13 @@ class App extends Component {
                             exact
                             path="/quotes"
                             component={Quotes}
+                          />
+                        </Switch>
+                        <Switch>
+                          <PrivateRoute
+                            exact
+                            path="/products"
+                            component={Products}
                           />
                         </Switch>
                         <Switch>
