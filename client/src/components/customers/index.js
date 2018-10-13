@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getCustomers } from "../../actions/customerActions";
+import PropTypes from "prop-types";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import PropTypes from "prop-types";
 import matchSorter from "match-sorter";
 
 class Customers extends Component {

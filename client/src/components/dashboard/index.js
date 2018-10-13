@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+
 import Calendar from "./../calendar/Calendar";
+
+import SalesChart from "./../charts/SalesChart";
 
 class Dashboard extends Component {
   constructor() {
@@ -15,6 +18,21 @@ class Dashboard extends Component {
         color: "#00FF00"
       }
     ];
+    let months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
+
     return (
       <div className="container-fluid main-content">
         <div className="row justify-content-center">
@@ -46,10 +64,12 @@ class Dashboard extends Component {
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">
-                  Orders / Quites in 2018
+                  Orders / Quotes in 2018
                 </h5>
                 <div className="d-flex flex-row justify-content-center">
-                  Charts
+                  <div className="p-1 w-75">
+                    <SalesChart months={months} />
+                  </div>
                 </div>
               </div>
             </div>
