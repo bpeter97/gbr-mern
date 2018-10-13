@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import PropTypes from "prop-types";
-
 import $ from "jquery";
 import "moment/min/moment.min.js";
 
@@ -26,7 +24,7 @@ class Calendar extends Component {
         center: "title",
         right: "today prev,next"
       },
-      contentHeight: 500,
+      height: 500,
       events: this.props.events,
       defaultView: "month"
     });
