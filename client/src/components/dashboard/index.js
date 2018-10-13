@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Calendar from "./../calendar/Calendar";
 
 class Dashboard extends Component {
   constructor() {
@@ -7,10 +8,17 @@ class Dashboard extends Component {
   }
 
   render() {
+    let events = [
+      {
+        start: "2018-10-15",
+        end: "2018-10-16",
+        color: "#00FF00"
+      }
+    ];
     return (
       <div className="container-fluid main-content">
         <div className="row justify-content-center">
-          <div className="col-sm-12 col-lg-8 pb-4 pr-0">
+          <div className="col-sm-12 col-lg-8 pb-4">
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">Container Map</h5>
@@ -20,12 +28,14 @@ class Dashboard extends Component {
               </div>
             </div>
           </div>
-          <div className="col-sm-12 col-lg-4 pb-4 lg-pl-0">
+          <div className="col-sm-12 col-lg-4 pb-4">
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">Calendar</h5>
                 <div className="d-flex flex-row justify-content-center">
-                  Calendar
+                  <div className="p-2">
+                    <Calendar events={events} />
+                  </div>
                 </div>
               </div>
             </div>

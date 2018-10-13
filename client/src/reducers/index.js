@@ -7,12 +7,14 @@ import customerReducer from "./customerReducer";
 import { routerReducer } from "react-router-redux";
 import quoteReducer from "./quoteReducer";
 import productReducer from "./productReducer";
+import orderReducer from "./orderReducer";
 
 export default combineReducers({
   auth: authReducer,
   errors: errorReducer,
   router: routerReducer,
   quotes: quoteReducer,
+  orders: orderReducer,
   products: productReducer,
   todos: todoReducer,
   users: userReducer,

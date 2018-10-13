@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import TextFieldInput from "../common/TextFieldInput";
 import SideNavSection from "./SideNavSection";
+import SideNavCalendar from "./SideNavCalendar";
 import Todos from "../todos/Todos";
 
 import SvgIcon from "react-icons-kit";
@@ -38,6 +39,14 @@ class SideNav extends Component {
     const { collapsed, id } = this.props;
     const { isAuthenticated } = this.props.auth;
     const { errors } = this.state;
+    let events = [
+      {
+        start: "2017-01-06",
+        end: "2017-01-08",
+        rendering: "background",
+        color: "#00FF00"
+      }
+    ];
     if (isAuthenticated) {
       navbarContent = (
         <div
@@ -69,13 +78,17 @@ class SideNav extends Component {
                 error={errors.login}
               />
             </form>
-            <SideNavSection name="Upcoming Events">
+            <SideNavSection>
+              <SideNavCalendar events={events} />
+            </SideNavSection>
+
+            {/* <SideNavSection name="Upcoming Events">
               <ul className="nav flex-column">
                 <li>Event 1</li>
                 <li>Event 2</li>
               </ul>
-            </SideNavSection>
-            <SideNavSection name="Flagged Customers">
+            </SideNavSection> */}
+            {/* <SideNavSection name="Flagged Customers">
               <ul className="nav flex-column">
                 <li>Customer 1</li>
                 <li>Customer 2</li>
@@ -87,7 +100,7 @@ class SideNav extends Component {
                 <li>Customer 5</li>
                 <li>Customer 6</li>
               </ul>
-            </SideNavSection>
+            </SideNavSection> */}
 
             <SideNavSection name="Todos">
               <ul className="nav flex-column" />

@@ -42,3 +42,12 @@ export const EDIT_PRODUCT = "EDIT_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const CLEAR_PRODUCT = "CLEAR_PRODUCT";
 export const PRODUCT_LOADING = "PRODUCT_LOADING";
+
+// orders
+export const GET_ORDERS = "GET_ORDERS";
+export const GET_ORDER = "GET_ORDER";
+export const ADD_ORDER = "ADD_ORDER";
+export const EDIT_ORDER = "EDIT_ORDER";
+export const DELETE_ORDER = "DELETE_ORDER";
+export const CLEAR_ORDER = "CLEAR_ORDER";
+export const ORDER_LOADING = "ORDER_LOADING";

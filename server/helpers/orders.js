@@ -29,7 +29,7 @@ exports.getOrders = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      res.json({ orders });
+      res.json(orders);
     })
     .catch(e => res.status(404).json(e));
 };
