@@ -64,7 +64,7 @@ class Dashboard extends Component {
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">
-                  Orders / Quotes in 2018
+                  Orders / Quotes in {new Date().getFullYear()}
                 </h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="p-1 w-75">
