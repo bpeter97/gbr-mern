@@ -9,6 +9,7 @@ import "fullcalendar/dist/fullcalendar.js";
 class Calendar extends Component {
   componentDidMount() {
     const { calendar } = this.refs;
+    const h = parseInt(this.props.height, 10);
 
     $(calendar).fullCalendar({
       theme: "bootstrap4",
@@ -24,14 +25,19 @@ class Calendar extends Component {
         center: "title",
         right: "today prev,next"
       },
-      height: 450,
+      height: h,
       events: this.props.events,
       defaultView: "month"
     });
   }
 
   render() {
-    return <div id="main-calendar" ref="calendar" />;
+    const containerHeight = parseInt(this.props.containerHeight, 10);
+    const divStyle = {
+      height: containerHeight
+    };
+
+    return <div id="main-calendar" ref="calendar" style={divStyle} />;
   }
 }
 

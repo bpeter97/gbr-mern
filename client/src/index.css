@@ -84,7 +84,7 @@ li span:hover {
   margin-right: auto;
 }
 #main-calendar {
-  height: 458px;
+  /* height: 458px; */
 }
 
 #collapse-icon {
