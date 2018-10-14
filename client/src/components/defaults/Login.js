@@ -48,24 +48,59 @@ class Login extends Component {
   render() {
     const { errors } = this.state;
 
-    return <div className="container-fluid">
+    return (
+      <div className="container-fluid">
         <div className="row mh-100vh">
-          <div className="col-10 col-sm-8 col-md-6 col-lg-6 offset-1 offset-sm-2 offset-md-3 offset-lg-0 align-self-center d-lg-flex align-items-lg-center align-self-lg-stretch bg-white p-5 rounded rounded-lg-0 my-5 my-lg-0" id="login-block">
+          <div
+            className="col-10 col-sm-8 col-md-6 col-lg-6 offset-1 offset-sm-2 offset-md-3 offset-lg-0 align-self-center d-lg-flex align-items-lg-center align-self-lg-stretch bg-white p-5 rounded rounded-lg-0 my-5 my-lg-0"
+            id="login-block"
+          >
             <div className="m-auto w-lg-75 w-xl-50">
-              <h2 className="text-center font-weight-light mb-5">
-                GBR Management System
-              </h2>
+              <img
+                className="gbr_logo_image d-none d-xl-block ml-auto mr-auto mb-3"
+                height="40"
+                src="../../../img/logo.png"
+                alt="GBR Logo"
+              />
               <form onSubmit={this.onSubmit}>
                 <ErrorDisplay error={errors.login} />
-                <TextFieldGroup placeholder="Username" name="username" type="username" value={this.state.username} onChange={this.onChange} error={errors.login} />
-                <TextFieldGroup placeholder="Password" name="password" type="password" value={this.state.password} onChange={this.onChange} error={errors.login} />
-                <input type="submit" className="btn btn-info mt-2" />
+                <TextFieldGroup
+                  placeholder="Username"
+                  name="username"
+                  type="username"
+                  value={this.state.username}
+                  onChange={this.onChange}
+                  error={errors.login}
+                />
+                <TextFieldGroup
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                  error={errors.login}
+                />
+                <div className="d-flex justify-content-between mt-2">
+                  <input
+                    type="submit"
+                    className="btn btn-info mt-2"
+                    value="Login"
+                    name="login"
+                  />
+                  <input
+                    type="button"
+                    className="btn btn-info mt-2 justify-content-end"
+                    value="Forgot Password"
+                    name="forgotpassword"
+                  />
+                </div>
               </form>
             </div>
           </div>
           <div className="col-lg-6 d-flex align-items-end" id="bg-block" />
         </div>
-      </div>;
+      </div>
+    );
   }
 }
 
@@ -80,4 +115,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);

@@ -237,14 +237,25 @@ li span:hover {
   width: 90%;
 }
 
-.bluebox {
-  border: 1px solid blue;
+.form-control:focus {
+  border-color: darkgreen;
+  box-shadow: 0 0 0 0.2rem rgba(8, 183, 34, 0.3);
 }
-.greenbox {
-  border: 1px solid green;
+
+.form-control {
+  border-color: darkgreen;
 }
-.redbox {
-  border: 1px solid red;
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  color: #fff;
+  background-color: rgb(0, 70, 0);
+  border-color: rgb(0, 70, 0);
+}
+
+.stock-chart {
+  height: 209px;
+  width: 100%;
 }
 
 .card {
@@ -335,6 +346,13 @@ li span:hover {
   -moz-box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.4);
   box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.4);
   z-index: 2;
+  border-right: 2px solid darkgreen;
+}
+
+#map-container {
+  height: 500px;
+  margin-left: 5px;
+  margin-top: -5px;
 }
 
 #login-block p,

@@ -57,7 +57,6 @@ class SalesChart extends Component {
         (ordersPerMonth[ordersPerDate.getMonth() + 1] || 0) + 1;
     }
 
-    console.log({ quotes: quotesPerMonth, orders: ordersPerMonth });
     let salesChartData = {
       labels: months,
       datasets: [
@@ -145,7 +144,7 @@ class SalesChart extends Component {
 }
 
 SalesChart.propTypes = {
-  months: PropTypes.string.isRequired,
+  months: PropTypes.array.isRequired,
   quotes: PropTypes.object.isRequired,
   orders: PropTypes.object.isRequired,
   getQuotes: PropTypes.func.isRequired

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import PropTypes from "prop-types";
-
 import $ from "jquery";
 import "moment/min/moment.min.js";
 

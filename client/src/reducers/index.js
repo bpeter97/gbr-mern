@@ -8,6 +8,7 @@ import { routerReducer } from "react-router-redux";
 import quoteReducer from "./quoteReducer";
 import productReducer from "./productReducer";
 import orderReducer from "./orderReducer";
+import containerReducer from "./containerReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
   products: productReducer,
   todos: todoReducer,
   users: userReducer,
-  customers: customerReducer
+  customers: customerReducer,
+  containers: containerReducer
 });

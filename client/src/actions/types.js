@@ -51,3 +51,12 @@ export const EDIT_ORDER = "EDIT_ORDER";
 export const DELETE_ORDER = "DELETE_ORDER";
 export const CLEAR_ORDER = "CLEAR_ORDER";
 export const ORDER_LOADING = "ORDER_LOADING";
+
+// containers
+export const GET_CONTAINERS = "GET_CONTAINERS";
+export const GET_CONTAINER = "GET_CONTAINER";
+export const ADD_CONTAINER = "ADD_CONTAINER";
+export const EDIT_CONTAINER = "EDIT_CONTAINER";
+export const DELETE_CONTAINER = "DELETE_CONTAINER";
+export const CLEAR_CONTAINER = "CLEAR_CONTAINER";
+export const CONTAINER_LOADING = "CONTAINER_LOADING";
