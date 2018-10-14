@@ -1,22 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "react-table/react-table.css";
 import PropTypes from "prop-types";
-// import ReactTable from "react-table";
-// import matchSorter from "match-sorter";
-
-// Actions
-import { getOrders } from "../../actions/orderActions";
+import { getContainers } from "../../actions/containerActions";
 
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
 
-class Orders extends Component {
+class Containers extends Component {
+  constructor() {
+    super();
+    this.state = {
+      containers: []
+    };
+  }
+
   componentDidMount() {
-    this.props.getOrders();
+    this.props.getContainers();
   }
 
   render() {
+    // const { containers } = this.props;
+
     return (
       <div className="container-fluid main-content">
         <Shortcuts history={this.props.history} />
@@ -24,7 +28,7 @@ class Orders extends Component {
           <div className="col-sm-12 pb-4">
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title text-center py-2">Orders</h5>
+                <h5 className="card-title text-center py-2">Containers</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3 pl-md-5">Table</div>
                 </div>
@@ -37,18 +41,16 @@ class Orders extends Component {
   }
 }
 
-Orders.propTypes = {
-  auth: PropTypes.object.isRequired,
-  orders: PropTypes.object.isRequired,
-  getOrders: PropTypes.func.isRequired
+Containers.propTypes = {
+  getContainers: PropTypes.func.isRequired,
+  containers: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  orders: state.orders
+  containers: state.containers
 });
 
 export default connect(
   mapStateToProps,
-  { getOrders }
-)(Orders);
+  { getContainers }
+)(Containers);

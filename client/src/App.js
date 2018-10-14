@@ -14,8 +14,9 @@ import Login from "./components/defaults/Login";
 import PrivateRoute from "./components/common/PrivateRoute";
 import Dashboard from "./components/dashboard";
 import SideNav from "./components/sidenav/SideNav";
-import Calendar from "./components/calendar";
+import Calendars from "./components/calendar";
 import Customers from "./components/customers";
+import Containers from "./components/containers";
 import Products from "./components/products";
 import Orders from "./components/orders";
 import Quotes from "./components/quotes";
@@ -113,7 +114,7 @@ class App extends Component {
                           <PrivateRoute
                             exact
                             path="/calendar"
-                            component={Calendar}
+                            component={Calendars}
                           />
                         </Switch>
                         <Switch>
@@ -142,6 +143,13 @@ class App extends Component {
                             exact
                             path="/customers"
                             component={Customers}
+                          />
+                        </Switch>
+                        <Switch>
+                          <PrivateRoute
+                            exact
+                            path="/containers"
+                            component={Containers}
                           />
                         </Switch>
                         <Switch>

@@ -6,6 +6,9 @@ import PropTypes from "prop-types";
 // import ReactTable from "react-table";
 // import matchSorter from "match-sorter";
 
+// Components
+import Shortcuts from "./../dashboard/Shortcuts";
+
 class Products extends Component {
   componentDidMount() {
     this.props.getProducts();
@@ -14,6 +17,7 @@ class Products extends Component {
   render() {
     return (
       <div className="container-fluid main-content">
+        <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 pb-4">
             <div className="card">
