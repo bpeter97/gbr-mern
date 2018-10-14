@@ -20,12 +20,6 @@ class Customers extends Component {
     };
     this.props.history.push(location);
   }
-  addCustomerClick() {
-    const location = {
-      pathname: "/customers/add"
-    };
-    this.props.history.push(location);
-  }
 
   render() {
     const { customers } = this.props.customers;
@@ -50,6 +44,7 @@ class Customers extends Component {
       {
         Header: "Name",
         accessor: "name",
+        width: 200,
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["name"] }),
         filterAll: true
@@ -57,6 +52,7 @@ class Customers extends Component {
       {
         Header: "Phone",
         accessor: "phone",
+        width: 200,
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["phone"] }),
         filterAll: true
@@ -64,6 +60,7 @@ class Customers extends Component {
       {
         Header: "Fax",
         accessor: "fax",
+        width: 200,
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["fax"] }),
         filterAll: true
@@ -71,6 +68,7 @@ class Customers extends Component {
       {
         Header: "Email",
         accessor: "email",
+        width: 200,
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["email"] }),
         filterAll: true
@@ -87,6 +85,7 @@ class Customers extends Component {
         Header: "View / Edit",
         id: "edit",
         accessor: "_id",
+        width: 150,
         Cell: ({ value }) => (
           <button
             className="btn btn-success"
@@ -95,28 +94,6 @@ class Customers extends Component {
             View / Edit
           </button>
         )
-      }
-    ];
-    const columns_history = [
-      {
-        Header: "Container ID#",
-        accessor: "containerID"
-      },
-      {
-        Header: "Rented @",
-        accessor: "dateRented"
-      },
-      {
-        Header: "Returned",
-        accessor: "dateReturned"
-      },
-      {
-        Header: "Money Earned",
-        accessor: "earned"
-      },
-      {
-        Header: "Quote",
-        accessor: "quote"
       }
     ];
     return (
@@ -129,15 +106,6 @@ class Customers extends Component {
                 <h5 className="card-title text-center py-2">Customers</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3 pl-md-5">
-                    <div className="d-flex justify-content-end mb-3">
-                      <button
-                        className="btn btn-primary"
-                        onClick={this.addCustomerClick.bind(this)}
-                      >
-                        Add
-                      </button>
-                    </div>
-
                     <ReactTable
                       data={customers}
                       filterable
@@ -150,7 +118,7 @@ class Customers extends Component {
                           desc: true
                         }
                       ]}
-                      className="-striped -highlight"
+                      className="-striped -highlight align-middle text-center"
                       columns={columns}
                       defaultPageSize={10}
                       getTrProps={(s, i) => {
@@ -159,21 +127,12 @@ class Customers extends Component {
                           f = i.original.isFlagged;
                         }
                         return {
-                          style: { backgroundColor: f ? "#DAE7D7" : "inherit" }
+                          style: {
+                            backgroundColor: f
+                              ? "rgb(255, 204, 204, 0.5)"
+                              : "inherit"
+                          }
                         };
-                      }}
-                      SubComponent={row => {
-                        // CREATE NEW COMPONENT FOR CUSTOMER HISTORY
-                        return (
-                          <div className="p-3">
-                            <ReactTable
-                              data={data_history}
-                              columns={columns_history}
-                              showPagination={false}
-                              defaultPageSize={3}
-                            />
-                          </div>
-                        );
                       }}
                     />
                   </div>

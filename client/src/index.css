@@ -42,7 +42,10 @@ a:hover li {
   text-decoration: none;
   font-size: 15px;
 }
-
+.ReactTable .rt-tbody .rt-td {
+  margin-top: auto;
+  margin-bottom: auto;
+}
 button {
   background-color: #006400;
   color: white;
