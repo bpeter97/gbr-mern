@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getQuotes } from "../../actions/quoteActions";
 import "react-table/react-table.css";
 import PropTypes from "prop-types";
-// import ReactTable from "react-table";
-// import matchSorter from "match-sorter";
+import ReactTable from "react-table";
+import matchSorter from "match-sorter";
+
+// Actions
+import { getQuotes } from "../../actions/quoteActions";
+
+// Components
+import Shortcuts from "./../dashboard/Shortcuts";
 
 class Quotes extends Component {
   componentDidMount() {
@@ -12,15 +17,138 @@ class Quotes extends Component {
   }
 
   render() {
+    const { quotes } = this.props.quotes;
+
+    quotes.forEach(quote => {
+      let newCreationDate = new Date(quote.creationDate);
+      let newExpDate = new Date(quote.expirationDate);
+      let newDateFormat =
+        newCreationDate.getMonth() +
+        "/" +
+        newCreationDate.getDay() +
+        "/" +
+        newCreationDate.getFullYear();
+      let newExpDateFormat =
+        newExpDate.getMonth() +
+        "/" +
+        newExpDate.getDay() +
+        "/" +
+        newExpDate.getFullYear();
+      quote.creationDate = newDateFormat;
+      quote.expirationDate = newExpDateFormat;
+    });
+
+    const columns = [
+      {
+        Header: "Customer",
+        accessor: "customer.name",
+        width: 200,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["customer.name"] }),
+        filterAll: true
+      },
+      {
+        Header: "Phone",
+        accessor: "customer.phone",
+        width: 200,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["customer.phone"] }),
+        filterAll: true
+      },
+      {
+        Header: "Type",
+        accessor: "purchaseType.type",
+        width: 200,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["purchaseType.type"] }),
+        filterAll: true
+      },
+      {
+        Header: "# of Items",
+        accessor: "products.length",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["products.length"] }),
+        filterAll: true
+      },
+      {
+        Header: "Created",
+        accessor: "creationDate",
+        width: 200,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["creationDate"] }),
+        filterAll: true
+      },
+      {
+        Header: "Expires",
+        accessor: "expirationDate",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["expirationDate"] }),
+        filterAll: true
+      },
+
+      {
+        Header: "Created By",
+        accessor: "createdBy.username",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["products.length"] }),
+        filterAll: true
+      },
+      {
+        Header: "View / Edit",
+        id: "edit",
+        accessor: "_id",
+        width: 150,
+        Cell: ({ value }) => (
+          <button
+            className="btn btn-success"
+            // onClick={this.editCustomerClick.bind(this, value)}
+          >
+            View / Edit
+          </button>
+        )
+      }
+    ];
+
     return (
       <div className="container-fluid main-content">
+        <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 pb-4">
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">Quotes</h5>
                 <div className="d-flex flex-row justify-content-center">
-                  <div className="col-12 py-md-3 pl-md-5">Table</div>
+                  <div className="col-12 py-md-3 pl-md-5">
+                    <ReactTable
+                      data={quotes}
+                      filterable
+                      defaultFilterMethod={(filter, row) =>
+                        String(row[filter.id]) === filter.value
+                      }
+                      defaultSorted={[
+                        {
+                          id: "Name",
+                          desc: true
+                        }
+                      ]}
+                      className="-striped -highlight align-middle text-center"
+                      columns={columns}
+                      defaultPageSize={10}
+                      getTrProps={(s, i) => {
+                        let f = false;
+                        if (i) {
+                          f = i.original.isFlagged;
+                        }
+                        return {
+                          style: {
+                            backgroundColor: f
+                              ? "rgb(255, 204, 204, 0.5)"
+                              : "inherit"
+                          }
+                        };
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -46,5 +174,3 @@ export default connect(
   mapStateToProps,
   { getQuotes }
 )(Quotes);
-
-// export default Quotes;

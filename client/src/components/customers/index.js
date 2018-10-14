@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getCustomers } from "../../actions/customerActions";
 import PropTypes from "prop-types";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import matchSorter from "match-sorter";
 
+// Actions
+import { getCustomers } from "../../actions/customerActions";
+
+// Components
 import Shortcuts from "./../dashboard/Shortcuts";
 
 class Customers extends Component {
@@ -24,22 +27,6 @@ class Customers extends Component {
   render() {
     const { customers } = this.props.customers;
 
-    const data_history = [
-      {
-        containerID: "1234234",
-        dateRented: "12/1/99",
-        dateReturned: "12/2/2001",
-        earned: "$5,000",
-        quote: "QuoteItem"
-      },
-      {
-        containerID: "123653",
-        dateRented: "12/3/2001",
-        dateReturned: "4/5/2004",
-        earned: "$3500",
-        quote: "QuoteItem"
-      }
-    ];
     const columns = [
       {
         Header: "Name",
