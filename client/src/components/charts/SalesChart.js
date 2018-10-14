@@ -46,15 +46,20 @@ class SalesChart extends Component {
       12: 0
     };
 
-    for (var x = 0, l = quotes.length; x < l; x++) {
-      var quotesPerDate = new Date(quotes[x].creationDate);
-      quotesPerMonth[quotesPerDate.getMonth() + 1] =
-        (quotesPerMonth[quotesPerDate.getMonth() + 1] || 0) + 1;
+    if (quotes !== null) {
+      for (var x = 0, l = quotes.length; x < l; x++) {
+        var quotesPerDate = new Date(quotes[x].creationDate);
+        quotesPerMonth[quotesPerDate.getMonth() + 1] =
+          (quotesPerMonth[quotesPerDate.getMonth() + 1] || 0) + 1;
+      }
     }
-    for (var i = 0, j = orders.length; i < j; i++) {
-      var ordersPerDate = new Date(orders[i].creationDate);
-      ordersPerMonth[ordersPerDate.getMonth() + 1] =
-        (ordersPerMonth[ordersPerDate.getMonth() + 1] || 0) + 1;
+
+    if (orders !== null) {
+      for (var i = 0, j = orders.length; i < j; i++) {
+        var ordersPerDate = new Date(orders[i].creationDate);
+        ordersPerMonth[ordersPerDate.getMonth() + 1] =
+          (ordersPerMonth[ordersPerDate.getMonth() + 1] || 0) + 1;
+      }
     }
 
     let salesChartData = {
