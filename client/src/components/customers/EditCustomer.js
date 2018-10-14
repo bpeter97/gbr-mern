@@ -56,6 +56,7 @@ const mapStateToProps = state => ({
   customers: state.customers
 });
 
-export default connect(mapStateToProps, { getCustomer, clearCustomer })(
-  EditCustomer
-);
+export default connect(
+  mapStateToProps,
+  { getCustomer, clearCustomer }
+)(EditCustomer);

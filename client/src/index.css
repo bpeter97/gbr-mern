@@ -243,7 +243,7 @@ li span:hover {
 
 .main-content {
   position: relative;
-  margin-top: 10px;
+  margin-top: 65px;
   width: 90%;
 }
 
@@ -400,16 +400,18 @@ li span:hover {
 
 @media (min-width: 768px) {
   .top-nav {
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 5;
   }
   .side-nav {
     position: -webkit-sticky;
     position: sticky;
-    top: 4rem;
+    margin-top: 57px;
+    top: 3.59rem;
     z-index: 999;
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 3.59rem);
     border-right: 1px solid darkgreen;
     max-width: 250px;
     margin-left: 0px;

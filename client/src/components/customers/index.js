@@ -148,5 +148,3 @@ export default connect(
   mapStateToProps,
   { getCustomers }
 )(Customers);
-
-// export default Customers;
