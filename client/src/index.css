@@ -76,6 +76,9 @@ li span:hover {
   margin-left: auto;
   margin-right: auto;
 }
+#main-calendar {
+  height: 458px;
+}
 
 #collapse-icon {
   color: #fff;
@@ -269,6 +272,10 @@ li span:hover {
 }
 .card.blank-card .card-header h5 button {
   color: green;
+}
+.footer-message {
+  background-color: darkgreen;
+  height: 80%;
 }
 .card .card-body {
   padding: 0px;

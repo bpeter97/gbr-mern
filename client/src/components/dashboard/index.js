@@ -4,6 +4,8 @@ import Calendar from "./../calendar/Calendar";
 
 import SalesChart from "./../charts/SalesChart";
 import StockChart from "./../charts/StockChart";
+import ReactTable from "react-table";
+import matchSorter from "match-sorter";
 
 class Dashboard extends Component {
   constructor() {
@@ -15,7 +17,7 @@ class Dashboard extends Component {
     let events = [
       {
         start: "2018-10-15",
-        end: "2018-10-16",
+        end: "2018-10-17",
         color: "#00FF00"
       }
     ];
@@ -32,6 +34,80 @@ class Dashboard extends Component {
       "Oct",
       "Nov",
       "Dec"
+    ];
+
+    const visitedColumns = [
+      {
+        Header: "Item Visited",
+        accessor: "itemVisited",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["itemVisited"] }),
+        filterAll: true
+      },
+      {
+        Header: "Type",
+        accessor: "type",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["type"] }),
+        filterAll: true
+      },
+      {
+        Header: "Last Visited",
+        accessor: "lastVisited",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["lastVisited"] }),
+        filterAll: true
+      }
+    ];
+
+    const activityColumns = [
+      {
+        Header: "Notification",
+        accessor: "notification",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["notification"] }),
+        filterAll: true
+      },
+      {
+        Header: "Date",
+        accessor: "date",
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["date"] }),
+        filterAll: true
+      }
+    ];
+
+    const visitedData = [
+      {
+        itemVisited: "James Smith",
+        type: "Customer",
+        lastVisited: "2018-10-11T23:32:14.757Z"
+      },
+      {
+        itemVisited: "990012",
+        type: "Container",
+        lastVisited: "2018-10-12T23:32:14.757Z"
+      },
+      {
+        itemVisited: "James Smith",
+        type: "Order",
+        lastVisited: "2018-10-13T23:32:14.757Z"
+      }
+    ];
+
+    const activityData = [
+      {
+        notification: "A new container has been created (990022).",
+        date: "2018-10-13T23:32:14.757Z"
+      },
+      {
+        notification: "A new customer has been created (Johnny Boy).",
+        date: "2018-10-12T23:32:14.757Z"
+      },
+      {
+        notification: "A new order has been created (Johnny Boy).",
+        date: "2018-10-12T23:32:14.757Z"
+      }
     ];
 
     return (
@@ -71,32 +147,66 @@ class Dashboard extends Component {
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">Recent Activity</h5>
-                <div className="d-flex flex-row justify-content-left">
-                  Somthing
+                <div className="d-flex flex-row justify-content-center">
+                  <div className="col-12">
+                    <ReactTable
+                      data={activityData}
+                      defaultSorted={[
+                        {
+                          id: "Name",
+                          desc: true
+                        }
+                      ]}
+                      className="-striped -highlight"
+                      columns={activityColumns}
+                      showPageSizeOptions={false}
+                      defaultPageSize={10}
+                      getTrProps={(s, i) => {
+                        let f = false;
+                        if (i) {
+                          f = i.original.isFlagged;
+                        }
+                        return {
+                          style: { backgroundColor: f ? "#DAE7D7" : "inherit" }
+                        };
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-sm-12 col-lg-2 pb-4">
+          <div className="col-sm-12 col-lg-4 pb-4">
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">
-                  Recently Viewed Customers
+                  Recently Visited
                 </h5>
-                <div className="d-flex flex-row justify-content-left">
-                  Somthing
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-12 col-lg-2 pb-4">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title text-center py-2">
-                  Recently Viewed Containers
-                </h5>
-                <div className="d-flex flex-row justify-content-left">
-                  Somthing
+                <div className="d-flex flex-row justify-content-center">
+                  <div className="col-12">
+                    <ReactTable
+                      data={visitedData}
+                      defaultSorted={[
+                        {
+                          id: "Name",
+                          desc: true
+                        }
+                      ]}
+                      className="-striped -highlight"
+                      columns={visitedColumns}
+                      showPageSizeOptions={false}
+                      defaultPageSize={10}
+                      getTrProps={(s, i) => {
+                        let f = false;
+                        if (i) {
+                          f = i.original.isFlagged;
+                        }
+                        return {
+                          style: { backgroundColor: f ? "#DAE7D7" : "inherit" }
+                        };
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -110,6 +220,17 @@ class Dashboard extends Component {
                     <Calendar events={events} />
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-12">
+            <div className="card footer-message">
+              <div className="card-body">
+                <h5 className="card-title text-center py-2">
+                  Copyright Message
+                </h5>
               </div>
             </div>
           </div>

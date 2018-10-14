@@ -24,14 +24,14 @@ class Calendar extends Component {
         center: "title",
         right: "today prev,next"
       },
-      height: 500,
+      height: 450,
       events: this.props.events,
       defaultView: "month"
     });
   }
 
   render() {
-    return <div id="sidebar-calendar" ref="calendar" />;
+    return <div id="main-calendar" ref="calendar" />;
   }
 }
 
