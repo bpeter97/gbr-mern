@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 
+// Components
 import Calendar from "./../calendar/Calendar";
-
 import SalesChart from "./../charts/SalesChart";
 import StockChart from "./../charts/StockChart";
+import Shortcuts from "./Shortcuts";
+
 import ReactTable from "react-table";
 import matchSorter from "match-sorter";
 
@@ -40,6 +42,7 @@ class Dashboard extends Component {
       {
         Header: "Item Visited",
         accessor: "itemVisited",
+        className: "text-center",
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["itemVisited"] }),
         filterAll: true
@@ -47,6 +50,7 @@ class Dashboard extends Component {
       {
         Header: "Type",
         accessor: "type",
+        className: "text-center",
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["type"] }),
         filterAll: true
@@ -54,6 +58,7 @@ class Dashboard extends Component {
       {
         Header: "Last Visited",
         accessor: "lastVisited",
+        className: "text-center",
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["lastVisited"] }),
         filterAll: true
@@ -71,6 +76,8 @@ class Dashboard extends Component {
       {
         Header: "Date",
         accessor: "date",
+        maxWidth: 120,
+        className: "text-center",
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["date"] }),
         filterAll: true
@@ -95,6 +102,17 @@ class Dashboard extends Component {
       }
     ];
 
+    visitedData.forEach(visit => {
+      let newDate = new Date(visit.lastVisited);
+      let newDateFormat =
+        newDate.getMonth() +
+        "/" +
+        newDate.getDay() +
+        "/" +
+        newDate.getFullYear();
+      visit.lastVisited = newDateFormat;
+    });
+
     const activityData = [
       {
         notification: "A new container has been created (990022).",
@@ -110,8 +128,20 @@ class Dashboard extends Component {
       }
     ];
 
+    activityData.forEach(activity => {
+      let newDate = new Date(activity.date);
+      let newDateFormat =
+        newDate.getMonth() +
+        "/" +
+        newDate.getDay() +
+        "/" +
+        newDate.getFullYear();
+      activity.date = newDateFormat;
+    });
+
     return (
       <div className="container-fluid main-content">
+        <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 col-lg-4 pb-4">
             <div className="card">

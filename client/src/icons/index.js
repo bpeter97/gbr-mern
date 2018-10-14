@@ -15,6 +15,10 @@ import { ic_close } from "react-icons-kit/md/ic_close";
 import { userCircle } from "react-icons-kit/fa/userCircle";
 import { arrowLeft } from "react-icons-kit/fa/arrowLeft";
 import { arrowRight } from "react-icons-kit/fa/arrowRight";
+import { quoteLeft } from "react-icons-kit/fa/quoteLeft";
+import { ic_add_shopping_cart } from "react-icons-kit/md/ic_add_shopping_cart";
+import { ic_person_add } from "react-icons-kit/md/ic_person_add";
+import { ic_note_add } from "react-icons-kit/md/ic_note_add";
 
 export const CustomersIcon = users;
 export const ContainersIcon = box;
@@ -33,3 +37,7 @@ export const CloseIcon = ic_close;
 export const AccountIcon = userCircle;
 export const ArrowLeft = arrowLeft;
 export const ArrowRight = arrowRight;
+export const QuoteLeft = quoteLeft;
+export const ShoppingCart = ic_add_shopping_cart;
+export const PersonAdd = ic_person_add;
+export const NoteAdd = ic_note_add;

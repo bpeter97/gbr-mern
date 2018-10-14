@@ -49,6 +49,10 @@ button {
   border: none;
   font-size: 24px;
 }
+.picture-button {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 2px;
+}
 
 *:focus {
   outline: none;

@@ -6,6 +6,8 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import matchSorter from "match-sorter";
 
+import Shortcuts from "./../dashboard/Shortcuts";
+
 class Customers extends Component {
   componentDidMount() {
     this.props.getCustomers();
@@ -119,6 +121,7 @@ class Customers extends Component {
     ];
     return (
       <div className="container-fluid main-content">
+        <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 pb-4">
             <div className="card">
