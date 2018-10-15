@@ -72,7 +72,8 @@ class Containers extends Component {
           matchSorter(rows, filter.value, {
             keys: ["stats.currentRentee.name"]
           }),
-        filterAll: true
+        filterAll: true,
+        className: "table-link"
       },
       {
         Header: "Flag Reason",
@@ -119,15 +120,26 @@ class Containers extends Component {
                           desc: true
                         }
                       ]}
-                      className="-striped -highlight align-middle text-center"
+                      className="-striped -highlight text-center"
                       columns={columns}
                       defaultPageSize={10}
-                      getTrProps={(s, i) => {
+                      getTrProps={(state, rowInfo, column, instance) => {
                         let f = false;
-                        if (i) {
-                          f = i.original.isFlagged;
+
+                        if (rowInfo) {
+                          f = rowInfo.original.isFlagged;
                         }
                         return {
+                          onClick: () => {
+                            console.log(rowInfo.row);
+                            this.props.history.push({
+                              pathname: "/customers/edit",
+                              state: {
+                                id:
+                                  rowInfo.row._original.stats.currentRentee._id
+                              }
+                            });
+                          },
                           style: {
                             backgroundColor: f
                               ? "rgb(255, 204, 204, 0.5)"
@@ -149,7 +161,7 @@ class Containers extends Component {
 
 Containers.propTypes = {
   getContainers: PropTypes.func.isRequired,
-  containers: PropTypes.array.isRequired
+  containers: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

@@ -78,6 +78,17 @@ li span:hover {
   padding: 1rem;
 }
 
+.table-link {
+  color: darkgreen;
+  text-decoration: underline;
+}
+
+.table-link:hover {
+  color: rgb(0, 155, 0);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 #sidebar-calendar h2 {
   font-size: 20px;
   margin-left: auto;

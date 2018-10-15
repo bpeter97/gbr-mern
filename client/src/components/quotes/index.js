@@ -162,7 +162,7 @@ class Quotes extends Component {
 Quotes.propTypes = {
   auth: PropTypes.object.isRequired,
   quotes: PropTypes.object.isRequired,
-  getquotes: PropTypes.func.isRequired
+  getQuotes: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
