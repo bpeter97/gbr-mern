@@ -26,8 +26,12 @@ class Calendar extends Component {
         right: "today prev,next"
       },
       height: h,
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
       events: this.props.events,
-      defaultView: "month"
+      defaultView: "month",
+      eventTextColor: "#FFFFFF"
     });
   }
 

@@ -25,8 +25,12 @@ class SideNavCalendar extends Component {
         end: "17:00" // an end time (6pm in this example)
       },
       contentHeight: 400,
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
       events: this.props.events,
-      defaultView: "agendaDay"
+      defaultView: "agendaDay",
+      eventTextColor: "#FFFFFF"
     });
   }
 

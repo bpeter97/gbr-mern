@@ -41,10 +41,16 @@ class SideNav extends Component {
     const { errors } = this.state;
     let events = [
       {
-        start: "2017-01-06",
-        end: "2017-01-08",
-        rendering: "background",
+        title: "Jemery Hill",
+        start: "2018-10-15",
+        end: "2018-10-17",
         color: "#00FF00"
+      },
+      {
+        title: "John Smith",
+        start: "2018-10-14",
+        end: "2018-10-15",
+        color: "#008800"
       }
     ];
     if (isAuthenticated) {

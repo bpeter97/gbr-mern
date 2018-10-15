@@ -18,9 +18,16 @@ class Dashboard extends Component {
   render() {
     let events = [
       {
+        title: "Jemery Hill",
         start: "2018-10-15",
         end: "2018-10-17",
         color: "#00FF00"
+      },
+      {
+        title: "John Smith",
+        start: "2018-10-14",
+        end: "2018-10-15",
+        color: "#008800"
       }
     ];
     let months = [
