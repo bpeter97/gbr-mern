@@ -6,6 +6,7 @@ const isEmpty = require("./../validation/is-empty");
 const Container = require("../models/Container");
 const ContainerSize = require("../models/ContainerSize");
 const ContainerStats = require("../models/ContainerStats");
+const Customer = require("../models/Customer");
 
 // validation files
 const validateContainerInput = require("../validation/container");
@@ -21,7 +22,17 @@ exports.getContainers = (req, res) => {
       if (!containers) {
         return res.status(400).json({ error: "No containers found" });
       }
-      res.json(containers);
+
+      Container.populate(containers, {
+        path: "stats",
+        populate: { path: "currentRentee", model: Customer },
+        model: ContainerStats
+      }).then(containers => {
+        if (!containers) {
+          return res.status(400).json({ error: "No containers found" });
+        }
+        res.json(containers);
+      });
     })
     .catch(e => res.status(404).json(e));
 };
