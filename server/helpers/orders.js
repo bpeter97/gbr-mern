@@ -26,6 +26,10 @@ exports.getOrders = (req, res) => {
       model: Product
     })
     .populate("containers.container")
+    .populate({
+      path: "containers.container",
+      populate: { path: "size", model: ContainerSize }
+    })
     .populate("createdBy")
     .then(orders => {
       if (!orders) {

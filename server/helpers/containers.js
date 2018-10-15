@@ -18,21 +18,15 @@ exports.getContainers = (req, res) => {
   Container.find({})
     .populate("size")
     .populate("stats")
+    .populate({
+      path: "stats",
+      populate: { path: "currentRentee", model: Customer }
+    })
     .then(containers => {
       if (!containers) {
         return res.status(400).json({ error: "No containers found" });
       }
-
-      Container.populate(containers, {
-        path: "stats",
-        populate: { path: "currentRentee", model: Customer },
-        model: ContainerStats
-      }).then(containers => {
-        if (!containers) {
-          return res.status(400).json({ error: "No containers found" });
-        }
-        res.json(containers);
-      });
+      res.json(containers);
     })
     .catch(e => res.status(404).json(e));
 };

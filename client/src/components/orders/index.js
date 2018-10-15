@@ -145,69 +145,60 @@ class Orders extends Component {
       {
         Header: "Container Number",
         accessor: "container.gbrNumber",
-        width: 150,
+        width: 200,
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["container.gbrNumber"] }),
         filterAll: true
       },
       {
-        // Need to update accessor once order is properly populated
         Header: "Size",
-        accessor: "container.size",
-        width: 150,
-        filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, { keys: ["container.size"] }),
-        filterAll: true
+        accessor: "container.size.size",
+        width: 150
       },
       {
         Header: "Is Delivered?",
         accessor: "container.delivery.isDelivered",
-        width: 150,
-        filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, {
-            keys: ["container.delivery.isDelivered"]
-          }),
-        filterAll: true
+        width: 150
       },
       {
         Header: "Date Delivered",
         accessor: "container.delivery.dateDelivered",
-        width: 150,
-        filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, {
-            keys: ["container.delivery.dateDelivered"]
-          }),
-        filterAll: true
+        width: 150
       },
       {
         Header: "Is Picked Up?",
         accessor: "container.delivery.isPickedUp",
-        width: 150,
-        filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, {
-            keys: ["container.delivery.isPickedUp"]
-          }),
-        filterAll: true
+        width: 150
       },
       {
         Header: "Date Picked Up",
         accessor: "container.delivery.pickupDate",
-        width: 150,
-        filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, {
-            keys: ["container.delivery.pickupDate"]
-          }),
-        filterAll: true
+        width: 150
       }
     ];
 
     const productColumns = [
       {
         Header: "Product",
-        accessor: "_id",
-        filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, { keys: ["products.length"] }),
-        filterAll: true
+        accessor: "product.name",
+        width: 200
+      },
+      {
+        Header: "Label",
+        accessor: "product.shortName",
+        width: 150
+      },
+      {
+        Header: "Price",
+        accessor: "product.price",
+        width: 200,
+        Cell: e => `$${e.value}`
+      },
+      {
+        Header: "Monthly Price",
+        accessor: "product.monthlyPrice",
+        width: 200,
+        Cell: e => `$${e.value}`
       }
     ];
 
