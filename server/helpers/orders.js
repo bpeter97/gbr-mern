@@ -8,6 +8,7 @@ const Order = require("./../models/Order");
 const PurchaseType = require("../models/PurchaseType");
 const PurchasePrices = require("../models/PurchasePrices");
 const RequestedProduct = require("../models/RequestedProduct");
+const Product = require("../models/Product");
 
 // validation files
 const validateOrderInput = require("../validation/order");
@@ -20,7 +21,10 @@ exports.getOrders = (req, res) => {
     .populate("customer")
     .populate("purchaseType")
     .populate("purchasePrices")
-    .populate("products.product")
+    .populate({
+      path: "products.product",
+      model: Product
+    })
     .populate("containers.container")
     .populate("createdBy")
     .then(orders => {
