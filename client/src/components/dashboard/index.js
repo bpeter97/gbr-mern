@@ -15,35 +15,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    let events = [
-      {
-        title: "Jemery Hill",
-        start: "2018-10-15",
-        end: "2018-10-17",
-        color: "#00FF00"
-      },
-      {
-        title: "John Smith",
-        start: "2018-10-14",
-        end: "2018-10-15",
-        color: "#008800"
-      }
-    ];
-    let months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
-    ];
-
     return (
       <div className="container-fluid main-content">
         <Shortcuts history={this.props.history} />
@@ -56,7 +27,7 @@ class Dashboard extends Component {
                 </h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="p-1 w-75">
-                    <SalesChart months={months} />
+                    <SalesChart />
                   </div>
                 </div>
               </div>

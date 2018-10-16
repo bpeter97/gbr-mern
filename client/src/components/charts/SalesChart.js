@@ -14,9 +14,22 @@ class SalesChart extends Component {
   }
 
   render() {
-    const { months } = this.props;
     const { quotes } = this.props.quotes;
     const { orders } = this.props.orders;
+    let months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
     var quotesPerMonth = {
       1: 0,
       2: 0,
