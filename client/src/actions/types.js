@@ -13,6 +13,10 @@ export const ADD_NOTIFICATION = "ADD_NOTIFICATION";
 export const DELETE_NOTIFICATION = "DELETE_NOTIFICATION";
 export const NOTIFICATIONS_LOADING = "NOTIFICATIONS_LOADING";
 
+// visits
+export const GET_VISITS = "GET_VISITS";
+export const VISITS_LOADING = "VISITS_LOADING";
+
 // todos
 export const ADD_TODO = "ADD_TODO";
 export const GET_TODOS = "GET_TODOS";

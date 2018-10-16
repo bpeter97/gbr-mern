@@ -4,7 +4,6 @@ import {
   ADD_ORDER,
   EDIT_ORDER,
   DELETE_ORDER,
-  GET_ERRORS,
   CLEAR_ORDER,
   ORDER_LOADING
 } from "../actions/types";

@@ -6,6 +6,9 @@ const RecentVisitSchema = new Schema({
     type: String,
     required: true
   },
+  item: {
+    type: String
+  },
   itemId: {
     type: Schema.Types.ObjectId,
     refPath: "type",

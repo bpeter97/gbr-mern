@@ -6,9 +6,7 @@ import SalesChart from "./../charts/SalesChart";
 import StockChart from "./../charts/StockChart";
 import Shortcuts from "./Shortcuts";
 import Notifications from "./../notifications/Notifications";
-
-import ReactTable from "react-table";
-import matchSorter from "match-sorter";
+import RecentVisits from "./../visits/RecentVisits";
 
 class Dashboard extends Component {
   constructor() {
@@ -45,62 +43,6 @@ class Dashboard extends Component {
       "Nov",
       "Dec"
     ];
-
-    const visitedColumns = [
-      {
-        Header: "Item Visited",
-        accessor: "itemVisited",
-        className: "text-center",
-        filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, { keys: ["itemVisited"] }),
-        filterAll: true
-      },
-      {
-        Header: "Type",
-        accessor: "type",
-        className: "text-center",
-        filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, { keys: ["type"] }),
-        filterAll: true
-      },
-      {
-        Header: "Last Visited",
-        accessor: "lastVisited",
-        className: "text-center",
-        filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, { keys: ["lastVisited"] }),
-        filterAll: true
-      }
-    ];
-
-    const visitedData = [
-      {
-        itemVisited: "James Smith",
-        type: "Customer",
-        lastVisited: "2018-10-11T23:32:14.757Z"
-      },
-      {
-        itemVisited: "990012",
-        type: "Container",
-        lastVisited: "2018-10-12T23:32:14.757Z"
-      },
-      {
-        itemVisited: "James Smith",
-        type: "Order",
-        lastVisited: "2018-10-13T23:32:14.757Z"
-      }
-    ];
-
-    visitedData.forEach(visit => {
-      let newDate = new Date(visit.lastVisited);
-      let newDateFormat =
-        newDate.getMonth() +
-        "/" +
-        newDate.getDay() +
-        "/" +
-        newDate.getFullYear();
-      visit.lastVisited = newDateFormat;
-    });
 
     return (
       <div className="container-fluid main-content">
@@ -156,28 +98,7 @@ class Dashboard extends Component {
                 </h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12">
-                    <ReactTable
-                      data={visitedData}
-                      defaultSorted={[
-                        {
-                          id: "Name",
-                          desc: true
-                        }
-                      ]}
-                      className="-striped -highlight"
-                      columns={visitedColumns}
-                      showPageSizeOptions={false}
-                      defaultPageSize={10}
-                      getTrProps={(s, i) => {
-                        let f = false;
-                        if (i) {
-                          f = i.original.isFlagged;
-                        }
-                        return {
-                          style: { backgroundColor: f ? "#DAE7D7" : "inherit" }
-                        };
-                      }}
-                    />
+                    <RecentVisits history={this.props.history} />
                   </div>
                 </div>
               </div>

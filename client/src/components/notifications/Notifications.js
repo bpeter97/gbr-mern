@@ -13,8 +13,6 @@ class Notifications extends Component {
   }
 
   render() {
-    const { history } = this.props;
-
     const { notifications } = this.props.notifications;
 
     notifications.forEach(notification => {

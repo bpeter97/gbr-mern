@@ -10,6 +10,7 @@ import productReducer from "./productReducer";
 import orderReducer from "./orderReducer";
 import containerReducer from "./containerReducer";
 import notificationReducer from "./notificationReducer";
+import visitReducer from "./visitReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -22,5 +23,6 @@ export default combineReducers({
   users: userReducer,
   customers: customerReducer,
   containers: containerReducer,
-  notifications: notificationReducer
+  notifications: notificationReducer,
+  visits: visitReducer
 });
