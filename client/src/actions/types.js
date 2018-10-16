@@ -17,6 +17,10 @@ export const NOTIFICATIONS_LOADING = "NOTIFICATIONS_LOADING";
 export const GET_VISITS = "GET_VISITS";
 export const VISITS_LOADING = "VISITS_LOADING";
 
+// events
+export const GET_EVENTS = "GET_EVENTS";
+export const EVENTS_LOADING = "EVENTS_LOADING";
+
 // todos
 export const ADD_TODO = "ADD_TODO";
 export const GET_TODOS = "GET_TODOS";

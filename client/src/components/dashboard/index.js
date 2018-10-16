@@ -110,11 +110,7 @@ class Dashboard extends Component {
                 <h5 className="card-title text-center py-2">Calendar</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="p-2">
-                    <Calendar
-                      events={events}
-                      height="450"
-                      containerHeight="458"
-                    />
+                    <Calendar height="450" containerHeight="458" />
                   </div>
                 </div>
               </div>
