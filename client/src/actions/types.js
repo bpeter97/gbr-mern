@@ -7,6 +7,12 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const GET_USERS = "GET_USERS";
 export const USERS_LOADING = "USERS_LOADING";
 
+// notifications
+export const GET_NOTIFICATIONS = "GET_NOTIFICATIONS";
+export const ADD_NOTIFICATION = "ADD_NOTIFICATION";
+export const DELETE_NOTIFICATION = "DELETE_NOTIFICATION";
+export const NOTIFICATIONS_LOADING = "NOTIFICATIONS_LOADING";
+
 // todos
 export const ADD_TODO = "ADD_TODO";
 export const GET_TODOS = "GET_TODOS";

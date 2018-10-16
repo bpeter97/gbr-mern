@@ -9,6 +9,7 @@ import quoteReducer from "./quoteReducer";
 import productReducer from "./productReducer";
 import orderReducer from "./orderReducer";
 import containerReducer from "./containerReducer";
+import notificationReducer from "./notificationReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
   todos: todoReducer,
   users: userReducer,
   customers: customerReducer,
-  containers: containerReducer
+  containers: containerReducer,
+  notifications: notificationReducer
 });

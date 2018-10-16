@@ -131,7 +131,6 @@ class Containers extends Component {
                         }
                         return {
                           onClick: () => {
-                            console.log(rowInfo.row);
                             this.props.history.push({
                               pathname: "/customers/edit",
                               state: {

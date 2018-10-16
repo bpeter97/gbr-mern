@@ -5,6 +5,7 @@ import Calendar from "./../calendar/Calendar";
 import SalesChart from "./../charts/SalesChart";
 import StockChart from "./../charts/StockChart";
 import Shortcuts from "./Shortcuts";
+import Notifications from "./../notifications/Notifications";
 
 import ReactTable from "react-table";
 import matchSorter from "match-sorter";
@@ -72,25 +73,6 @@ class Dashboard extends Component {
       }
     ];
 
-    const activityColumns = [
-      {
-        Header: "Notification",
-        accessor: "notification",
-        filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, { keys: ["notification"] }),
-        filterAll: true
-      },
-      {
-        Header: "Date",
-        accessor: "date",
-        maxWidth: 120,
-        className: "text-center",
-        filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, { keys: ["date"] }),
-        filterAll: true
-      }
-    ];
-
     const visitedData = [
       {
         itemVisited: "James Smith",
@@ -118,32 +100,6 @@ class Dashboard extends Component {
         "/" +
         newDate.getFullYear();
       visit.lastVisited = newDateFormat;
-    });
-
-    const activityData = [
-      {
-        notification: "A new container has been created (990022).",
-        date: "2018-10-13T23:32:14.757Z"
-      },
-      {
-        notification: "A new customer has been created (Johnny Boy).",
-        date: "2018-10-12T23:32:14.757Z"
-      },
-      {
-        notification: "A new order has been created (Johnny Boy).",
-        date: "2018-10-12T23:32:14.757Z"
-      }
-    ];
-
-    activityData.forEach(activity => {
-      let newDate = new Date(activity.date);
-      let newDateFormat =
-        newDate.getMonth() +
-        "/" +
-        newDate.getDay() +
-        "/" +
-        newDate.getFullYear();
-      activity.date = newDateFormat;
     });
 
     return (
@@ -186,28 +142,7 @@ class Dashboard extends Component {
                 <h5 className="card-title text-center py-2">Recent Activity</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12">
-                    <ReactTable
-                      data={activityData}
-                      defaultSorted={[
-                        {
-                          id: "Name",
-                          desc: true
-                        }
-                      ]}
-                      className="-striped -highlight"
-                      columns={activityColumns}
-                      showPageSizeOptions={false}
-                      defaultPageSize={10}
-                      getTrProps={(s, i) => {
-                        let f = false;
-                        if (i) {
-                          f = i.original.isFlagged;
-                        }
-                        return {
-                          style: { backgroundColor: f ? "#DAE7D7" : "inherit" }
-                        };
-                      }}
-                    />
+                    <Notifications history={this.props.history} />
                   </div>
                 </div>
               </div>
