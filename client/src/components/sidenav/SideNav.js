@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import TextFieldInput from "../common/TextFieldInput";
 import SideNavSection from "./SideNavSection";
-import SideNavCalendar from "./SideNavCalendar";
+import Calendar from "./../calendar/Calendar";
 import Todos from "../todos/Todos";
 
 import SvgIcon from "react-icons-kit";
@@ -85,34 +85,22 @@ class SideNav extends Component {
               />
             </form>
             <SideNavSection>
-              <SideNavCalendar events={events} />
+              <Calendar
+                height="450"
+                containerHeight="458"
+                defaultView="agenda"
+                calendarId="sidebar-calendar"
+                theme="standard"
+                header={{
+                  left: "",
+                  center: "title",
+                  right: ""
+                }}
+              />
             </SideNavSection>
-
-            {/* <SideNavSection name="Upcoming Events">
-              <ul className="nav flex-column">
-                <li>Event 1</li>
-                <li>Event 2</li>
-              </ul>
-            </SideNavSection> */}
-            {/* <SideNavSection name="Flagged Customers">
-              <ul className="nav flex-column">
-                <li>Customer 1</li>
-                <li>Customer 2</li>
-              </ul>
-            </SideNavSection>
-
-            <SideNavSection name="Recently Viewed">
-              <ul className="nav flex-column">
-                <li>Customer 5</li>
-                <li>Customer 6</li>
-              </ul>
-            </SideNavSection> */}
 
             <SideNavSection name="Todos">
               <ul className="nav flex-column" />
-              {/* get todos
-              put them into list
-              render */}
               <Todos />
             </SideNavSection>
           </nav>

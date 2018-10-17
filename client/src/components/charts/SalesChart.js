@@ -162,7 +162,6 @@ class SalesChart extends Component {
 }
 
 SalesChart.propTypes = {
-  months: PropTypes.array.isRequired,
   quotes: PropTypes.object.isRequired,
   orders: PropTypes.object.isRequired,
   getQuotes: PropTypes.func.isRequired

@@ -11,21 +11,6 @@ class Calendars extends Component {
   }
 
   render() {
-    let events = [
-      {
-        title: "Jemery Hill",
-        start: "2018-10-15",
-        end: "2018-10-17",
-        color: "#00FF00"
-      },
-      {
-        title: "John Smith",
-        start: "2018-10-14",
-        end: "2018-10-15",
-        color: "#008800"
-      }
-    ];
-
     return (
       <div className="container-fluid main-content">
         <Shortcuts history={this.props.history} />
@@ -36,11 +21,7 @@ class Calendars extends Component {
                 <h5 className="card-title text-center py-2">Calendar</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3 pl-md-5">
-                    <Calendar
-                      events={events}
-                      height="750"
-                      containerHeight="778"
-                    />
+                    <Calendar height="750" containerHeight="778" />
                   </div>
                 </div>
               </div>

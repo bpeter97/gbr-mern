@@ -9,7 +9,6 @@ import "fullcalendar/dist/fullcalendar.css";
 import "fullcalendar/dist/fullcalendar.js";
 
 import { getEvents } from "./../../actions/eventActions";
-import { callbackify } from "util";
 
 class Calendar extends Component {
   constructor() {
@@ -21,8 +20,17 @@ class Calendar extends Component {
     this.props.getEvents();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.events.events.length > this.state.events.length) {
+      this.setState({ events: nextProps.events.events });
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.state.events.length !== nextProps.events.events.length;
+  }
+
   render() {
-    const { events } = this.props.events;
     const { calendar } = this.refs;
     const h = parseInt(this.props.height, 10);
     const containerHeight = parseInt(this.props.containerHeight, 10);
@@ -30,54 +38,26 @@ class Calendar extends Component {
       height: containerHeight
     };
 
-    var calendarEvents = [];
+    $(calendar).fullCalendar({
+      theme: this.props.theme,
+      businessHours: {
+        // days of week. an array of zero-based day of week integers (0=Sunday)
+        dow: [1, 2, 3, 4, 5], // Monday - Thursday
 
-    function callBack() {
-      $(calendar).fullCalendar({
-        theme: "bootstrap4",
-        businessHours: {
-          // days of week. an array of zero-based day of week integers (0=Sunday)
-          dow: [1, 2, 3, 4, 5], // Monday - Thursday
-
-          start: "07:30", // a start time (10am in this example)
-          end: "17:00" // an end time (6pm in this example)
-        },
-        header: {
-          left: "",
-          center: "title",
-          right: "today prev,next"
-        },
-        height: h,
-        navLinks: true, // can click day/week names to navigate views
-        editable: true,
-        eventLimit: true, // allow "more" link when too many events
-        events: calendarEvents,
-        defaultView: "month",
-        eventTextColor: "#FFFFFF"
-      });
-    }
-
-    let itemsProcessed = 0;
-
-    events.forEach(event => {
-      itemsProcessed++;
-
-      let newEvent = {
-        title: event.title,
-        start: event.start,
-        end: event.end,
-        color: event.color
-      };
-
-      calendarEvents.push(newEvent);
-
-      if (itemsProcessed == events.length) {
-        callBack();
-      }
+        start: "07:30", // a start time (10am in this example)
+        end: "17:00" // an end time (6pm in this example)
+      },
+      header: this.props.header,
+      height: h,
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: this.state.events,
+      defaultView: this.props.defaultView,
+      eventTextColor: "#FFFFFF"
     });
-    console.log(calendarEvents);
 
-    return <div id="main-calendar" ref="calendar" style={divStyle} />;
+    return <div id={this.props.calendarId} ref="calendar" style={divStyle} />;
   }
 }
 

@@ -17,6 +17,13 @@ button:disabled {
   opacity: 0.5;
 }
 
+.card .card-body .alert {
+  padding-top: 0rem !important;
+  padding-left: 0rem !important;
+  padding-right: 0rem !important;
+  padding-bottom: 0rem !important;
+}
+
 nav {
   font-size: 14px;
   padding-left: 0;
