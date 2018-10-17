@@ -91,13 +91,13 @@ class NavBar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/calendar">
-                  Calendar
+                <Link className="nav-link" to="/users">
+                  Users
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/users">
-                  Users
+                <Link className="nav-link" to="/calendar">
+                  Calendar
                 </Link>
               </li>
             </ul>
