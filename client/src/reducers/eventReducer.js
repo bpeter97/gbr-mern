@@ -1,7 +1,8 @@
-import { GET_EVENTS, EVENTS_LOADING } from "../actions/types";
+import { GET_EVENTS, EVENTS_LOADING, GET_EVENT } from "../actions/types";
 
 const initialState = {
   events: [],
+  event: { _id: "" },
   loading: false
 };
 
@@ -16,6 +17,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         events: action.payload,
+        loading: false
+      };
+    case GET_EVENT:
+      return {
+        ...state,
+        event: action.payload,
         loading: false
       };
     default:

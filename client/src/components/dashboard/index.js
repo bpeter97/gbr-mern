@@ -9,11 +9,6 @@ import Notifications from "./../notifications/Notifications";
 import RecentVisits from "./../visits/RecentVisits";
 
 class Dashboard extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-
   render() {
     return (
       <div className="container-fluid main-content">
