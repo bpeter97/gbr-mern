@@ -66,6 +66,40 @@ exports.getEvent = (req, res) => {
 
   // Find the object in the DB!
   CalendarEvent.findById(req.params.id)
+    .populate({
+      path: "order",
+      model: Order,
+      populate: [
+        {
+          path: "customer",
+          model: Customer
+        },
+        {
+          path: "purchaseType",
+          model: PurchaseType
+        },
+        {
+          path: "purchasePrices",
+          model: PurchasePrices
+        },
+        {
+          path: "createdBy",
+          model: User
+        },
+        {
+          path: "products.product",
+          model: Product
+        },
+        {
+          path: "containers.container",
+          model: Container,
+          populate: {
+            path: "size",
+            model: ContainerSize
+          }
+        }
+      ]
+    })
     .then(event => {
       if (!event) {
         errors.event = "There was no event found";

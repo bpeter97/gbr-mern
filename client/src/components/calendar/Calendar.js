@@ -14,7 +14,7 @@ import { getEvents, getEvent } from "./../../actions/eventActions";
 class Calendar extends Component {
   constructor(props) {
     super(props);
-    this.state = { events: [], show: false, event: { _id: "", title: "null" } };
+    this.state = { events: [], show: false };
 
     this.toggleModal = this.toggleModal.bind(this);
   }
@@ -23,28 +23,12 @@ class Calendar extends Component {
     this.props.getEvents();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.events.events.length > this.state.events.length) {
-      this.setState({ events: nextProps.events.events });
-    }
-
-    if (nextProps.events.event !== null) {
-      if (nextProps.events.event !== this.state.event) {
-        this.setState({ event: nextProps.events.event });
-      }
-    }
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.state.events.length != nextProps.events.events.length ||
-      this.state.event.value !== nextProps.events.event.value
-    );
+    return this.state.events.length !== nextProps.events.events.length;
   }
 
   toggleModal() {
-    this.setState({ show: !this.state.show, event: this.props.events.event });
-    this.forceUpdate();
+    this.setState({ show: !this.state.show });
   }
 
   render() {
@@ -61,15 +45,15 @@ class Calendar extends Component {
         // days of week. an array of zero-based day of week integers (0=Sunday)
         dow: [1, 2, 3, 4, 5], // Monday - Thursday
 
-        start: "07:30", // a start time (10am in this example)
-        end: "17:00" // an end time (6pm in this example)
+        start: "07:30",
+        end: "17:00"
       },
       header: this.props.header,
       height: h,
-      navLinks: true, // can click day/week names to navigate views
+      navLinks: true,
       editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events: this.state.events,
+      eventLimit: true,
+      events: this.props.events,
       defaultView: this.props.defaultView,
       eventTextColor: "#FFFFFF",
       eventClick: event => {
@@ -77,7 +61,13 @@ class Calendar extends Component {
         this.toggleModal();
       }
     });
-    console.log(this.props);
+    var modalEvent;
+    if (this.props.events.event === undefined) {
+      modalEvent = { title: "none" };
+    } else {
+      modalEvent = this.props.events.event;
+    }
+
     return (
       <div id={this.props.calendarId} ref="calendar" style={divStyle}>
         <div>
@@ -87,7 +77,7 @@ class Calendar extends Component {
               <ModalBody>
                 <div className="row">
                   <div className="form-group col-md-4">
-                    <label>Name: {this.state.event.title}</label>
+                    <label>Name: {modalEvent.title}</label>
                   </div>
                 </div>
                 <div className="row">

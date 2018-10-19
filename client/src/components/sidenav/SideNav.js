@@ -39,20 +39,6 @@ class SideNav extends Component {
     const { collapsed, id } = this.props;
     const { isAuthenticated } = this.props.auth;
     const { errors } = this.state;
-    let events = [
-      {
-        title: "Jemery Hill",
-        start: "2018-10-15",
-        end: "2018-10-17",
-        color: "#00FF00"
-      },
-      {
-        title: "John Smith",
-        start: "2018-10-14",
-        end: "2018-10-15",
-        color: "#008800"
-      }
-    ];
     if (isAuthenticated) {
       navbarContent = (
         <div
