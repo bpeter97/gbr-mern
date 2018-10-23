@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getQuotes } from "../../actions/quoteActions";
 import { getOrders } from "../../actions/orderActions";
 import PropTypes from "prop-types";
+import Spinner from "./../common/Spinner";
 
 var LineChart = require("react-chartjs").Line;
 
@@ -16,6 +17,8 @@ class SalesChart extends Component {
   render() {
     const { quotes } = this.props.quotes;
     const { orders } = this.props.orders;
+    const qLoading = this.props.quotes.loading;
+    const oLoading = this.props.orders.loading;
     let months = [
       "Jan",
       "Feb",
@@ -157,7 +160,11 @@ class SalesChart extends Component {
         ]
       }
     };
-    return <LineChart data={salesChartData} options={salesChartOptions} />;
+    if (quotes === null || orders === null || qLoading || oLoading) {
+      return <Spinner />;
+    } else {
+      return <LineChart data={salesChartData} options={salesChartOptions} />;
+    }
   }
 }
 

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getContainers } from "../../actions/containerActions";
 import PropTypes from "prop-types";
+import Spinner from "./../common/Spinner";
 
 var BarChart = require("react-chartjs").Bar;
 
@@ -12,7 +13,7 @@ class StockChart extends Component {
   }
 
   render() {
-    const { containers } = this.props.containers;
+    const { containers, loading } = this.props.containers;
     var containersBySize = {};
     var sizeLabels = [];
     var containerSizeCount = [];
@@ -50,9 +51,13 @@ class StockChart extends Component {
       responsive: true,
       maintainAspectRatio: false
     };
-    return (
-      <BarChart data={stockChartData} options={stockChartOptions} redraw />
-    );
+    if (containers === null || loading) {
+      return <Spinner />;
+    } else {
+      return (
+        <BarChart data={stockChartData} options={stockChartOptions} redraw />
+      );
+    }
   }
 }
 

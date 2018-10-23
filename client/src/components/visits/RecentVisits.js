@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import ReactTable from "react-table";
 import matchSorter from "match-sorter";
+import Spinner from "./../common/Spinner";
 
 // Actions
 import { getVisits } from "../../actions/visitActions";
@@ -13,7 +14,7 @@ class RecentVisits extends Component {
   }
 
   render() {
-    const { visits } = this.props.visits;
+    const { visits, loading } = this.props.visits;
 
     visits.forEach(visit => {
       let newDate = new Date(visit.dateTime);
@@ -70,38 +71,42 @@ class RecentVisits extends Component {
       }
     ];
 
-    return (
-      <ReactTable
-        data={visits}
-        defaultSorted={[
-          {
-            id: "dateTime",
-            desc: true
-          }
-        ]}
-        className="-striped -highlight text-center"
-        columns={visitColumns}
-        showPageSizeOptions={false}
-        defaultPageSize={10}
-        getTdProps={(state, rowInfo, column, instance) => {
-          return {
-            onClick: (e, handleOriginal) => {
-              let sendTo = rowInfo.original.type.toLowerCase();
-              console.log(sendTo);
-              this.props.history.push({
-                pathname: `/${sendTo}s/edit`,
-                state: {
-                  id: rowInfo.original.itemId._id
-                }
-              });
-              if (handleOriginal) {
-                handleOriginal();
-              }
+    if (visits === null || loading) {
+      return <Spinner />;
+    } else {
+      return (
+        <ReactTable
+          data={visits}
+          defaultSorted={[
+            {
+              id: "dateTime",
+              desc: true
             }
-          };
-        }}
-      />
-    );
+          ]}
+          className="-striped -highlight text-center"
+          columns={visitColumns}
+          showPageSizeOptions={false}
+          defaultPageSize={10}
+          getTdProps={(state, rowInfo, column, instance) => {
+            return {
+              onClick: (e, handleOriginal) => {
+                let sendTo = rowInfo.original.type.toLowerCase();
+                console.log(sendTo);
+                this.props.history.push({
+                  pathname: `/${sendTo}s/edit`,
+                  state: {
+                    id: rowInfo.original.itemId._id
+                  }
+                });
+                if (handleOriginal) {
+                  handleOriginal();
+                }
+              }
+            };
+          }}
+        />
+      );
+    }
   }
 }
 
