@@ -21,6 +21,7 @@ export const VISITS_LOADING = "VISITS_LOADING";
 export const GET_EVENTS = "GET_EVENTS";
 export const GET_EVENT = "GET_EVENT";
 export const EVENTS_LOADING = "EVENTS_LOADING";
+export const EDIT_EVENT = "EDIT_EVENT";
 
 // todos
 export const ADD_TODO = "ADD_TODO";

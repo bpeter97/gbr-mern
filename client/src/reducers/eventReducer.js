@@ -2,7 +2,7 @@ import { GET_EVENTS, EVENTS_LOADING, GET_EVENT } from "../actions/types";
 
 const initialState = {
   events: [],
-  event: { _id: "" },
+  event: {},
   loading: false
 };
 
