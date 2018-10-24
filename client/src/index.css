@@ -430,10 +430,10 @@ li span:hover {
   .side-nav {
     position: -webkit-sticky;
     position: sticky;
-    margin-top: 40px;
+    margin-top: 49px;
     top: 3.09rem;
     z-index: 999;
-    height: calc(100vh - 3.59rem);
+    height: calc(100vh - 3.09rem);
     border-right: 1px solid darkgreen;
     max-width: 250px;
     margin-left: 0px;
