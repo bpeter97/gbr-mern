@@ -10,6 +10,7 @@ import { getCustomers } from "../../actions/customerActions";
 
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
+import Spinner from "./../common/Spinner";
 
 class Customers extends Component {
   componentDidMount() {
@@ -93,35 +94,39 @@ class Customers extends Component {
                 <h5 className="card-title text-center py-2">Customers</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3 pl-md-5">
-                    <ReactTable
-                      data={customers}
-                      filterable
-                      defaultFilterMethod={(filter, row) =>
-                        String(row[filter.id]) === filter.value
-                      }
-                      defaultSorted={[
-                        {
-                          id: "Name",
-                          desc: true
+                    {this.props.customers.loading ? (
+                      <Spinner />
+                    ) : (
+                      <ReactTable
+                        data={customers}
+                        filterable
+                        defaultFilterMethod={(filter, row) =>
+                          String(row[filter.id]) === filter.value
                         }
-                      ]}
-                      className="-striped -highlight align-middle text-center"
-                      columns={columns}
-                      defaultPageSize={10}
-                      getTrProps={(s, i) => {
-                        let f = false;
-                        if (i) {
-                          f = i.original.isFlagged;
-                        }
-                        return {
-                          style: {
-                            backgroundColor: f
-                              ? "rgb(255, 204, 204, 0.5)"
-                              : "inherit"
+                        defaultSorted={[
+                          {
+                            id: "Name",
+                            desc: true
                           }
-                        };
-                      }}
-                    />
+                        ]}
+                        className="-striped -highlight align-middle text-center"
+                        columns={columns}
+                        defaultPageSize={10}
+                        getTrProps={(s, i) => {
+                          let f = false;
+                          if (i) {
+                            f = i.original.isFlagged;
+                          }
+                          return {
+                            style: {
+                              backgroundColor: f
+                                ? "rgb(255, 204, 204, 0.5)"
+                                : "inherit"
+                            }
+                          };
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
