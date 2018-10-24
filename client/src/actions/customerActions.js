@@ -33,12 +33,28 @@ export const getCustomers = () => dispatch => {
   dispatch(setCustomerLoading());
   axios
     .get("/api/customers")
-    .then(res =>
-      dispatch({
-        type: GET_CUSTOMERS,
-        payload: res.data
-      })
-    )
+    .then(res => {
+      // Callback function to ensure dispatch doesn't
+      // occur until after forEach completes
+      function callback(data) {
+        dispatch({
+          type: GET_CUSTOMERS,
+          payload: res.data
+        });
+      }
+
+      var customersProcessed = 0;
+
+      res.data.forEach(customer => {
+        axios.get(`/api/orders/customer/${customer._id}`).then(newRes => {
+          customer.orders = newRes.data.orders;
+          customersProcessed++;
+          if (customersProcessed === res.data.length) {
+            callback(res.data);
+          }
+        });
+      });
+    })
     .catch(err =>
       dispatch({
         type: GET_CUSTOMERS,

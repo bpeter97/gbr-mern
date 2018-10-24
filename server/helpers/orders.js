@@ -58,8 +58,15 @@ exports.getUserOrders = (req, res) => {
     .populate("customer")
     .populate("purchaseType")
     .populate("purchasePrices")
-    .populate("products.product")
+    .populate({
+      path: "products.product",
+      model: Product
+    })
     .populate("containers.container")
+    .populate({
+      path: "containers.container",
+      populate: { path: "size", model: ContainerSize }
+    })
     .populate("createdBy")
     .then(orders => {
       if (!orders) {
@@ -67,7 +74,7 @@ exports.getUserOrders = (req, res) => {
         return res.status(400).json(errors);
       }
 
-      res.json({ orders });
+      res.json(orders);
     })
     .catch(e => res.status(404).json(e));
 };
@@ -84,12 +91,21 @@ exports.getCustomerOrders = (req, res) => {
     return res.status(400).json(errors);
   }
 
-  Order.find({ customer: req.params.id })
+  let id = new ObjectID(req.params.id);
+
+  Order.find({ customer: id })
     .populate("customer")
     .populate("purchaseType")
     .populate("purchasePrices")
-    .populate("products.product")
+    .populate({
+      path: "products.product",
+      model: Product
+    })
     .populate("containers.container")
+    .populate({
+      path: "containers.container",
+      populate: { path: "size", model: ContainerSize }
+    })
     .populate("createdBy")
     .then(orders => {
       if (!orders) {
