@@ -6,6 +6,7 @@ import { logoutUser } from "../../actions/defaultsActions";
 
 import SvgIcon from "react-icons-kit";
 import { AccountIcon } from "../../icons";
+import Clock from "./Clock";
 
 class NavBar extends Component {
   constructor() {
@@ -102,11 +103,17 @@ class NavBar extends Component {
               </li>
             </ul>
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item pr-2 mt-1">
-                Welcome {user.firstName} {user.lastName}{" "}
+              <li className="nav-item pr-2 my-auto">
+                Logged in as {user.firstName}{" "}
+                {user.middleInitial ? user.middleInitial : ""}. {user.lastName}{" "}
                 {user.suffix ? user.suffix : ""}!
               </li>
-              <li className="dropdown ">
+              <li className="nav-item pr-2 my-auto">
+                <strong>
+                  <Clock />
+                </strong>
+              </li>
+              <li className="dropdown my-auto">
                 <a
                   href=""
                   className="dropdown-toggle"

@@ -109,6 +109,10 @@ li span:hover {
   color: #fff;
 }
 
+.navbar {
+  padding: 0.25rem 0.25rem;
+}
+
 .navbar-toggler {
   background-color: #006400;
   color: white;
@@ -261,7 +265,7 @@ li span:hover {
 
 .main-content {
   position: relative;
-  margin-top: 65px;
+  margin-top: 60px;
   width: 90%;
 }
 
@@ -426,8 +430,8 @@ li span:hover {
   .side-nav {
     position: -webkit-sticky;
     position: sticky;
-    margin-top: 57px;
-    top: 3.59rem;
+    margin-top: 40px;
+    top: 3.09rem;
     z-index: 999;
     height: calc(100vh - 3.59rem);
     border-right: 1px solid darkgreen;
