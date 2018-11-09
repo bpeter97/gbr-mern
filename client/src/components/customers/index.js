@@ -25,6 +25,40 @@ class Customers extends Component {
     this.props.history.push(location);
   }
 
+  getEarnings(v) {
+    let type = v.original.purchaseType.type;
+
+    let earnings = 0;
+    let correctSalesTax = v.original.purchasePrices.salesTax / 100;
+
+    if (type === "Rental") {
+      let createDate = new Date(v.original.creationDate);
+      let currentDate = new Date();
+      let numOfMonths =
+        (currentDate.getFullYear() - createDate.getFullYear()) * 12;
+      numOfMonths -= createDate.getMonth() + 1;
+      numOfMonths += currentDate.getMonth() + 1;
+
+      let monthlyEarnings =
+        v.original.purchasePrices.monthlyPrice +
+        v.original.purchasePrices.monthlyPrice * correctSalesTax;
+
+      earnings = monthlyEarnings * numOfMonths;
+
+      earnings += v.original.purchasePrices.deliveryTotal;
+
+      return earnings;
+    } else {
+      let productEarnings =
+        v.original.purchasePrices.priceBeforeTax -
+        v.original.purchasePrices.deliveryTotal;
+      earnings = productEarnings + productEarnings * correctSalesTax;
+
+      earnings += v.original.purchasePrices.deliveryTotal;
+      return earnings;
+    }
+  }
+
   render() {
     const { customers } = this.props.customers;
 
@@ -84,6 +118,59 @@ class Customers extends Component {
         )
       }
     ];
+
+    const customerOrdersColumns = [
+      {
+        Header: "Type",
+        accessor: "purchaseType.type",
+        width: 120,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["purchaseType.type"] }),
+        filterAll: true
+      },
+      {
+        Header: "Job",
+        accessor: "job.name",
+        width: 200,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["job.name"] }),
+        filterAll: true
+      },
+      {
+        Header: "Job City",
+        accessor: "job.city",
+        width: 200,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["job.city"] }),
+        filterAll: true
+      },
+      {
+        Header: "Containers",
+        accessor: "containers.length",
+        width: 100,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["containers.length"] }),
+        filterAll: true
+      },
+      {
+        Header: "Order Created",
+        accessor: "creationDate",
+        Cell: v => (v.value = new Date(v.original.creationDate).toDateString()),
+        width: 150,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["creationDate"] }),
+        filterAll: true
+      },
+      {
+        Header: "Total Earned",
+        Cell: v => (v.value = `$${this.getEarnings(v)}`),
+        width: 150,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, { keys: ["createdBy.username"] }),
+        filterAll: true
+      }
+    ];
+
     return (
       <div className="container-fluid main-content">
         <Shortcuts history={this.props.history} />
@@ -124,6 +211,20 @@ class Customers extends Component {
                                 : "inherit"
                             }
                           };
+                        }}
+                        SubComponent={row => {
+                          var numOfC = row.original.orders.length;
+
+                          return (
+                            <div className="p-3">
+                              <ReactTable
+                                data={row.original.orders}
+                                columns={customerOrdersColumns}
+                                showPagination={false}
+                                defaultPageSize={numOfC}
+                              />
+                            </div>
+                          );
                         }}
                       />
                     )}
