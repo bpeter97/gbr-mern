@@ -103,12 +103,12 @@ class NavBar extends Component {
               </li>
             </ul>
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item pr-2 my-auto">
+              <li className="nav-item pr-2 my-auto d-none d-lg-block">
                 Logged in as {user.firstName}{" "}
                 {user.middleInitial ? user.middleInitial : ""}. {user.lastName}{" "}
                 {user.suffix ? user.suffix : ""}!
               </li>
-              <li className="nav-item pr-2 my-auto">
+              <li className="nav-item pr-2 my-auto d-none d-lg-block">
                 <strong>
                   <Clock />
                 </strong>
