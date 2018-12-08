@@ -5,6 +5,9 @@ import Spinner from "../common/Spinner";
 import { getCustomer, clearCustomer } from "../../actions/customerActions";
 import EditCustomerForm from "./EditCustomerForm";
 
+// Components
+import Shortcuts from "./../dashboard/Shortcuts";
+
 class EditCustomer extends Component {
   componentDidMount() {
     let hasState = this.props.location.location.state;
@@ -30,7 +33,23 @@ class EditCustomer extends Component {
       form = <EditCustomerForm redirectFunc={this.onFormSubmit.bind(this)} />;
     }
 
-    return form;
+    return (
+      <div className="container-fluid main-content">
+        <Shortcuts history={this.props.history} />
+        <div className="row justify-content-center">
+          <div className="col-sm-12 pb-4">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title text-center py-2">Edit Customer</h5>
+                <div className="d-flex flex-row justify-content-center">
+                  <div className="col-12 py-md-3 pl-md-5">{form}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 

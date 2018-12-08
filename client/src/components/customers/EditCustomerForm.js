@@ -5,9 +5,6 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { editCustomer } from "../../actions/customerActions";
 import TextArea from "../common/TextArea";
 
-// Components
-import Shortcuts from "./../dashboard/Shortcuts";
-
 class EditCustomerForm extends Component {
   constructor() {
     super();
@@ -94,184 +91,168 @@ class EditCustomerForm extends Component {
   render() {
     const { errors } = this.props;
     let form = (
-      <div className="container-fluid main-content">
-        <Shortcuts history={this.props.history} />
-        <div className="row justify-content-center">
-          <div className="col-sm-12 pb-4">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title text-center py-2">Edit Customer</h5>
-                <div className="d-flex flex-row justify-content-center">
-                  <div className="col-12 py-md-3 pl-md-5">
-                    <form onSubmit={this.onSubmit}>
-                      <div className="col-md-12">
-                        <TextFieldGroup
-                          name="name"
-                          type="text"
-                          label="Name"
-                          className="form-control"
-                          value={this.state.name}
-                          onChange={this.onChange}
-                          error={errors}
-                        />
-                        <div className="form-row pt-2">
-                          <TextFieldGroup
-                            name="phone"
-                            type="text"
-                            label="Phone (Work)"
-                            divClass="col"
-                            className="form-control"
-                            value={this.state.phone}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
-                          <TextFieldGroup
-                            name="ext"
-                            type="text"
-                            label="Ext"
-                            divClass="col"
-                            className="form-control"
-                            value={this.state.ext}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
-                        </div>
-                        <div className="form-row pt-2">
-                          <TextFieldGroup
-                            name="fax"
-                            type="text"
-                            label="Fax"
-                            divClass="col"
-                            className="form-control"
-                            value={this.state.fax}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
-                        </div>
-                        <div className="form-row pt-2">
-                          <TextFieldGroup
-                            name="email"
-                            type="email"
-                            label="Email"
-                            divClass="col"
-                            className="form-control"
-                            value={this.state.email}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
-                        </div>
-                        <div className="form-row pt-2">
-                          <TextFieldGroup
-                            name="address1"
-                            type="text"
-                            label="Address 1"
-                            divClass="col"
-                            className="form-control"
-                            value={this.state.address1}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
-                          <TextFieldGroup
-                            name="address2"
-                            type="text"
-                            label="Address 2"
-                            divClass="col"
-                            className="form-control"
-                            value={this.state.address2}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
-                        </div>
+      <form onSubmit={this.onSubmit}>
+        <div className="col-md-12">
+          <TextFieldGroup
+            name="name"
+            type="text"
+            label="Name"
+            className="form-control"
+            value={this.state.name}
+            onChange={this.onChange}
+            error={errors}
+          />
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="phone"
+              type="text"
+              label="Phone (Work)"
+              divClass="col"
+              className="form-control"
+              value={this.state.phone}
+              onChange={this.onChange}
+              error={errors}
+            />
+            <TextFieldGroup
+              name="ext"
+              type="text"
+              label="Ext"
+              divClass="col"
+              className="form-control"
+              value={this.state.ext}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="fax"
+              type="text"
+              label="Fax"
+              divClass="col"
+              className="form-control"
+              value={this.state.fax}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="email"
+              type="email"
+              label="Email"
+              divClass="col"
+              className="form-control"
+              value={this.state.email}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="address1"
+              type="text"
+              label="Address 1"
+              divClass="col"
+              className="form-control"
+              value={this.state.address1}
+              onChange={this.onChange}
+              error={errors}
+            />
+            <TextFieldGroup
+              name="address2"
+              type="text"
+              label="Address 2"
+              divClass="col"
+              className="form-control"
+              value={this.state.address2}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
 
-                        <div className="form-row pt-2">
-                          <TextFieldGroup
-                            name="city"
-                            type="text"
-                            label="City"
-                            divClass="col"
-                            className="form-control"
-                            value={this.state.city}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="city"
+              type="text"
+              label="City"
+              divClass="col"
+              className="form-control"
+              value={this.state.city}
+              onChange={this.onChange}
+              error={errors}
+            />
 
-                          <TextFieldGroup
-                            name="state"
-                            type="text"
-                            label="State"
-                            divClass="col"
-                            className="form-control"
-                            value={this.state.state}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
-                        </div>
-                        <div className="form-row pt-2">
-                          <TextFieldGroup
-                            name="zipcode"
-                            type="text"
-                            label="Zipcode"
-                            divClass="col"
-                            className="form-control"
-                            value={this.state.zipcode}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-md-12">
-                        <div className="form-group pt-2">
-                          <label>RDP</label>
-                          <TextArea
-                            name="rdp"
-                            className="form-control"
-                            value={this.state.rdp}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
-                        </div>
-
-                        <div className="form-group">
-                          <label>Notes</label>
-                          <TextArea
-                            name="notes"
-                            className="form-control"
-                            value={this.state.notes}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
-                        </div>
-
-                        <TextFieldGroup
-                          name="isFlagged"
-                          type="isFlagged"
-                          label="Flagged?"
-                          className="form-control"
-                          value={this.state.isFlagged}
-                          onChange={this.onChange}
-                          error={errors}
-                        />
-
-                        <div className="form-group pt-2">
-                          <label>Flag Reason</label>
-                          <TextArea
-                            name="flagReason"
-                            className="form-control"
-                            value={this.state.flagReason}
-                            onChange={this.onChange}
-                            error={errors}
-                          />
-                        </div>
-                        <input type="submit" className="btn btn-info mt-2" />
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <TextFieldGroup
+              name="state"
+              type="text"
+              label="State"
+              divClass="col"
+              className="form-control"
+              value={this.state.state}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="zipcode"
+              type="text"
+              label="Zipcode"
+              divClass="col"
+              className="form-control"
+              value={this.state.zipcode}
+              onChange={this.onChange}
+              error={errors}
+            />
           </div>
         </div>
-      </div>
+        <div className="col-md-12">
+          <div className="form-group pt-2">
+            <label>RDP</label>
+            <TextArea
+              name="rdp"
+              className="form-control"
+              value={this.state.rdp}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Notes</label>
+            <TextArea
+              name="notes"
+              className="form-control"
+              value={this.state.notes}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
+
+          <TextFieldGroup
+            name="isFlagged"
+            type="isFlagged"
+            label="Flagged?"
+            className="form-control"
+            value={this.state.isFlagged}
+            onChange={this.onChange}
+            error={errors}
+          />
+
+          <div className="form-group pt-2">
+            <label>Flag Reason</label>
+            <TextArea
+              name="flagReason"
+              className="form-control"
+              value={this.state.flagReason}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
+          <input type="submit" className="btn btn-info mt-2" />
+        </div>
+      </form>
     );
 
     return form;
