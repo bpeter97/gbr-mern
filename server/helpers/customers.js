@@ -4,6 +4,7 @@ const isEmpty = require("./../validation/is-empty");
 
 // model
 const Customer = require("./../models/Customer");
+const Notification = require("../models/Notification");
 
 // validation files
 const validateCustomerInput = require("../validation/customer");
@@ -67,7 +68,17 @@ exports.postCustomer = (req, res) => {
           errors.customers = "Unable to create the new customer";
           return res.status(400).json(errors);
         }
-        res.json(customer);
+
+        var newNote = new Notification({
+          notification: "A new customer has been created.",
+          type: "Customer",
+          itemId: customer._id,
+          dateTime: new Date()
+        });
+
+        newNote.save().then(note => {
+          res.json(customer);
+        });
       })
       .catch(e => console.log(e));
   });

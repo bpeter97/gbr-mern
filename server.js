@@ -52,7 +52,7 @@ if (process.env.NODE_ENV == "test") {
   console.log("Attempting to connect to test database.....");
   mongoose.connect(process.env.mongoTestURI).catch(err => console.log(err));
 } else {
-  console.log("Attempting to connect to production database....");
+  console.log("Attempting to connect to dev database....");
   mongoose
     .connect(process.env.mongoURI)
     .then(() => console.log("MongoDB Connected."))

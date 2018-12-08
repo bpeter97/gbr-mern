@@ -76,7 +76,7 @@ class Notifications extends Component {
           defaultSorted={[
             {
               id: "dateTime",
-              desc: true
+              desc: false
             }
           ]}
           className="-striped -highlight"
