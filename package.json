@@ -6,6 +6,7 @@
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "server": "nodemon server.js",
     "test-all": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=alltests --timeout 5000",
     "test-containers": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/containers.test.js --reporter mochawesome --reporter-options reportDir=server/tests/reports,reportFilename=containers --timeout 5000",
