@@ -27,24 +27,39 @@ class Customers extends Component {
 
   getEarnings(v) {
     let type = v.original.purchaseType.type;
+    let stage = v.original.stage;
+    let endDate = v.original.endDate;
+    let deliveryDate =
+      v.original.containers[0].container.delivery.dateDelivered;
 
     let earnings = 0;
     let correctSalesTax = v.original.purchasePrices.salesTax / 100;
 
     if (type === "Rental") {
-      let createDate = new Date(v.original.creationDate);
       let currentDate = new Date();
-      let numOfMonths =
-        (currentDate.getFullYear() - createDate.getFullYear()) * 12;
-      numOfMonths -= createDate.getMonth() + 1;
-      numOfMonths += currentDate.getMonth() + 1;
+      let numOfMonths;
 
+      // Get the monthly earnings
       let monthlyEarnings =
         v.original.purchasePrices.monthlyPrice +
         v.original.purchasePrices.monthlyPrice * correctSalesTax;
 
-      earnings = monthlyEarnings * numOfMonths;
+      // Get the number of months
+      if (stage === 1) {
+        numOfMonths = 1;
+      } else if (stage > 1 && endDate === null) {
+        numOfMonths =
+          (currentDate.getFullYear() - deliveryDate.getFullYear()) * 12;
+        numOfMonths -= deliveryDate.getMonth() + 1;
+        numOfMonths += currentDate.getMonth() + 1;
+      } else if (endDate !== null) {
+        numOfMonths = (endDate.getFullYear() - deliveryDate.getFullYear()) * 12;
+        numOfMonths -= deliveryDate.getMonth() + 1;
+        numOfMonths += endDate.getMonth() + 1;
+      }
 
+      // Calculate the earnings
+      earnings = monthlyEarnings * numOfMonths;
       earnings += v.original.purchasePrices.deliveryTotal;
 
       return earnings;
