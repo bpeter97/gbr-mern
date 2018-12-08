@@ -30,15 +30,7 @@ class EditCustomer extends Component {
       form = <EditCustomerForm redirectFunc={this.onFormSubmit.bind(this)} />;
     }
 
-    return (
-      <div className="col-12" style={{}}>
-        <div className="m-3">
-          <h2 className="text-center font-weight-light ">Edit Customer</h2>
-        </div>
-
-        <div className="m-auto w-lg-75">{form}</div>
-      </div>
-    );
+    return form;
   }
 }
 
