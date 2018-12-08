@@ -4,21 +4,21 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 // require the routes
-const defaults = require("./server/routes/api/defaults");
-const products = require("./server/routes/api/products");
-const customers = require("./server/routes/api/customers");
-const containers = require("./server/routes/api/containers");
-const users = require("./server/routes/api/users");
-const events = require("./server/routes/api/events");
-const settings = require("./server/routes/api/settings");
-const todos = require("./server/routes/api/todos");
-const quotes = require("./server/routes/api/quotes");
-const orders = require("./server/routes/api/orders");
-const notifications = require("./server/routes/api/notifications");
-const visits = require("./server/routes/api/visits");
+const defaults = require("./routes/api/defaults");
+const products = require("./routes/api/products");
+const customers = require("./routes/api/customers");
+const containers = require("./routes/api/containers");
+const users = require("./routes/api/users");
+const events = require("./routes/api/events");
+const settings = require("./routes/api/settings");
+const todos = require("./routes/api/todos");
+const quotes = require("./routes/api/quotes");
+const orders = require("./routes/api/orders");
+const notifications = require("./routes/api/notifications");
+const visits = require("./routes/api/visits");
 
 // middleware
-const authorization = require("./server/middleware/authorization");
+const authorization = require("./middleware/authorization");
 
 // Set the port if no environment port is set.
 const port = process.env.PORT || 5000;
