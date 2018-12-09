@@ -103,8 +103,8 @@ class EditCustomerForm extends Component {
       ];
     } else {
       flaggedSelect = [
-        { value: true, selected: false, label: "Yes" },
-        { value: false, selected: true, label: "No" }
+        { value: false, selected: true, label: "No" },
+        { value: true, selected: false, label: "Yes" }
       ];
     }
 

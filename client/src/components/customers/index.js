@@ -17,6 +17,13 @@ class Customers extends Component {
     this.props.getCustomers();
   }
 
+  componentDidUpdate(prevProps) {
+    // Update the table component if new changes exist
+    if (this.props.customers !== prevProps.customers) {
+      this.forceUpdate();
+    }
+  }
+
   editCustomerClick(id) {
     const location = {
       pathname: "/customers/edit",
