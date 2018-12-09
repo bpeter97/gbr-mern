@@ -9,6 +9,7 @@ import { getContainers } from "../../actions/containerActions";
 
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
+import Spinner from "./../common/Spinner";
 
 class Containers extends Component {
   componentDidMount() {
@@ -108,45 +109,50 @@ class Containers extends Component {
                 <h5 className="card-title text-center py-2">Containers</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3 pl-md-5">
-                    <ReactTable
-                      data={containers}
-                      filterable
-                      defaultFilterMethod={(filter, row) =>
-                        String(row[filter.id]) === filter.value
-                      }
-                      defaultSorted={[
-                        {
-                          id: "Name",
-                          desc: true
+                    {this.props.containers.loading ? (
+                      <Spinner />
+                    ) : (
+                      <ReactTable
+                        data={containers}
+                        filterable
+                        defaultFilterMethod={(filter, row) =>
+                          String(row[filter.id]) === filter.value
                         }
-                      ]}
-                      className="-striped -highlight text-center"
-                      columns={columns}
-                      defaultPageSize={10}
-                      getTrProps={(state, rowInfo, column, instance) => {
-                        let f = false;
-
-                        if (rowInfo) {
-                          f = rowInfo.original.isFlagged;
-                        }
-                        return {
-                          onClick: () => {
-                            this.props.history.push({
-                              pathname: "/customers/edit",
-                              state: {
-                                id:
-                                  rowInfo.row._original.stats.currentRentee._id
-                              }
-                            });
-                          },
-                          style: {
-                            backgroundColor: f
-                              ? "rgb(255, 204, 204, 0.5)"
-                              : "inherit"
+                        defaultSorted={[
+                          {
+                            id: "Name",
+                            desc: true
                           }
-                        };
-                      }}
-                    />
+                        ]}
+                        className="-striped -highlight text-center"
+                        columns={columns}
+                        defaultPageSize={10}
+                        getTrProps={(state, rowInfo, column, instance) => {
+                          let f = false;
+
+                          if (rowInfo) {
+                            f = rowInfo.original.isFlagged;
+                          }
+                          return {
+                            onClick: () => {
+                              this.props.history.push({
+                                pathname: "/customers/edit",
+                                state: {
+                                  id:
+                                    rowInfo.row._original.stats.currentRentee
+                                      ._id
+                                }
+                              });
+                            },
+                            style: {
+                              backgroundColor: f
+                                ? "rgb(255, 204, 204, 0.5)"
+                                : "inherit"
+                            }
+                          };
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

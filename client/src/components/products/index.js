@@ -8,6 +8,7 @@ import matchSorter from "match-sorter";
 
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
+import Spinner from "./../common/Spinner";
 
 class Products extends Component {
   componentDidMount() {
@@ -81,34 +82,38 @@ class Products extends Component {
                 <h5 className="card-title text-center py-2">Products</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3 pl-md-5">
-                    <ReactTable
-                      data={products}
-                      filterable
-                      defaultFilterMethod={(filter, row) =>
-                        String(row[filter.id]) === filter.value
-                      }
-                      defaultSorted={[
-                        {
-                          id: "Name",
-                          desc: true
+                    {this.props.products.loading ? (
+                      <Spinner />
+                    ) : (
+                      <ReactTable
+                        data={products}
+                        filterable
+                        defaultFilterMethod={(filter, row) =>
+                          String(row[filter.id]) === filter.value
                         }
-                      ]}
-                      className="-striped -highlight text-center"
-                      columns={columns}
-                      defaultPageSize={10}
-                      getTrProps={(state, rowInfo, column, instance) => {
-                        return {
-                          onClick: () => {
-                            this.props.history.push({
-                              pathname: "/products/edit",
-                              state: {
-                                id: rowInfo.original._id
-                              }
-                            });
+                        defaultSorted={[
+                          {
+                            id: "Name",
+                            desc: true
                           }
-                        };
-                      }}
-                    />
+                        ]}
+                        className="-striped -highlight text-center"
+                        columns={columns}
+                        defaultPageSize={10}
+                        getTrProps={(state, rowInfo, column, instance) => {
+                          return {
+                            onClick: () => {
+                              this.props.history.push({
+                                pathname: "/products/edit",
+                                state: {
+                                  id: rowInfo.original._id
+                                }
+                              });
+                            }
+                          };
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

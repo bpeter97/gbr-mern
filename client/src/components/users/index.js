@@ -7,6 +7,7 @@ import matchSorter from "match-sorter";
 
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
+import Spinner from "./../common/Spinner";
 
 class Users extends Component {
   constructor() {
@@ -99,34 +100,38 @@ class Users extends Component {
                 <h5 className="card-title text-center py-2">Users</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3 pl-md-5">
-                    <ReactTable
-                      data={users}
-                      filterable
-                      defaultFilterMethod={(filter, row) =>
-                        String(row[filter.id]) === filter.value
-                      }
-                      defaultSorted={[
-                        {
-                          id: "First Name",
-                          desc: true
+                    {this.props.users.loading ? (
+                      <Spinner />
+                    ) : (
+                      <ReactTable
+                        data={users}
+                        filterable
+                        defaultFilterMethod={(filter, row) =>
+                          String(row[filter.id]) === filter.value
                         }
-                      ]}
-                      className="-striped -highlight text-center"
-                      columns={columns}
-                      defaultPageSize={10}
-                      getTrProps={(state, rowInfo, column, instance) => {
-                        return {
-                          onClick: () => {
-                            this.props.history.push({
-                              pathname: "/users/edit",
-                              state: {
-                                id: rowInfo.original._id
-                              }
-                            });
+                        defaultSorted={[
+                          {
+                            id: "First Name",
+                            desc: true
                           }
-                        };
-                      }}
-                    />
+                        ]}
+                        className="-striped -highlight text-center"
+                        columns={columns}
+                        defaultPageSize={10}
+                        getTrProps={(state, rowInfo, column, instance) => {
+                          return {
+                            onClick: () => {
+                              this.props.history.push({
+                                pathname: "/users/edit",
+                                state: {
+                                  id: rowInfo.original._id
+                                }
+                              });
+                            }
+                          };
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
