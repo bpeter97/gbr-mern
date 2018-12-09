@@ -25,9 +25,6 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "client/build")));
-
 app.use(function(req, res, next) {
   var allowedOrigins = [
     "http://localhost:5000",
