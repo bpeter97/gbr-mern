@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import AddCustomerForm from "../customers/AddCustomerForm";
+import Shortcuts from "./../dashboard/Shortcuts";
 
 class AddCustomer extends Component {
   onFormSubmit() {
@@ -10,13 +11,23 @@ class AddCustomer extends Component {
 
   render() {
     return (
-      <div className="col-12" style={{}}>
-        <div className="m-3">
-          <h2 className="text-center font-weight-light ">Add Customer</h2>
-        </div>
-
-        <div className="m-auto w-lg-75">
-          <AddCustomerForm redirectFunc={this.onFormSubmit.bind(this)} />
+      <div className="container-fluid main-content">
+        <Shortcuts history={this.props.history} />
+        <div className="row justify-content-center">
+          <div className="col-sm-12 pb-4">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title text-center py-2">Add Customer</h5>
+                <div className="d-flex flex-row justify-content-center">
+                  <div className="col-12 py-md-3 pl-md-5">
+                    <AddCustomerForm
+                      redirectFunc={this.onFormSubmit.bind(this)}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

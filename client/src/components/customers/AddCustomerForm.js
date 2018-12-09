@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import { addCustomer } from "../../actions/customerActions";
 import TextArea from "../common/TextArea";
+import SelectInput from "./../common/SelectInput";
 
 class AddCustomerForm extends Component {
   constructor() {
@@ -65,8 +66,8 @@ class AddCustomerForm extends Component {
   render() {
     const { errors } = this.props;
     let form = (
-      <form className="customer-form" onSubmit={this.onSubmit}>
-        <div className="col-md-6">
+      <form onSubmit={this.onSubmit}>
+        <div className="col-md-12">
           <TextFieldGroup
             name="name"
             type="text"
@@ -76,7 +77,7 @@ class AddCustomerForm extends Component {
             onChange={this.onChange}
             error={errors}
           />
-          <div className="form-row">
+          <div className="form-row pt-2">
             <TextFieldGroup
               name="phone"
               type="text"
@@ -98,47 +99,54 @@ class AddCustomerForm extends Component {
               error={errors}
             />
           </div>
-          <TextFieldGroup
-            name="fax"
-            type="text"
-            label="Fax"
-            className="form-control"
-            value={this.state.fax}
-            onChange={this.onChange}
-            error={errors}
-          />
-          <TextFieldGroup
-            name="email"
-            type="email"
-            label="Email"
-            className="form-control"
-            value={this.state.email}
-            onChange={this.onChange}
-            error={errors}
-          />
-        </div>
-        <div className="col-md-6">
-          <TextFieldGroup
-            name="address1"
-            type="text"
-            label="Address 1"
-            className="form-control"
-            value={this.state.address1}
-            onChange={this.onChange}
-            error={errors}
-          />
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="fax"
+              type="text"
+              label="Fax"
+              divClass="col"
+              className="form-control"
+              value={this.state.fax}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="email"
+              type="email"
+              label="Email"
+              divClass="col"
+              className="form-control"
+              value={this.state.email}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="address1"
+              type="text"
+              label="Address 1"
+              divClass="col"
+              className="form-control"
+              value={this.state.address1}
+              onChange={this.onChange}
+              error={errors}
+            />
+            <TextFieldGroup
+              name="address2"
+              type="text"
+              label="Address 2"
+              divClass="col"
+              className="form-control"
+              value={this.state.address2}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
 
-          <TextFieldGroup
-            name="address2"
-            type="text"
-            label="Address 2"
-            className="form-control"
-            value={this.state.address2}
-            onChange={this.onChange}
-            error={errors}
-          />
-
-          <div className="form-row">
+          <div className="form-row pt-2">
             <TextFieldGroup
               name="city"
               type="text"
@@ -161,19 +169,21 @@ class AddCustomerForm extends Component {
               error={errors}
             />
           </div>
-          <TextFieldGroup
-            name="zipcode"
-            type="text"
-            label="Zipcode"
-            divClass="col"
-            className="form-control"
-            value={this.state.zipcode}
-            onChange={this.onChange}
-            error={errors}
-          />
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="zipcode"
+              type="text"
+              label="Zipcode"
+              divClass="col"
+              className="form-control"
+              value={this.state.zipcode}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
         </div>
-        <div className="col-12">
-          <div className="form-group">
+        <div className="col-md-12">
+          <div className="form-group pt-2">
             <label>RDP</label>
             <TextArea
               name="rdp"
@@ -195,17 +205,20 @@ class AddCustomerForm extends Component {
             />
           </div>
 
-          <TextFieldGroup
-            name="isFlagged"
-            type="isFlagged"
-            label="Flagged?"
+          <SelectInput
             className="form-control"
-            value={this.state.isFlagged}
+            label="Is Flagged?"
+            selectId="isFlagged"
+            name="isFlagged"
             onChange={this.onChange}
-            error={errors}
+            options={[
+              { value: true, selected: true, label: "Select One" },
+              { value: true, selected: false, label: "Yes" },
+              { value: false, selected: false, label: "No" }
+            ]}
           />
 
-          <div className="form-group">
+          <div className="form-group pt-2">
             <label>Flag Reason</label>
             <TextArea
               name="flagReason"
@@ -236,4 +249,7 @@ const mapStateToProps = state => ({
   location: state.router
 });
 
-export default connect(mapStateToProps, { addCustomer })(AddCustomerForm);
+export default connect(
+  mapStateToProps,
+  { addCustomer }
+)(AddCustomerForm);

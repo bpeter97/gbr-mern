@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import { editCustomer } from "../../actions/customerActions";
 import TextArea from "../common/TextArea";
+import SelectInput from "./../common/SelectInput";
 
 class EditCustomerForm extends Component {
   constructor() {
@@ -23,7 +24,8 @@ class EditCustomerForm extends Component {
       notes: "",
       isFlagged: "",
       flagReason: "",
-      lastViewed: ""
+      lastViewed: "",
+      selectedOption: null
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -41,7 +43,7 @@ class EditCustomerForm extends Component {
     }
   }
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
 
     const customerData = {
@@ -63,11 +65,12 @@ class EditCustomerForm extends Component {
     };
     this.props.editCustomer(customerData);
     this.props.redirectFunc();
-  }
+  };
 
-  onChange(e) {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
+
   fillForm(customer) {
     this.setState({
       name: customer.name || "",
@@ -90,6 +93,21 @@ class EditCustomerForm extends Component {
 
   render() {
     const { errors } = this.props;
+    const { isFlagged } = this.state;
+
+    let flaggedSelect;
+    if (isFlagged) {
+      flaggedSelect = [
+        { value: true, selected: true, label: "Yes" },
+        { value: false, selected: false, label: "No" }
+      ];
+    } else {
+      flaggedSelect = [
+        { value: true, selected: false, label: "Yes" },
+        { value: false, selected: true, label: "No" }
+      ];
+    }
+
     let form = (
       <form onSubmit={this.onSubmit}>
         <div className="col-md-12">
@@ -230,14 +248,13 @@ class EditCustomerForm extends Component {
             />
           </div>
 
-          <TextFieldGroup
-            name="isFlagged"
-            type="isFlagged"
-            label="Flagged?"
+          <SelectInput
             className="form-control"
-            value={this.state.isFlagged}
+            label="Is Flagged?"
+            selectId="isFlagged"
+            name="isFlagged"
             onChange={this.onChange}
-            error={errors}
+            options={flaggedSelect}
           />
 
           <div className="form-group pt-2">
