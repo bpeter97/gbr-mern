@@ -4,9 +4,9 @@
   "description": "A management system for Green Box Rentals.",
   "main": "server.js",
   "scripts": {
-    "start": "concurrently \"npm run server\" \" npm run client\"",
+    "start": "node server.js",
     "server": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "heroku-postbuild": "cd client && npm install && npm run build && npm run start",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \" npm run client\""
   },
