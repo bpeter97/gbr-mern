@@ -2,15 +2,15 @@ import axios from "axios";
 
 import {
   GET_CONTAINERS,
-  // GET_CONTAINER,
+  GET_CONTAINER,
   // ADD_CONTAINER,
-  // EDIT_CONTAINER,
+  EDIT_CONTAINER,
   // DELETE_CONTAINER,
-  // GET_ERRORS,
+  GET_ERRORS,
   CLEAR_CONTAINER,
   CONTAINER_LOADING
 } from "./types";
-// import { clearErrors } from "./commonActions";
+import { clearErrors } from "./commonActions";
 
 export const getContainers = () => dispatch => {
   dispatch(setContainerLoading());
@@ -26,6 +26,42 @@ export const getContainers = () => dispatch => {
       dispatch({
         type: GET_CONTAINERS,
         payload: null
+      })
+    );
+};
+
+export const getContainer = id => dispatch => {
+  dispatch(setContainerLoading());
+  axios
+    .get(`/api/containers/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_CONTAINER,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_CONTAINER,
+        payload: null
+      })
+    );
+};
+
+export const editContainer = containerData => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .patch(`/api/containers/${containerData._id}`, containerData)
+    .then(res =>
+      dispatch({
+        type: EDIT_CONTAINER,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };

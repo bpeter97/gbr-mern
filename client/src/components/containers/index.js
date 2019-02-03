@@ -16,6 +16,14 @@ class Containers extends Component {
     this.props.getContainers();
   }
 
+  editContainerClick(id) {
+    const location = {
+      pathname: "/containers/edit",
+      state: { id: id }
+    };
+    this.props.history.push(location);
+  }
+
   render() {
     const { containers } = this.props.containers;
 
@@ -91,7 +99,7 @@ class Containers extends Component {
         Cell: ({ value }) => (
           <button
             className="btn btn-success"
-            // onClick={this.editCustomerClick.bind(this, value)}
+            onClick={this.editContainerClick.bind(this, value)}
           >
             View / Edit
           </button>
@@ -134,16 +142,16 @@ class Containers extends Component {
                             f = rowInfo.original.isFlagged;
                           }
                           return {
-                            onClick: () => {
-                              this.props.history.push({
-                                pathname: "/customers/edit",
-                                state: {
-                                  id:
-                                    rowInfo.row._original.stats.currentRentee
-                                      ._id
-                                }
-                              });
-                            },
+                            // onClick: () => {
+                            //   this.props.history.push({
+                            //     pathname: "/containers/edit",
+                            //     state: {
+                            //       id:
+                            //         rowInfo.row._original.stats.currentRentee
+                            //           ._id
+                            //     }
+                            //   });
+                            // },
                             style: {
                               backgroundColor: f
                                 ? "rgb(255, 204, 204, 0.5)"

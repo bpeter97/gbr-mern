@@ -31,6 +31,7 @@ import Drawer, {
 import "./App.css";
 import EditCustomer from "./components/customers/EditCustomer";
 import AddCustomer from "./components/customers/AddCustomer";
+import EditContainer from "./components/containers/EditContainer";
 
 const history = createHistory();
 
@@ -167,6 +168,13 @@ class App extends Component {
                             exact
                             path="/customers/add/"
                             component={AddCustomer}
+                          />
+                        </Switch>
+                        <Switch>
+                          <PrivateRoute
+                            exact
+                            path="/containers/edit/"
+                            component={EditContainer}
                           />
                         </Switch>
                       </div>
