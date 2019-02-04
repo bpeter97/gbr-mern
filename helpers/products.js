@@ -219,6 +219,7 @@ exports.getProduct = (req, res) => {
 
   // Find the object in the DB!
   Product.findById(req.params.id)
+    .populate("type")
     .then(product => {
       if (!product) {
         errors.product = "There was no product found";
