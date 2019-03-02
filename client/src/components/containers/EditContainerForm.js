@@ -269,7 +269,7 @@ class EditContainerForm extends Component {
             />
           </div>
         </div>
-        <div className="col-md-12">
+        <div className="col-md-12 pt-2">
           <SelectInput
             className="form-control"
             label="Is Flagged?"
