@@ -23,15 +23,26 @@ class Shortcuts extends Component {
             <div className="card-body">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <ReactTooltip />
-                  <button className="picture-button" data-tip="Create Order">
+                  <button
+                    className="picture-button"
+                    data-tip="Create Order"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Create Order"
+                  >
                     <SvgIcon
                       size={50}
                       icon={ShoppingCart}
                       style={{ color: "#008000" }}
                     />
                   </button>
-                  <button className="picture-button" data-tip="Create Quote">
+                  <button
+                    className="picture-button"
+                    data-tip="Create Quote"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Create Quote"
+                  >
                     <SvgIcon
                       size={50}
                       icon={NoteAdd}
@@ -42,6 +53,9 @@ class Shortcuts extends Component {
                     className="picture-button"
                     onClick={this.addCustomerClick.bind(this)}
                     data-tip="Create Customer"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Create Customer"
                   >
                     <SvgIcon
                       size={50}
