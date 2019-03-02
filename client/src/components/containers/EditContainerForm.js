@@ -87,7 +87,13 @@ class EditContainerForm extends Component {
 
   render() {
     const { errors } = this.props;
-    const { isFlagged } = this.state;
+    const {
+      isFlagged,
+      hasShelves,
+      isPainted,
+      hasOnBoxNumbers,
+      hasSigns
+    } = this.state;
 
     let flaggedSelect;
     if (isFlagged) {
@@ -97,6 +103,58 @@ class EditContainerForm extends Component {
       ];
     } else {
       flaggedSelect = [
+        { value: false, selected: true, label: "No" },
+        { value: true, selected: false, label: "Yes" }
+      ];
+    }
+
+    let shelvesSelect;
+    if (hasShelves) {
+      shelvesSelect = [
+        { value: true, selected: true, label: "Yes" },
+        { value: false, selected: false, label: "No" }
+      ];
+    } else {
+      shelvesSelect = [
+        { value: false, selected: true, label: "No" },
+        { value: true, selected: false, label: "Yes" }
+      ];
+    }
+
+    let paintedSelect;
+    if (isPainted) {
+      paintedSelect = [
+        { value: true, selected: true, label: "Yes" },
+        { value: false, selected: false, label: "No" }
+      ];
+    } else {
+      paintedSelect = [
+        { value: false, selected: true, label: "No" },
+        { value: true, selected: false, label: "Yes" }
+      ];
+    }
+
+    let onBoxNumbersSelect;
+    if (hasOnBoxNumbers) {
+      onBoxNumbersSelect = [
+        { value: true, selected: true, label: "Yes" },
+        { value: false, selected: false, label: "No" }
+      ];
+    } else {
+      onBoxNumbersSelect = [
+        { value: false, selected: true, label: "No" },
+        { value: true, selected: false, label: "Yes" }
+      ];
+    }
+
+    let signsSelect;
+    if (hasSigns) {
+      signsSelect = [
+        { value: true, selected: true, label: "Yes" },
+        { value: false, selected: false, label: "No" }
+      ];
+    } else {
+      signsSelect = [
         { value: false, selected: true, label: "No" },
         { value: true, selected: false, label: "Yes" }
       ];
@@ -161,49 +219,41 @@ class EditContainerForm extends Component {
             />
           </div>
           <div className="form-row pt-2">
-            <TextFieldGroup
+            <SelectInput
+              className="form-control"
+              label="Shelves?"
+              selectId="hasShelves"
               name="hasShelves"
-              type="text"
-              label="Shelves"
               divClass="col"
-              className="form-control"
-              value={this.state.hasShelves.toString()}
               onChange={this.onChange}
-              error={errors}
+              options={shelvesSelect}
             />
-            <TextFieldGroup
+            <SelectInput
+              className="form-control"
+              label="Painted?"
+              selectId="isPainted"
               name="isPainted"
-              type="text"
-              label="Painted"
               divClass="col"
-              className="form-control"
-              value={this.state.isPainted.toString()}
               onChange={this.onChange}
-              error={errors}
+              options={paintedSelect}
             />
-          </div>
-
-          <div className="form-row pt-2">
-            <TextFieldGroup
+            <SelectInput
+              className="form-control"
+              label="On Box Numbers?"
+              selectId="hasOnBoxNumbers"
               name="hasOnBoxNumbers"
-              type="text"
-              label="On Box Numbers"
               divClass="col"
-              className="form-control"
-              value={this.state.hasOnBoxNumbers.toString()}
               onChange={this.onChange}
-              error={errors}
+              options={onBoxNumbersSelect}
             />
-
-            <TextFieldGroup
-              name="hasSigns"
-              type="text"
-              label="Signs"
-              divClass="col"
+            <SelectInput
               className="form-control"
-              value={this.state.hasSigns.toString()}
+              label="Signs?"
+              selectId="hasSigns"
+              name="hasSigns"
+              divClass="col"
               onChange={this.onChange}
-              error={errors}
+              options={onBoxNumbersSelect}
             />
           </div>
           <div className="form-row pt-2">
