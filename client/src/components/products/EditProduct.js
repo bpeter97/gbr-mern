@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
-import { getProduct, clearProduct } from "../../actions/productActions";
+import {
+  getProduct,
+  clearProduct,
+  getProductTypes
+} from "../../actions/productActions";
 import EditProductForm from "./EditProductForm";
 
 // Components
@@ -17,6 +21,7 @@ class EditProduct extends Component {
     } else {
       id = hasState.id;
       this.props.getProduct(id);
+      this.props.getProductTypes();
     }
   }
 
@@ -65,5 +70,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProduct, clearProduct }
+  { getProduct, clearProduct, getProductTypes }
 )(EditProduct);

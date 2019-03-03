@@ -1,5 +1,6 @@
 import {
   GET_PRODUCTS,
+  GET_PRODUCT_TYPES,
   GET_PRODUCT,
   ADD_PRODUCT,
   EDIT_PRODUCT,
@@ -11,6 +12,7 @@ import {
 const initialState = {
   products: [],
   product: {},
+  types: [],
   loading: false
 };
 
@@ -31,6 +33,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         product: action.payload,
+        loading: false
+      };
+    case GET_PRODUCT_TYPES:
+      return {
+        ...state,
+        types: action.payload,
         loading: false
       };
     case EDIT_PRODUCT:

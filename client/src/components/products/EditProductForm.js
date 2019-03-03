@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
+import SelectInput from "./../common/SelectInput";
 import { editProduct } from "../../actions/productActions";
 import ErrorAlert from "./../error/ErrorAlert";
 import checkEmpty from "./../../utils/checkEmpty";
+import arrayMove from "./../../utils/checkEmpty";
 
 class EditProductFom extends Component {
   constructor() {
@@ -48,7 +50,7 @@ class EditProductFom extends Component {
     this.props.editProduct(productData);
     setTimeout(() => {
       if (checkEmpty(this.state.errors)) {
-        this.props.history.push("/customers");
+        this.props.history.push("/products");
       }
     }, 1000);
   };
@@ -69,9 +71,36 @@ class EditProductFom extends Component {
   }
 
   render() {
-    const { errors } = this.props;
+    const { errors, rental, types, product } = this.props;
 
-    let rental = this.props.rental ? "Rental" : "Sales";
+    let rentalSelect;
+    if (rental) {
+      rentalSelect = [
+        { value: true, selected: true, label: "Rental" },
+        { value: false, selected: false, label: "Sales" }
+      ];
+    } else {
+      rentalSelect = [
+        { value: false, selected: true, label: "Sales" },
+        { value: true, selected: false, label: "Rental" }
+      ];
+    }
+
+    let typeSelect = [];
+    let selectedTypeIndex = 0;
+    types.forEach(element => {
+      let selection = {};
+      selection.value = element._id;
+      selection.label = element.type;
+      if (element.type === product.type.type) {
+        selection.selected = true;
+        typeSelect[0] = selection;
+      } else {
+        selectedTypeIndex++;
+        selection.selected = false;
+        typeSelect[selectedTypeIndex] = selection;
+      }
+    });
 
     var errorAlert = errors => {
       for (var property in errors) {
@@ -120,30 +149,28 @@ class EditProductFom extends Component {
             />
           </div>
           <div className="form-row pt-2">
-            <TextFieldGroup
-              name="rental"
-              type="text"
-              label="Rental or Sale Mod"
-              divClass="col"
+            <SelectInput
               className="form-control"
-              value={rental}
+              label="Rental or Sales Mod?"
+              selectId="rental"
+              name="rental"
+              divClass="col"
               onChange={this.onChange}
-              error={errors}
+              options={rentalSelect}
             />
           </div>
           <div className="form-row pt-2">
-            <TextFieldGroup
-              name="type"
-              type="text"
-              label="Type"
-              divClass="col"
+            <SelectInput
               className="form-control"
-              value={this.state.type.type}
+              label="Type"
+              selectId="type"
+              name="type"
+              divClass="col"
               onChange={this.onChange}
-              error={errors}
+              options={typeSelect}
             />
           </div>
-          <input type="submit" className="btn btn-info mt-2" />
+          <input type="submit" className="btn btn-info mt-4" />
         </div>
       </form>
     );
@@ -162,7 +189,8 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
   product: state.products.product,
-  location: state.router
+  location: state.router,
+  types: state.products.types
 });
 
 export default connect(

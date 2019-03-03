@@ -3,6 +3,7 @@ import axios from "axios";
 import {
   GET_PRODUCTS,
   GET_PRODUCT,
+  GET_PRODUCT_TYPES,
   // ADD_PRODUCT,
   EDIT_PRODUCT,
   // DELETE_PRODUCT,
@@ -43,6 +44,24 @@ export const getProduct = id => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_PRODUCT,
+        payload: null
+      })
+    );
+};
+
+export const getProductTypes = () => dispatch => {
+  dispatch(setProductLoading());
+  axios
+    .get("/api/products/types")
+    .then(res =>
+      dispatch({
+        type: GET_PRODUCT_TYPES,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PRODUCT_TYPES,
         payload: null
       })
     );
