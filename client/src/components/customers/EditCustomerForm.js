@@ -130,15 +130,28 @@ class EditCustomerForm extends Component {
       <form onSubmit={this.onSubmit}>
         {errorAlert(this.state.errors)}
         <div className="col-md-12">
-          <TextFieldGroup
-            name="name"
-            type="text"
-            label="Name"
-            className="form-control"
-            value={this.state.name}
-            onChange={this.onChange}
-            error={errors}
-          />
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="name"
+              type="text"
+              label="Name"
+              divClass="col"
+              className="form-control"
+              value={this.state.name}
+              onChange={this.onChange}
+              error={errors}
+            />
+            <TextFieldGroup
+              name="email"
+              type="email"
+              label="Email"
+              divClass="col"
+              className="form-control"
+              value={this.state.email}
+              onChange={this.onChange}
+              error={errors}
+            />
+          </div>
           <div className="form-row pt-2">
             <TextFieldGroup
               name="phone"
@@ -160,8 +173,6 @@ class EditCustomerForm extends Component {
               onChange={this.onChange}
               error={errors}
             />
-          </div>
-          <div className="form-row pt-2">
             <TextFieldGroup
               name="fax"
               type="text"
@@ -169,18 +180,6 @@ class EditCustomerForm extends Component {
               divClass="col"
               className="form-control"
               value={this.state.fax}
-              onChange={this.onChange}
-              error={errors}
-            />
-          </div>
-          <div className="form-row pt-2">
-            <TextFieldGroup
-              name="email"
-              type="email"
-              label="Email"
-              divClass="col"
-              className="form-control"
-              value={this.state.email}
               onChange={this.onChange}
               error={errors}
             />
@@ -206,9 +205,6 @@ class EditCustomerForm extends Component {
               onChange={this.onChange}
               error={errors}
             />
-          </div>
-
-          <div className="form-row pt-2">
             <TextFieldGroup
               name="city"
               type="text"
@@ -219,7 +215,6 @@ class EditCustomerForm extends Component {
               onChange={this.onChange}
               error={errors}
             />
-
             <TextFieldGroup
               name="state"
               type="text"
@@ -230,8 +225,6 @@ class EditCustomerForm extends Component {
               onChange={this.onChange}
               error={errors}
             />
-          </div>
-          <div className="form-row pt-2">
             <TextFieldGroup
               name="zipcode"
               type="text"
