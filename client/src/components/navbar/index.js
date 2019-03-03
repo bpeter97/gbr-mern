@@ -48,22 +48,19 @@ class NavBar extends Component {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <img
-                  className="gbr_logo_image d-none d-xl-block ml-3 mr-2 mt-2"
-                  height="25"
-                  src="../../../img/logo.png"
-                  alt="GBR Logo"
-                />
-                <img
-                  className="small_gbr_logo_image d-block d-xl-none mt-2"
-                  height="25"
-                  src="../../../img/logosmall.png"
-                  alt="GBR Logo"
-                />
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link" to="/">
-                  Dashboard
+                  <img
+                    className="gbr_logo_image d-none d-xl-block ml-3 mr-2 mt-2"
+                    height="25"
+                    src="../../../img/logo.png"
+                    alt="GBR Logo"
+                  />
+                  <img
+                    className="small_gbr_logo_image d-block d-xl-none mt-2"
+                    height="25"
+                    src="../../../img/logosmall.png"
+                    alt="GBR Logo"
+                  />
                 </Link>
               </li>
               <li className="nav-item">
