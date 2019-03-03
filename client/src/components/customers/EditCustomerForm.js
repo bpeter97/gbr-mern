@@ -6,6 +6,7 @@ import { editCustomer } from "../../actions/customerActions";
 import TextArea from "../common/TextArea";
 import SelectInput from "./../common/SelectInput";
 import ErrorAlert from "./../error/ErrorAlert";
+import checkEmpty from "./../../utils/checkEmpty";
 
 class EditCustomerForm extends Component {
   constructor() {
@@ -38,9 +39,9 @@ class EditCustomerForm extends Component {
     this.fillForm(customer);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+  static getDerivedStateFromProps(props, state) {
+    if (props.errors !== state.errors) {
+      state.errors = props.errors;
     }
   }
 
@@ -64,11 +65,13 @@ class EditCustomerForm extends Component {
       isFlagged: this.state.isFlagged,
       flagReason: this.state.flagReason
     };
-    this.props.editCustomer(customerData);
 
-    if (!this.state.errors) {
-      this.props.redirectFunc();
-    }
+    this.props.editCustomer(customerData);
+    setTimeout(() => {
+      if (checkEmpty(this.state.errors)) {
+        this.props.history.push("/customers");
+      }
+    }, 1000);
   };
 
   onChange = e => {
@@ -125,7 +128,7 @@ class EditCustomerForm extends Component {
 
     let form = (
       <form onSubmit={this.onSubmit}>
-        {errorAlert(this.props.errors)}
+        {errorAlert(this.state.errors)}
         <div className="col-md-12">
           <TextFieldGroup
             name="name"

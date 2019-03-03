@@ -20,18 +20,13 @@ class EditContainer extends Component {
     }
   }
 
-  onFormSubmit() {
-    this.props.history.push("/containers");
-    // push("/containers");
-  }
-
   render() {
     const { container, loading } = this.props.containers;
     let form = "";
     if (container === null || loading) {
       form = <Spinner />;
     } else {
-      form = <EditContainerForm redirectFunc={this.onFormSubmit.bind(this)} />;
+      form = <EditContainerForm history={this.props.history} />;
     }
 
     return (

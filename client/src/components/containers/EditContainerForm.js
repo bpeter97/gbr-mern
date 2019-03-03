@@ -6,12 +6,12 @@ import { editContainer } from "../../actions/containerActions";
 import TextArea from "../common/TextArea";
 import SelectInput from "../common/SelectInput";
 import ErrorAlert from "./../error/ErrorAlert";
+import checkEmpty from "./../../utils/checkEmpty";
 
 class EditContainerForm extends Component {
   constructor() {
     super();
     this.state = {
-      errors: {},
       gbrNumber: "",
       releaseNumber: "",
       hasShelves: false,
@@ -36,9 +36,9 @@ class EditContainerForm extends Component {
     this.fillForm(container);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+  static getDerivedStateFromProps(props, state) {
+    if (props.errors !== state.errors) {
+      state.errors = props.errors;
     }
   }
 
@@ -62,9 +62,11 @@ class EditContainerForm extends Component {
       delivery: this.state.delivery
     };
     this.props.editContainer(containerData);
-    if (!this.state.errors) {
-      this.props.redirectFunc();
-    }
+    setTimeout(() => {
+      if (checkEmpty(this.state.errors)) {
+        this.props.history.push("/containers");
+      }
+    }, 1000);
   };
 
   onChange = e => {
@@ -192,7 +194,7 @@ class EditContainerForm extends Component {
 
     let form = (
       <form onSubmit={this.onSubmit}>
-        {errorAlert(this.props.errors)}
+        {errorAlert(this.state.errors)}
         <div className="col-md-12">
           <TextFieldGroup
             name="gbrNumber"
