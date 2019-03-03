@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import { editProduct } from "../../actions/productActions";
-import TextArea from "../common/TextArea";
-import SelectInput from "../common/SelectInput";
 
 class EditProductFom extends Component {
   constructor() {
@@ -67,7 +65,7 @@ class EditProductFom extends Component {
   render() {
     const { errors } = this.props;
 
-    let rental = (this.props.rental) ? "Rental" : "Sales";
+    let rental = this.props.rental ? "Rental" : "Sales";
 
     let form = (
       <form onSubmit={this.onSubmit}>

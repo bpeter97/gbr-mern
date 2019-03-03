@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 // Icons
-import ReactTooltip from "react-tooltip";
 import SvgIcon from "react-icons-kit";
 import { ShoppingCart, PersonAdd, NoteAdd } from "../../icons";
 
