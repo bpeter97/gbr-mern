@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import { editProduct } from "../../actions/productActions";
+import ErrorAlert from "./../error/ErrorAlert";
+import checkEmpty from "./../../utils/checkEmpty";
 
 class EditProductFom extends Component {
   constructor() {
@@ -25,9 +27,9 @@ class EditProductFom extends Component {
     this.fillForm(product);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+  static getDerivedStateFromProps(props, state) {
+    if (props.errors !== state.errors) {
+      state.errors = props.errors;
     }
   }
 
@@ -44,7 +46,11 @@ class EditProductFom extends Component {
       type: this.state.type
     };
     this.props.editProduct(productData);
-    this.props.redirectFunc();
+    setTimeout(() => {
+      if (checkEmpty(this.state.errors)) {
+        this.props.history.push("/customers");
+      }
+    }, 1000);
   };
 
   onChange = e => {
@@ -67,8 +73,20 @@ class EditProductFom extends Component {
 
     let rental = this.props.rental ? "Rental" : "Sales";
 
+    var errorAlert = errors => {
+      for (var property in errors) {
+        var error;
+        if (errors.hasOwnProperty(property)) {
+          error = errors[property];
+        }
+
+        return <ErrorAlert error={error} />;
+      }
+    };
+
     let form = (
       <form onSubmit={this.onSubmit}>
+        {errorAlert(this.state.errors)}
         <div className="col-md-12">
           <TextFieldGroup
             name="name"

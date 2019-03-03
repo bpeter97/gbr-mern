@@ -20,22 +20,17 @@ class EditProduct extends Component {
     }
   }
 
-  onFormSubmit() {
-    this.props.history.push("/products");
-    // push("/products");
-  }
-
   render() {
     const { product, loading } = this.props.products;
     let form = "";
     if (product === null || loading) {
       form = <Spinner />;
     } else {
-      form = <EditProductForm redirectFunc={this.onFormSubmit.bind(this)} />;
+      form = <EditProductForm history={this.props.history} />;
     }
 
     return (
-      <div className="product-fluid main-content">
+      <div className="container-fluid main-content">
         <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 pb-4">
