@@ -60,7 +60,9 @@ class EditContainerForm extends Component {
       delivery: this.state.delivery
     };
     this.props.editContainer(containerData);
-    this.props.redirectFunc();
+    if (!this.state.errors) {
+      this.props.redirectFunc();
+    }
   };
 
   onChange = e => {
@@ -94,6 +96,8 @@ class EditContainerForm extends Component {
       hasOnBoxNumbers,
       hasSigns
     } = this.state;
+
+    const currentlyRented = this.state.stats.currentlyRented;
 
     let flaggedSelect;
     if (isFlagged) {
@@ -160,8 +164,58 @@ class EditContainerForm extends Component {
       ];
     }
 
+    let rentedSelect;
+    if (currentlyRented) {
+      rentedSelect = [
+        { value: true, selected: true, label: "Yes" },
+        { value: false, selected: false, label: "No" }
+      ];
+    } else {
+      rentedSelect = [
+        { value: false, selected: true, label: "No" },
+        { value: true, selected: false, label: "Yes" }
+      ];
+    }
+
+    var errorAlert = errors => {
+      console.log(errors);
+      for (var property in errors) {
+        console.log(property);
+        var error;
+        if (errors.hasOwnProperty(property)) {
+          error = errors[property];
+        }
+
+        return (
+          <div className="alert alert-danger" role="alert">
+            <div className="pt-2 pb-2">
+              <span className="ml-2">
+                <strong>Error: </strong>
+                {error}
+              </span>
+            </div>
+          </div>
+        );
+      }
+
+      // Object.keys(errors).forEach(function(key, index) {
+      //   return (
+      //     <div class="alert alert-danger" role="alert">
+      //       {key}
+      //     </div>
+      //   );
+      // });
+
+      // errorAlert = (
+      //   <div class="alert alert-danger" role="alert">
+      //     A simple danger alert—check it out!
+      //   </div>
+      // );
+    };
+
     let form = (
       <form onSubmit={this.onSubmit}>
+        {errorAlert(this.props.errors)}
         <div className="col-md-12">
           <TextFieldGroup
             name="gbrNumber"
@@ -205,8 +259,6 @@ class EditContainerForm extends Component {
               onChange={this.onChange}
               error={errors}
             />
-          </div>
-          <div className="form-row pt-2">
             <TextFieldGroup
               name="size"
               type="text"
@@ -253,7 +305,18 @@ class EditContainerForm extends Component {
               name="hasSigns"
               divClass="col"
               onChange={this.onChange}
-              options={onBoxNumbersSelect}
+              options={signsSelect}
+            />
+          </div>
+          <div className="form-row pt-2">
+            <SelectInput
+              className="form-control"
+              label="Currently Rented?"
+              selectId="currentlyRented"
+              name="currentlyRented"
+              divClass="col"
+              onChange={this.onChange}
+              options={rentedSelect}
             />
           </div>
           <div className="form-row pt-2">

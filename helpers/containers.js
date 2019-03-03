@@ -282,8 +282,8 @@ exports.patchContainer = (req, res) => {
     "isFlagged",
     "flagReason"
   ]);
-  body.size = new ObjectID(req.body.size);
-  body.stats = new ObjectID(req.body.stats);
+  body.size = new ObjectID(req.body.size._id);
+  body.stats = new ObjectID(req.body.stats._id);
 
   var stats = _.pick(req.body, ["currentAddress", "currentlyRented"]);
 
@@ -295,10 +295,10 @@ exports.patchContainer = (req, res) => {
 
   stats.previousRentees = [];
 
-  if (req.body.previousRentees != "" || req.body.previousRentees != null) {
-    req.body.previousRentees = req.body.previousRentees.split(",");
+  if (req.body.stats.previousRentees && req.body.stats.previousRentees.length) {
+    req.body.stats.previousRentees = req.body.stats.previousRentees.split(",");
 
-    req.body.previousRentees.map(rentee =>
+    req.body.stats.previousRentees.map(rentee =>
       stats.previousRentees.push(new ObjectID(rentee))
     );
   }
