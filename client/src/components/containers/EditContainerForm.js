@@ -178,9 +178,7 @@ class EditContainerForm extends Component {
     }
 
     var errorAlert = errors => {
-      console.log(errors);
       for (var property in errors) {
-        console.log(property);
         var error;
         if (errors.hasOwnProperty(property)) {
           error = errors[property];
@@ -197,20 +195,6 @@ class EditContainerForm extends Component {
           </div>
         );
       }
-
-      // Object.keys(errors).forEach(function(key, index) {
-      //   return (
-      //     <div class="alert alert-danger" role="alert">
-      //       {key}
-      //     </div>
-      //   );
-      // });
-
-      // errorAlert = (
-      //   <div class="alert alert-danger" role="alert">
-      //     A simple danger alert—check it out!
-      //   </div>
-      // );
     };
 
     let form = (

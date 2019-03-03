@@ -22,7 +22,7 @@ class EditCustomerForm extends Component {
       email: "",
       rdp: "",
       notes: "",
-      isFlagged: "",
+      isFlagged: false,
       flagReason: "",
       lastViewed: "",
       selectedOption: null
@@ -64,7 +64,9 @@ class EditCustomerForm extends Component {
       flagReason: this.state.flagReason
     };
     this.props.editCustomer(customerData);
-    this.props.redirectFunc();
+    if (!this.state.errors) {
+      this.props.redirectFunc();
+    }
   };
 
   onChange = e => {
@@ -85,7 +87,7 @@ class EditCustomerForm extends Component {
       email: customer.email || "",
       rdp: customer.rdp || "",
       notes: customer.notes || "",
-      isFlagged: customer.isFlagged || "",
+      isFlagged: customer.isFlagged || false,
       flagReason: customer.flagReason || "",
       lastViewed: customer.lastViewed || ""
     });
@@ -108,8 +110,29 @@ class EditCustomerForm extends Component {
       ];
     }
 
+    var errorAlert = errors => {
+      for (var property in errors) {
+        var error;
+        if (errors.hasOwnProperty(property)) {
+          error = errors[property];
+        }
+
+        return (
+          <div className="alert alert-danger" role="alert">
+            <div className="pt-2 pb-2">
+              <span className="ml-2">
+                <strong>Error: </strong>
+                {error}
+              </span>
+            </div>
+          </div>
+        );
+      }
+    };
+
     let form = (
       <form onSubmit={this.onSubmit}>
+        {errorAlert(this.props.errors)}
         <div className="col-md-12">
           <TextFieldGroup
             name="name"

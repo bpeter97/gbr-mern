@@ -19,7 +19,6 @@ module.exports = function validateCustomerInput(data) {
   data.email = !isEmpty(data.email) ? data.email : "";
   data.rdp = !isEmpty(data.rdp) ? data.rdp : "";
   data.notes = !isEmpty(data.notes) ? data.notes : "";
-  data.isFlagged = !isEmpty(data.isFlagged) ? data.isFlagged : "";
   data.flagReason = !isEmpty(data.flagReason) ? data.flagReason : "";
 
   if (validator.isEmpty(data.name)) {
@@ -51,6 +50,7 @@ module.exports = function validateCustomerInput(data) {
   }
 
   if (!validator.isBoolean(String(data.isFlagged))) {
+    console.log(data.isFlagged);
     errors.isFlagged = "You must select whether the customer has a flag or not";
   }
 
