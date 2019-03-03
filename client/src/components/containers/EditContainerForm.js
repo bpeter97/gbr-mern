@@ -5,11 +5,13 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { editContainer } from "../../actions/containerActions";
 import TextArea from "../common/TextArea";
 import SelectInput from "../common/SelectInput";
+import ErrorAlert from "./../error/ErrorAlert";
 
 class EditContainerForm extends Component {
   constructor() {
     super();
     this.state = {
+      errors: {},
       gbrNumber: "",
       releaseNumber: "",
       hasShelves: false,
@@ -184,16 +186,7 @@ class EditContainerForm extends Component {
           error = errors[property];
         }
 
-        return (
-          <div className="alert alert-danger" role="alert">
-            <div className="pt-2 pb-2">
-              <span className="ml-2">
-                <strong>Error: </strong>
-                {error}
-              </span>
-            </div>
-          </div>
-        );
+        return <ErrorAlert error={error} />;
       }
     };
 

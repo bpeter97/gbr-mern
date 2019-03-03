@@ -5,6 +5,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { editCustomer } from "../../actions/customerActions";
 import TextArea from "../common/TextArea";
 import SelectInput from "./../common/SelectInput";
+import ErrorAlert from "./../error/ErrorAlert";
 
 class EditCustomerForm extends Component {
   constructor() {
@@ -64,6 +65,7 @@ class EditCustomerForm extends Component {
       flagReason: this.state.flagReason
     };
     this.props.editCustomer(customerData);
+
     if (!this.state.errors) {
       this.props.redirectFunc();
     }
@@ -117,16 +119,7 @@ class EditCustomerForm extends Component {
           error = errors[property];
         }
 
-        return (
-          <div className="alert alert-danger" role="alert">
-            <div className="pt-2 pb-2">
-              <span className="ml-2">
-                <strong>Error: </strong>
-                {error}
-              </span>
-            </div>
-          </div>
-        );
+        return <ErrorAlert error={error} />;
       }
     };
 
