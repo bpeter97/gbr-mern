@@ -17,7 +17,7 @@ class EditProductFom extends Component {
       price: 0,
       monthlyPrice: 0,
       rental: "",
-      type: {}
+      type: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -56,7 +56,20 @@ class EditProductFom extends Component {
   };
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name == "type") {
+      let type = {};
+      type._id = e.target.value;
+
+      this.props.types.forEach(element => {
+        if (type._id == element._id) {
+          type.type = element.type;
+        }
+      });
+      this.setState({ type });
+      console.log(this.state.type);
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
   };
 
   fillForm(product) {
@@ -91,7 +104,26 @@ class EditProductFom extends Component {
     types.forEach(element => {
       let selection = {};
       selection.value = element._id;
-      selection.label = element.type;
+      switch (element.type) {
+        case "delivery":
+          selection.label = "Delivery";
+          break;
+        case "pickup":
+          selection.label = "Pickup";
+          break;
+        case "rentalModification":
+          selection.label = "Rental Modification";
+          break;
+        case "container":
+          selection.label = "Container";
+          break;
+        case "modification":
+          selection.label = "Sales Modification";
+          break;
+        default:
+          selection.label = element.type;
+      }
+
       if (element.type === product.type.type) {
         selection.selected = true;
         typeSelect[0] = selection;
