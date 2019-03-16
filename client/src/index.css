@@ -485,3 +485,7 @@ li span:hover {
     width: 50%;
   }
 }
+
+.rt-tr[data-qnt="0"] > .rt-expandable {
+  visibility: hidden;
+}

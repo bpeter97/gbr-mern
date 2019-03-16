@@ -177,7 +177,7 @@ class Customers extends Component {
       {
         Header: "Order Created",
         accessor: "creationDate",
-        Cell: v => (v.value = new Date(v.original.creationDate).toDateString()),
+        Cell: v => new Date(v.original.creationDate).toDateString(),
         width: 150,
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["creationDate"] }),
@@ -185,7 +185,7 @@ class Customers extends Component {
       },
       {
         Header: "Total Earned",
-        Cell: v => (v.value = `$${this.getEarnings(v)}`),
+        Cell: v => `$${this.getEarnings(v)}`,
         width: 150,
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["createdBy.username"] }),
@@ -223,10 +223,13 @@ class Customers extends Component {
                         defaultPageSize={10}
                         getTrProps={(s, i) => {
                           let f = false;
+                          let orders = 0;
                           if (i) {
                             f = i.original.isFlagged;
+                            if (i.original.orders.length > 0) orders = 1;
                           }
                           return {
+                            "data-qnt": orders,
                             style: {
                               backgroundColor: f
                                 ? "rgb(255, 204, 204, 0.5)"
@@ -236,17 +239,18 @@ class Customers extends Component {
                         }}
                         SubComponent={row => {
                           var numOfC = row.original.orders.length;
-
-                          return (
-                            <div className="p-3">
-                              <ReactTable
-                                data={row.original.orders}
-                                columns={customerOrdersColumns}
-                                showPagination={false}
-                                defaultPageSize={numOfC}
-                              />
-                            </div>
-                          );
+                          if (row.original.orders.length > 0) {
+                            return (
+                              <div className="p-3">
+                                <ReactTable
+                                  data={row.original.orders}
+                                  columns={customerOrdersColumns}
+                                  showPagination={false}
+                                  defaultPageSize={numOfC}
+                                />
+                              </div>
+                            );
+                          }
                         }}
                       />
                     )}
