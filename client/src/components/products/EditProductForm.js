@@ -16,7 +16,7 @@ class EditProductFom extends Component {
       shortName: "",
       price: 0,
       monthlyPrice: 0,
-      rental: "",
+      rental: false,
       type: ""
     };
     this.onChange = this.onChange.bind(this);
@@ -69,6 +69,8 @@ class EditProductFom extends Component {
       console.log(this.state.type);
     } else {
       this.setState({ [e.target.name]: e.target.value });
+      console.log(e.target.name + ": " + e.target.value);
+      console.log(this.state);
     }
   };
 
@@ -84,10 +86,10 @@ class EditProductFom extends Component {
   }
 
   render() {
-    const { errors, rental, types, product } = this.props;
+    const { errors, types, product } = this.props;
 
     let rentalSelect;
-    if (rental) {
+    if (product.rental) {
       rentalSelect = [
         { value: true, selected: true, label: "Rental" },
         { value: false, selected: false, label: "Sales" }
@@ -102,35 +104,39 @@ class EditProductFom extends Component {
     let typeSelect = [];
     let selectedTypeIndex = 0;
     types.forEach(element => {
-      let selection = {};
-      selection.value = element._id;
-      switch (element.type) {
-        case "delivery":
-          selection.label = "Delivery";
-          break;
-        case "pickup":
-          selection.label = "Pickup";
-          break;
-        case "rentalModification":
-          selection.label = "Rental Modification";
-          break;
-        case "container":
-          selection.label = "Container";
-          break;
-        case "modification":
-          selection.label = "Sales Modification";
-          break;
-        default:
-          selection.label = element.type;
-      }
+      if (element) {
+        let selection = {};
+        selection.value = element._id;
+        switch (element.type) {
+          case "delivery":
+            selection.label = "Delivery";
+            break;
+          case "pickup":
+            selection.label = "Pickup";
+            break;
+          case "rentalModification":
+            selection.label = "Rental Modification";
+            break;
+          case "container":
+            selection.label = "Container";
+            break;
+          case "modification":
+            selection.label = "Sales Modification";
+            break;
+          default:
+            selection.label = element.type;
+        }
 
-      if (element.type === product.type.type) {
-        selection.selected = true;
-        typeSelect[0] = selection;
-      } else {
-        selectedTypeIndex++;
-        selection.selected = false;
-        typeSelect[selectedTypeIndex] = selection;
+        if (product.type) {
+          if (element.type === product.type.type) {
+            selection.selected = true;
+            typeSelect[0] = selection;
+          } else {
+            selectedTypeIndex++;
+            selection.selected = false;
+            typeSelect[selectedTypeIndex] = selection;
+          }
+        }
       }
     });
 
