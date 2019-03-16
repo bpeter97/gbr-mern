@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
-import { getContainer, clearContainer } from "../../actions/containerActions";
+import {
+  getContainer,
+  clearContainer,
+  getContainerSizes
+} from "../../actions/containerActions";
 import EditContainerForm from "./EditContainerForm";
 
 // Components
@@ -17,6 +21,7 @@ class EditContainer extends Component {
     } else {
       id = hasState.id;
       this.props.getContainer(id);
+      this.props.getContainerSizes();
     }
   }
 
@@ -65,5 +70,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getContainer, clearContainer }
+  { getContainer, clearContainer, getContainerSizes }
 )(EditContainer);

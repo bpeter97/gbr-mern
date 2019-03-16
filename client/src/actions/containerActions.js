@@ -5,10 +5,12 @@ import {
   GET_CONTAINER,
   // ADD_CONTAINER,
   EDIT_CONTAINER,
+  EDIT_CONTAINER_SIZES,
   // DELETE_CONTAINER,
   GET_ERRORS,
   CLEAR_CONTAINER,
-  CONTAINER_LOADING
+  CONTAINER_LOADING,
+  GET_CONTAINER_SIZES
 } from "./types";
 import { clearErrors } from "./commonActions";
 
@@ -43,6 +45,24 @@ export const getContainer = id => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_CONTAINER,
+        payload: null
+      })
+    );
+};
+
+export const getContainerSizes = id => dispatch => {
+  dispatch(setContainerLoading());
+  axios
+    .get(`/api/containers/sizes`)
+    .then(res =>
+      dispatch({
+        type: GET_CONTAINER_SIZES,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_CONTAINER_SIZES,
         payload: null
       })
     );

@@ -1,6 +1,7 @@
 import {
   GET_CONTAINERS,
   GET_CONTAINER,
+  GET_CONTAINER_SIZES,
   ADD_CONTAINER,
   EDIT_CONTAINER,
   DELETE_CONTAINER,
@@ -11,6 +12,7 @@ import {
 const initialState = {
   containers: [],
   container: {},
+  sizes: [],
   loading: false
 };
 
@@ -31,6 +33,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         container: action.payload,
+        loading: false
+      };
+    case GET_CONTAINER_SIZES:
+      return {
+        ...state,
+        sizes: action.payload,
         loading: false
       };
     case EDIT_CONTAINER:
