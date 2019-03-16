@@ -49,6 +49,21 @@ a:hover li {
   text-decoration: none;
   font-size: 15px;
 }
+
+.nav-pills li a {
+  color: #868686;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #006400;
+}
+
+.nav-pills .nav-link.disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
 .ReactTable .rt-tbody .rt-td {
   margin-top: auto;
   margin-bottom: auto;
@@ -100,9 +115,6 @@ li span:hover {
   font-size: 20px;
   margin-left: auto;
   margin-right: auto;
-}
-#main-calendar {
-  /* height: 458px; */
 }
 
 #collapse-icon {

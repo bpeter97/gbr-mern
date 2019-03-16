@@ -67,12 +67,19 @@ export const getCustomer = id => dispatch => {
   dispatch(setCustomerLoading());
   axios
     .get(`/api/customers/${id}`)
-    .then(res =>
-      dispatch({
-        type: GET_CUSTOMER,
-        payload: res.data
-      })
-    )
+    .then(res => {
+      // Callback function to ensure dispatch doesn't occur too soon.
+      function callback(data) {
+        dispatch({
+          type: GET_CUSTOMER,
+          payload: res.data
+        });
+      }
+      axios.get(`/api/orders/customer/${res.data._id}`).then(newRes => {
+        res.data.orders = newRes.data.orders;
+        callback(res.data);
+      });
+    })
     .catch(err =>
       dispatch({
         type: GET_CUSTOMER,
