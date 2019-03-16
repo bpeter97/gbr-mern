@@ -23,6 +23,7 @@ class EditContainerForm extends Component {
       rentalResale: false,
       flagReason: "",
       stats: {},
+      currentlyRented: false,
       size: {},
       delivery: {}
     };
@@ -40,6 +41,7 @@ class EditContainerForm extends Component {
     if (props.errors !== state.errors) {
       state.errors = props.errors;
     }
+    return null;
   }
 
   onSubmit = e => {
@@ -99,7 +101,9 @@ class EditContainerForm extends Component {
       serialNumber: container.serialNumber || "",
       rentalResale: container.rentalResale || "",
       flagReason: container.flagReason || "",
-      stats: container.stats || {},
+      stats: container.stats || {
+        currentlyRented: false
+      },
       size: container.size || {},
       delivery: container.delivery || {}
     });
