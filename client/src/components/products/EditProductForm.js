@@ -66,11 +66,8 @@ class EditProductFom extends Component {
         }
       });
       this.setState({ type });
-      console.log(this.state.type);
     } else {
       this.setState({ [e.target.name]: e.target.value });
-      console.log(e.target.name + ": " + e.target.value);
-      console.log(this.state);
     }
   };
 

@@ -70,7 +70,18 @@ class EditContainerForm extends Component {
   };
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name == "size") {
+      let size = {};
+      size._id = e.target.value;
+      this.props.sizes.forEach(element => {
+        if (size._id == element._id) {
+          size.size = element.size;
+        }
+      });
+      this.setState({ size });
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
   };
 
   fillForm(container) {
@@ -92,7 +103,7 @@ class EditContainerForm extends Component {
   }
 
   render() {
-    const { errors } = this.props;
+    const { errors, sizes, container } = this.props;
     const {
       isFlagged,
       hasShelves,
@@ -181,6 +192,27 @@ class EditContainerForm extends Component {
       ];
     }
 
+    let sizeSelect = [];
+    let selectedSizeIndex = 0;
+    sizes.forEach(element => {
+      if (element) {
+        let selection = {};
+        selection.value = element._id;
+        selection.label = element.size;
+
+        if (container.size) {
+          if (element.size === container.size.size) {
+            selection.selected = true;
+            sizeSelect[0] = selection;
+          } else {
+            selectedSizeIndex++;
+            selection.selected = false;
+            sizeSelect[selectedSizeIndex] = selection;
+          }
+        }
+      }
+    });
+
     var errorAlert = errors => {
       for (var property in errors) {
         var error;
@@ -238,15 +270,14 @@ class EditContainerForm extends Component {
               onChange={this.onChange}
               error={errors}
             />
-            <TextFieldGroup
-              name="size"
-              type="text"
-              label="Size"
-              divClass="col"
+            <SelectInput
               className="form-control"
-              value={this.state.size.size}
+              label="Size"
+              selectId="size"
+              name="size"
+              divClass="col"
               onChange={this.onChange}
-              error={errors}
+              options={sizeSelect}
             />
           </div>
           <div className="form-row pt-2">
@@ -350,7 +381,8 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
   container: state.containers.container,
-  location: state.router
+  location: state.router,
+  sizes: state.containers.sizes
 });
 
 export default connect(
