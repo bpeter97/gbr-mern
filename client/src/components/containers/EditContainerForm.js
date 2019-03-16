@@ -61,6 +61,9 @@ class EditContainerForm extends Component {
       size: this.state.size,
       delivery: this.state.delivery
     };
+
+    containerData.stats.currentlyRented = this.state.currentlyRented;
+
     this.props.editContainer(containerData);
     setTimeout(() => {
       if (checkEmpty(this.state.errors)) {
