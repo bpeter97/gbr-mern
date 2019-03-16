@@ -6,7 +6,6 @@ import SelectInput from "./../common/SelectInput";
 import { editProduct } from "../../actions/productActions";
 import ErrorAlert from "./../error/ErrorAlert";
 import checkEmpty from "./../../utils/checkEmpty";
-import arrayMove from "./../../utils/checkEmpty";
 
 class EditProductFom extends Component {
   constructor() {
@@ -56,12 +55,12 @@ class EditProductFom extends Component {
   };
 
   onChange = e => {
-    if (e.target.name == "type") {
+    if (e.target.name === "type") {
       let type = {};
       type._id = e.target.value;
 
       this.props.types.forEach(element => {
-        if (type._id == element._id) {
+        if (type._id === element._id) {
           type.type = element.type;
         }
       });

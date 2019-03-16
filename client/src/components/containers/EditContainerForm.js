@@ -20,7 +20,7 @@ class EditContainerForm extends Component {
       hasSigns: false,
       isFlagged: false,
       serialNumber: "",
-      rentalResale: "",
+      rentalResale: false,
       flagReason: "",
       stats: {},
       size: {},
@@ -70,11 +70,11 @@ class EditContainerForm extends Component {
   };
 
   onChange = e => {
-    if (e.target.name == "size") {
+    if (e.target.name === "size") {
       let size = {};
       size._id = e.target.value;
       this.props.sizes.forEach(element => {
-        if (size._id == element._id) {
+        if (size._id === element._id) {
           size.size = element.size;
         }
       });
@@ -100,6 +100,7 @@ class EditContainerForm extends Component {
       size: container.size || {},
       delivery: container.delivery || {}
     });
+    this.forceUpdate();
   }
 
   render() {
@@ -109,7 +110,8 @@ class EditContainerForm extends Component {
       hasShelves,
       isPainted,
       hasOnBoxNumbers,
-      hasSigns
+      hasSigns,
+      rentalResale
     } = this.state;
 
     const currentlyRented = this.state.stats.currentlyRented;
@@ -124,6 +126,19 @@ class EditContainerForm extends Component {
       flaggedSelect = [
         { value: false, selected: true, label: "No" },
         { value: true, selected: false, label: "Yes" }
+      ];
+    }
+
+    let rentalResaleSelect;
+    if (rentalResale === "Rental") {
+      rentalResaleSelect = [
+        { value: "Rental", selected: true, label: "Rental" },
+        { value: "Sales", selected: false, label: "Sales" }
+      ];
+    } else {
+      rentalResaleSelect = [
+        { value: "Sales", selected: true, label: "Sales" },
+        { value: "Rental", selected: false, label: "Rental" }
       ];
     }
 
@@ -260,15 +275,14 @@ class EditContainerForm extends Component {
             />
           </div>
           <div className="form-row pt-2">
-            <TextFieldGroup
-              name="rentalResale"
-              type="text"
+            <SelectInput
+              className="form-control"
               label="Type"
               divClass="col"
-              className="form-control"
-              value={this.state.rentalResale}
+              selectId="rentalResale"
+              name="rentalResale"
               onChange={this.onChange}
-              error={errors}
+              options={rentalResaleSelect}
             />
             <SelectInput
               className="form-control"
@@ -339,6 +353,7 @@ class EditContainerForm extends Component {
               value={this.state.stats.currentAddress}
               onChange={this.onChange}
               error={errors}
+              disabled={currentlyRented ? "disabled" : ""}
             />
           </div>
         </div>
