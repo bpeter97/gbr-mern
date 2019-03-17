@@ -74,7 +74,7 @@ class EditCustomer extends Component {
                             aria-controls="rental-history"
                             aria-selected="false"
                           >
-                            Rental History
+                            Order History
                           </a>
                         </li>
                       </ul>

@@ -35,6 +35,7 @@ class EditContainerForm extends Component {
   componentDidMount() {
     let { container } = this.props;
     this.fillForm(container);
+    this.forceUpdate();
   }
 
   static getDerivedStateFromProps(props, state) {

@@ -37,6 +37,7 @@ class EditCustomerForm extends Component {
   componentDidMount() {
     let { customer } = this.props;
     this.fillForm(customer);
+    this.forceUpdate();
   }
 
   static getDerivedStateFromProps(props, state) {

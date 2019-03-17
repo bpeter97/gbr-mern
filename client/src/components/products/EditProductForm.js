@@ -26,6 +26,7 @@ class EditProductFom extends Component {
   componentDidMount() {
     let { product } = this.props;
     this.fillForm(product);
+    this.forceUpdate();
   }
 
   static getDerivedStateFromProps(props, state) {
