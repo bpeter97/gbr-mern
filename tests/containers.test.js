@@ -254,7 +254,7 @@ describe("CONTAINERS", () => {
   describe("GET /containers/", () => {
     it("should return an array of containers", done => {
       request(app)
-        .get("/api/containers/")
+        .get("/api/containers")
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
@@ -274,7 +274,7 @@ describe("CONTAINERS", () => {
   describe("POST /containers/", () => {
     it("should create a new container", done => {
       request(app)
-        .post("/api/containers/")
+        .post("/api/containers")
         .set("Authorization", users[0].token)
         .send(newContainer)
         // .expect(200)
@@ -307,7 +307,7 @@ describe("CONTAINERS", () => {
       newContainer.isPainted = 123;
 
       request(app)
-        .post("/api/containers/")
+        .post("/api/containers")
         .set("Authorization", users[0].token)
         .send(newContainer)
         // .expect(200)

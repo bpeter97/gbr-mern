@@ -15,9 +15,9 @@ module.exports = function validateContainerInput(type, data) {
         : "";
       data.serialNumber = !isEmpty(data.serialNumber) ? data.serialNumber : "";
       data.rentalResale = !isEmpty(data.rentalResale) ? data.rentalResale : "";
-      data.size = !isEmpty(data.size.size) ? data.size : "";
+      data.size = !isEmpty(data.size) ? data.size : "";
 
-      if (validator.isEmpty(data.size.size)) {
+      if (validator.isEmpty(data.size)) {
         errors.size = "Size is required";
       }
 
@@ -72,18 +72,18 @@ module.exports = function validateContainerInput(type, data) {
         : "";
       data.serialNumber = !isEmpty(data.serialNumber) ? data.serialNumber : "";
       data.rentalResale = !isEmpty(data.rentalResale) ? data.rentalResale : "";
-      data.currentlyRented = !isEmpty(data.stats.currentlyRented)
-        ? data.stats.currentlyRented
+      data.currentlyRented = !isEmpty(data.currentlyRented)
+        ? data.currentlyRented
         : "";
-      data.size = !isEmpty(data.size.size) ? data.size : "";
+      data.size = !isEmpty(data.size) ? data.size : "";
 
-      if (validator.isEmpty(data.size.size)) {
+      if (validator.isEmpty(data.size)) {
         errors.size = "Size is required";
       }
 
       // Check to see if currentAddress has validation errors.
-      if (validator.isEmpty(data.stats.currentAddress)) {
-        errors.stats.currentAddress = "Current address is required";
+      if (validator.isEmpty(data.currentAddress)) {
+        errors.currentAddress = "Current address is required";
       }
 
       // Check to see if currentlyRented has validation errors.

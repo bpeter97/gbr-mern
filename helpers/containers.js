@@ -282,8 +282,9 @@ exports.patchContainer = (req, res) => {
     "isFlagged",
     "flagReason"
   ]);
-  body.size = new ObjectID(req.body.size._id);
-  body.stats = new ObjectID(req.body.stats._id);
+
+  body.size = new ObjectID(req.body.size);
+  body.stats = new ObjectID(req.body.stats);
 
   var stats = _.pick(req.body, ["currentAddress", "currentlyRented"]);
 
@@ -325,7 +326,6 @@ exports.patchContainer = (req, res) => {
             newStats.currentlyRented = stats.currentlyRented;
             newStats.currentRentee = stats.currentRentee;
             newStats.previousRentees = stats.previousRentees;
-            newStats = newStats.getLatLon();
 
             ContainerStats.findByIdAndUpdate(
               body.stats,
