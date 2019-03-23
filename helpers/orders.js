@@ -10,6 +10,7 @@ const PurchaseType = require("../models/PurchaseType");
 const PurchasePrices = require("../models/PurchasePrices");
 const RequestedProduct = require("../models/RequestedProduct");
 const Product = require("../models/Product");
+const ContainerDelivery = require("../models/ContainerDelivery");
 
 // validation files
 const validateOrderInput = require("../validation/order");
@@ -27,14 +28,14 @@ exports.getOrders = (req, res) => {
       model: Product
     })
     .populate("containers.container")
-    // .populate({
-    //   path: "containers.container",
-    //   populate: { path: "size", model: ContainerSize }
-    // })
-    // .populate({
-    //   path: "containers.container",
-    //   populate: { path: "delivery", model: ContainerDelivery }
-    // })
+    .populate({
+      path: "containers.container",
+      populate: { path: "size", model: ContainerSize }
+    })
+    .populate({
+      path: "containers.container",
+      populate: { path: "deliveries.delivery", model: ContainerDelivery }
+    })
     .populate("createdBy")
     .then(orders => {
       if (!orders) {
@@ -68,14 +69,14 @@ exports.getUserOrders = (req, res) => {
       model: Product
     })
     .populate("containers.container")
-    // .populate({
-    //   path: "containers.container",
-    //   populate: { path: "size", model: ContainerSize }
-    // })
-    // .populate({
-    //   path: "containers.container",
-    //   populate: { path: "delivery", model: ContainerDelivery }
-    // })
+    .populate({
+      path: "containers.container",
+      populate: { path: "size", model: ContainerSize }
+    })
+    .populate({
+      path: "containers.container",
+      populate: { path: "deliveries.delivery", model: ContainerDelivery }
+    })
     .populate("createdBy")
     .then(orders => {
       if (!orders) {
@@ -111,14 +112,14 @@ exports.getCustomerOrders = (req, res) => {
       model: Product
     })
     .populate("containers.container")
-    // .populate({
-    //   path: "containers.container",
-    //   populate: { path: "size", model: ContainerSize }
-    // })
-    // .populate({
-    //   path: "containers.container",
-    //   populate: { path: "delivery", model: ContainerDelivery }
-    // })
+    .populate({
+      path: "containers.container",
+      populate: { path: "size", model: ContainerSize }
+    })
+    .populate({
+      path: "containers.container",
+      populate: { path: "deliveries.delivery", model: ContainerDelivery }
+    })
     .populate("createdBy")
     .then(orders => {
       if (!orders) {
@@ -277,23 +278,6 @@ exports.postOrder = (req, res) => {
 
               newOrder
                 .save()
-                // .populate("customer")
-                // .populate("purchaseType")
-                // .populate("purchasePrices")
-                // .populate({
-                //   path: "products.product",
-                //   model: Product
-                // })
-                // .populate("containers.container")
-                // // .populate({
-                // //   path: "containers.container",
-                // //   populate: { path: "size", model: ContainerSize }
-                // // })
-                // // .populate({
-                // //   path: "containers.container",
-                // //   populate: { path: "delivery", model: ContainerDelivery }
-                // // })
-                // .populate("createdBy")
                 .then(order => {
                   // Check to see if the order saved properly.
                   if (!order) {
@@ -308,61 +292,62 @@ exports.postOrder = (req, res) => {
                     }).catch(e => console.log(e));
                   });
 
-                  console.log("Order:");
-                  console.log(order);
-                  console.log("---------------------------------------------");
-
-                  // Create the new order history.
-                  var historyOrderObject = {
-                    order: {
-                      quote: order.quote ? order.quote : null,
-                      customer: order.customer,
-                      purchaseType: order.purchaseType,
-                      creationDate: order.creationDate,
-                      startDate: order.startDate,
-                      endDate: order.endDate,
-                      stage: order.stage,
-                      purchasePrices: order.purchasePrices,
-                      isHidden: order.isHidden,
-                      products: order.products,
-                      containers: order.containers,
-                      createdBy: order.createdBy
-                    },
-                    changeDate: new Date()
-                  };
-
-                  console.log("History Order Object:");
-                  console.log(historyOrderObject);
-                  console.log("---------------------------------------------");
-
-                  // Create the data for the history object
-                  var historyObject = {
-                    orderID: order._id,
-                    orderHistory: [historyOrderObject]
-                  };
-
-                  console.log("History Object:");
-                  console.log(historyObject);
-                  console.log("---------------------------------------------");
-
-                  // Create the actual order history object.
-                  var newOrderHistory = new OrderHistory(historyObject);
-
-                  console.log(`New Order History:`);
-                  console.log(newOrderHistory);
-                  console.log("---------------------------------------------");
-
-                  // Save it to the database.
-                  newOrderHistory
-                    .save()
-                    .then(history => {
-                      if (history) {
-                        return res.json(order);
+                  Order.findById(order._id)
+                    .populate("customer")
+                    .populate("purchaseType")
+                    .populate("purchasePrices")
+                    .populate({
+                      path: "products.product",
+                      model: Product
+                    })
+                    .populate("containers.container")
+                    .populate({
+                      path: "containers.container",
+                      populate: { path: "size", model: ContainerSize }
+                    })
+                    .populate({
+                      path: "containers.container",
+                      populate: {
+                        path: "deliveries.delivery",
+                        model: ContainerDelivery
                       }
-                      {
-                        errors.history = "Order history was not created";
+                    })
+                    .populate("createdBy")
+                    .then(order => {
+                      if (!order) {
+                        errors.order = "There was no order found";
                         return res.status(400).json(errors);
                       }
+
+                      // Create the data for the history object
+                      var historyObject = {
+                        orderID: order._id,
+                        orderHistory: [
+                          {
+                            order,
+                            changeDate: new Date()
+                          }
+                        ]
+                      };
+
+                      // Create the actual order history object.
+                      var newOrderHistory = new OrderHistory(historyObject);
+
+                      console.log(newOrderHistory.orderHistory);
+
+                      // Save it to the database.
+                      newOrderHistory
+                        .save()
+                        .then(history => {
+                          if (history) {
+                            console.log(history._id);
+                            res.json(order);
+                          } else {
+                            errors.history = "Order history was not created";
+                            return res.status(400).json(errors);
+                          }
+                        })
+                        .catch(e => console.log(e));
                     })
                     .catch(e => console.log(e));
                 })
@@ -391,16 +376,19 @@ exports.getOrder = (req, res) => {
     .populate("customer")
     .populate("purchaseType")
     .populate("purchasePrices")
-    .populate("products.product")
+    .populate({
+      path: "products.product",
+      model: Product
+    })
     .populate("containers.container")
-    // .populate({
-    //   path: "containers.container",
-    //   populate: { path: "size", model: ContainerSize }
-    // })
-    // .populate({
-    //   path: "containers.container",
-    //   populate: { path: "delivery", model: ContainerDelivery }
-    // })
+    .populate({
+      path: "containers.container",
+      populate: { path: "size", model: ContainerSize }
+    })
+    .populate({
+      path: "containers.container",
+      populate: { path: "deliveries.delivery", model: ContainerDelivery }
+    })
     .populate("createdBy")
     .then(order => {
       if (!order) {

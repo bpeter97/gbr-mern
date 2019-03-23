@@ -37,17 +37,30 @@ class Orders extends Component {
       if (order.containers.length > 0) {
         order.containers.forEach(container => {
           var c = container.container;
-          if (c.delivery.isDelivered) {
-            container.container.delivery.isDelivered = "Yes";
-          } else {
-            container.container.delivery.isDelivered = "No";
-            container.container.delivery.dateDelivered = "N/A";
-          }
-          if (c.delivery.isPickedUp) {
-            container.container.delivery.isPickedUp = "Yes";
-          } else {
-            container.container.delivery.isPickedUp = "No";
-            container.container.delivery.pickupDate = "N/A";
+
+          if (c.deliveries.legnth > 0) {
+            c.deliveries
+              .sort(function(a, b) {
+                return a.dateDelivered > b.dateDelivered
+                  ? 1
+                  : b.dateDelivered > a.dateDelivered
+                  ? -1
+                  : 0;
+              })
+              .reverse();
+
+            if (c.deliveries[0].delivery.isDelivered) {
+              container.container.deliveries[0].delivery.isDelivered = "Yes";
+            } else {
+              container.container.deliveries[0].delivery.isDelivered = "No";
+              container.container.deliveries[0].delivery.dateDelivered = "N/A";
+            }
+            if (c.deliveries[0].delivery.isPickedUp) {
+              container.container.deliveries[0].delivery.isPickedUp = "Yes";
+            } else {
+              container.container.deliveries[0].delivery.isPickedUp = "No";
+              container.container.deliveries[0].delivery.pickupDate = "N/A";
+            }
           }
         });
       }
