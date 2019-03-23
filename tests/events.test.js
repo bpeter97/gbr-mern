@@ -1,7 +1,7 @@
 const expect = require("expect");
 const request = require("supertest");
 
-const { app } = require("./../../server");
+const { app } = require("./../server");
 const CalendarEvent = require("./../models/CalendarEvent");
 const { populateEvents, events } = require("./seed/eventSeed");
 const { populateUsers, users } = require("./seed/userSeed");

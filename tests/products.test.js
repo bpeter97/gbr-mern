@@ -2,7 +2,7 @@ const { ObjectID } = require("mongodb");
 const expect = require("expect");
 const request = require("supertest");
 
-const { app } = require("./../../server");
+const { app } = require("./../server");
 const ProductType = require("./../models/ProductType");
 const Product = require("./../models/Product");
 const {
@@ -24,7 +24,7 @@ var newProduct = {
   price: 90.0,
   monthlyPrice: 0.0,
   rental: false,
-  type: `${productTypes[0]._id.toHexString()}`,
+  type: `${productTypes[0]._id.toHexString()}`
 };
 
 describe("PRODUCT TYPES", () => {
