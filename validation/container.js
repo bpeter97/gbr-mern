@@ -48,10 +48,10 @@ module.exports = function validateContainerInput(type, data) {
       break;
     case "containerSize":
       // Set data values to blanks if they're empty.
-      data.size = !isEmpty(data.size.size) ? data.size : "";
+      data.size = !isEmpty(data.size) ? data.size : "";
 
       // Check to see if size has validation errors.
-      if (validator.isEmpty(data.size.size)) {
+      if (validator.isEmpty(data.size)) {
         errors.size = "Size is required";
       }
       break;

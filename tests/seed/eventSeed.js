@@ -33,7 +33,7 @@ events = [
 ];
 
 const populateEvents = done => {
-  CalendarEvent.remove({})
+  CalendarEvent.deleteMany({})
     .then(() => {
       var eventOne = new CalendarEvent(events[0]).save();
       var eventTwo = new CalendarEvent(events[1]).save();

@@ -67,7 +67,7 @@ var users = [
 ];
 
 const populateUsers = done => {
-  User.remove({})
+  User.deleteMany({})
     .then(() => {
       // generate the hash/salted password for the users.
       var userOne = new User(users[0]).save().then(user => {

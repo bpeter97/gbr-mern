@@ -65,7 +65,7 @@ const products = [
 ];
 
 const populateProductTypes = done => {
-  ProductType.remove({})
+  ProductType.deleteMany({})
     .then(() => {
       var modification = new ProductType(productTypes[0]).save();
       var container = new ProductType(productTypes[1]).save();
@@ -86,7 +86,7 @@ const populateProductTypes = done => {
 };
 
 const populateProducts = done => {
-  Product.remove({})
+  Product.deleteMany({})
     .then(() => {
       var lockbox = new Product(products[0]).save();
       var delivery = new Product(products[1]).save();

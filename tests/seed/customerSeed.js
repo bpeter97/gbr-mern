@@ -63,7 +63,7 @@ customers = [
 ];
 
 const populateCustomers = done => {
-  Customer.remove({})
+  Customer.deleteMany({})
     .then(() => {
       var customerOne = new Customer(customers[0]).save();
       var customerTwo = new Customer(customers[1]).save();

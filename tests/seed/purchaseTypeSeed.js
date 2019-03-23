@@ -16,7 +16,7 @@ purchaseTypes = [
 ];
 
 const populatePurchaseTypes = done => {
-  PurchaseType.remove({})
+  PurchaseType.deleteMany({})
     .then(() => {
       var purchaseTypeOne = new PurchaseType(purchaseTypes[0]).save();
       var purchaseTypeTwo = new PurchaseType(purchaseTypes[1]).save();

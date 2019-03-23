@@ -161,7 +161,7 @@ const orders = [
 ];
 
 const populateRequestedProducts = done => {
-  RequestedProduct.remove({})
+  RequestedProduct.deleteMany({})
     .then(() => {
       var requestedProductOne = new RequestedProduct(
         requestedProducts[0]
@@ -177,7 +177,7 @@ const populateRequestedProducts = done => {
 };
 
 const populatePurchasePrices = done => {
-  PurchasePrices.remove({})
+  PurchasePrices.deleteMany({})
     .then(() => {
       var ppOne = new PurchasePrices(purchasePrices[0]).save();
 
@@ -188,7 +188,7 @@ const populatePurchasePrices = done => {
 };
 
 const populateQuotes = done => {
-  Quote.remove({})
+  Quote.deleteMany({})
     .then(() => {
       var quoteOne = new Quote(quotes[0]).save();
 
@@ -199,7 +199,7 @@ const populateQuotes = done => {
 };
 
 const populateOrders = done => {
-  Order.remove({})
+  Order.deleteMany({})
     .then(() => {
       var orderOne = new Order(orders[0]).save();
 

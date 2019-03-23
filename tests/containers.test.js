@@ -28,15 +28,10 @@ var newContainer = {
   rentalResale: "Resale",
   isFlagged: false,
   flagReason: "",
-  delivery: {
-    driver: null,
-    notes: null,
-    isDelivered: false,
-    dateDelivered: null,
-    isPickedUp: false,
-    pickupDate: null
-  }
+  deliveries: []
 };
+
+var newContainerSize = { size: "20C" };
 
 describe("CONTAINERS", () => {
   before(populateUsers);
@@ -63,7 +58,7 @@ describe("CONTAINERS", () => {
       request(app)
         .post("/api/containers/sizes")
         .set("Authorization", users[0].token)
-        .send({ size: "20C" })
+        .send(newContainerSize)
         .expect(200)
         .expect(res => {
           expect(res.body.size).toBe("20C");
@@ -92,9 +87,7 @@ describe("CONTAINERS", () => {
           expect(res.body.size).toBe("Size is required");
         })
         .end(err => {
-          if (err) {
-            return done(err);
-          }
+          if (err) return done(err);
 
           ContainerSize.findOne({ size: "20C" })
             .then(size => {

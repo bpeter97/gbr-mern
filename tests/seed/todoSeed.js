@@ -32,7 +32,7 @@ const todos = [
 ];
 
 const populateTodos = done => {
-  Todo.remove({})
+  Todo.deleteMany({})
     .then(() => {
       // generate the hash/salted password for the users.
       var todoOne = new Todo(todos[0]).save();

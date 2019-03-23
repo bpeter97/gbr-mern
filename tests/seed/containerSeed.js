@@ -90,14 +90,7 @@ containers = [
     rentalResale: "Rental",
     isFlagged: false,
     flagReason: "",
-    delivery: {
-      driver: null,
-      notes: null,
-      isDelivered: false,
-      dateDelivered: null,
-      isPickedUp: false,
-      pickupDate: null
-    },
+    deliveries: [],
     stats: conOneStatsID
   },
   {
@@ -113,14 +106,7 @@ containers = [
     rentalResale: "Rental",
     isFlagged: false,
     flagReason: "",
-    delivery: {
-      driver: null,
-      notes: null,
-      isDelivered: false,
-      dateDelivered: null,
-      isPickedUp: false,
-      pickupDate: null
-    },
+    deliveries: [],
     stats: conTwoStatsID
   },
   {
@@ -136,20 +122,13 @@ containers = [
     rentalResale: "Rental",
     isFlagged: true,
     flagReason: "Container is damaged",
-    delivery: {
-      driver: null,
-      notes: null,
-      isDelivered: false,
-      dateDelivered: null,
-      isPickedUp: false,
-      pickupDate: null
-    },
+    deliveries: [],
     stats: conThreeStatsID
   }
 ];
 
 const populateContainerSizes = done => {
-  ContainerSize.remove({})
+  ContainerSize.deleteMany({})
     .then(() => {
       var twenty = new ContainerSize(containerSizes[0]).save();
       var fourty = new ContainerSize(containerSizes[1]).save();
@@ -162,7 +141,7 @@ const populateContainerSizes = done => {
 };
 
 const populateContainerStats = done => {
-  ContainerStats.remove({})
+  ContainerStats.deleteMany({})
     .then(() => {
       var twenty = new ContainerStats(containerStats[0]).save();
       var fourty = new ContainerStats(containerStats[1]).save();
@@ -175,7 +154,7 @@ const populateContainerStats = done => {
 };
 
 const populateContainers = done => {
-  Container.remove({})
+  Container.deleteMany({})
     .then(() => {
       var twenty = new Container(containers[0]).save();
       var fourty = new Container(containers[1]).save();
