@@ -55,11 +55,13 @@ app.use(bodyParser.json());
 // connect to DB, if NODE_ENV is testing, then use test DB
 if (process.env.NODE_ENV == "test") {
   console.log("Attempting to connect to test database.....");
-  mongoose.connect(process.env.mongoTestURI).catch(err => console.log(err));
+  mongoose
+    .connect(process.env.mongoTestURI, { useNewUrlParser: true })
+    .catch(err => console.log(err));
 } else {
   console.log("Attempting to connect to dev database....");
   mongoose
-    .connect(process.env.mongoURI)
+    .connect(process.env.mongoURI, { useNewUrlParser: true })
     .then(() => console.log("MongoDB Connected."))
     .catch(err => console.log(err));
 }
