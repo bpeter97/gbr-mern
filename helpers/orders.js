@@ -170,7 +170,6 @@ exports.postOrder = (req, res) => {
   // Check to see if selected customer ID exists.
   Customer.findById(new ObjectID(req.body.customer)).then(customer => {
     if (!customer) {
-      console.log(req.body.customer);
       errors.customer = "Customer selected does not exist";
       return res.status(400).json(errors);
     }
@@ -333,14 +332,11 @@ exports.postOrder = (req, res) => {
                       // Create the actual order history object.
                       var newOrderHistory = new OrderHistory(historyObject);
 
-                      console.log(newOrderHistory.orderHistory);
-
                       // Save it to the database.
                       newOrderHistory
                         .save()
                         .then(history => {
                           if (history) {
-                            console.log(history._id);
                             res.json(order);
                           } else {
                             errors.history = "Order history was not created";

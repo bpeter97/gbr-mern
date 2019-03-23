@@ -109,7 +109,7 @@ describe("ORDERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.orders.length).toBe(orders.length);
+          expect(res.body.length).toBe(orders.length);
         })
         .end(done);
     });
@@ -163,7 +163,7 @@ describe("ORDERS", () => {
         .set("Authorization", users[0].token)
         .expect(200)
         .expect(res => {
-          expect(res.body.orders[0].createdBy._id).toBe(orders[0].createdBy);
+          expect(res.body[0].createdBy._id).toBe(orders[0].createdBy);
         })
         .end(done);
     });
@@ -194,7 +194,7 @@ describe("ORDERS", () => {
         .post("/api/orders")
         .send(newOrder)
         .set("Authorization", users[0].token)
-        // .expect(200)
+        .expect(200)
         .expect(res => {
           expect(res.body.job.name).toBe("Walmart Construction");
         })
