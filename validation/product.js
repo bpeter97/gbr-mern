@@ -36,7 +36,7 @@ module.exports = function validateProductInput(type, data) {
     }
 
     // Check to see if type has validation errors.
-    if (isEmpty(data.type._id) || !ObjectID.isValid(data.type._id)) {
+    if (isEmpty(data.type) || !ObjectID.isValid(data.type)) {
       errors.type = "Must select a product type";
     }
   }
