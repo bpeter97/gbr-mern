@@ -5,7 +5,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { editContainer } from "../../actions/containerActions";
 import TextArea from "../common/TextArea";
 import SelectInput from "../common/SelectInput";
-import ErrorAlert from "./../error/ErrorAlert";
+import ErrorAlert from "../alerts/ErrorAlert";
 import checkEmpty from "./../../utils/checkEmpty";
 
 class EditContainerForm extends Component {
@@ -22,7 +22,9 @@ class EditContainerForm extends Component {
       serialNumber: "",
       rentalResale: false,
       flagReason: "",
-      stats: {},
+      stats: {
+        currentAddress: ""
+      },
       currentlyRented: false,
       size: {}
     };
@@ -75,17 +77,25 @@ class EditContainerForm extends Component {
   };
 
   onChange = e => {
-    if (e.target.name === "size") {
-      let size = {};
-      size._id = e.target.value;
-      this.props.sizes.forEach(element => {
-        if (size._id === element._id) {
-          size.size = element.size;
-        }
-      });
-      this.setState({ size });
-    } else {
-      this.setState({ [e.target.name]: e.target.value });
+    switch (e.target.name) {
+      case "size":
+        let size = {};
+        size._id = e.target.value;
+        this.props.sizes.forEach(element => {
+          if (size._id === element._id) {
+            size.size = element.size;
+          }
+        });
+        this.setState({ size });
+        break;
+      case "currentAddress":
+        let stats = this.state.stats;
+        stats.currentAddress = e.target.value;
+        this.setState({ stats });
+        break;
+      default:
+        this.setState({ [e.target.name]: e.target.value });
+        break;
     }
   };
 

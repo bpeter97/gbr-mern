@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import SelectInput from "./../common/SelectInput";
 import { editProduct } from "../../actions/productActions";
-import ErrorAlert from "./../error/ErrorAlert";
+import ErrorAlert from "../alerts/ErrorAlert";
 import checkEmpty from "./../../utils/checkEmpty";
 
 class EditProductFom extends Component {

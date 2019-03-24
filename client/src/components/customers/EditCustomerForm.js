@@ -5,7 +5,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { editCustomer } from "../../actions/customerActions";
 import TextArea from "../common/TextArea";
 import SelectInput from "./../common/SelectInput";
-import ErrorAlert from "./../error/ErrorAlert";
+import ErrorAlert from "../alerts/ErrorAlert";
 import checkEmpty from "./../../utils/checkEmpty";
 
 class EditCustomerForm extends Component {

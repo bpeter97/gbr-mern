@@ -9,9 +9,10 @@ import {
   CLEAR_CONTAINER,
   CONTAINER_LOADING,
   GET_CONTAINER_SIZES,
-  ADD_CONTAINER
+  ADD_CONTAINER,
+  SET_SUCCESS
 } from "./types";
-import { clearErrors } from "./commonActions";
+import { clearErrors, clearSuccess } from "./commonActions";
 
 export const getContainers = () => dispatch => {
   dispatch(setContainerLoading());
@@ -32,6 +33,8 @@ export const getContainers = () => dispatch => {
 };
 
 export const getContainer = id => dispatch => {
+  dispatch(clearSuccess());
+  dispatch(clearErrors());
   dispatch(setContainerLoading());
   axios
     .get(`/api/containers/${id}`)
@@ -69,12 +72,18 @@ export const getContainerSizes = id => dispatch => {
 
 export const editContainer = containerData => dispatch => {
   dispatch(clearErrors());
+  dispatch(clearSuccess());
   axios
     .patch(`/api/containers/${containerData._id}`, containerData)
-    .then(res =>
+    .then(
+      res =>
+        dispatch({
+          type: EDIT_CONTAINER,
+          payload: res.data
+        }),
       dispatch({
-        type: EDIT_CONTAINER,
-        payload: res.data
+        type: SET_SUCCESS,
+        payload: "Container sucessfully updated."
       })
     )
     .catch(err =>
@@ -87,12 +96,18 @@ export const editContainer = containerData => dispatch => {
 
 export const addContainer = containerData => dispatch => {
   dispatch(clearErrors());
+  dispatch(clearSuccess());
   axios
     .post("/api/containers", containerData)
-    .then(res =>
+    .then(
+      res =>
+        dispatch({
+          type: ADD_CONTAINER,
+          payload: res.data
+        }),
       dispatch({
-        type: ADD_CONTAINER,
-        payload: res.data
+        type: SET_SUCCESS,
+        payload: "Container sucessfully created."
       })
     )
     .catch(err =>

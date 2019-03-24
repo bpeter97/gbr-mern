@@ -5,7 +5,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { addContainer } from "../../actions/containerActions";
 import TextArea from "../common/TextArea";
 import SelectInput from "../common/SelectInput";
-import ErrorAlert from "./../error/ErrorAlert";
+import ErrorAlert from "../alerts/ErrorAlert";
 
 class AddCustomerForm extends Component {
   constructor() {

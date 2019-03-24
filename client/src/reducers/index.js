@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import errorReducer from "./errorReducer";
+import successReducer from "./successReducer";
 import userReducer from "./userReducer";
 import todoReducer from "./todoReducer";
 import customerReducer from "./customerReducer";
@@ -16,6 +17,7 @@ import eventReducer from "./eventReducer";
 export default combineReducers({
   auth: authReducer,
   errors: errorReducer,
+  success: successReducer,
   router: routerReducer,
   quotes: quoteReducer,
   orders: orderReducer,

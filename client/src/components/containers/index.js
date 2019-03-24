@@ -10,6 +10,7 @@ import { getContainers } from "../../actions/containerActions";
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
 import Spinner from "./../common/Spinner";
+import SuccessAlert from "./../alerts/SuccessAlert";
 
 class Containers extends Component {
   componentDidMount() {
@@ -25,6 +26,10 @@ class Containers extends Component {
   }
 
   render() {
+    let successMessage = null;
+    if (this.props.success.message !== undefined) {
+      successMessage = this.props.success.message;
+    }
     const { containers } = this.props.containers;
 
     containers.forEach(container => {
@@ -112,10 +117,11 @@ class Containers extends Component {
         <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 pb-4">
+            {successMessage ? <SuccessAlert msg={successMessage} /> : null}
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">Containers</h5>
-                <div className="d-flex flex-row justify-content-center">
+                <div className="row justify-content-center">
                   <div className="col-12 py-md-3 pl-md-5">
                     {this.props.containers.loading ? (
                       <Spinner />
@@ -142,16 +148,6 @@ class Containers extends Component {
                             f = rowInfo.original.isFlagged;
                           }
                           return {
-                            // onClick: () => {
-                            //   this.props.history.push({
-                            //     pathname: "/containers/edit",
-                            //     state: {
-                            //       id:
-                            //         rowInfo.row._original.stats.currentRentee
-                            //           ._id
-                            //     }
-                            //   });
-                            // },
                             style: {
                               backgroundColor: f
                                 ? "rgb(255, 204, 204, 0.5)"
@@ -178,7 +174,8 @@ Containers.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  containers: state.containers
+  containers: state.containers,
+  success: state.success
 });
 
 export default connect(
