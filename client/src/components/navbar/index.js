@@ -101,11 +101,6 @@ class NavBar extends Component {
             </ul>
             <ul className="navbar-nav ml-auto">
               <li className="nav-item pr-2 my-auto d-none d-lg-block">
-                Logged in as {user.firstName}{" "}
-                {user.middleInitial ? user.middleInitial : ""}. {user.lastName}{" "}
-                {user.suffix ? user.suffix : ""}!
-              </li>
-              <li className="nav-item pr-2 my-auto d-none d-lg-block">
                 <strong>
                   <Clock />
                 </strong>
@@ -129,6 +124,12 @@ class NavBar extends Component {
                   className="dropdown-menu dropdown-menu-right"
                   aria-labelledby="account"
                 >
+                  <p className="dropdown-item dropdown-name disabled">
+                    {user.firstName}{" "}
+                    {user.middleInitial ? user.middleInitial : ""}.{" "}
+                    {user.lastName} {user.suffix ? user.suffix : ""}
+                  </p>
+                  <hr />
                   <a className="dropdown-item" href="">
                     Settings
                   </a>
