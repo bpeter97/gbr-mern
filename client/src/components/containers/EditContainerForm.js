@@ -24,8 +24,7 @@ class EditContainerForm extends Component {
       flagReason: "",
       stats: {},
       currentlyRented: false,
-      size: {},
-      delivery: {}
+      size: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);

@@ -284,7 +284,7 @@ exports.patchContainer = (req, res) => {
   ]);
 
   body.size = new ObjectID(req.body.size);
-  body.stats = new ObjectID(req.body.stats);
+  body.stats = new ObjectID(req.body.stats._id);
 
   var stats = _.pick(req.body, ["currentAddress", "currentlyRented"]);
 

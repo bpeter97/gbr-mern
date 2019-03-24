@@ -32,6 +32,7 @@ import "./App.css";
 import EditCustomer from "./components/customers/EditCustomer";
 import AddCustomer from "./components/customers/AddCustomer";
 import EditContainer from "./components/containers/EditContainer";
+import AddContainer from "./components/containers/AddContainer";
 import EditProduct from "./components/products/EditProduct";
 
 const history = createHistory();
@@ -176,6 +177,13 @@ class App extends Component {
                             exact
                             path="/containers/edit/"
                             component={EditContainer}
+                          />
+                        </Switch>
+                        <Switch>
+                          <PrivateRoute
+                            exact
+                            path="/containers/add/"
+                            component={AddContainer}
                           />
                         </Switch>
                         <Switch>
