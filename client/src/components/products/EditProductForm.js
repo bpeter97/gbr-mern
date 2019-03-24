@@ -152,16 +152,17 @@ class EditProductFom extends Component {
       <form onSubmit={this.onSubmit}>
         {errorAlert(this.state.errors)}
         <div className="col-md-12">
-          <TextFieldGroup
-            name="name"
-            type="text"
-            label="Name"
-            className="form-control"
-            value={this.state.name}
-            onChange={this.onChange}
-            error={errors}
-          />
           <div className="form-row pt-2">
+            <TextFieldGroup
+              name="name"
+              type="text"
+              label="Name"
+              divClass="col"
+              className="form-control"
+              value={this.state.name}
+              onChange={this.onChange}
+              error={errors}
+            />
             <TextFieldGroup
               name="shortName"
               type="text"
@@ -172,6 +173,8 @@ class EditProductFom extends Component {
               onChange={this.onChange}
               error={errors}
             />
+          </div>
+          <div className="form-row pt-2">
             <TextFieldGroup
               name="price"
               type="text"
@@ -179,6 +182,16 @@ class EditProductFom extends Component {
               divClass="col"
               className="form-control"
               value={this.state.price}
+              onChange={this.onChange}
+              error={errors}
+            />
+            <TextFieldGroup
+              name="monthlyPrice"
+              type="text"
+              label="Monthly Price"
+              divClass="col"
+              className="form-control"
+              value={this.state.monthlyPrice}
               onChange={this.onChange}
               error={errors}
             />
