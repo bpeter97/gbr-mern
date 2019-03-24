@@ -39,16 +39,6 @@ class Orders extends Component {
           var c = container.container;
 
           if (c.deliveries.legnth > 0) {
-            c.deliveries
-              .sort(function(a, b) {
-                return a.dateDelivered > b.dateDelivered
-                  ? 1
-                  : b.dateDelivered > a.dateDelivered
-                  ? -1
-                  : 0;
-              })
-              .reverse();
-
             if (c.deliveries[0].delivery.isDelivered) {
               container.container.deliveries[0].delivery.isDelivered = "Yes";
             } else {

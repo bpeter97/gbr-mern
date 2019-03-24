@@ -50,9 +50,7 @@ const ContainerSchema = new Schema({
         ref: "ContainerDelivery"
       },
       dateDeliveryCreated: {
-        creationDate: {
-          type: Date
-        }
+        type: Date
       }
     }
   ],
@@ -60,6 +58,20 @@ const ContainerSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "ContainerStats",
     required: true
+  }
+});
+
+ContainerSchema.post("init", function(doc) {
+  if (doc.deliveries.length > 0) {
+    doc.deliveries
+      .sort(function(a, b) {
+        return a.dateDeliveryCreated > b.dateDeliveryCreated
+          ? 1
+          : b.dateDeliveryCreated > a.dateDeliveryCreated
+          ? -1
+          : 0;
+      })
+      .reverse();
   }
 });
 
