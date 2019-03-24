@@ -37,7 +37,7 @@ class Customers extends Component {
     let stage = v.original.stage;
     let endDate = v.original.endDate;
     let deliveryDate =
-      v.original.containers[0].container.delivery.dateDelivered;
+      v.original.containers[0].container.deliveries[0].delivery.dateDelivered;
 
     let earnings = 0;
     let correctSalesTax = v.original.purchasePrices.salesTax / 100;
