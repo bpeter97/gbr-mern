@@ -1,14 +1,14 @@
 {
   "stats": {
     "suites": 11,
-    "tests": 21,
-    "passes": 21,
+    "tests": 20,
+    "passes": 20,
     "pending": 0,
     "failures": 0,
-    "start": "2019-03-23T22:58:30.332Z",
-    "end": "2019-03-23T22:58:48.557Z",
-    "duration": 18225,
-    "testsRegistered": 21,
+    "start": "2019-03-26T03:52:58.575Z",
+    "end": "2019-03-26T03:53:16.707Z",
+    "duration": 18132,
+    "testsRegistered": 20,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
@@ -19,7 +19,7 @@
     "pendingPercentClass": "danger"
   },
   "suites": {
-    "uuid": "37b43631-be2d-4bc4-832c-6fe3caddb463",
+    "uuid": "1c41ddba-126a-484d-a21c-d46337792571",
     "title": "",
     "fullFile": "",
     "file": "",
@@ -28,7 +28,7 @@
     "tests": [],
     "suites": [
       {
-        "uuid": "c07e2d08-e37c-4f67-8da5-543456aa832a",
+        "uuid": "a15cacdf-4d8d-4da4-9f29-973974eaf7cb",
         "title": "CONTAINERS",
         "fullFile": "C:\\Programming\\gbr-mern\\tests\\containers.test.js",
         "file": "\\tests\\containers.test.js",
@@ -37,14 +37,14 @@
             "title": "\"before all\" hook: populateUsers",
             "fullTitle": "CONTAINERS \"before all\" hook: populateUsers",
             "timedOut": false,
-            "duration": 1878,
+            "duration": 1961,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "User.deleteMany({})\n  .then(() => {\n    // generate the hash/salted password for the users.\n    var userOne = new User(users[0]).save().then(user => {\n      users[0].token = user.generateAuthToken();\n    });\n    var userTwo = new User(users[1]).save().then(user => {\n      users[1].token = user.generateAuthToken();\n    });\n    var userThree = new User(users[2]).save();\n    var userFour = new User(users[3]).save();\n    return Promise.all([userOne, userTwo, userThree, userFour]);\n  })\n  .then(() => done())\n  .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "d2eea9d7-b32e-450c-adee-6ba50eb4a932",
+            "uuid": "6b98269a-16e3-4cc7-9a8f-181ce9693a4c",
             "isHook": true,
             "skipped": false
           },
@@ -52,14 +52,14 @@
             "title": "\"before each\" hook: populateContainerSizes",
             "fullTitle": "CONTAINERS \"before each\" hook: populateContainerSizes",
             "timedOut": false,
-            "duration": 191,
+            "duration": 178,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "ContainerSize.deleteMany({})\n  .then(() => {\n    var twenty = new ContainerSize(containerSizes[0]).save();\n    var fourty = new ContainerSize(containerSizes[1]).save();\n    var twentydoubledoors = new ContainerSize(containerSizes[2]).save();\n    return Promise.all([twenty, fourty, twentydoubledoors]);\n  })\n  .then(() => done())\n  .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "bf689dbd-22ca-4678-aeb9-fa625cfccf8c",
+            "uuid": "a0549d7f-b09f-454d-b17e-ab0c967ef644",
             "isHook": true,
             "skipped": false
           },
@@ -67,14 +67,14 @@
             "title": "\"before each\" hook: populateContainerStats",
             "fullTitle": "CONTAINERS \"before each\" hook: populateContainerStats",
             "timedOut": false,
-            "duration": 185,
+            "duration": 179,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "ContainerStats.deleteMany({})\n  .then(() => {\n    var twenty = new ContainerStats(containerStats[0]).save();\n    var fourty = new ContainerStats(containerStats[1]).save();\n    var twentydoubledoors = new ContainerStats(containerStats[2]).save();\n    return Promise.all([twenty, fourty, twentydoubledoors]);\n  })\n  .then(() => done())\n  .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "228e05b6-3a6b-40c5-b2ce-16e15638b27e",
+            "uuid": "729c710f-cfc9-40c7-8527-0660e9d3f7f3",
             "isHook": true,
             "skipped": false
           },
@@ -82,14 +82,14 @@
             "title": "\"before each\" hook: populateContainers",
             "fullTitle": "CONTAINERS \"before each\" hook: populateContainers",
             "timedOut": false,
-            "duration": 180,
+            "duration": 183,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "Container.deleteMany({})\n  .then(() => {\n    var twenty = new Container(containers[0]).save();\n    var fourty = new Container(containers[1]).save();\n    var twentydoubledoors = new Container(containers[2]).save();\n    return Promise.all([twenty, fourty, twentydoubledoors]);\n  })\n  .then(() => done())\n  .catch(e => console.log(e));",
             "err": {},
             "isRoot": false,
-            "uuid": "91fc6ba0-a9d7-4468-a1d2-d72d82f4727d",
+            "uuid": "19db2b12-98a9-4485-839e-d2d64e89c3a4",
             "isHook": true,
             "skipped": false
           }
@@ -98,7 +98,7 @@
         "tests": [],
         "suites": [
           {
-            "uuid": "3adce23a-0aed-486f-9dd4-239d5cf63d95",
+            "uuid": "18f44dcb-29a0-4c6f-b29b-d6b7f63d1801",
             "title": "GET /containers/sizes",
             "fullFile": "C:\\Programming\\gbr-mern\\tests\\containers.test.js",
             "file": "\\tests\\containers.test.js",
@@ -109,7 +109,7 @@
                 "title": "should return an array of container sizes",
                 "fullTitle": "CONTAINERS GET /containers/sizes should return an array of container sizes",
                 "timedOut": false,
-                "duration": 213,
+                "duration": 210,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -118,25 +118,25 @@
                 "code": "request(app)\n  .get(\"/api/containers/sizes\")\n  .set(\"Authorization\", users[0].token)\n  .set(\"Authorization\", users[0].token)\n  .expect(200)\n  .expect(res => {\n    expect(res.body.length).toBe(3);\n  })\n  .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "b31f4642-c715-4d6c-a883-575f835d3fbf",
+                "uuid": "237bb5f2-c821-4ee2-a08c-d957d54c1ed4",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "b31f4642-c715-4d6c-a883-575f835d3fbf"
+              "237bb5f2-c821-4ee2-a08c-d957d54c1ed4"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 213,
+            "duration": 210,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "66efb8eb-d5ec-49aa-82da-170764fe7c56",
+            "uuid": "5999911c-e971-4e41-b0e0-ec3fcaf9e83e",
             "title": "POST /containers/sizes",
             "fullFile": "C:\\Programming\\gbr-mern\\tests\\containers.test.js",
             "file": "\\tests\\containers.test.js",
@@ -147,7 +147,7 @@
                 "title": "should create a new container size",
                 "fullTitle": "CONTAINERS POST /containers/sizes should create a new container size",
                 "timedOut": false,
-                "duration": 374,
+                "duration": 370,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -156,7 +156,7 @@
                 "code": "request(app)\n  .post(\"/api/containers/sizes\")\n  .set(\"Authorization\", users[0].token)\n  .send(newContainerSize)\n  .expect(200)\n  .expect(res => {\n    expect(res.body.size).toBe(\"20C\");\n  })\n  .end(err => {\n    if (err) {\n      return done(err);\n    }\n    ContainerSize.findOne({ size: \"20C\" })\n      .then(size => {\n        expect(size).toBeTruthy();\n        done();\n      })\n      .catch(e => done(e));\n  });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "8585beb3-8766-4ed2-a16f-ec8032686507",
+                "uuid": "24adc5a6-4721-46f1-98ea-d55faa072828",
                 "isHook": false,
                 "skipped": false
               },
@@ -164,7 +164,7 @@
                 "title": "should not create a new container size with invalid input",
                 "fullTitle": "CONTAINERS POST /containers/sizes should not create a new container size with invalid input",
                 "timedOut": false,
-                "duration": 181,
+                "duration": 176,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -173,26 +173,26 @@
                 "code": "request(app)\n  .post(\"/api/containers/sizes\")\n  .set(\"Authorization\", users[0].token)\n  .send({ size: \"\" })\n  .expect(400)\n  .expect(res => {\n    expect(res.body.size).toBe(\"Size is required\");\n  })\n  .end(err => {\n    if (err) return done(err);\n    ContainerSize.findOne({ size: \"20C\" })\n      .then(size => {\n        expect(size).toBeFalsy();\n        done();\n      })\n      .catch(e => done(e));\n  });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "5ebe0fbf-62da-4c50-a480-cde512300168",
+                "uuid": "3d19a1cb-ca6c-4851-9936-1fc7e1be925b",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "8585beb3-8766-4ed2-a16f-ec8032686507",
-              "5ebe0fbf-62da-4c50-a480-cde512300168"
+              "24adc5a6-4721-46f1-98ea-d55faa072828",
+              "3d19a1cb-ca6c-4851-9936-1fc7e1be925b"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 555,
+            "duration": 546,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "6508e39b-5d85-455a-9838-82a62997ca9d",
+            "uuid": "3a52607f-c37e-4f83-a562-48f5ca175cc9",
             "title": "GET /containers/sizes/:id",
             "fullFile": "C:\\Programming\\gbr-mern\\tests\\containers.test.js",
             "file": "\\tests\\containers.test.js",
@@ -203,7 +203,7 @@
                 "title": "should return a specific container size",
                 "fullTitle": "CONTAINERS GET /containers/sizes/:id should return a specific container size",
                 "timedOut": false,
-                "duration": 179,
+                "duration": 183,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -212,7 +212,7 @@
                 "code": "request(app)\n  .get(`/api/containers/sizes/${containerSizes[0]._id}`)\n  .set(\"Authorization\", users[0].token)\n  .expect(200)\n  .expect(res => {\n    expect(res.body._id).toBe(containerSizes[0]._id.toHexString());\n  })\n  .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "27af400a-bcac-49f5-9e30-401db7ff5e15",
+                "uuid": "c2c277dd-3aa1-4a1b-855e-22ea016d89cb",
                 "isHook": false,
                 "skipped": false
               },
@@ -229,26 +229,26 @@
                 "code": "request(app)\n  .get(`/api/containers/sizes/${containerSizes[0]._id}sss`)\n  .set(\"Authorization\", users[0].token)\n  .expect(400)\n  .expect(res => {\n    expect(res.body.size).toBe(\"There was no size found\");\n  })\n  .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "de11b3c9-a36f-47e4-8a2a-afa792c873a3",
+                "uuid": "35044069-7d03-44fa-a111-bcc6332808a5",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "27af400a-bcac-49f5-9e30-401db7ff5e15",
-              "de11b3c9-a36f-47e4-8a2a-afa792c873a3"
+              "c2c277dd-3aa1-4a1b-855e-22ea016d89cb",
+              "35044069-7d03-44fa-a111-bcc6332808a5"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 271,
+            "duration": 275,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "e036fce4-62e4-430a-b782-a1653d1900dd",
+            "uuid": "562cf89f-3f39-4c9a-90bf-0f0e36b161c3",
             "title": "PATCH /containers/sizes/:id",
             "fullFile": "C:\\Programming\\gbr-mern\\tests\\containers.test.js",
             "file": "\\tests\\containers.test.js",
@@ -259,7 +259,7 @@
                 "title": "should patch a container size successfully",
                 "fullTitle": "CONTAINERS PATCH /containers/sizes/:id should patch a container size successfully",
                 "timedOut": false,
-                "duration": 361,
+                "duration": 363,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -268,7 +268,7 @@
                 "code": "request(app)\n  .patch(`/api/containers/sizes/${containerSizes[0]._id}`)\n  .set(\"Authorization\", users[0].token)\n  .send({ size: \"10\" })\n  .expect(200)\n  .expect(res => {\n    expect(res.body.size).toBe(\"10\");\n  })\n  .end(err => {\n    if (err) {\n      return done(err);\n    }\n    ContainerSize.findById(containerSizes[0]._id)\n      .then(containerSize => {\n        expect(containerSize).toBeTruthy();\n        expect(containerSize.size).toBe(\"10\");\n        done();\n      })\n      .catch(e => done(e));\n  });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "76b685e3-3c6f-4981-8a4e-bd661db72d96",
+                "uuid": "867f43bf-3aae-46dc-8b3a-4b2910da409d",
                 "isHook": false,
                 "skipped": false
               },
@@ -285,7 +285,7 @@
                 "code": "request(app)\n  .patch(`/api/containers/sizes/${containerSizes[0]._id}`)\n  .set(\"Authorization\", users[0].token)\n  .send({ size: \"\" })\n  .expect(400)\n  .expect(res => {\n    expect(res.body.size).toBeTruthy();\n    expect(res.body.size).toBe(\"Size is required\");\n  })\n  .end(err => {\n    if (err) {\n      return done(err);\n    }\n    ContainerSize.findById(containerSizes[0]._id)\n      .then(containerSize => {\n        expect(containerSize).toBeTruthy();\n        expect(containerSize.size).toBe(\"20\");\n        done();\n      })\n      .catch(e => done(e));\n  });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "f7e96869-ce20-4e04-b7be-bf4fda41f451",
+                "uuid": "1ae8c788-3567-4982-8418-36d42da10b23",
                 "isHook": false,
                 "skipped": false
               },
@@ -293,7 +293,7 @@
                 "title": "should not patch a container size with invalid ID",
                 "fullTitle": "CONTAINERS PATCH /containers/sizes/:id should not patch a container size with invalid ID",
                 "timedOut": false,
-                "duration": 93,
+                "duration": 92,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -302,7 +302,7 @@
                 "code": "request(app)\n  .patch(`/api/containers/sizes/${containerSizes[0]._id}ss`)\n  .set(\"Authorization\", users[0].token)\n  .send({ size: \"\" })\n  .expect(400)\n  .expect(res => {\n    expect(res.body.size).toBeTruthy();\n    expect(res.body.size).toBe(\"There was no size found\");\n  })\n  .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "033d5332-f294-4e89-87b5-bfd1c9139d3a",
+                "uuid": "2cb4d187-4f08-40a9-a159-65f85bcc2e05",
                 "isHook": false,
                 "skipped": false
               },
@@ -310,7 +310,7 @@
                 "title": "should not patch a container size with size that exists",
                 "fullTitle": "CONTAINERS PATCH /containers/sizes/:id should not patch a container size with size that exists",
                 "timedOut": false,
-                "duration": 179,
+                "duration": 177,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -319,28 +319,28 @@
                 "code": "request(app)\n  .patch(`/api/containers/sizes/${containerSizes[0]._id}`)\n  .set(\"Authorization\", users[0].token)\n  .send({ size: \"40\" })\n  .expect(400)\n  .expect(res => {\n    expect(res.body.size).toBeTruthy();\n    expect(res.body.size).toBe(\"That size already exists\");\n  })\n  .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "3fa47e3b-c5d5-4066-aca2-6d944580597f",
+                "uuid": "71f317fa-1291-4da9-863e-df53d73cd19a",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "76b685e3-3c6f-4981-8a4e-bd661db72d96",
-              "f7e96869-ce20-4e04-b7be-bf4fda41f451",
-              "033d5332-f294-4e89-87b5-bfd1c9139d3a",
-              "3fa47e3b-c5d5-4066-aca2-6d944580597f"
+              "867f43bf-3aae-46dc-8b3a-4b2910da409d",
+              "1ae8c788-3567-4982-8418-36d42da10b23",
+              "2cb4d187-4f08-40a9-a159-65f85bcc2e05",
+              "71f317fa-1291-4da9-863e-df53d73cd19a"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 813,
+            "duration": 812,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "6fcc1b88-186b-495b-a5ed-06b7c83b488f",
+            "uuid": "fa3a260d-54bb-404a-99ba-af1cb0f41d8a",
             "title": "DELETE /containers/sizes/:id",
             "fullFile": "C:\\Programming\\gbr-mern\\tests\\containers.test.js",
             "file": "\\tests\\containers.test.js",
@@ -351,7 +351,7 @@
                 "title": "should delete the container size",
                 "fullTitle": "CONTAINERS DELETE /containers/sizes/:id should delete the container size",
                 "timedOut": false,
-                "duration": 266,
+                "duration": 272,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -360,7 +360,7 @@
                 "code": "request(app)\n  .delete(`/api/containers/sizes/${containerSizes[0]._id}`)\n  .set(\"Authorization\", users[0].token)\n  .expect(200)\n  .expect(res => {\n    expect(res.body.size).toBe(containerSizes[0].size);\n  })\n  .end(err => {\n    if (err) {\n      done(err);\n    }\n    ContainerSize.findById(containerSizes[0]._id)\n      .then(containerSize => {\n        expect(containerSize).toBeFalsy();\n        done();\n      })\n      .catch(e => done(e));\n  });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "f053b277-0a08-4ce3-a532-5096a2dfc876",
+                "uuid": "c81579fc-3c32-4889-9533-7519e32edd3c",
                 "isHook": false,
                 "skipped": false
               },
@@ -368,7 +368,7 @@
                 "title": "should not delete the container size with invalid id",
                 "fullTitle": "CONTAINERS DELETE /containers/sizes/:id should not delete the container size with invalid id",
                 "timedOut": false,
-                "duration": 178,
+                "duration": 181,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -377,26 +377,26 @@
                 "code": "request(app)\n  .delete(`/api/containers/sizes/${containerSizes[0]._id}ssss`)\n  .set(\"Authorization\", users[0].token)\n  .expect(400)\n  .expect(res => {\n    expect(res.body.size).toBeTruthy();\n    expect(res.body.size).toBe(\"There was no size found\");\n  })\n  .end(err => {\n    if (err) {\n      done(err);\n    }\n    ContainerSize.findById(containerSizes[0]._id)\n      .then(containerSize => {\n        expect(containerSize).toBeTruthy();\n        done();\n      })\n      .catch(e => done(e));\n  });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "ef07fee1-9335-4662-b899-285d50fb2d6a",
+                "uuid": "c6741d3c-6ca3-459a-90c0-0a584ffefdc2",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "f053b277-0a08-4ce3-a532-5096a2dfc876",
-              "ef07fee1-9335-4662-b899-285d50fb2d6a"
+              "c81579fc-3c32-4889-9533-7519e32edd3c",
+              "c6741d3c-6ca3-459a-90c0-0a584ffefdc2"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 444,
+            "duration": 453,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "220dabf6-c8a2-4824-a5d8-0beb93728380",
+            "uuid": "cac4fed7-66e0-4583-9322-6e7a929cd37d",
             "title": "GET /containers/",
             "fullFile": "C:\\Programming\\gbr-mern\\tests\\containers.test.js",
             "file": "\\tests\\containers.test.js",
@@ -416,14 +416,14 @@
                 "code": "request(app)\n  .get(\"/api/containers\")\n  .set(\"Authorization\", users[0].token)\n  .expect(200)\n  .expect(res => {\n    expect(res.body.length).toBe(3);\n    // Check to see if each container has a size and stats.\n    expect(res.body[0].size).not.toBe(null);\n    expect(res.body[1].size).not.toBe(null);\n    expect(res.body[2].size).not.toBe(null);\n    expect(res.body[0].stats).not.toBe(null);\n    expect(res.body[1].stats).not.toBe(null);\n    expect(res.body[2].stats).not.toBe(null);\n  })\n  .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "47de2473-e20f-45b9-9850-e517e0f8e253",
+                "uuid": "3b783737-4559-47f9-9606-220c1936e1b2",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "47de2473-e20f-45b9-9850-e517e0f8e253"
+              "3b783737-4559-47f9-9606-220c1936e1b2"
             ],
             "failures": [],
             "pending": [],
@@ -434,7 +434,7 @@
             "_timeout": 5000
           },
           {
-            "uuid": "075c80a2-5dfd-45ce-b12b-e7dfce4f6d49",
+            "uuid": "01ec983b-e69a-4530-947c-8b694713191f",
             "title": "POST /containers/",
             "fullFile": "C:\\Programming\\gbr-mern\\tests\\containers.test.js",
             "file": "\\tests\\containers.test.js",
@@ -445,7 +445,7 @@
                 "title": "should create a new container",
                 "fullTitle": "CONTAINERS POST /containers/ should create a new container",
                 "timedOut": false,
-                "duration": 359,
+                "duration": 357,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -454,7 +454,7 @@
                 "code": "request(app)\n  .post(\"/api/containers\")\n  .set(\"Authorization\", users[0].token)\n  .send(newContainer)\n  // .expect(200)\n  .expect(res => {\n    // Check to see if each container has a size and stats.\n    expect(res.body.size).not.toBe(null);\n    expect(res.body.stats).not.toBe(null);\n  })\n  .end(err => {\n    if (err) {\n      done(err);\n    }\n    Container.findOne({ serialNumber: \"123456727\" })\n      .then(container => {\n        expect(container).toBeTruthy();\n        expect(container.size).not.toBe(null);\n        expect(container.stats).not.toBe(null);\n        done();\n      })\n      .catch(e => done(e));\n  });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "0d9bcbb0-7004-4a43-91ab-a2a53ae99e48",
+                "uuid": "eb362872-a548-43db-897d-2696f82937c7",
                 "isHook": false,
                 "skipped": false
               },
@@ -462,7 +462,7 @@
                 "title": "should not create a new container with validation errors",
                 "fullTitle": "CONTAINERS POST /containers/ should not create a new container with validation errors",
                 "timedOut": false,
-                "duration": 183,
+                "duration": 179,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -471,26 +471,26 @@
                 "code": "newContainer.rentalResale = \"\";\nnewContainer.hasOnBoxNumbers = 123;\nnewContainer.hasShelves = 123;\nnewContainer.hasSigns = 123;\nnewContainer.isPainted = 123;\nrequest(app)\n  .post(\"/api/containers\")\n  .set(\"Authorization\", users[0].token)\n  .send(newContainer)\n  // .expect(200)\n  .expect(res => {\n    expect(res.body.container).toBeFalsy();\n    // Check to see if each container has a size and stats.\n    expect(res.body.rentalResale).toBe(\"Select rental or resale\");\n    expect(res.body.hasShelves).toBe(\n      \"You must select whether the container has shelves or not\"\n    );\n    expect(res.body.isPainted).toBe(\n      \"You must select whether the container is painted or not\"\n    );\n    expect(res.body.hasOnBoxNumbers).toBe(\n      \"You must select whether the container has GBR numbers or not\"\n    );\n    expect(res.body.hasSigns).toBe(\n      \"You must select whether the container has signs or not\"\n    );\n  })\n  .end(err => {\n    if (err) {\n      done(err);\n    }\n    Container.findOne({ serialNumber: \"123456727\" })\n      .then(container => {\n        expect(container).toBeFalsy();\n        done();\n      })\n      .catch(e => done(e));\n  });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "8211b409-ffd1-4e35-93d8-0585cdf2ab5f",
+                "uuid": "9319a8ee-fc9b-401a-8115-9e2299dd8352",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "0d9bcbb0-7004-4a43-91ab-a2a53ae99e48",
-              "8211b409-ffd1-4e35-93d8-0585cdf2ab5f"
+              "eb362872-a548-43db-897d-2696f82937c7",
+              "9319a8ee-fc9b-401a-8115-9e2299dd8352"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 542,
+            "duration": 536,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "94dd90ee-d1aa-4cd7-8d6a-4f232f0e37f8",
+            "uuid": "ae3c4cf7-bfb9-4179-8c01-32d2c95571e8",
             "title": "GET /containers/:id",
             "fullFile": "C:\\Programming\\gbr-mern\\tests\\containers.test.js",
             "file": "\\tests\\containers.test.js",
@@ -510,7 +510,7 @@
                 "code": "request(app)\n  .get(`/api/containers/${containers[0]._id}`)\n  .set(\"Authorization\", users[0].token)\n  .expect(200)\n  .expect(res => {\n    expect(res.body.serialNumber).toBe(containers[0].serialNumber);\n  })\n  .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "8c16950d-bdd0-40c0-8429-73086927b9e6",
+                "uuid": "3b83995e-e4eb-49bb-b92a-550595dfa164",
                 "isHook": false,
                 "skipped": false
               },
@@ -527,15 +527,15 @@
                 "code": "request(app)\n  .get(`/api/containers/${containers[0]._id}sss`)\n  .set(\"Authorization\", users[0].token)\n  .expect(400)\n  .expect(res => {\n    expect(res.body.container).toBe(\"There was no container found\");\n  })\n  .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "d1c47ad3-3a30-481d-9089-e8bddf000ee9",
+                "uuid": "64f9c614-b2be-4bbf-b664-69c0134be44a",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "8c16950d-bdd0-40c0-8429-73086927b9e6",
-              "d1c47ad3-3a30-481d-9089-e8bddf000ee9"
+              "3b83995e-e4eb-49bb-b92a-550595dfa164",
+              "64f9c614-b2be-4bbf-b664-69c0134be44a"
             ],
             "failures": [],
             "pending": [],
@@ -546,7 +546,7 @@
             "_timeout": 5000
           },
           {
-            "uuid": "504c112a-0186-4651-a26b-e90aa5ec0346",
+            "uuid": "a0e3a156-a85b-4b62-ba57-d3f66ed117a9",
             "title": "PATCH /containers/:id",
             "fullFile": "C:\\Programming\\gbr-mern\\tests\\containers.test.js",
             "file": "\\tests\\containers.test.js",
@@ -557,16 +557,16 @@
                 "title": "should return a container",
                 "fullTitle": "CONTAINERS PATCH /containers/:id should return a container",
                 "timedOut": false,
-                "duration": 533,
+                "duration": 534,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "patchData = {\n  gbrNumber: containers[1].gbrNumber,\n  releaseNumber: containers[1].releaseNumber,\n  size: containers[1].size.toHexString(),\n  serialNumber: containers[1].serialNumber,\n  hasShelves: true,\n  isPainted: true,\n  hasOnBoxNumbers: true,\n  hasSigns: true,\n  rentalResale: \"Rental\",\n  isFlagged: true,\n  flagReason: \"Container is super damaged\",\n  stats: containers[1].stats.toHexString(),\n  currentRentee: null,\n  previousRentees:\n    \"5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427\",\n  currentAddress: \"1733 S. Casablanca St., Visalia, CA 93292\",\n  currentlyRented: false\n};\nrequest(app)\n  .patch(`/api/containers/${containers[1]._id}`)\n  .set(\"Authorization\", users[0].token)\n  .send(patchData)\n  .expect(200)\n  .expect(res => {\n    expect(res.body.hasOnBoxNumbers).toBe(patchData.hasOnBoxNumbers);\n    expect(res.body.hasSigns).toBe(patchData.hasSigns);\n    expect(res.body.hasShelves).toBe(patchData.hasShelves);\n    expect(res.body.isPainted).toBe(patchData.isPainted);\n    expect(res.body.isFlagged).toBe(patchData.isFlagged);\n    expect(res.body.flagReason).toBe(patchData.flagReason);\n    expect(res.body.stats.currentAddress).toBe(patchData.currentAddress);\n    expect(res.body.stats.currentRentee).toBe(null);\n  })\n  .end(done);",
+                "code": "patchData = {\n  gbrNumber: containers[1].gbrNumber,\n  releaseNumber: containers[1].releaseNumber,\n  size: {\n    _id: containers[1].size.toHexString(),\n    size: \"40\"\n  },\n  serialNumber: containers[1].serialNumber,\n  hasShelves: true,\n  isPainted: true,\n  hasOnBoxNumbers: true,\n  hasSigns: true,\n  rentalResale: \"Rental\",\n  isFlagged: true,\n  flagReason: \"Container is super damaged\",\n  stats: {\n    _id: containers[1].stats.toHexString(),\n    currentRentee: null,\n    previousRentees:\n      \"5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427\",\n    currentAddress: \"1733 S. Casablanca St., Visalia, CA 93292\",\n    currentlyRented: false\n  }\n};\nrequest(app)\n  .patch(`/api/containers/${containers[1]._id}`)\n  .set(\"Authorization\", users[0].token)\n  .send(patchData)\n  .expect(200)\n  .expect(res => {\n    expect(res.body.hasOnBoxNumbers).toBe(patchData.hasOnBoxNumbers);\n    expect(res.body.hasSigns).toBe(patchData.hasSigns);\n    expect(res.body.hasShelves).toBe(patchData.hasShelves);\n    expect(res.body.isPainted).toBe(patchData.isPainted);\n    expect(res.body.isFlagged).toBe(patchData.isFlagged);\n    expect(res.body.flagReason).toBe(patchData.flagReason);\n    expect(res.body.stats.currentAddress).toBe(\n      res.body.stats.currentAddress\n    );\n    expect(res.body.stats.currentRentee).toBe(null);\n  })\n  .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "9d848361-a6ab-4166-85d9-3837039222e7",
+                "uuid": "4abc4f58-417e-445f-ae77-72fef26c73c5",
                 "isHook": false,
                 "skipped": false
               },
@@ -574,53 +574,35 @@
                 "title": "should not patch a container with invalid fields",
                 "fullTitle": "CONTAINERS PATCH /containers/:id should not patch a container with invalid fields",
                 "timedOut": false,
-                "duration": 92,
+                "duration": 98,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "patchData = {\n  gbrNumber: containers[1].gbrNumber,\n  releaseNumber: containers[1].releaseNumber,\n  size: \"\",\n  serialNumber: containers[1].serialNumber,\n  hasShelves: true,\n  isPainted: true,\n  hasOnBoxNumbers: true,\n  hasSigns: true,\n  isFlagged: true,\n  flagReason: \"Container is super damaged\",\n  stats: containers[1].stats.toHexString(),\n  currentRentee: null,\n  rentalResale: \"\",\n  currentAddress: \"\",\n  currentlyRented: \"\",\n  previousRentees:\n    \"5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427\"\n};\nrequest(app)\n  .patch(`/api/containers/${containers[1]._id}`)\n  .set(\"Authorization\", users[0].token)\n  .send(patchData)\n  .expect(400)\n  .expect(res => {\n    expect(res.body.container).toBeFalsy();\n    expect(res.body.size).toBe(\"Size is required\");\n    expect(res.body.currentlyRented).toBe(\n      \"You must select whether the container is currently rented\"\n    );\n    expect(res.body.currentAddress).toBe(\"Current address is required\");\n    expect(res.body.rentalResale).toBe(\"Select rental or resale\");\n  })\n  .end(done);",
+                "code": "patchData = {\n  gbrNumber: containers[1].gbrNumber,\n  releaseNumber: containers[1].releaseNumber,\n  size: {},\n  serialNumber: containers[1].serialNumber,\n  hasShelves: \"true\",\n  isPainted: true,\n  hasOnBoxNumbers: true,\n  hasSigns: true,\n  rentalResale: \"\",\n  isFlagged: true,\n  flagReason: \"Container is super damaged\",\n  stats: {\n    _id: containers[1].stats.toHexString(),\n    currentRentee: null,\n    previousRentees:\n      \"5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427\",\n    currentAddress: \"\",\n    currentlyRented: \"\"\n  }\n};\nrequest(app)\n  .patch(`/api/containers/${containers[1]._id}`)\n  .set(\"Authorization\", users[0].token)\n  .send(patchData)\n  .expect(400)\n  .expect(res => {\n    expect(res.body.container).toBeFalsy();\n    expect(res.body.size).toBe(\"Size is required\");\n    expect(res.body.currentlyRented).toBe(\n      \"You must select whether the container is currently rented\"\n    );\n    expect(res.body.currentAddress).toBe(\"Current address is required\");\n    expect(res.body.rentalResale).toBe(\"Select rental or resale\");\n  })\n  .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "84cf3578-07de-4c59-ace9-f544d375dc13",
-                "isHook": false,
-                "skipped": false
-              },
-              {
-                "title": "should not patch a container with invalid fields",
-                "fullTitle": "CONTAINERS PATCH /containers/:id should not patch a container with invalid fields",
-                "timedOut": false,
-                "duration": 92,
-                "state": "passed",
-                "speed": "slow",
-                "pass": true,
-                "fail": false,
-                "pending": false,
-                "code": "patchData = {\n  gbrNumber: containers[1].gbrNumber,\n  releaseNumber: containers[1].releaseNumber,\n  size: containers[1].size.toHexString(),\n  serialNumber: containers[1].serialNumber,\n  hasShelves: true,\n  isPainted: true,\n  hasOnBoxNumbers: true,\n  hasSigns: true,\n  rentalResale: \"Rental\",\n  isFlagged: true,\n  flagReason: \"Container is super damaged\",\n  stats: containers[1].stats.toHexString(),\n  currentRentee: null,\n  previousRentees:\n    \"5aefceb5fd938b204046c428,5aefceb5fd938b204046c429,5aefceb5fd938b204046c42a,5aefceb5fd938b204046c42b,5aefceb5fd938b204046c427\",\n  currentAddress: \"1733 S. Casablanca St., Visalia, CA 93292\",\n  currentlyRented: false\n};\nrequest(app)\n  .patch(`/api/containers/${containers[1]._id}ss`)\n  .set(\"Authorization\", users[0].token)\n  .send(patchData)\n  .expect(400)\n  .expect(res => {\n    expect(res.body.container).toBe(\"There was no container found\");\n  })\n  .end(done);",
-                "err": {},
-                "isRoot": false,
-                "uuid": "2c14c184-4877-49dc-aa29-d894d63a9533",
+                "uuid": "027fa43a-88ef-4124-b9c7-0b4c5f813c2c",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "9d848361-a6ab-4166-85d9-3837039222e7",
-              "84cf3578-07de-4c59-ace9-f544d375dc13",
-              "2c14c184-4877-49dc-aa29-d894d63a9533"
+              "4abc4f58-417e-445f-ae77-72fef26c73c5",
+              "027fa43a-88ef-4124-b9c7-0b4c5f813c2c"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 717,
+            "duration": 632,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000
           },
           {
-            "uuid": "fa7136e9-7144-4441-9c68-76be7c9fe29f",
+            "uuid": "bfdce989-360e-4fd6-b010-ae6eeb6e9ea7",
             "title": "DELETE /containers/:id",
             "fullFile": "C:\\Programming\\gbr-mern\\tests\\containers.test.js",
             "file": "\\tests\\containers.test.js",
@@ -631,7 +613,7 @@
                 "title": "should delete a container",
                 "fullTitle": "CONTAINERS DELETE /containers/:id should delete a container",
                 "timedOut": false,
-                "duration": 360,
+                "duration": 361,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -640,7 +622,7 @@
                 "code": "request(app)\n  .delete(`/api/containers/${containers[1]._id}`)\n  .set(\"Authorization\", users[0].token)\n  .expect(200)\n  .expect(res => {\n    expect(res.body._id).toBe(containers[1]._id.toHexString());\n  })\n  .end(err => {\n    if (err) {\n      return done(err);\n    }\n    Container.findById(containers[1]._id)\n      .then(container => {\n        expect(container).toBeFalsy();\n        done();\n      })\n      .catch(e => done(e));\n  });",
                 "err": {},
                 "isRoot": false,
-                "uuid": "624b10f1-1484-48d7-aa90-dd9d40c39eae",
+                "uuid": "430c421d-9f95-4a6a-be92-ca04e54094d9",
                 "isHook": false,
                 "skipped": false
               },
@@ -648,7 +630,7 @@
                 "title": "should not delete a container with invalid ID",
                 "fullTitle": "CONTAINERS DELETE /containers/:id should not delete a container with invalid ID",
                 "timedOut": false,
-                "duration": 93,
+                "duration": 95,
                 "state": "passed",
                 "speed": "slow",
                 "pass": true,
@@ -657,20 +639,20 @@
                 "code": "request(app)\n  .delete(`/api/containers/${containers[1]._id}sss`)\n  .set(\"Authorization\", users[0].token)\n  .expect(400)\n  .expect(res => {\n    expect(res.body.container).toBe(\"There was no container found\");\n  })\n  .end(done);",
                 "err": {},
                 "isRoot": false,
-                "uuid": "e60315be-e96d-4b3e-919d-dc035e0e2018",
+                "uuid": "f78f4f3c-5be1-4d1a-aee9-f0258ac1c3ae",
                 "isHook": false,
                 "skipped": false
               }
             ],
             "suites": [],
             "passes": [
-              "624b10f1-1484-48d7-aa90-dd9d40c39eae",
-              "e60315be-e96d-4b3e-919d-dc035e0e2018"
+              "430c421d-9f95-4a6a-be92-ca04e54094d9",
+              "f78f4f3c-5be1-4d1a-aee9-f0258ac1c3ae"
             ],
             "failures": [],
             "pending": [],
             "skipped": [],
-            "duration": 453,
+            "duration": 456,
             "root": false,
             "rootEmpty": false,
             "_timeout": 5000

@@ -63,7 +63,7 @@ class EditContainerForm extends Component {
       flagReason: this.state.flagReason,
       stats: this.state.stats,
       size: this.state.size,
-      delivery: this.state.delivery
+      deliveries: this.state.deliveries
     };
 
     containerData.stats.currentlyRented = this.state.currentlyRented;
@@ -115,7 +115,7 @@ class EditContainerForm extends Component {
         currentlyRented: false
       },
       size: container.size || {},
-      delivery: container.delivery || {}
+      deliveries: container.deliveries || {}
     });
     this.forceUpdate();
   }
