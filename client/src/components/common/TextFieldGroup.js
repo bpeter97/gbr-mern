@@ -10,10 +10,17 @@ const TextFieldGroup = ({
   type,
   onChange,
   disabled,
-  divClass
+  divClass,
+  help
 }) => {
   if (divClass) {
   }
+  let smallText = null;
+
+  if (help) {
+    smallText = <small className="form-text text-muted">{help}</small>;
+  }
+
   return (
     <div className={classnames(divClass ? divClass : "")}>
       <label>{label}</label>
@@ -26,6 +33,7 @@ const TextFieldGroup = ({
         onChange={onChange}
         disabled={disabled}
       />
+      {smallText}
     </div>
   );
 };

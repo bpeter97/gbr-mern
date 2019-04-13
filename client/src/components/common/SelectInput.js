@@ -9,8 +9,15 @@ const SelectInput = ({
   onChange,
   options,
   divClass,
-  name
+  name,
+  help
 }) => {
+  let smallText = null;
+
+  if (help) {
+    smallText = <small className="form-text text-muted">{help}</small>;
+  }
+
   return (
     <div className={classnames(divClass ? divClass : "")}>
       <label htmlFor={selectId}>{label}</label>
@@ -28,6 +35,7 @@ const SelectInput = ({
           );
         })}
       </select>
+      {smallText}
     </div>
   );
 };
