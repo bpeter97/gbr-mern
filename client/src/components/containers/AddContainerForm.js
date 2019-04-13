@@ -7,7 +7,7 @@ import TextArea from "../common/TextArea";
 import SelectInput from "../common/SelectInput";
 import ErrorAlert from "../alerts/ErrorAlert";
 
-class AddCustomerForm extends Component {
+class AddContainerForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -217,7 +217,7 @@ class AddCustomerForm extends Component {
   }
 }
 
-AddCustomerForm.propTypes = {
+AddContainerForm.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired
@@ -233,4 +233,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { addContainer }
-)(AddCustomerForm);
+)(AddContainerForm);

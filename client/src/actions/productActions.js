@@ -4,7 +4,7 @@ import {
   GET_PRODUCTS,
   GET_PRODUCT,
   GET_PRODUCT_TYPES,
-  // ADD_PRODUCT,
+  ADD_PRODUCT,
   EDIT_PRODUCT,
   // DELETE_PRODUCT,
   GET_ERRORS,
@@ -56,6 +56,24 @@ export const getProductTypes = () => dispatch => {
     .then(res =>
       dispatch({
         type: GET_PRODUCT_TYPES,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PRODUCT_TYPES,
+        payload: null
+      })
+    );
+};
+
+export const addProduct = productData => dispatch => {
+  dispatch(setProductLoading());
+  axios
+    .post("/api/products", productData)
+    .then(res =>
+      dispatch({
+        type: ADD_PRODUCT,
         payload: res.data
       })
     )
