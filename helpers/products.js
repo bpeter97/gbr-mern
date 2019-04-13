@@ -254,7 +254,7 @@ exports.patchProduct = (req, res) => {
     "monthlyPrice",
     "rental"
   ]);
-  body.type = new ObjectID(req.body.type._id);
+  body.type = new ObjectID(req.body.type);
 
   // find that document and update it.
   Product.findByIdAndUpdate(

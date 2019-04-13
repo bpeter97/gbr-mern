@@ -48,6 +48,7 @@ class EditProductFom extends Component {
       rental: this.state.rental,
       type: this.state.type
     };
+
     this.props.editProduct(productData);
     setTimeout(() => {
       if (checkEmpty(this.state.errors)) {
@@ -57,19 +58,7 @@ class EditProductFom extends Component {
   };
 
   onChange = e => {
-    if (e.target.name === "type") {
-      let type = {};
-      type._id = e.target.value;
-
-      this.props.types.forEach(element => {
-        if (type._id === element._id) {
-          type.type = element.type;
-        }
-      });
-      this.setState({ type });
-    } else {
-      this.setState({ [e.target.name]: e.target.value });
-    }
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   fillForm(product) {
@@ -78,8 +67,7 @@ class EditProductFom extends Component {
       shortName: product.shortName || "",
       price: product.price || 0,
       monthlyPrice: product.monthlyPrice || 0,
-      rental: product.rental || false,
-      type: product.type || ""
+      rental: product.rental || false
     });
   }
 
@@ -105,25 +93,8 @@ class EditProductFom extends Component {
       if (element) {
         let selection = {};
         selection.value = element._id;
-        switch (element.type) {
-          case "delivery":
-            selection.label = "Delivery";
-            break;
-          case "pickup":
-            selection.label = "Pickup";
-            break;
-          case "rentalModification":
-            selection.label = "Rental Modification";
-            break;
-          case "container":
-            selection.label = "Container";
-            break;
-          case "modification":
-            selection.label = "Sales Modification";
-            break;
-          default:
-            selection.label = element.type;
-        }
+        selection.label =
+          element.type.charAt(0).toUpperCase() + element.type.slice(1);
 
         if (product.type) {
           if (element.type === product.type.type) {
