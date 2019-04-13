@@ -8,24 +8,31 @@ import {
   DELETE_CUSTOMER,
   GET_ERRORS,
   CLEAR_CUSTOMER,
-  CUSTOMER_LOADING
+  CUSTOMER_LOADING,
+  SET_SUCCESS
 } from "./types";
-import { clearErrors } from "./commonActions";
+import { clearErrors, clearSuccess } from "./commonActions";
 
 export const addCustomer = customerData => dispatch => {
   dispatch(clearErrors());
+  dispatch(clearSuccess());
   axios
     .post("/api/customers", customerData)
-    .then(res =>
+    .then(
+      res =>
+        dispatch({
+          type: ADD_CUSTOMER,
+          payload: res.data
+        }),
       dispatch({
-        type: ADD_CUSTOMER,
-        payload: res.data
+        type: SET_SUCCESS,
+        payload: "Customer sucessfully created."
       })
     )
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
-        payload: null
+        payload: err.response.data
       })
     );
 };
@@ -92,10 +99,15 @@ export const editCustomer = customerData => dispatch => {
   dispatch(clearErrors());
   axios
     .patch(`/api/customers/${customerData._id}`, customerData)
-    .then(res =>
+    .then(
+      res =>
+        dispatch({
+          type: EDIT_CUSTOMER,
+          payload: res.data
+        }),
       dispatch({
-        type: EDIT_CUSTOMER,
-        payload: res.data
+        type: SET_SUCCESS,
+        payload: "Customer sucessfully updated."
       })
     )
     .catch(err =>

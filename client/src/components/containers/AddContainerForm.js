@@ -6,6 +6,7 @@ import { addContainer } from "../../actions/containerActions";
 import TextArea from "../common/TextArea";
 import SelectInput from "../common/SelectInput";
 import ErrorAlert from "../alerts/ErrorAlert";
+import checkEmpty from "./../../utils/checkEmpty";
 
 class AddContainerForm extends Component {
   constructor() {
@@ -28,10 +29,11 @@ class AddContainerForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+  static getDerivedStateFromProps(props, state) {
+    if (props.errors !== state.errors) {
+      state.errors = props.errors;
     }
+    return null;
   }
 
   onSubmit(e) {
@@ -51,7 +53,11 @@ class AddContainerForm extends Component {
       flagReason: this.state.flagReason
     };
     this.props.addContainer(containerData);
-    this.props.redirectFunc();
+    setTimeout(() => {
+      if (checkEmpty(this.state.errors)) {
+        this.props.history.push("/containers");
+      }
+    }, 1000);
   }
 
   onChange(e) {

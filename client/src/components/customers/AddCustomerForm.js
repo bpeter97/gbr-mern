@@ -5,6 +5,8 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { addCustomer } from "../../actions/customerActions";
 import TextArea from "../common/TextArea";
 import SelectInput from "./../common/SelectInput";
+import ErrorAlert from "../alerts/ErrorAlert";
+import checkEmpty from "./../../utils/checkEmpty";
 
 class AddCustomerForm extends Component {
   constructor() {
@@ -30,10 +32,11 @@ class AddCustomerForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+  static getDerivedStateFromProps(props, state) {
+    if (props.errors !== state.errors) {
+      state.errors = props.errors;
     }
+    return null;
   }
 
   onSubmit(e) {
@@ -56,7 +59,11 @@ class AddCustomerForm extends Component {
       flagReason: this.state.flagReason
     };
     this.props.addCustomer(customerData);
-    this.props.redirectFunc();
+    setTimeout(() => {
+      if (checkEmpty(this.state.errors)) {
+        this.props.history.push("/customers");
+      }
+    }, 1000);
   }
 
   onChange(e) {
@@ -65,8 +72,21 @@ class AddCustomerForm extends Component {
 
   render() {
     const { errors } = this.props;
+
+    var errorAlert = errors => {
+      for (var property in errors) {
+        var error;
+        if (errors.hasOwnProperty(property)) {
+          error = errors[property];
+        }
+
+        return <ErrorAlert error={error} />;
+      }
+    };
+
     let form = (
       <form onSubmit={this.onSubmit}>
+        {errorAlert(this.state.errors)}
         <div className="col-md-12">
           <TextFieldGroup
             name="name"

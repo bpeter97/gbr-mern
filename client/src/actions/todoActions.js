@@ -6,18 +6,24 @@ import {
   GET_TODOS,
   GET_TODO,
   DELETE_TODO,
-  TODOS_LOADING
+  TODOS_LOADING,
+  SET_SUCCESS
 } from "./types";
-import { clearErrors } from "./commonActions";
+import { clearErrors, clearSuccess } from "./commonActions";
 
 export const addTodo = todoData => dispatch => {
   dispatch(clearErrors());
   axios
     .post("/api/todos", todoData)
-    .then(res =>
+    .then(
+      res =>
+        dispatch({
+          type: ADD_TODO,
+          payload: res.data
+        }),
       dispatch({
-        type: ADD_TODO,
-        payload: res.data
+        type: SET_SUCCESS,
+        payload: "Todo sucessfully created."
       })
     )
     .catch(err =>

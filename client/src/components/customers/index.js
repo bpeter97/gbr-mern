@@ -11,6 +11,7 @@ import { getCustomers } from "../../actions/customerActions";
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
 import Spinner from "./../common/Spinner";
+import SuccessAlert from "./../alerts/SuccessAlert";
 
 class Customers extends Component {
   componentDidMount() {
@@ -83,6 +84,11 @@ class Customers extends Component {
 
   render() {
     const { customers } = this.props.customers;
+
+    let successMessage = null;
+    if (this.props.success.message !== undefined) {
+      successMessage = this.props.success.message;
+    }
 
     const columns = [
       {
@@ -198,6 +204,7 @@ class Customers extends Component {
         <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 pb-4">
+            {successMessage ? <SuccessAlert msg={successMessage} /> : null}
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">Customers</h5>
@@ -273,7 +280,8 @@ Customers.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  customers: state.customers
+  customers: state.customers,
+  success: state.success
 });
 
 export default connect(

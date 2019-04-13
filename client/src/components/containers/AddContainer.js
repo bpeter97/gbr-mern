@@ -27,9 +27,7 @@ class AddContainer extends Component {
                 <h5 className="card-title text-center py-2">Add Container</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3 pl-md-5">
-                    <AddContainerForm
-                      redirectFunc={this.onFormSubmit.bind(this)}
-                    />
+                    <AddContainerForm history={this.props.history} />
                   </div>
                 </div>
               </div>

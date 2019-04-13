@@ -5,8 +5,10 @@ import {
   GET_EVENT,
   EVENTS_LOADING,
   EDIT_EVENT,
-  GET_ERRORS
+  GET_ERRORS,
+  SET_SUCCESS
 } from "./types";
+import { clearErrors, clearSuccess } from "./commonActions";
 
 export const getEvents = () => dispatch => {
   dispatch(setEventLoading());
@@ -46,6 +48,8 @@ export const getEvent = id => dispatch => {
 
 export const editEvent = e => dispatch => {
   dispatch(setEventLoading());
+  dispatch(clearErrors());
+  dispatch(clearSuccess());
   let event = {
     _id: e._id,
     title: e.title,
@@ -57,10 +61,15 @@ export const editEvent = e => dispatch => {
 
   axios
     .patch(`/api/events/${event._id}`, event)
-    .then(res =>
+    .then(
+      res =>
+        dispatch({
+          type: EDIT_EVENT,
+          payload: res.data
+        }),
       dispatch({
-        type: EDIT_EVENT,
-        payload: res.data
+        type: SET_SUCCESS,
+        payload: "Event sucessfully updated."
       })
     )
     .catch(err =>

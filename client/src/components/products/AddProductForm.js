@@ -5,6 +5,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { addProduct } from "../../actions/productActions";
 import SelectInput from "../common/SelectInput";
 import ErrorAlert from "../alerts/ErrorAlert";
+import checkEmpty from "./../../utils/checkEmpty";
 
 class AddProductForm extends Component {
   constructor() {
@@ -22,10 +23,11 @@ class AddProductForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+  static getDerivedStateFromProps(props, state) {
+    if (props.errors !== state.errors) {
+      state.errors = props.errors;
     }
+    return null;
   }
 
   onSubmit(e) {
@@ -40,7 +42,11 @@ class AddProductForm extends Component {
       type: this.state.type
     };
     this.props.addProduct(productData);
-    this.props.redirectFunc();
+    setTimeout(() => {
+      if (checkEmpty(this.state.errors)) {
+        this.props.history.push("/products");
+      }
+    }, 1000);
   }
 
   onChange(e) {

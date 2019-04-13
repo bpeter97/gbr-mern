@@ -27,9 +27,7 @@ class AddProduct extends Component {
                 <h5 className="card-title text-center py-2">Add Product</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3 pl-md-5">
-                    <AddProductForm
-                      redirectFunc={this.onFormSubmit.bind(this)}
-                    />
+                    <AddProductForm history={this.props.history} />
                   </div>
                 </div>
               </div>

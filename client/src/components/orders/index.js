@@ -11,6 +11,7 @@ import { getOrders } from "../../actions/orderActions";
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
 import Spinner from "./../common/Spinner";
+import SuccessAlert from "./../alerts/SuccessAlert";
 
 class Orders extends Component {
   componentDidMount() {
@@ -19,6 +20,11 @@ class Orders extends Component {
 
   render() {
     const { orders } = this.props.orders;
+
+    let successMessage = null;
+    if (this.props.success.message !== undefined) {
+      successMessage = this.props.success.message;
+    }
 
     orders.forEach(order => {
       let newCreationDate = new Date(order.creationDate);
@@ -211,6 +217,7 @@ class Orders extends Component {
         <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 pb-4">
+            {successMessage ? <SuccessAlert msg={successMessage} /> : null}
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">Orders</h5>
@@ -289,7 +296,8 @@ Orders.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  orders: state.orders
+  orders: state.orders,
+  success: state.success
 });
 
 export default connect(
