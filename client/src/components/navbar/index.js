@@ -8,6 +8,8 @@ import SvgIcon from "react-icons-kit";
 import { AccountIcon } from "../../icons";
 import Clock from "./Clock";
 
+import DropDownNavItem from "./../common/DropDownNavItem";
+
 class NavBar extends Component {
   constructor() {
     super();
@@ -26,6 +28,42 @@ class NavBar extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
     let navbar = "";
+
+    let orderLinks = [
+      <Link className="dropdown-item" to="/orders">
+        View Orders
+      </Link>,
+      <Link className="dropdown-item" to="/orders/add">
+        Add Order
+      </Link>
+    ];
+
+    let productLinks = [
+      <Link className="dropdown-item" to="/products">
+        View Products
+      </Link>,
+      <Link className="dropdown-item" to="/products/add">
+        Add Product
+      </Link>
+    ];
+
+    let customerLinks = [
+      <Link className="dropdown-item" to="/customers">
+        View Customers
+      </Link>,
+      <Link className="dropdown-item" to="/customers/add">
+        Add Customer
+      </Link>
+    ];
+
+    let containerLinks = [
+      <Link className="dropdown-item" to="/containers">
+        View Containers
+      </Link>,
+      <Link className="dropdown-item" to="/containers/add">
+        Add Container
+      </Link>
+    ];
 
     if (isAuthenticated) {
       navbar = (
@@ -63,31 +101,31 @@ class NavBar extends Component {
                   />
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/containers">
-                  Containers
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/customers">
-                  Customers
-                </Link>
-              </li>
+              <DropDownNavItem
+                label="Containers"
+                labelId="containersDropdown"
+                links={containerLinks}
+              />
+              <DropDownNavItem
+                label="Customers"
+                labelId="customersDropdown"
+                links={customerLinks}
+              />
               <li className="nav-item">
                 <Link className="nav-link" to="/quotes">
                   Quotes
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/orders">
-                  Orders
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/products">
-                  Products{" "}
-                </Link>
-              </li>
+              <DropDownNavItem
+                label="Orders"
+                labelId="ordersDropdown"
+                links={orderLinks}
+              />
+              <DropDownNavItem
+                label="Products"
+                labelId="productsDropdown"
+                links={productLinks}
+              />
               <li className="nav-item">
                 <Link className="nav-link" to="/users">
                   Users
