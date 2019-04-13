@@ -59,7 +59,7 @@ class Products extends Component {
         Header: "Product Type",
         accessor: "type.type",
         filterMethod: (filter, rows) =>
-          matchSorter(rows, filter.value, { keys: ["type.type"] }),
+          matchSorter(rows, filter.value, { keys: ["_original.type.type"] }),
         filterAll: true
       },
       {

@@ -11,6 +11,7 @@ class EditProductFom extends Component {
   constructor() {
     super();
     this.state = {
+      product: {},
       name: "",
       shortName: "",
       price: 0,
@@ -26,12 +27,12 @@ class EditProductFom extends Component {
   componentDidMount() {
     let { product } = this.props;
     this.fillForm(product);
-    this.forceUpdate();
   }
 
   static getDerivedStateFromProps(props, state) {
     if (props.errors !== state.errors) {
       state.errors = props.errors;
+      return state;
     }
     return null;
   }
@@ -67,7 +68,9 @@ class EditProductFom extends Component {
       shortName: product.shortName || "",
       price: product.price || 0,
       monthlyPrice: product.monthlyPrice || 0,
-      rental: product.rental || false
+      rental: product.rental || false,
+      typeObj: product.type || "",
+      type: product.type ? product.type._id : "" || ""
     });
   }
 

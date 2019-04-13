@@ -29,7 +29,11 @@ class Step2 extends Component {
         // Filter out sales products & map rental products.
         current_state.products = props.products
           .filter(product => {
-            if (!product.rental && product.type.type !== "delivery") {
+            if (
+              !product.rental &&
+              product.type.type !== "delivery" &&
+              product.type.type !== "pickup"
+            ) {
               return false;
             }
             return true;
@@ -41,7 +45,11 @@ class Step2 extends Component {
         // Filter out sales products & map sales products.
         current_state.products = props.products
           .filter(product => {
-            if (product.rental && product.type.type !== "delivery") {
+            if (
+              product.rental &&
+              product.type.type !== "delivery" &&
+              product.type.type !== "pickup"
+            ) {
               return false;
             }
             return true;
@@ -64,7 +72,10 @@ class Step2 extends Component {
           if (!exist) {
             current_state.containers.push(product);
           }
-        } else if (product.type.type === "delivery") {
+        } else if (
+          product.type.type === "delivery" ||
+          product.type.type === "pickup"
+        ) {
           let exist = false;
           current_state.deliveries.forEach(delivery => {
             if (delivery._id === product._id) {
@@ -104,7 +115,7 @@ class Step2 extends Component {
       {
         Header: "Name",
         accessor: "name",
-        width: 200,
+        width: 400,
         filterMethod: (filter, rows) =>
           matchSorter(rows, filter.value, { keys: ["name"] }),
         filterAll: true
@@ -139,7 +150,7 @@ class Step2 extends Component {
         Header: "Add To Order",
         id: "add",
         accessor: "_id",
-        width: 150,
+        width: 200,
         Cell: ({ value }) => (
           <button
             className="btn btn-success"

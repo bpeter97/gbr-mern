@@ -96,10 +96,15 @@ export const editProduct = productData => dispatch => {
   dispatch(clearErrors());
   axios
     .patch(`/api/products/${productData._id}`, productData)
-    .then(res =>
+    .then(
+      res =>
+        dispatch({
+          type: EDIT_PRODUCT,
+          payload: res.data
+        }),
       dispatch({
-        type: EDIT_PRODUCT,
-        payload: res.data
+        type: SET_SUCCESS,
+        payload: "Product successfully updated."
       })
     )
     .catch(err =>

@@ -31,7 +31,12 @@ class EditProduct extends Component {
     if (product === null || loading) {
       form = <Spinner />;
     } else {
-      form = <EditProductForm history={this.props.history} />;
+      form = (
+        <EditProductForm
+          product={this.props.product}
+          history={this.props.history}
+        />
+      );
     }
 
     return (
