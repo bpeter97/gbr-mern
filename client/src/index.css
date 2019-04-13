@@ -514,3 +514,63 @@ li span:hover {
   background-color: transparent;
   border: 0;
 }
+
+.add-order-step-component {
+  opacity: 0.01;
+}
+
+.add-order-step-component.component-fade-in {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.add-order-step-component.component-fade-out {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+}
+
+.order-form-buttons {
+  height: 65px;
+  width: 200px;
+  color: white;
+  font-size: 30px;
+}
+
+/* Hiding the checkbox, but allowing it to be focused */
+.badgebox {
+  opacity: 0;
+}
+
+.badgebox + .badge {
+  color: black;
+  /* Move the check mark away when unchecked */
+  text-indent: -999999px;
+  /* Makes the badge's width stay the same checked and unchecked */
+  width: 40px;
+  background-color: white;
+}
+
+.badgebox:focus + .badge {
+  /* Set something to make the badge looks focused */
+  /* This really depends on the application, in my case it was: */
+
+  /* Adding a light border */
+  box-shadow: inset 0px 0px 5px;
+  background-color: white;
+  color: black;
+  /* Taking the difference out of the padding */
+}
+
+.badgebox:checked + .badge {
+  /* Move the check mark back when checked */
+  text-indent: 0;
+  background-color: white;
+  color: black;
+}
+
+.product-tab {
+  color: black;
+}
+.product-tab:hover {
+  color: black;
+}
