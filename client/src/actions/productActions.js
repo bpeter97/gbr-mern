@@ -9,9 +9,10 @@ import {
   // DELETE_PRODUCT,
   GET_ERRORS,
   CLEAR_PRODUCT,
-  PRODUCT_LOADING
+  PRODUCT_LOADING,
+  SET_SUCCESS
 } from "./types";
-import { clearErrors } from "./commonActions";
+import { clearErrors, clearSuccess } from "./commonActions";
 
 export const getProducts = () => dispatch => {
   dispatch(setProductLoading());
@@ -68,19 +69,25 @@ export const getProductTypes = () => dispatch => {
 };
 
 export const addProduct = productData => dispatch => {
-  dispatch(setProductLoading());
+  dispatch(clearErrors());
+  dispatch(clearSuccess());
   axios
     .post("/api/products", productData)
-    .then(res =>
+    .then(
+      res =>
+        dispatch({
+          type: ADD_PRODUCT,
+          payload: res.data
+        }),
       dispatch({
-        type: ADD_PRODUCT,
-        payload: res.data
+        type: SET_SUCCESS,
+        payload: "Product successfully created."
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_PRODUCT_TYPES,
-        payload: null
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };

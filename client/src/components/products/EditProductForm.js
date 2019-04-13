@@ -33,6 +33,7 @@ class EditProductFom extends Component {
     if (props.errors !== state.errors) {
       state.errors = props.errors;
     }
+    return null;
   }
 
   onSubmit = e => {

@@ -50,15 +50,18 @@ class AddProductForm extends Component {
   render() {
     const { errors, types } = this.props;
 
-    console.log(types);
+    let typeSelect = [{ value: null, selected: true, label: "Select One" }];
+
+    types.forEach(type => {
+      let t = {
+        value: type._id,
+        selected: false,
+        label: type.type.charAt(0).toUpperCase() + type.type.slice(1)
+      };
+      typeSelect.push(t);
+    });
 
     let rentalSelect = [
-      { value: null, selected: true, label: "Select One" },
-      { value: true, selected: false, label: "Rental" },
-      { value: false, selected: false, label: "Sales" }
-    ];
-
-    let typeSelect = [
       { value: null, selected: true, label: "Select One" },
       { value: true, selected: false, label: "Rental" },
       { value: false, selected: false, label: "Sales" }
@@ -79,25 +82,30 @@ class AddProductForm extends Component {
       <form onSubmit={this.onSubmit}>
         {errorAlert(this.state.errors)}
         <div className="col-md-12">
-          <TextFieldGroup
-            name="name"
-            type="text"
-            label="Product Name"
-            className="form-control"
-            value={this.state.name}
-            onChange={this.onChange}
-            error={errors}
-          />
-          <TextFieldGroup
-            name="shortName"
-            type="text"
-            label="Short Name"
-            divClass="col"
-            className="form-control"
-            value={this.state.shortName}
-            onChange={this.onChange}
-            error={errors}
-          />
+          <div className="form-row pt-2">
+            <TextFieldGroup
+              name="name"
+              type="text"
+              label="Product Name"
+              divClass="col"
+              className="form-control"
+              value={this.state.name}
+              onChange={this.onChange}
+              error={errors}
+              help="This is the name that will be displayed when adding items to the order."
+            />
+            <TextFieldGroup
+              name="shortName"
+              type="text"
+              label="Short Name"
+              divClass="col"
+              className="form-control"
+              value={this.state.shortName}
+              onChange={this.onChange}
+              error={errors}
+              help="Enter the short name of the product (ex. LBOX for Lock Box)"
+            />
+          </div>
           <div className="form-row pt-2">
             <TextFieldGroup
               name="price"
@@ -108,6 +116,7 @@ class AddProductForm extends Component {
               value={this.state.price}
               onChange={this.onChange}
               error={errors}
+              help="Enter the sales price of the product, do not include the $"
             />
             <TextFieldGroup
               name="monthlyPrice"
@@ -118,6 +127,7 @@ class AddProductForm extends Component {
               value={this.state.monthlyPrice}
               onChange={this.onChange}
               error={errors}
+              help="Enter the rental price of the product, do not include the $"
             />
           </div>
           <div className="form-row pt-2">
@@ -129,6 +139,7 @@ class AddProductForm extends Component {
               name="rental"
               onChange={this.onChange}
               options={rentalSelect}
+              help="Select whether or not this product is for rent or sales"
             />
             <SelectInput
               className="form-control"
@@ -138,6 +149,7 @@ class AddProductForm extends Component {
               divClass="col"
               onChange={this.onChange}
               options={typeSelect}
+              help="Select the product type"
             />
           </div>
           <input type="submit" className="btn btn-info mt-2" />
