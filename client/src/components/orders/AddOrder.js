@@ -43,7 +43,7 @@ class AddOrder extends Component {
                   {this.state.formName}
                 </h5>
                 <div className="d-flex flex-row justify-content-center">
-                  <div className="col-12 py-md-3 pl-md-5">
+                  <div className="col-12 py-md-3">
                     <AddOrderForm
                       redirectFunc={this.onFormSubmit.bind(this)}
                       changeName={this.changeOrderName.bind(this)}

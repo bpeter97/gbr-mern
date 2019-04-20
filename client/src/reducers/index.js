@@ -13,6 +13,7 @@ import containerReducer from "./containerReducer";
 import notificationReducer from "./notificationReducer";
 import visitReducer from "./visitReducer";
 import eventReducer from "./eventReducer";
+import cartReducer from "./cartReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -28,5 +29,6 @@ export default combineReducers({
   containers: containerReducer,
   notifications: notificationReducer,
   visits: visitReducer,
-  events: eventReducer
+  events: eventReducer,
+  cart: cartReducer
 });

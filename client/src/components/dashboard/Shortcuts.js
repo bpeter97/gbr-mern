@@ -5,19 +5,10 @@ import SvgIcon from "react-icons-kit";
 import { ShoppingCart, PersonAdd, NoteAdd } from "../../icons";
 
 class Shortcuts extends Component {
-  addCustomerClick() {
+  handleClick(url) {
     const { history } = this.props;
     const location = {
-      pathname: "/customers/add"
-    };
-
-    history.push(location);
-  }
-
-  addContainerClick() {
-    const { history } = this.props;
-    const location = {
-      pathname: "/containers/add"
+      pathname: `${url}`
     };
 
     history.push(location);
@@ -46,6 +37,7 @@ class Shortcuts extends Component {
                 <div className="col-md-12 text-center">
                   <button
                     className="picture-button"
+                    onClick={this.handleClick.bind(this, "/orders/add")}
                     data-tip="Create Order"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -72,7 +64,7 @@ class Shortcuts extends Component {
                   </button>
                   <button
                     className="picture-button"
-                    onClick={this.addCustomerClick.bind(this)}
+                    onClick={this.handleClick.bind(this, "/customers/add")}
                     data-tip="Create Customer"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -86,7 +78,7 @@ class Shortcuts extends Component {
                   </button>
                   <button
                     className="picture-button"
-                    onClick={this.addContainerClick.bind(this)}
+                    onClick={this.handleClick.bind(this, "/containers/add")}
                     data-tip="Create Container"
                     data-toggle="tooltip"
                     data-placement="top"

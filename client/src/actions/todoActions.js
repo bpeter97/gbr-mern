@@ -9,7 +9,7 @@ import {
   TODOS_LOADING,
   SET_SUCCESS
 } from "./types";
-import { clearErrors, clearSuccess } from "./commonActions";
+import { clearErrors } from "./commonActions";
 
 export const addTodo = todoData => dispatch => {
   dispatch(clearErrors());

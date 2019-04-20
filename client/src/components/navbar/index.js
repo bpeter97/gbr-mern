@@ -6,7 +6,9 @@ import { logoutUser } from "../../actions/defaultsActions";
 
 import SvgIcon from "react-icons-kit";
 import { AccountIcon } from "../../icons";
+import { shoppingCart } from "react-icons-kit/fa/shoppingCart";
 import Clock from "./Clock";
+import GBRCart from "./../orders/GBRCart";
 
 import DropDownNavItem from "./../common/DropDownNavItem";
 
@@ -20,6 +22,10 @@ class NavBar extends Component {
     this.onLogoutClick = this.onLogoutClick.bind(this);
   }
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps !== this.props;
+  }
+
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
@@ -27,40 +33,46 @@ class NavBar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { cart, totalQty } = this.props.cart;
+
     let navbar = "";
 
     let orderLinks = [
-      <Link className="dropdown-item" to="/orders">
+      <Link className="dropdown-item" key={Math.random(10)} to="/orders">
         View Orders
       </Link>,
-      <Link className="dropdown-item" to="/orders/add">
+      <Link className="dropdown-item" key={Math.random(10)} to="/orders/add">
         Add Order
       </Link>
     ];
 
     let productLinks = [
-      <Link className="dropdown-item" to="/products">
+      <Link className="dropdown-item" key={Math.random(10)} to="/products">
         View Products
       </Link>,
-      <Link className="dropdown-item" to="/products/add">
+      <Link className="dropdown-item" key={Math.random(10)} to="/products/add">
         Add Product
       </Link>
     ];
 
     let customerLinks = [
-      <Link className="dropdown-item" to="/customers">
+      <Link className="dropdown-item" key={Math.random(10)} to="/customers">
         View Customers
       </Link>,
-      <Link className="dropdown-item" to="/customers/add">
+      <Link className="dropdown-item" key={Math.random(10)} to="/customers/add">
         Add Customer
       </Link>
     ];
 
     let containerLinks = [
-      <Link className="dropdown-item" to="/containers">
+      <Link className="dropdown-item" key={Math.random(10)} to="/containers">
         View Containers
       </Link>,
-      <Link className="dropdown-item" to="/containers/add">
+      <Link
+        className="dropdown-item"
+        key={Math.random(10)}
+        to="/containers/add"
+      >
         Add Container
       </Link>
     ];
@@ -138,6 +150,29 @@ class NavBar extends Component {
               </li>
             </ul>
             <ul className="navbar-nav ml-auto">
+              <li className="dropdown my-auto">
+                <a
+                  href=""
+                  className={
+                    cart.length > 0 ? "dropdown-toggle" : "dropdown-toggle"
+                  }
+                  id="account"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style={{ color: "#008000" }}
+                >
+                  <SvgIcon
+                    size={30}
+                    icon={shoppingCart}
+                    style={{ color: "#008000" }}
+                    className="pr-2"
+                  />
+                  {totalQty} - item(s)
+                </a>
+                <GBRCart cart={this.props.cart.cart} />
+              </li>
+              <li className="nav-item px-2 my-auto d-none d-lg-block">|</li>
               <li className="nav-item pr-2 my-auto d-none d-lg-block">
                 <strong>
                   <Clock />
@@ -198,7 +233,8 @@ NavBar.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
   logoutUser: PropTypes.func.isRequired,
-  user: state.auth.user
+  user: state.auth.user,
+  cart: state.cart
 });
 
 export default connect(

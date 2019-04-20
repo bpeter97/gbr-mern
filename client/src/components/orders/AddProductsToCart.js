@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 import ReactTable from "react-table";
 import matchSorter from "match-sorter";
+import { addItem } from "./../../actions/cartActions";
+import SuccessAlert from "./../alerts/SuccessAlert";
 
-class Step2 extends Component {
+class AddProductsToCart extends Component {
   constructor() {
     super();
     this.state = {
@@ -110,6 +115,7 @@ class Step2 extends Component {
 
   render() {
     const { containers, modifications, deliveries } = this.state;
+    const { cart } = this.props.cart;
 
     let productColumns = [
       {
@@ -149,13 +155,13 @@ class Step2 extends Component {
       {
         Header: "Add To Order",
         id: "add",
-        accessor: "_id",
+        accessor: d => d,
         width: 200,
         Cell: ({ value }) => (
           <button
             className="btn btn-success"
             type="button"
-            // onClick={this.addToOrderOnClick.bind(this, value)}
+            onClick={this.props.addItem.bind(this, value, cart)}
           >
             Add To Order
           </button>
@@ -243,6 +249,11 @@ class Step2 extends Component {
     // The markup for the Step 1 UI
     return (
       <div className="add-order-step-component component-fade-in">
+        {this.props.success.message !== "" ? (
+          <SuccessAlert
+            msg={this.props.success.message ? this.props.success.message : ""}
+          />
+        ) : null}
         <ul className="nav nav-tabs" id="rentalProductsTab" role="tablist">
           <li className="nav-item">
             <a
@@ -315,30 +326,21 @@ class Step2 extends Component {
   }
 }
 
-class Step3 extends Component {
-  render() {
-    if (this.props.currentStep !== 3) {
-      // Prop: The current step
-      return (
-        <div className="form-group add-order-step-component component-fade-out" />
-      );
-    }
-    // The markup for the Step 1 UI
-    return (
-      <div className="form-group add-order-step-component component-fade-in">
-        <label htmlFor="password">Password</label>
-        <input
-          className="form-control"
-          id="password"
-          name="password"
-          type="password"
-          placeholder="Enter password"
-          value={this.props.password} // Prop: The password input data
-          onChange={this.props.handleChange} // Prop: Puts data into state
-        />
-      </div>
-    );
-  }
-}
+AddProductsToCart.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
+};
 
-export { Step2, Step3 };
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors,
+  location: state.router,
+  cart: state.cart,
+  success: state.success
+});
+
+export default connect(
+  mapStateToProps,
+  { addItem }
+)(AddProductsToCart);

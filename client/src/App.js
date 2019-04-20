@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter as Router } from "react-router-redux";
 
 import store from "./store";
-import createHistory from "history/createBrowserHistory";
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
@@ -36,6 +35,8 @@ import AddContainer from "./components/containers/AddContainer";
 import EditProduct from "./components/products/EditProduct";
 import AddOrder from "./components/orders/AddOrder";
 import AddProduct from "./components/products/AddProduct";
+
+const createHistory = require("history").createBrowserHistory;
 
 const history = createHistory();
 

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { Step2, Step3 } from "./AddOrderSteps";
+import { GetJobInfo } from "./GetJobInfo";
+import AddProductsToCart from "./AddProductsToCart";
 
 class AddOrderForm extends Component {
   constructor() {
@@ -141,8 +142,6 @@ class AddOrderForm extends Component {
   }
 
   render() {
-    const { errors } = this.props;
-
     var step1 = "";
 
     if (this.state.currentStep !== 1) {
@@ -195,14 +194,14 @@ class AddOrderForm extends Component {
     let form = (
       <form onSubmit={this.handleSubmit}>
         {step1}
-        <Step2
+        <AddProductsToCart
           currentStep={this.state.currentStep}
           handleChange={this.handleChange}
           username={this.state.username}
           products={this.props.products}
           rental={this.state.rental}
         />
-        <Step3
+        <GetJobInfo
           currentStep={this.state.currentStep}
           handleChange={this.handleChange}
           password={this.state.password}
