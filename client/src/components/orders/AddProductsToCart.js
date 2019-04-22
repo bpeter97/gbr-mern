@@ -6,6 +6,7 @@ import ReactTable from "react-table";
 import matchSorter from "match-sorter";
 import { addItem } from "./../../actions/cartActions";
 import SuccessAlert from "./../alerts/SuccessAlert";
+import ErrorAlert from "./../alerts/ErrorAlert";
 
 class AddProductsToCart extends Component {
   constructor() {
@@ -252,6 +253,11 @@ class AddProductsToCart extends Component {
         {this.props.success.message !== "" ? (
           <SuccessAlert
             msg={this.props.success.message ? this.props.success.message : ""}
+          />
+        ) : null}
+        {this.props.errors.error !== "" ? (
+          <ErrorAlert
+            error={this.props.errors.error ? this.props.errors.error : ""}
           />
         ) : null}
         <ul className="nav nav-tabs" id="rentalProductsTab" role="tablist">

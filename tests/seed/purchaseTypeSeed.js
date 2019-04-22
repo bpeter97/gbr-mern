@@ -11,7 +11,7 @@ purchaseTypes = [
   },
   {
     _id: purchaseTypeTwoID,
-    type: "Sale"
+    type: "Sales"
   }
 ];
 

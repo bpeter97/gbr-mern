@@ -8,7 +8,7 @@ import {
   MODIFY_ITEM_PRICE,
   GET_ERRORS
 } from "./types";
-import { setSuccess } from "./commonActions";
+import { setSuccess, clearErrors } from "./commonActions";
 
 export const addCartItem = (item, cart) => dispatch => {
   dispatch(setCartLoading());
@@ -62,17 +62,11 @@ export const modifyItemQuantity = (id, quantity, cart) => dispatch => {
     });
   }
 
-  // find product in cart
-  cart.forEach(item => {
-    if (item.id === parseInt(id, 10)) {
-      // change quantity to new quantity
-      item.quantity = quantity;
-    }
+  cart[id].quantity = quantity;
 
-    dispatch({
-      type: MODIFY_ITEM_QUANTITY,
-      payload: cart
-    });
+  dispatch({
+    type: MODIFY_ITEM_QUANTITY,
+    payload: cart
   });
 };
 
@@ -149,15 +143,11 @@ export const changeCartItemPrice = (id, price, cart, monthly) => dispatch => {
   }
 
   // find product in cart
-  cart.forEach(item => {
-    if (parseInt(item.id, 10) === parseInt(id, 10)) {
-      if (monthly) {
-        item.product.monthlyPrice = parseFloat(price);
-      } else {
-        item.product.price = parseFloat(price);
-      }
-    }
-  });
+  if (monthly) {
+    cart[id].product.monthlyPrice = parseFloat(price);
+  } else {
+    cart[id].product.price = parseFloat(price);
+  }
 
   dispatch({
     type: MODIFY_ITEM_PRICE,
@@ -181,6 +171,7 @@ export const removeItem = (item, cart) => {
 
 export const addItem = (item, cart) => {
   return [
+    clearErrors(),
     addCartItem(item, cart),
     setSuccess(`${item.name} successfully added.`)
   ];

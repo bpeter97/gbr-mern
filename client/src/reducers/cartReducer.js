@@ -21,7 +21,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  const calculatePrices = (cart, taxRate = initialState.taxRate) => {
+  const calculatePrices = (cart, taxRate = state.taxRate) => {
     let prices = {
       priceBeforeTax: 0.0,
       totalQty: 0.0,
@@ -36,8 +36,8 @@ export default function(state = initialState, action) {
       // Calculate monthly cost
       prices.monthlyPrice += item.product.monthlyPrice * item.quantity;
       // Calculate price before tax
-      prices.priceBeforeTax += item.product.monthlyPrice;
-      prices.priceBeforeTax += item.product.price;
+      prices.priceBeforeTax += item.product.monthlyPrice * item.quantity;
+      prices.priceBeforeTax += item.product.price * item.quantity;
       // Calculate cart quantity
       prices.totalQty += item.quantity;
       // Calculate delivery costs
@@ -75,7 +75,7 @@ export default function(state = initialState, action) {
         delivery: prices ? prices.delivery : 0,
         salesTax: prices ? prices.salesTax : 0,
         totalPrice: prices ? prices.totalPrice : 0,
-        taxRate: prices ? prices.taxRate : initialState.taxRate,
+        taxRate: prices ? prices.taxRate : state.taxRate,
         loading: false
       };
     }
@@ -90,7 +90,7 @@ export default function(state = initialState, action) {
         delivery: prices ? prices.delivery : 0,
         salesTax: prices ? prices.salesTax : 0,
         totalPrice: prices ? prices.totalPrice : 0,
-        taxRate: prices ? prices.taxRate : initialState.taxRate,
+        taxRate: prices ? prices.taxRate : state.taxRate,
         loading: false
       };
     }
@@ -105,7 +105,7 @@ export default function(state = initialState, action) {
         delivery: prices ? prices.delivery : 0,
         salesTax: prices ? prices.salesTax : 0,
         totalPrice: prices ? prices.totalPrice : 0,
-        taxRate: prices ? prices.taxRate : initialState.taxRate,
+        taxRate: prices ? prices.taxRate : state.taxRate,
         loading: false
       };
     }
@@ -119,7 +119,7 @@ export default function(state = initialState, action) {
         delivery: prices ? prices.delivery : 0,
         salesTax: prices ? prices.salesTax : 0,
         totalPrice: prices ? prices.totalPrice : 0,
-        taxRate: prices ? prices.taxRate : initialState.taxRate,
+        taxRate: prices ? prices.taxRate : state.taxRate,
         loading: false
       };
     }
@@ -134,7 +134,7 @@ export default function(state = initialState, action) {
         delivery: prices ? prices.delivery : 0,
         salesTax: prices ? prices.salesTax : 0,
         totalPrice: prices ? prices.totalPrice : 0,
-        taxRate: prices ? prices.taxRate : initialState.taxRate,
+        taxRate: prices ? prices.taxRate : state.taxRate,
         loading: false
       };
     }

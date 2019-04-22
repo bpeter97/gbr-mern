@@ -36,8 +36,9 @@ class GBRCart extends Component {
   }
 
   quantityChange = e => {
+    console.log(parseInt(e.target.name, 10));
     this.props.modifyQuantity(
-      e.target.name,
+      parseInt(e.target.name, 10),
       e.target.value,
       this.props.cart.cart
     );
@@ -111,9 +112,11 @@ class GBRCart extends Component {
               <div className="col-md-1 text-center">Delete</div>
             </div>
             {cart.map(item => {
+              // TODO: Figure out a better way to display these items and be able
+              // to change inputs without losing focus due to re-renders.
               let { product, quantity, id } = item;
 
-              let html = (
+              return (
                 <div
                   className="d-flex flex-row dropdown-item cart-item"
                   key={Math.random(10)}
@@ -131,8 +134,8 @@ class GBRCart extends Component {
                   <div className="col-md-2 text-center">
                     <input
                       type="number"
-                      name={id}
-                      id={Math.random(10)}
+                      name={`${id} price`}
+                      id={`${id} price`}
                       size="1"
                       className="text-center"
                       value={product.price}
@@ -142,8 +145,8 @@ class GBRCart extends Component {
                   <div className="col-md-2 text-center">
                     <input
                       type="number"
-                      name={id}
-                      id={Math.random(10)}
+                      name={`${id} mprice`}
+                      id={`${id} mprice`}
                       size="1"
                       className="text-center"
                       value={product.monthlyPrice}
@@ -153,8 +156,8 @@ class GBRCart extends Component {
                   <div className="col-md-2 text-center">
                     <input
                       type="number"
-                      name={id}
-                      id={Math.random(10)}
+                      name={`${id} q`}
+                      id={`${id} q`}
                       size="1"
                       className="text-center"
                       value={quantity}
@@ -171,8 +174,6 @@ class GBRCart extends Component {
                   </div>
                 </div>
               );
-
-              return html;
             })}
             <div className="d-flex flex-row dropdown-item cart-item">
               <div className="col-md-10 text-right">Tax Rate:</div>

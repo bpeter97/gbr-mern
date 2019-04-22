@@ -4,6 +4,15 @@ import PropTypes from "prop-types";
 
 import { GetJobInfo } from "./GetJobInfo";
 import AddProductsToCart from "./AddProductsToCart";
+import SuccessAlert from "./../alerts/SuccessAlert";
+import ErrorAlert from "./../alerts/ErrorAlert";
+
+import { setPurchaseType } from "./../../actions/purchaseActions";
+import {
+  clearSuccess,
+  setErrors,
+  clearErrors
+} from "./../../actions/commonActions";
 
 class AddOrderForm extends Component {
   constructor() {
@@ -46,12 +55,14 @@ class AddOrderForm extends Component {
 
     if (type === "checkbox") {
       if (name === "rental") {
+        this.props.setPurchaseType("Rental", "order");
         this.setState({
           rental: target.checked,
           sales: !target.checked,
           rentalResale: target.checked ? "Rental" : "Sales"
         });
       } else if (name === "sales") {
+        this.props.setPurchaseType("Sales", "order");
         this.setState({
           rental: !target.checked,
           sales: target.checked,
@@ -78,14 +89,28 @@ class AddOrderForm extends Component {
   };
 
   _next = () => {
+    this.props.clearSuccess();
+    this.props.clearErrors();
     let currentStep = this.state.currentStep;
-    currentStep = currentStep >= 2 ? 3 : currentStep + 1;
-    this.setState({
-      currentStep: currentStep
-    });
+    if (currentStep === 1 && !this.state.rental && !this.state.sales) {
+      this.props.setErrors("You must select rental or sales.");
+    } else {
+      if (currentStep === 2 && this.props.cart.cart.length === 0) {
+        this.props.setErrors(
+          "You must add items to the order before continuing."
+        );
+      } else {
+        currentStep = currentStep >= 2 ? 3 : currentStep + 1;
+        this.setState({
+          currentStep: currentStep
+        });
+      }
+    }
   };
 
   _prev = () => {
+    this.props.clearSuccess();
+    this.props.clearErrors();
     let currentStep = this.state.currentStep;
     currentStep = currentStep <= 1 ? 1 : currentStep - 1;
     this.setState({
@@ -151,6 +176,16 @@ class AddOrderForm extends Component {
     } else {
       step1 = (
         <div className="form-group add-order-step-component component-fade-in">
+          {this.props.success.message !== "" ? (
+            <SuccessAlert
+              msg={this.props.success.message ? this.props.success.message : ""}
+            />
+          ) : null}
+          {this.props.errors.error !== "" ? (
+            <ErrorAlert
+              error={this.props.errors.error ? this.props.errors.error : ""}
+            />
+          ) : null}
           <div className="form-check d-flex flex-row text-center justify-content-center">
             <div className="col-sm-12 col-md-5">
               <label
@@ -225,10 +260,13 @@ AddOrderForm.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
-  location: state.router
+  location: state.router,
+  cart: state.cart,
+  success: state.success,
+  purchase: state.purchase
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  { setPurchaseType, clearSuccess, setErrors, clearErrors }
 )(AddOrderForm);

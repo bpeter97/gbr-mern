@@ -14,6 +14,7 @@ import notificationReducer from "./notificationReducer";
 import visitReducer from "./visitReducer";
 import eventReducer from "./eventReducer";
 import cartReducer from "./cartReducer";
+import purchaseReducer from "./purchaseReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -30,5 +31,6 @@ export default combineReducers({
   notifications: notificationReducer,
   visits: visitReducer,
   events: eventReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  purchase: purchaseReducer
 });

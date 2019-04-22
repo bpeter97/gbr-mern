@@ -1,5 +1,6 @@
 // errors
 export const GET_ERRORS = "GET_ERRORS";
+export const SET_ERRORS = "SET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const CLEAR_SUCCESS = "CLEAR_SUCCESS";
 export const SET_SUCCESS = "SET_SUCCESS";
@@ -90,3 +91,8 @@ export const CLEAR_CART_ITEMS = "CLEAR_CART_ITEMS";
 export const MODIFY_ITEM_QUANTITY = "MODIFY_ITEM_QUANTITY";
 export const MODIFY_TAX_RATE = "MODIFY_TAX_RATE";
 export const MODIFY_ITEM_PRICE = "MODIFY_ITEM_PRICE";
+
+// purchases
+export const PURCHASE_LOADING = "PURCHASE_LOADING";
+export const SET_PURCHASE_TYPE = "SET_PURCHASE_TYPE";
+export const CLEAR_PURCHASE = "CLEAR_PURCHASE";
