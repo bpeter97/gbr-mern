@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import TextFieldInput from "./../common/TextFieldInput";
 
 import {
   modifyQuantity,
@@ -132,33 +133,27 @@ class GBRCart extends Component {
                     {product.name}
                   </div>
                   <div className="col-md-2 text-center">
-                    <input
-                      type="number"
+                    <TextFieldInput
                       name={`${id} price`}
-                      id={`${id} price`}
-                      size="1"
                       className="text-center"
                       value={product.price}
+                      type="number"
                       onChange={this.priceChange}
                     />
                   </div>
                   <div className="col-md-2 text-center">
-                    <input
+                    <TextFieldInput
                       type="number"
                       name={`${id} mprice`}
-                      id={`${id} mprice`}
-                      size="1"
                       className="text-center"
                       value={product.monthlyPrice}
                       onChange={this.monthlyPriceChange}
                     />
                   </div>
                   <div className="col-md-2 text-center">
-                    <input
+                    <TextFieldInput
                       type="number"
                       name={`${id} q`}
-                      id={`${id} q`}
-                      size="1"
                       className="text-center"
                       value={quantity}
                       onChange={this.quantityChange}
@@ -178,11 +173,9 @@ class GBRCart extends Component {
             <div className="d-flex flex-row dropdown-item cart-item">
               <div className="col-md-10 text-right">Tax Rate:</div>
               <div className="col-md-2 text-center">
-                <input
+                <TextFieldInput
                   type="number"
                   name="tax-rate"
-                  id="tax-rate"
-                  size="2"
                   className="text-center"
                   value={this.props.cart.taxRate}
                   onChange={this.changeTaxRate}

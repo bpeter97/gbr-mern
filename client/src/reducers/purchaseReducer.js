@@ -1,17 +1,30 @@
 import {
   PURCHASE_LOADING,
   SET_PURCHASE_TYPE,
+  SET_JOB_NAME,
+  SET_JOB_CITY,
+  SET_JOB_ZIPCODE,
+  SET_JOB_ADDRESS,
   CLEAR_PURCHASE
 } from "../actions/types";
 
 const initialState = {
-  order: {},
-  quote: {},
+  order: {
+    job: {}
+  },
+  quote: {
+    job: {}
+  },
+  purchase_type: "",
   loading: false
 };
 
 export default function(state = initialState, action) {
-  switch (action.purchaseType) {
+  if (action.type === "SET_PURCHASE_TYPE") {
+    state.purchaseType = action.purchaseType;
+  }
+
+  switch (state.purchaseType) {
     case "order": {
       switch (action.type) {
         case PURCHASE_LOADING:
@@ -28,10 +41,59 @@ export default function(state = initialState, action) {
             },
             loading: false
           };
+        case SET_JOB_NAME:
+          return {
+            ...state,
+            order: {
+              ...state.order,
+              job: {
+                ...state.order.job,
+                name: action.payload
+              }
+            },
+            loading: false
+          };
+        case SET_JOB_ADDRESS:
+          return {
+            ...state,
+            order: {
+              ...state.order,
+              job: {
+                ...state.order.job,
+                address: action.payload
+              }
+            },
+            loading: false
+          };
+        case SET_JOB_CITY:
+          return {
+            ...state,
+            order: {
+              ...state.order,
+              job: {
+                ...state.order.job,
+                city: action.payload
+              }
+            },
+            loading: false
+          };
+        case SET_JOB_ZIPCODE:
+          return {
+            ...state,
+            order: {
+              ...state.order,
+              job: {
+                ...state.order.job,
+                zipcode: action.payload
+              }
+            },
+            loading: false
+          };
         case CLEAR_PURCHASE: {
           return {
             order: {},
             quote: {},
+            purchaseType: "",
             loading: false
           };
         }
@@ -39,7 +101,7 @@ export default function(state = initialState, action) {
           return state;
       }
     }
-    case "rental": {
+    case "quote": {
       switch (action.type) {
         case PURCHASE_LOADING:
           return {
@@ -49,9 +111,57 @@ export default function(state = initialState, action) {
         case SET_PURCHASE_TYPE:
           return {
             ...state,
-            order: {
-              ...state.order,
+            quote: {
+              ...state.quote,
               purchaseType: action.payload
+            },
+            loading: false
+          };
+        case SET_JOB_NAME:
+          return {
+            ...state,
+            quote: {
+              ...state.quote,
+              job: {
+                ...state.quote.job,
+                name: action.payload
+              }
+            },
+            loading: false
+          };
+        case SET_JOB_ADDRESS:
+          return {
+            ...state,
+            quote: {
+              ...state.quote,
+              job: {
+                ...state.quote.job,
+                address: action.payload
+              }
+            },
+            loading: false
+          };
+        case SET_JOB_CITY:
+          return {
+            ...state,
+            quote: {
+              ...state.quote,
+              job: {
+                ...state.quote.job,
+                city: action.payload
+              }
+            },
+            loading: false
+          };
+        case SET_JOB_ZIPCODE:
+          return {
+            ...state,
+            quote: {
+              ...state.quote,
+              job: {
+                ...state.quote.job,
+                zipcode: action.payload
+              }
             },
             loading: false
           };
@@ -59,6 +169,7 @@ export default function(state = initialState, action) {
           return {
             order: {},
             quote: {},
+            purchaseType: "",
             loading: false
           };
         }

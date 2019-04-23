@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { GetJobInfo } from "./GetJobInfo";
+import GetJobInfo from "./GetJobInfo";
 import AddProductsToCart from "./AddProductsToCart";
 import SuccessAlert from "./../alerts/SuccessAlert";
 import ErrorAlert from "./../alerts/ErrorAlert";
@@ -37,7 +37,7 @@ class AddOrderForm extends Component {
         props.changeName("Select Products");
         break;
       case 3:
-        props.changeName("Select Customer");
+        props.changeName("Job Information");
         break;
       case 4:
         props.changeName("Job Information");
