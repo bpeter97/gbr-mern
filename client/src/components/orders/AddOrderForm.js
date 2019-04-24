@@ -3,11 +3,17 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import GetJobInfo from "./GetJobInfo";
+import SelectCustomer from "./SelectCustomer";
 import AddProductsToCart from "./AddProductsToCart";
 import SuccessAlert from "./../alerts/SuccessAlert";
 import ErrorAlert from "./../alerts/ErrorAlert";
+import { addOrder } from "./../../actions/orderActions";
+import checkEmpty from "./../../utils/checkEmpty";
 
-import { setPurchaseType } from "./../../actions/purchaseActions";
+import {
+  setPurchaseType,
+  getPurchaseTypes
+} from "./../../actions/purchaseActions";
 import {
   clearSuccess,
   setErrors,
@@ -21,11 +27,12 @@ class AddOrderForm extends Component {
       currentStep: 1,
       rental: false,
       sales: false,
-      email: "",
-      username: "",
-      password: "",
       rentalResale: ""
     };
+  }
+
+  componentDidMount() {
+    this.props.getPurchaseTypes();
   }
 
   static getDerivedStateFromProps(props, current_state) {
@@ -37,7 +44,7 @@ class AddOrderForm extends Component {
         props.changeName("Select Products");
         break;
       case 3:
-        props.changeName("Job Information");
+        props.changeName("Select Customer");
         break;
       case 4:
         props.changeName("Job Information");
@@ -80,30 +87,95 @@ class AddOrderForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { email, username, password, rentalResale } = this.state;
-    alert(`Your registration detail: \n
-           RentalResale: ${rentalResale} \n 
-           Email: ${email} \n 
-           Username: ${username} \n
-           Password: ${password}`);
+
+    const { purchase, cart } = this.props;
+
+    let order = {};
+
+    if (purchase.order.job === {}) {
+      this.props.setErrors("You must enter job information before submitting.");
+    } else {
+      order = {
+        quote: null,
+        customer: purchase.order.customer,
+        purchaseType: purchase.order.purchaseType,
+        job: purchase.order.job,
+        products: cart.cart,
+        priceBeforeTax: parseFloat(cart.priceBeforeTax),
+        salesTax: parseFloat(cart.salesTax),
+        totalPrice: parseFloat(cart.totalPrice),
+        monthlyPrice: parseFloat(cart.monthlyPrice),
+        taxRate: parseFloat(cart.taxRate),
+        deliveryTotal: parseFloat(cart.delivery),
+        startDate: new Date()
+      };
+
+      purchase.purchaseTypes.forEach(type => {
+        if (purchase.order.purchaseType === type.type) {
+          order.purchaseType = type._id;
+        }
+      });
+    }
+
+    this.props.addOrder(order);
+    setTimeout(() => {
+      if (checkEmpty(this.props.errors)) {
+        this.props.history.push("/orders");
+      }
+    }, 1000);
   };
 
   _next = () => {
     this.props.clearSuccess();
     this.props.clearErrors();
     let currentStep = this.state.currentStep;
-    if (currentStep === 1 && !this.state.rental && !this.state.sales) {
-      this.props.setErrors("You must select rental or sales.");
-    } else {
-      if (currentStep === 2 && this.props.cart.cart.length === 0) {
-        this.props.setErrors(
-          "You must add items to the order before continuing."
-        );
-      } else {
-        currentStep = currentStep >= 2 ? 3 : currentStep + 1;
-        this.setState({
-          currentStep: currentStep
-        });
+
+    switch (currentStep) {
+      case 1: {
+        if (!this.state.rental && !this.state.sales) {
+          this.props.setErrors(
+            "You must add items to the order before continuing."
+          );
+        } else {
+          currentStep += 1;
+          this.setState({
+            currentStep: currentStep
+          });
+        }
+        break;
+      }
+      case 2: {
+        if (this.props.cart.cart.length === 0) {
+          this.props.setErrors(
+            "You must add items to the order before continuing."
+          );
+        } else {
+          currentStep += 1;
+          this.setState({
+            currentStep: currentStep
+          });
+        }
+        break;
+      }
+      case 3: {
+        if (
+          this.props.purchase.order.customer === "" &&
+          this.props.purchase.quote.customer === ""
+        ) {
+          this.props.setErrors("You must select a customer before continuing.");
+        } else {
+          currentStep += 1;
+          this.setState({
+            currentStep: currentStep
+          });
+        }
+        break;
+      }
+      case 4: {
+        break;
+      }
+      default: {
+        break;
       }
     }
   };
@@ -136,7 +208,7 @@ class AddOrderForm extends Component {
 
   nextButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep < 3) {
+    if (currentStep < 4) {
       return (
         <button
           className="btn btn-primary float-right"
@@ -152,7 +224,7 @@ class AddOrderForm extends Component {
 
   submitButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep === 3) {
+    if (currentStep === 4) {
       return (
         <button
           className="btn btn-primary float-right"
@@ -176,11 +248,6 @@ class AddOrderForm extends Component {
     } else {
       step1 = (
         <div className="form-group add-order-step-component component-fade-in">
-          {this.props.success.message !== "" ? (
-            <SuccessAlert
-              msg={this.props.success.message ? this.props.success.message : ""}
-            />
-          ) : null}
           {this.props.errors.error !== "" ? (
             <ErrorAlert
               error={this.props.errors.error ? this.props.errors.error : ""}
@@ -236,10 +303,10 @@ class AddOrderForm extends Component {
           products={this.props.products}
           rental={this.state.rental}
         />
+        <SelectCustomer currentStep={this.state.currentStep} />
         <GetJobInfo
           currentStep={this.state.currentStep}
           handleChange={this.handleChange}
-          password={this.state.password}
         />
         {this.previousButton()}
         {this.nextButton()}
@@ -268,5 +335,12 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setPurchaseType, clearSuccess, setErrors, clearErrors }
+  {
+    setPurchaseType,
+    clearSuccess,
+    setErrors,
+    clearErrors,
+    getPurchaseTypes,
+    addOrder
+  }
 )(AddOrderForm);

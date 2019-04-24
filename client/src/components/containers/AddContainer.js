@@ -12,10 +12,6 @@ class AddContainer extends Component {
     this.props.getContainerSizes();
   }
 
-  onFormSubmit() {
-    this.props.history.push("/containers");
-  }
-
   render() {
     return (
       <div className="container-fluid main-content">

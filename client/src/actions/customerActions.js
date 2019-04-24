@@ -9,26 +9,37 @@ import {
   GET_ERRORS,
   CLEAR_CUSTOMER,
   CUSTOMER_LOADING,
-  SET_SUCCESS
+  SET_SUCCESS,
+  SET_PURCHASE_CUSTOMER
 } from "./types";
 import { clearErrors, clearSuccess } from "./commonActions";
 
-export const addCustomer = customerData => dispatch => {
+export const addCustomer = (customerData, purchase = false) => dispatch => {
   dispatch(clearErrors());
   dispatch(clearSuccess());
   axios
     .post("/api/customers", customerData)
-    .then(
-      res =>
-        dispatch({
-          type: ADD_CUSTOMER,
-          payload: res.data
-        }),
+    .then(res => {
       dispatch({
-        type: SET_SUCCESS,
-        payload: "Customer sucessfully created."
-      })
-    )
+        type: ADD_CUSTOMER,
+        payload: res.data
+      });
+      if (purchase) {
+        dispatch({
+          type: SET_PURCHASE_CUSTOMER,
+          payload: res.data._id
+        });
+        dispatch({
+          type: SET_SUCCESS,
+          payload: "Customer sucessfully added and selected."
+        });
+      } else {
+        dispatch({
+          type: SET_SUCCESS,
+          payload: "Customer sucessfully created."
+        });
+      }
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

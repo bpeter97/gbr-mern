@@ -196,7 +196,7 @@ class AddProductsToCart extends Component {
           ]}
           className="-striped -highlight align-middle text-center"
           columns={productColumns}
-          defaultPageSize={10}
+          defaultPageSize={8}
         />
       );
     }
@@ -217,7 +217,7 @@ class AddProductsToCart extends Component {
           ]}
           className="-striped -highlight align-middle text-center"
           columns={productColumns}
-          defaultPageSize={10}
+          defaultPageSize={8}
         />
       );
     }
@@ -238,7 +238,7 @@ class AddProductsToCart extends Component {
           ]}
           className="-striped -highlight align-middle text-center"
           columns={productColumns}
-          defaultPageSize={10}
+          defaultPageSize={8}
         />
       );
     }

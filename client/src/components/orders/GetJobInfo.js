@@ -37,7 +37,7 @@ class GetJobInfo extends Component {
       <div className="invalid-feedback">This field is required!</div>
     );
 
-    if (this.props.currentStep !== 3) {
+    if (this.props.currentStep !== 4) {
       // Prop: The current step
       return (
         <div className="form-group add-order-step-component component-fade-out" />
@@ -55,7 +55,7 @@ class GetJobInfo extends Component {
               className={`form-control ${
                 order.job.name ? "is-valid" : "is-invalid"
               }`}
-              placeholder="ex. Walmart Construction"
+              placeholder="e.g. Walmart Construction"
               value={order.job.name}
               onChange={this.handleChange}
               required
@@ -70,7 +70,7 @@ class GetJobInfo extends Component {
               className={`form-control ${
                 order.job.address ? "is-valid" : "is-invalid"
               }`}
-              placeholder="ex. 6988 Ave 304"
+              placeholder="e.g. 6988 Ave 304"
               value={order.job.address}
               onChange={this.handleChange}
               required
@@ -89,7 +89,7 @@ class GetJobInfo extends Component {
                   ? "is-valid"
                   : "is-invalid"
               }`}
-              placeholder="ex. Visalia"
+              placeholder="e.g. Visalia"
               value={order.job.city}
               onChange={this.handleChange}
               required
@@ -106,7 +106,7 @@ class GetJobInfo extends Component {
                   ? "is-valid"
                   : "is-invalid"
               }`}
-              placeholder="ex. 93291"
+              placeholder="e.g. 93291"
               value={order.job.zipcode}
               onChange={this.handleChange}
               required

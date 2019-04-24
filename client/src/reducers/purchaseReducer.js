@@ -5,14 +5,17 @@ import {
   SET_JOB_CITY,
   SET_JOB_ZIPCODE,
   SET_JOB_ADDRESS,
+  SET_PURCHASE_CUSTOMER,
   CLEAR_PURCHASE
 } from "../actions/types";
 
 const initialState = {
   order: {
+    customer: "",
     job: {}
   },
   quote: {
+    customer: "",
     job: {}
   },
   purchase_type: "",
@@ -22,6 +25,10 @@ const initialState = {
 export default function(state = initialState, action) {
   if (action.type === "SET_PURCHASE_TYPE") {
     state.purchaseType = action.purchaseType;
+  }
+
+  if (action.type === "GET_PURCHASE_TYPES") {
+    state.purchaseTypes = action.payload;
   }
 
   switch (state.purchaseType) {
@@ -41,6 +48,16 @@ export default function(state = initialState, action) {
             },
             loading: false
           };
+        case SET_PURCHASE_CUSTOMER: {
+          return {
+            ...state,
+            order: {
+              ...state.order,
+              customer: action.payload
+            },
+            loading: false
+          };
+        }
         case SET_JOB_NAME:
           return {
             ...state,
@@ -117,6 +134,16 @@ export default function(state = initialState, action) {
             },
             loading: false
           };
+        case SET_PURCHASE_CUSTOMER: {
+          return {
+            ...state,
+            quote: {
+              ...state.quote,
+              customer: action.payload
+            },
+            loading: false
+          };
+        }
         case SET_JOB_NAME:
           return {
             ...state,

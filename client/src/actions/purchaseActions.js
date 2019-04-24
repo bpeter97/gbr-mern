@@ -1,14 +1,35 @@
+import axios from "axios";
+
 import {
   PURCHASE_LOADING,
   SET_PURCHASE_TYPE,
+  GET_PURCHASE_TYPES,
   CLEAR_PURCHASE,
   SET_JOB_NAME,
   SET_JOB_ADDRESS,
   SET_JOB_CITY,
   SET_JOB_ZIPCODE,
+  SET_PURCHASE_CUSTOMER,
   GET_ERRORS
 } from "./types";
 import { setSuccess } from "./commonActions";
+
+export const getPurchaseTypes = () => dispatch => {
+  axios
+    .get("/api/settings/purchasetypes")
+    .then(res =>
+      dispatch({
+        type: GET_PURCHASE_TYPES,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.data
+      })
+    );
+};
 
 export const changePurchaseType = (type, purchaseType) => dispatch => {
   dispatch(setPurchaseLoading());
@@ -73,6 +94,23 @@ export const changeJobInfo = (dataType, info) => dispatch => {
   }
 };
 
+export const changePurchaseCustomer = id => dispatch => {
+  dispatch(setPurchaseLoading());
+
+  // check to see if type & info is defined
+  if (id === undefined) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: "Customer ID is undefined."
+    });
+  }
+
+  dispatch({
+    type: SET_PURCHASE_CUSTOMER,
+    payload: id
+  });
+};
+
 export const setJobInfo = (dataType, info) => {
   return [
     changeJobInfo(dataType, info),
@@ -85,6 +123,10 @@ export const setPurchaseType = (type, purchaseType) => {
     changePurchaseType(type, purchaseType),
     setSuccess(`The purchase type has been set to "${type}".`)
   ];
+};
+
+export const setPurchaseCustomer = id => {
+  return [changePurchaseCustomer(id), setSuccess(`The customer has been set.`)];
 };
 
 export const setPurchaseLoading = () => {

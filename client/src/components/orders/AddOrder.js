@@ -21,10 +21,6 @@ class AddOrder extends Component {
     this.props.getProducts();
   }
 
-  onFormSubmit() {
-    this.props.history.push("/orders");
-  }
-
   changeOrderName(name) {
     if (name !== this.state.formName) {
       this.setState({ formName: name });
@@ -45,7 +41,7 @@ class AddOrder extends Component {
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3">
                     <AddOrderForm
-                      redirectFunc={this.onFormSubmit.bind(this)}
+                      history={this.props.history}
                       changeName={this.changeOrderName.bind(this)}
                       products={this.props.products.products}
                     />

@@ -3,12 +3,14 @@ import axios from "axios";
 import {
   GET_ORDERS,
   // GET_ORDER,
-  // ADD_ORDER,
+  ADD_ORDER,
   // EDIT_ORDER,
   // DELETE_ORDER,
   // GET_ERRORS,
   CLEAR_ORDER,
-  ORDER_LOADING
+  ORDER_LOADING,
+  SET_SUCCESS,
+  GET_ERRORS
 } from "./types";
 // import { clearErrors } from "./commonActions";
 
@@ -26,6 +28,29 @@ export const getOrders = () => dispatch => {
       dispatch({
         type: GET_ORDERS,
         payload: null
+      })
+    );
+};
+
+export const addOrder = order => dispatch => {
+  dispatch(setOrderLoading());
+  axios
+    .post("/api/orders", order)
+    .then(
+      res =>
+        dispatch({
+          type: ADD_ORDER,
+          payload: res.data
+        }),
+      dispatch({
+        type: SET_SUCCESS,
+        payload: "The order has been created."
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };

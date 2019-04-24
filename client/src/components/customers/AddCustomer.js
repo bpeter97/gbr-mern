@@ -5,10 +5,6 @@ import AddCustomerForm from "../customers/AddCustomerForm";
 import Shortcuts from "./../dashboard/Shortcuts";
 
 class AddCustomer extends Component {
-  onFormSubmit() {
-    this.props.history.push("/customers");
-  }
-
   render() {
     return (
       <div className="container-fluid main-content">

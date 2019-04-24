@@ -34,7 +34,8 @@
     "recompose": "^0.30.0",
     "redux": "^4.0.0",
     "redux-multi": "^0.1.12",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "validator": "^10.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
