@@ -38,6 +38,9 @@ class NavBar extends Component {
     let navbar = "";
 
     let orderLinks = [
+      <Link className="dropdown-item" key={Math.random(10)} to="/orders/rental">
+        Rental
+      </Link>,
       <Link className="dropdown-item" key={Math.random(10)} to="/orders">
         View Orders
       </Link>,
