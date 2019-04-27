@@ -33,8 +33,11 @@ import AddCustomer from "./components/customers/AddCustomer";
 import EditContainer from "./components/containers/EditContainer";
 import AddContainer from "./components/containers/AddContainer";
 import EditProduct from "./components/products/EditProduct";
-import AddOrder from "./components/orders/AddOrder";
 import AddProduct from "./components/products/AddProduct";
+
+// Orders
+import AddOrder from "./components/orders/AddOrder";
+import RentalOrder from "./components/orders/forms/RentalOrder";
 
 const createHistory = require("history").createBrowserHistory;
 
@@ -208,6 +211,13 @@ class App extends Component {
                             exact
                             path="/orders/add/"
                             component={AddOrder}
+                          />
+                        </Switch>
+                        <Switch>
+                          <PrivateRoute
+                            exact
+                            path="/orders/rental/"
+                            component={RentalOrder}
                           />
                         </Switch>
                       </div>

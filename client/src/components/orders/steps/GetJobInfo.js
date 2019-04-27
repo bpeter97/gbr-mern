@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { setJobInfo } from "./../../actions/purchaseActions";
+import { setJobInfo } from "./../../../actions/purchaseActions";
 
 class GetJobInfo extends Component {
   shouldComponentUpdate(nextProps) {

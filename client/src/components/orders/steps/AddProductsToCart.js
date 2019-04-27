@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 
 import ReactTable from "react-table";
 import matchSorter from "match-sorter";
-import { addItem } from "./../../actions/cartActions";
-import SuccessAlert from "./../alerts/SuccessAlert";
-import ErrorAlert from "./../alerts/ErrorAlert";
+import { addItem } from "./../../../actions/cartActions";
+import SuccessAlert from "./../../alerts/SuccessAlert";
+import ErrorAlert from "./../../alerts/ErrorAlert";
 
 class AddProductsToCart extends Component {
   constructor() {

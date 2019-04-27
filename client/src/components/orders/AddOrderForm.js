@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import GetJobInfo from "./GetJobInfo";
-import SelectCustomer from "./SelectCustomer";
-import AddProductsToCart from "./AddProductsToCart";
+import GetJobInfo from "./steps/GetJobInfo";
+import SelectCustomer from "./steps/SelectCustomer";
+import AddProductsToCart from "./steps/AddProductsToCart";
 import SuccessAlert from "./../alerts/SuccessAlert";
 import ErrorAlert from "./../alerts/ErrorAlert";
 import { addOrder } from "./../../actions/orderActions";

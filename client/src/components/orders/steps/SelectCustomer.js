@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import checkEmpty from "./../../utils/checkEmpty";
+import checkEmpty from "./../../../utils/checkEmpty";
 import validator from "validator";
-import TextArea from "../common/TextArea";
-import SelectInput from "./../common/SelectInput";
-import ErrorAlert from "../alerts/ErrorAlert";
-import SuccessAlert from "./../alerts/SuccessAlert";
+import TextArea from "../../common/TextArea";
+import SelectInput from "./../../common/SelectInput";
+import ErrorAlert from "../../alerts/ErrorAlert";
+import SuccessAlert from "./../../alerts/SuccessAlert";
 
-import { getCustomers, addCustomer } from "./../../actions/customerActions";
-import { setPurchaseCustomer } from "./../../actions/purchaseActions";
+import { getCustomers, addCustomer } from "./../../../actions/customerActions";
+import { setPurchaseCustomer } from "./../../../actions/purchaseActions";
 
 export class SelectCustomer extends Component {
   constructor() {
