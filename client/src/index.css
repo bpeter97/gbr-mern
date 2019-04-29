@@ -627,3 +627,8 @@ li span:hover {
   height: 75vh;
   overflow-y: auto;
 }
+
+#signatureCanvas {
+  border: 1px dotted black;
+  background: rgb(235, 235, 235);
+}
