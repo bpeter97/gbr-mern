@@ -6,16 +6,26 @@ import ReactTable from "react-table";
 import matchSorter from "match-sorter";
 
 // Actions
-import { getOrders } from "../../actions/orderActions";
+import { getOrders, getOrder } from "../../actions/orderActions";
 
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
 import Spinner from "./../common/Spinner";
 import SuccessAlert from "./../alerts/SuccessAlert";
+import checkEmpty from "./../../utils/checkEmpty";
 
 class Orders extends Component {
   componentDidMount() {
     this.props.getOrders();
+  }
+
+  onSelection(id) {
+    this.props.getOrder(id);
+    setTimeout(() => {
+      if (checkEmpty(this.props.errors)) {
+        this.props.history.push("/orders/view");
+      }
+    }, 1000);
   }
 
   render() {
@@ -27,15 +37,6 @@ class Orders extends Component {
     }
 
     orders.forEach(order => {
-      let newCreationDate = new Date(order.creationDate);
-      let newDateFormat =
-        newCreationDate.getMonth() +
-        "/" +
-        newCreationDate.getDay() +
-        "/" +
-        newCreationDate.getFullYear();
-      order.creationDate = newDateFormat;
-
       if (order.stage === 1) {
         order.stage = "Pending Delivery";
       }
@@ -143,7 +144,7 @@ class Orders extends Component {
         Cell: ({ value }) => (
           <button
             className="btn btn-success"
-            // onClick={this.editCustomerClick.bind(this, value)}
+            onClick={this.onSelection.bind(this, value)}
           >
             View / Edit
           </button>
@@ -291,16 +292,19 @@ class Orders extends Component {
 Orders.propTypes = {
   auth: PropTypes.object.isRequired,
   orders: PropTypes.object.isRequired,
-  getOrders: PropTypes.func.isRequired
+  order: PropTypes.object.isRequired,
+  getOrders: PropTypes.func.isRequired,
+  getOrder: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
   orders: state.orders,
+  order: state.orders.order,
   success: state.success
 });
 
 export default connect(
   mapStateToProps,
-  { getOrders }
+  { getOrders, getOrder }
 )(Orders);

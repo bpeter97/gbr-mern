@@ -21,12 +21,24 @@ export default function(state = initialState, action) {
         ...state,
         loading: true
       };
-    case GET_ORDERS:
+    case GET_ORDERS: {
+      action.payload.forEach(order => {
+        let newCreationDate = new Date(order.creationDate);
+        let newDateFormat =
+          newCreationDate.getMonth() +
+          "/" +
+          newCreationDate.getDay() +
+          "/" +
+          newCreationDate.getFullYear();
+        order.creationDate = newDateFormat;
+      });
+
       return {
         ...state,
         orders: action.payload,
         loading: false
       };
+    }
     case GET_ORDER:
       return {
         ...state,

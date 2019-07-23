@@ -37,6 +37,7 @@ import AddProduct from "./components/products/AddProduct";
 
 // Orders
 import AddOrder from "./components/orders/AddOrder";
+import ViewOrder from "./components/orders/ViewOrder";
 import RentalOrder from "./components/orders/forms/RentalOrder";
 
 const createHistory = require("history").createBrowserHistory;
@@ -211,6 +212,13 @@ class App extends Component {
                             exact
                             path="/orders/add/"
                             component={AddOrder}
+                          />
+                        </Switch>
+                        <Switch>
+                          <PrivateRoute
+                            exact
+                            path="/orders/view/"
+                            component={ViewOrder}
                           />
                         </Switch>
                         <Switch>

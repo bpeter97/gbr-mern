@@ -2,7 +2,7 @@ import axios from "axios";
 
 import {
   GET_ORDERS,
-  // GET_ORDER,
+  GET_ORDER,
   ADD_ORDER,
   // EDIT_ORDER,
   // DELETE_ORDER,
@@ -27,6 +27,23 @@ export const getOrders = () => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_ORDERS,
+        payload: null
+      })
+    );
+};
+
+export const getOrder = id => dispatch => {
+  axios
+    .get(`/api/orders/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_ORDER,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ORDER,
         payload: null
       })
     );

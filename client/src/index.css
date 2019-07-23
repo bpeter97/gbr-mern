@@ -628,6 +628,24 @@ li span:hover {
   overflow-y: auto;
 }
 
+@media screen and (min-width: 600px) {
+  .view-text-label {
+    text-align: right;
+  }
+  .view-text {
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .view-text-label {
+    text-align: left;
+  }
+  .view-text {
+    text-align: right;
+  }
+}
+
 #signatureCanvas {
   border: 1px dotted black;
   background: rgb(235, 235, 235);
