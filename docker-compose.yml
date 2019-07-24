@@ -1,0 +1,43 @@
+version: "3"
+services:
+  web:
+    environment:
+      - mongoURI=$mongoURI
+      - mongoTestURI=$mongoTestURI
+      - secretKey=$secretKey
+      - NODE_ENV=$NODE_ENV
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/client/node_modules
+      - .:/app/client
+  server:
+    environment:
+      - mongoURI=$mongoURI
+      - mongoTestURI=$mongoTestURI
+      - secretKey=$secretKey
+      - NODE_ENV=$NODE_ENV
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - /app/node_modules
+      - .:/app
+  tests:
+    environment:
+      - mongoURI=$mongoURI
+      - mongoTestURI=$mongoTestURI
+      - secretKey=$secretKey
+      - NODE_ENV=$NODE_ENV
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test-all"]
