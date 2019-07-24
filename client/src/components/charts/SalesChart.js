@@ -6,7 +6,7 @@ import { getOrders } from "../../actions/orderActions";
 import PropTypes from "prop-types";
 import Spinner from "./../common/Spinner";
 
-var LineChart = require("react-chartjs").Line;
+var LineChart = require("react-chartjs-2").Line;
 
 class SalesChart extends Component {
   componentDidMount() {

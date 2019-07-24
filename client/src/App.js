@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import { ConnectedRouter as Router } from "react-router-redux";
+import { ConnectedRouter as Router } from "connected-react-router";
 
 import store from "./store";
 

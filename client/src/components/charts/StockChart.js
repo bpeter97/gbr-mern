@@ -5,7 +5,7 @@ import { getContainers } from "../../actions/containerActions";
 import PropTypes from "prop-types";
 import Spinner from "./../common/Spinner";
 
-var BarChart = require("react-chartjs").Bar;
+var BarChart = require("react-chartjs-2").Bar;
 
 class StockChart extends Component {
   componentDidMount() {
