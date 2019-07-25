@@ -25,7 +25,7 @@ exports.getOrders = (req, res) => {
     .populate("purchasePrices")
     .populate({
       path: "products.product",
-      model: Product
+      model: RequestedProduct
     })
     .populate("containers.container")
     .populate({
@@ -66,7 +66,7 @@ exports.getUserOrders = (req, res) => {
     .populate("purchasePrices")
     .populate({
       path: "products.product",
-      model: Product
+      model: RequestedProduct
     })
     .populate("containers.container")
     .populate({
@@ -109,7 +109,7 @@ exports.getCustomerOrders = (req, res) => {
     .populate("purchasePrices")
     .populate({
       path: "products.product",
-      model: Product
+      model: RequestedProduct
     })
     .populate("containers.container")
     .populate({
@@ -297,7 +297,7 @@ exports.postOrder = (req, res) => {
                     .populate("purchasePrices")
                     .populate({
                       path: "products.product",
-                      model: Product
+                      model: RequestedProduct
                     })
                     .populate("containers.container")
                     .populate({
@@ -374,7 +374,7 @@ exports.getOrder = (req, res) => {
     .populate("purchasePrices")
     .populate({
       path: "products.product",
-      model: Product
+      model: RequestedProduct
     })
     .populate("containers.container")
     .populate({

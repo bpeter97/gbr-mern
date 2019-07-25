@@ -83,14 +83,14 @@ button {
   outline: none;
 }
 
-li span {
+#todoItem li span {
   float: right;
   color: #006400;
   transition: all 0.3s;
   opacity: 0;
   font-size: initial;
 }
-li span:hover {
+#todoItem li span:hover {
   color: red;
 }
 /* .customer-form {
@@ -228,6 +228,11 @@ li span:hover {
 .btn {
   background-color: #006400;
   border-color: #006400;
+}
+
+.btn-danger {
+  background-color: #c50000 !important;
+  border-color: #c50000 !important;
 }
 
 .nav.btn {

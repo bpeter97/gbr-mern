@@ -37,7 +37,6 @@ class GBRCart extends Component {
   }
 
   quantityChange = e => {
-    console.log(parseInt(e.target.name, 10));
     this.props.modifyQuantity(
       parseInt(e.target.name, 10),
       e.target.value,

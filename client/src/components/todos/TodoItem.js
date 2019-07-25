@@ -34,7 +34,7 @@ class TodoItem extends Component {
       completed: this.state.completed
     });
     return (
-      <div>
+      <div id="todoItem">
         <li
           className={todoClass}
           onClick={this.onCompleteClick.bind(this, todo)}
@@ -57,6 +57,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { deleteTodo, completeTodo, getTodos })(
-  TodoItem
-);
+export default connect(
+  mapStateToProps,
+  { deleteTodo, completeTodo, getTodos }
+)(TodoItem);
