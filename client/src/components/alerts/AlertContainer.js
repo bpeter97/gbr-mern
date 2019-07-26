@@ -19,7 +19,7 @@ const AlertContainer = (messages, type, className) => {
 };
 
 AlertContainer.propTypes = {
-	message: PropTypes.string.isRequired,
+	message: PropTypes.object.isRequired,
 	type: PropTypes.string.isRequired,
 	className: PropTypes.string.isRequired
 };
