@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Alert = ({ message, type, className }) => {
+const Alert = (message, type, className) => {
 	if (message) {
 		return (
 			<div className={className} role="alert">
