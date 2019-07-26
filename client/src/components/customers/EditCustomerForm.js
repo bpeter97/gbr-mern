@@ -5,7 +5,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { editCustomer } from "../../actions/customerActions";
 import TextArea from "../common/TextArea";
 import SelectInput from "./../common/SelectInput";
-import ErrorAlert from "../alerts/ErrorAlert";
+import AlertContainer from "../alerts/AlertContainer";
 import checkEmpty from "./../../utils/checkEmpty";
 
 class EditCustomerForm extends Component {
@@ -113,20 +113,15 @@ class EditCustomerForm extends Component {
       ];
     }
 
-    var errorAlert = errors => {
-      for (var property in errors) {
-        var error;
-        if (errors.hasOwnProperty(property)) {
-          error = errors[property];
-        }
-
-        return <ErrorAlert error={error} />;
-      }
-    };
-
     let form = (
       <form onSubmit={this.onSubmit}>
-        {errorAlert(this.state.errors)}
+        {errors ? (
+          <AlertContainer
+            messages={errors}
+            type="Error"
+            className="alert alert-danger"
+          />
+        ) : null}
         <div className="col-md-12">
           <div className="form-row pt-2">
             <TextFieldGroup

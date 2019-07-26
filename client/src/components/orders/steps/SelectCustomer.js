@@ -5,7 +5,6 @@ import checkEmpty from "./../../../utils/checkEmpty";
 import validator from "validator";
 import TextArea from "../../common/TextArea";
 import SelectInput from "./../../common/SelectInput";
-import ErrorAlert from "../../alerts/ErrorAlert";
 import AlertContainer from "./../../alerts/AlertContainer";
 
 import { getCustomers, addCustomer } from "./../../../actions/customerActions";
@@ -161,20 +160,8 @@ export class SelectCustomer extends Component {
 
     let custOptions = this.setCustomerOptions(customers);
 
-    var errorAlert = errors => {
-      for (var property in errors) {
-        var error;
-        if (errors.hasOwnProperty(property)) {
-          error = errors[property];
-        }
-
-        return <ErrorAlert error={error} />;
-      }
-    };
-
     return (
       <div className="form-group add-order-step-component component-fade-in">
-        {errorAlert(this.state.errors)}
         {this.props.success.message ? (
           <AlertContainer
             messages={this.props.success}
@@ -182,9 +169,11 @@ export class SelectCustomer extends Component {
             className="alert alert-success"
           />
         ) : null}
-        {this.props.errors.error !== "" ? (
-          <ErrorAlert
-            error={this.props.errors.error ? this.props.errors.error : ""}
+        {errors ? (
+          <AlertContainer
+            messages={errors}
+            type="Error"
+            className="alert alert-danger"
           />
         ) : null}
         <div className="d-flex flex-row text-center justify-content-center">
@@ -239,7 +228,13 @@ export class SelectCustomer extends Component {
                     </button>
                   </div>
                   <div className="modal-body text-left">
-                    {errorAlert(this.state.errors)}
+                    {errors ? (
+                      <AlertContainer
+                        messages={errors}
+                        type="Error"
+                        className="alert alert-danger"
+                      />
+                    ) : null}
                     <div className="col-md-12">
                       <label>Name</label>
                       <input

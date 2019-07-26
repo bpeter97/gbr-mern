@@ -8,11 +8,11 @@ const AlertContainer = ({ messages, className, type }) => {
   if (!checkEmpty(messages)) {
     for (var property in messages) {
       let msg;
-      if (type == "Error") {
+      if (type === "Error") {
         if (messages.hasOwnProperty(property)) {
           msg = messages[property];
         }
-      } else if (type == "Success") {
+      } else if (type === "Success") {
         msg = messages.message;
       }
 

@@ -5,7 +5,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { addContainer } from "../../actions/containerActions";
 import TextArea from "../common/TextArea";
 import SelectInput from "../common/SelectInput";
-import ErrorAlert from "../alerts/ErrorAlert";
+import AlertContainer from "../alerts/AlertContainer";
 import checkEmpty from "./../../utils/checkEmpty";
 
 class AddContainerForm extends Component {
@@ -86,20 +86,15 @@ class AddContainerForm extends Component {
       { value: false, selected: false, label: "No" }
     ];
 
-    var errorAlert = errors => {
-      for (var property in errors) {
-        var error;
-        if (errors.hasOwnProperty(property)) {
-          error = errors[property];
-        }
-
-        return <ErrorAlert error={error} />;
-      }
-    };
-
     let form = (
       <form onSubmit={this.onSubmit}>
-        {errorAlert(this.state.errors)}
+        {errors ? (
+          <AlertContainer
+            messages={errors}
+            type="Error"
+            className="alert alert-danger"
+          />
+        ) : null}
         <div className="col-md-12">
           <TextFieldGroup
             name="gbrNumber"
