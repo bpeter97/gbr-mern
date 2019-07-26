@@ -72,12 +72,6 @@ class AddCustomerForm extends Component {
 	render() {
 		const { errors } = this.props;
 
-		<AlertContainer
-			messages={errors}
-			type="Error"
-			className="alert alert-danger"
-		/>;
-
 		// // TODO: Change this to a component container.
 		// var errorAlert = errors => {
 		// 	for (var property in errors) {
@@ -92,7 +86,11 @@ class AddCustomerForm extends Component {
 
 		let form = (
 			<form onSubmit={this.onSubmit}>
-				{errorAlert(this.state.errors)}
+				<AlertContainer
+					messages={errors}
+					type="Error"
+					className="alert alert-danger"
+				/>;
 				<div className="col-md-12">
 					<TextFieldGroup
 						name="name"
