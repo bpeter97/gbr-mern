@@ -2,8 +2,7 @@ import React, { Component } from "react";
 
 // Components
 import Calendar from "./../calendar/Calendar";
-import SalesChart from "./../charts/SalesChart";
-import StockChart from "./../charts/StockChart";
+import ChartContainer from "./../charts/ChartContainer";
 import Shortcuts from "./Shortcuts";
 import Notifications from "./../notifications/Notifications";
 import RecentVisits from "./../visits/RecentVisits";
@@ -22,7 +21,7 @@ class Dashboard extends Component {
                 </h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="p-1 w-75">
-                    <SalesChart />
+                    <ChartContainer type="sales" />
                   </div>
                 </div>
               </div>
@@ -36,7 +35,7 @@ class Dashboard extends Component {
                 </h5>
                 <div className="d-flex flex-row ">
                   <div className="p-1 stock-chart mt-auto mb-auto justify-content-around">
-                    <StockChart />
+                    <ChartContainer type="stock" />
                   </div>
                 </div>
               </div>
