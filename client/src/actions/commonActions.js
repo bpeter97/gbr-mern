@@ -1,9 +1,9 @@
 import { CLEAR_ERRORS, CLEAR_SUCCESS, SET_SUCCESS, SET_ERRORS } from "./types";
 
-export const setErrors = msg => {
+export const setErrors = success => {
   return {
     type: SET_ERRORS,
-    payload: msg
+    payload: success
   };
 };
 
@@ -13,10 +13,10 @@ export const clearErrors = () => {
   };
 };
 
-export const setSuccess = msg => {
+export const setSuccess = success => {
   return {
     type: SET_SUCCESS,
-    payload: msg
+    payload: success
   };
 };
 

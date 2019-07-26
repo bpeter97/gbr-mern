@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SuccessAlert = ({ msg }) => {
-  if (msg) {
+const SuccessAlert = ({ success }) => {
+  if (success) {
     return (
       <div className="alert alert-success" role="alert">
         <div className="pt-2 pb-2">
           <span className="ml-2">
             <strong>Success: </strong>
-            {msg}
+            {success}
           </span>
         </div>
       </div>
@@ -19,7 +19,7 @@ const SuccessAlert = ({ msg }) => {
 };
 
 SuccessAlert.propTypes = {
-  msg: PropTypes.string.isRequired
+  success: PropTypes.string.isRequired
 };
 
 export default SuccessAlert;

@@ -7,7 +7,11 @@ const AlertContainer = (messages, type, className) => {
 	for (var property in messages) {
 		var msg;
 		if (messages.hasOwnProperty(property)) {
-			msg = messages[property];
+			if (type == "Error") {
+				msg = messages[property].error;
+			} else if (type == "Success") {
+				msg = messages[property].success;
+			}
 		}
 
 		return <Alert message={msg} type={type} className={className} />;
