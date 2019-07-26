@@ -28,9 +28,6 @@ class EditContainerForm extends Component {
       currentlyRented: false,
       size: {}
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.fillForm = this.fillForm.bind(this);
   }
 
   componentDidMount() {
@@ -99,7 +96,7 @@ class EditContainerForm extends Component {
     }
   };
 
-  fillForm(container) {
+  fillForm = container => {
     this.setState({
       gbrNumber: container.gbrNumber || "",
       releaseNumber: container.releaseNumber || "",
@@ -118,7 +115,7 @@ class EditContainerForm extends Component {
       deliveries: container.deliveries || {}
     });
     this.forceUpdate();
-  }
+  };
 
   render() {
     const { errors, sizes, container } = this.props;

@@ -61,14 +61,13 @@ class App extends Component {
     this.state = {
       collapsed: false
     };
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick = () => {
     this.setState({
       collapsed: !this.state.collapsed
     });
-  }
+  };
 
   render() {
     return (

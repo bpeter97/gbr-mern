@@ -18,9 +18,6 @@ class AddProductForm extends Component {
       rental: false,
       type: ""
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -30,7 +27,7 @@ class AddProductForm extends Component {
     return null;
   }
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
 
     const productData = {
@@ -47,11 +44,11 @@ class AddProductForm extends Component {
         this.props.history.push("/products");
       }
     }, 1000);
-  }
+  };
 
-  onChange(e) {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   render() {
     const { errors, types } = this.props;

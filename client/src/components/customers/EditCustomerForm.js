@@ -29,9 +29,6 @@ class EditCustomerForm extends Component {
       lastViewed: "",
       selectedOption: null
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.fillForm = this.fillForm.bind(this);
   }
 
   componentDidMount() {
@@ -79,7 +76,7 @@ class EditCustomerForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  fillForm(customer) {
+  fillForm = customer => {
     this.setState({
       name: customer.name || "",
       address1: customer.address1 || "",
@@ -97,7 +94,7 @@ class EditCustomerForm extends Component {
       flagReason: customer.flagReason || "",
       lastViewed: customer.lastViewed || ""
     });
-  }
+  };
 
   render() {
     const { errors } = this.props;

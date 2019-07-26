@@ -21,11 +21,11 @@ class AddOrder extends Component {
     this.props.getProducts();
   }
 
-  changeOrderName(name) {
+  changeOrderName = name => {
     if (name !== this.state.formName) {
       this.setState({ formName: name });
     }
-  }
+  };
 
   render() {
     return (
@@ -42,7 +42,7 @@ class AddOrder extends Component {
                   <div className="col-12 py-md-3">
                     <AddOrderForm
                       history={this.props.history}
-                      changeName={this.changeOrderName.bind(this)}
+                      changeName={this.changeOrderName}
                       products={this.props.products.products}
                     />
                   </div>

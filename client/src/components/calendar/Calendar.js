@@ -18,8 +18,6 @@ class Calendar extends Component {
   constructor(props) {
     super(props);
     this.state = { events: [], show: false, event: {} };
-
-    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
@@ -30,9 +28,9 @@ class Calendar extends Component {
     return this.state.events.length !== nextProps.events.events.length;
   }
 
-  toggleModal() {
+  toggleModal = () => {
     this.setState({ show: !this.state.show });
-  }
+  };
 
   render() {
     const { calendar } = this.refs;

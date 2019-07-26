@@ -28,8 +28,6 @@ class AddCustomerForm extends Component {
       flagReason: "",
       lastViewed: ""
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -39,7 +37,7 @@ class AddCustomerForm extends Component {
     return null;
   }
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
 
     const customerData = {
@@ -64,15 +62,16 @@ class AddCustomerForm extends Component {
         this.props.history.push("/customers");
       }
     }, 1000);
-  }
+  };
 
-  onChange(e) {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   render() {
     const { errors } = this.props;
 
+    // TODO: Change this to a component container.
     var errorAlert = errors => {
       for (var property in errors) {
         var error;

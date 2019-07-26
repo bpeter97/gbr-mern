@@ -17,11 +17,9 @@ class SideNav extends Component {
       query: "",
       errors: {}
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    // this.onLogoutClick = this.onLogoutClick.bind(this);
   }
-  onSubmit(e) {
+
+  onSubmit = e => {
     e.preventDefault();
 
     const query = {
@@ -29,10 +27,11 @@ class SideNav extends Component {
     };
     console.log(query);
     // this.props.search(query);
-  }
-  onChange(e) {
+  };
+
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   render() {
     let navbarContent;

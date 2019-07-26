@@ -19,17 +19,16 @@ class NavBar extends Component {
       query: "",
       errors: {}
     };
-    this.onLogoutClick = this.onLogoutClick.bind(this);
   }
 
   shouldComponentUpdate(nextProps) {
     return nextProps !== this.props;
   }
 
-  onLogoutClick(e) {
+  onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
-  }
+  };
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -210,10 +209,7 @@ class NavBar extends Component {
                     Settings
                   </a>
 
-                  <a
-                    className="dropdown-item"
-                    onClick={this.onLogoutClick.bind(this)}
-                  >
+                  <a className="dropdown-item" onClick={this.onLogoutClick}>
                     Log off
                   </a>
                 </div>

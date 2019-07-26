@@ -19,9 +19,6 @@ class EditProductFom extends Component {
       rental: false,
       type: ""
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.fillForm = this.fillForm.bind(this);
   }
 
   componentDidMount() {
@@ -62,7 +59,7 @@ class EditProductFom extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  fillForm(product) {
+  fillForm = product => {
     this.setState({
       name: product.name || "",
       shortName: product.shortName || "",
@@ -72,7 +69,7 @@ class EditProductFom extends Component {
       typeObj: product.type || "",
       type: product.type ? product.type._id : "" || ""
     });
-  }
+  };
 
   render() {
     const { errors, types, product } = this.props;

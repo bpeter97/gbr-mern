@@ -24,9 +24,6 @@ class AddContainerForm extends Component {
       isFlagged: false,
       flagReason: ""
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -36,7 +33,7 @@ class AddContainerForm extends Component {
     return null;
   }
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
 
     const containerData = {
@@ -58,11 +55,11 @@ class AddContainerForm extends Component {
         this.props.history.push("/containers");
       }
     }, 1000);
-  }
+  };
 
-  onChange(e) {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   render() {
     const { errors, sizes } = this.props;

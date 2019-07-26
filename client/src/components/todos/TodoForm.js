@@ -11,9 +11,6 @@ class TodoForm extends Component {
       desc: "",
       errors: {}
     };
-
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -22,7 +19,7 @@ class TodoForm extends Component {
     }
   }
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
     const todoData = {
       desc: this.state.desc
@@ -31,11 +28,11 @@ class TodoForm extends Component {
     //attach to user object
     this.props.addTodo(todoData);
     this.setState({ desc: "" });
-  }
+  };
 
-  onChange(e) {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   render() {
     const { errors } = this.state;
