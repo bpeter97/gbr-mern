@@ -10,7 +10,7 @@ import { getContainers } from "../../actions/containerActions";
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
 import Spinner from "./../common/Spinner";
-import SuccessAlert from "./../alerts/SuccessAlert";
+import AlertContainer from "./../alerts/AlertContainer";
 
 class Containers extends Component {
   componentDidMount() {
@@ -26,10 +26,6 @@ class Containers extends Component {
   }
 
   render() {
-    let successMessage = null;
-    if (this.props.success.message !== undefined) {
-      successMessage = this.props.success.message;
-    }
     const { containers } = this.props.containers;
 
     containers.forEach(container => {
@@ -117,7 +113,13 @@ class Containers extends Component {
         <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 pb-4">
-            {successMessage ? <SuccessAlert msg={successMessage} /> : null}
+            {this.props.success.message ? (
+              <AlertContainer
+                messages={this.props.success}
+                type="Success"
+                className="alert alert-success"
+              />
+            ) : null}
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">Containers</h5>

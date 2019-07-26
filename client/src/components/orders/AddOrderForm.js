@@ -5,8 +5,7 @@ import PropTypes from "prop-types";
 import GetJobInfo from "./steps/GetJobInfo";
 import SelectCustomer from "./steps/SelectCustomer";
 import AddProductsToCart from "./steps/AddProductsToCart";
-import SuccessAlert from "./../alerts/SuccessAlert";
-import ErrorAlert from "./../alerts/ErrorAlert";
+import AlertContainer from "./../alerts/AlertContainer";
 import { addOrder } from "./../../actions/orderActions";
 import checkEmpty from "./../../utils/checkEmpty";
 
@@ -248,9 +247,11 @@ class AddOrderForm extends Component {
     } else {
       step1 = (
         <div className="form-group add-order-step-component component-fade-in">
-          {this.props.errors.error !== "" ? (
-            <ErrorAlert
-              error={this.props.errors.error ? this.props.errors.error : ""}
+          {this.props.errors ? (
+            <AlertContainer
+              messages={this.props.errors}
+              type="Error"
+              className="alert alert-danger"
             />
           ) : null}
           <div className="form-check d-flex flex-row text-center justify-content-center">

@@ -11,7 +11,7 @@ import { getOrders, getOrder } from "../../actions/orderActions";
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
 import Spinner from "./../common/Spinner";
-import SuccessAlert from "./../alerts/SuccessAlert";
+import AlertContainer from "./../alerts/AlertContainer";
 import checkEmpty from "./../../utils/checkEmpty";
 
 class Orders extends Component {
@@ -30,11 +30,6 @@ class Orders extends Component {
 
   render() {
     const { orders } = this.props.orders;
-
-    let successMessage = null;
-    if (this.props.success.message !== undefined) {
-      successMessage = this.props.success.message;
-    }
 
     orders.forEach(order => {
       if (order.stage === 1) {
@@ -218,7 +213,13 @@ class Orders extends Component {
         <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 pb-4">
-            {successMessage ? <SuccessAlert msg={successMessage} /> : null}
+            {this.props.success.message ? (
+              <AlertContainer
+                messages={this.props.success}
+                type="Success"
+                className="alert alert-success"
+              />
+            ) : null}
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">Orders</h5>

@@ -5,8 +5,7 @@ import PropTypes from "prop-types";
 import ReactTable from "react-table";
 import matchSorter from "match-sorter";
 import { addItem } from "./../../../actions/cartActions";
-import SuccessAlert from "./../../alerts/SuccessAlert";
-import ErrorAlert from "./../../alerts/ErrorAlert";
+import AlertContainer from "./../../alerts/AlertContainer";
 
 class AddProductsToCart extends Component {
   constructor() {
@@ -250,14 +249,18 @@ class AddProductsToCart extends Component {
     // The markup for the Step 1 UI
     return (
       <div className="add-order-step-component component-fade-in">
-        {this.props.success.message !== "" ? (
-          <SuccessAlert
-            msg={this.props.success.message ? this.props.success.message : ""}
+        {this.props.success.message ? (
+          <AlertContainer
+            messages={this.props.success}
+            type="Success"
+            className="alert alert-success"
           />
         ) : null}
-        {this.props.errors.error !== "" ? (
-          <ErrorAlert
-            error={this.props.errors.error ? this.props.errors.error : ""}
+        {this.props.errors ? (
+          <AlertContainer
+            messages={this.props.errors}
+            type="Error"
+            className="alert alert-danger"
           />
         ) : null}
         <ul className="nav nav-tabs" id="rentalProductsTab" role="tablist">

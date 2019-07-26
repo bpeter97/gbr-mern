@@ -6,7 +6,7 @@ import validator from "validator";
 import TextArea from "../../common/TextArea";
 import SelectInput from "./../../common/SelectInput";
 import ErrorAlert from "../../alerts/ErrorAlert";
-import SuccessAlert from "./../../alerts/SuccessAlert";
+import AlertContainer from "./../../alerts/AlertContainer";
 
 import { getCustomers, addCustomer } from "./../../../actions/customerActions";
 import { setPurchaseCustomer } from "./../../../actions/purchaseActions";
@@ -175,9 +175,11 @@ export class SelectCustomer extends Component {
     return (
       <div className="form-group add-order-step-component component-fade-in">
         {errorAlert(this.state.errors)}
-        {this.props.success.message !== "" ? (
-          <SuccessAlert
-            msg={this.props.success.message ? this.props.success.message : ""}
+        {this.props.success.message ? (
+          <AlertContainer
+            messages={this.props.success}
+            type="Success"
+            className="alert alert-success"
           />
         ) : null}
         {this.props.errors.error !== "" ? (

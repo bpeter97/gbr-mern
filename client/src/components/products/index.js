@@ -9,7 +9,7 @@ import matchSorter from "match-sorter";
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
 import Spinner from "./../common/Spinner";
-import SuccessAlert from "./../alerts/SuccessAlert";
+import AlertContainer from "./../alerts/AlertContainer";
 
 class Products extends Component {
   componentDidMount() {
@@ -18,11 +18,6 @@ class Products extends Component {
 
   render() {
     const { products } = this.props.products;
-
-    let successMessage = null;
-    if (this.props.success.message !== undefined) {
-      successMessage = this.props.success.message;
-    }
 
     const columns = [
       {
@@ -83,7 +78,13 @@ class Products extends Component {
         <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 pb-4">
-            {successMessage ? <SuccessAlert msg={successMessage} /> : null}
+            {this.props.success.message ? (
+              <AlertContainer
+                messages={this.props.success}
+                type="Success"
+                className="alert alert-success"
+              />
+            ) : null}
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">Products</h5>

@@ -11,7 +11,7 @@ import { getQuotes } from "../../actions/quoteActions";
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
 import Spinner from "./../common/Spinner";
-import SuccessAlert from "./../alerts/SuccessAlert";
+import AlertContainer from "./../alerts/AlertContainer";
 
 class Quotes extends Component {
   componentDidMount() {
@@ -20,11 +20,6 @@ class Quotes extends Component {
 
   render() {
     const { quotes } = this.props.quotes;
-
-    let successMessage = null;
-    if (this.props.success.message !== undefined) {
-      successMessage = this.props.success.message;
-    }
 
     quotes.forEach(quote => {
       let newCreationDate = new Date(quote.creationDate);
@@ -121,7 +116,13 @@ class Quotes extends Component {
         <Shortcuts history={this.props.history} />
         <div className="row justify-content-center">
           <div className="col-sm-12 pb-4">
-            {successMessage ? <SuccessAlert msg={successMessage} /> : null}
+            {this.props.success.message ? (
+              <AlertContainer
+                messages={this.props.success}
+                type="Success"
+                className="alert alert-success"
+              />
+            ) : null}
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">Quotes</h5>
