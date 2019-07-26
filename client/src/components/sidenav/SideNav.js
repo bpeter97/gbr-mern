@@ -50,13 +50,13 @@ class SideNav extends Component {
         >
           <nav className="links" id="route-links">
             {/* SIDE NAV TOGGLE > MD, USED TO CHANGE COLLAPSE  */}
-            <a
+            <button
               className="d-none d-md-block navbar-toggler sidebar-toggler"
               id="collapse-icon"
               onClick={this.props.handleClick}
             >
               <SvgIcon size={20} icon={collapsed ? ArrowRight : ArrowLeft} />
-            </a>
+            </button>
             {/* BOOTSTRAP NAVBAR TOGGLE */}
             <form onSubmit={this.onSubmit} className="nav-search d-flex">
               <TextFieldInput

@@ -4,17 +4,17 @@ import PropTypes from "prop-types";
 const DropDownNavItem = ({ label, labelId, links }) => {
   return (
     <li className="nav-item dropdown">
-      <a
+      <button
         className="nav-link dropdown-toggle"
         href=""
         id={labelId}
-        role="button"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
+        style={{ backgroundColor: "#ffffff00", fontSize: "16px" }}
       >
         {label}
-      </a>
+      </button>
       <div className="dropdown-menu" aria-labelledby={labelId}>
         {links.map(link => {
           return link;

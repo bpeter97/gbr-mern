@@ -32,7 +32,7 @@ class NavBar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    const { cart, totalQty } = this.props.cart;
+    const { totalQty } = this.props.cart;
 
     let navbar = "";
 
@@ -153,16 +153,18 @@ class NavBar extends Component {
             </ul>
             <ul className="navbar-nav ml-auto">
               <li className="dropdown my-auto">
-                <a
-                  href=""
-                  className={
-                    cart.length > 0 ? "dropdown-toggle" : "dropdown-toggle"
-                  }
+                <button
+                  href="#"
+                  className="dropdown-toggle"
                   id="account"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
-                  style={{ color: "#008000" }}
+                  style={{
+                    color: "#008000",
+                    backgroundColor: "#ffffff00",
+                    fontSize: "16px"
+                  }}
                 >
                   <SvgIcon
                     size={30}
@@ -171,7 +173,7 @@ class NavBar extends Component {
                     className="pr-2"
                   />
                   {totalQty} - item(s)
-                </a>
+                </button>
                 <GBRCart cart={this.props.cart.cart} />
               </li>
               <li className="nav-item px-2 my-auto d-none d-lg-block">|</li>
@@ -181,20 +183,21 @@ class NavBar extends Component {
                 </strong>
               </li>
               <li className="dropdown my-auto">
-                <a
-                  href=""
+                <button
+                  href="#"
                   className="dropdown-toggle"
                   id="account"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
+                  style={{ backgroundColor: "#ffffff00" }}
                 >
                   <SvgIcon
                     size={30}
                     icon={AccountIcon}
                     style={{ color: "#008000" }}
                   />
-                </a>
+                </button>
                 <div
                   className="dropdown-menu dropdown-menu-right"
                   aria-labelledby="account"
@@ -205,13 +208,21 @@ class NavBar extends Component {
                     {user.lastName} {user.suffix ? user.suffix : ""}
                   </p>
                   <hr />
-                  <a className="dropdown-item" href="">
+                  <button
+                    className="dropdown-item"
+                    href="#"
+                    style={{ backgroundColor: "#ffffff00", fontSize: "16px" }}
+                  >
                     Settings
-                  </a>
+                  </button>
 
-                  <a className="dropdown-item" onClick={this.onLogoutClick}>
+                  <button
+                    className="dropdown-item"
+                    onClick={this.onLogoutClick}
+                    style={{ backgroundColor: "#ffffff00", fontSize: "16px" }}
+                  >
                     Log off
-                  </a>
+                  </button>
                 </div>
               </li>
             </ul>

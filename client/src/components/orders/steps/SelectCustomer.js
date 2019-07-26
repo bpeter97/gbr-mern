@@ -132,7 +132,7 @@ export class SelectCustomer extends Component {
   };
 
   render() {
-    const { errors } = this.props;
+    const { errors, success } = this.props;
     const { customers } = this.props.customers;
 
     if (this.props.currentStep !== 3) {
@@ -162,21 +162,21 @@ export class SelectCustomer extends Component {
 
     return (
       <div className="form-group add-order-step-component component-fade-in">
-        {this.props.success.message ? (
-          <AlertContainer
-            messages={this.props.success}
-            type="Success"
-            className="alert alert-success"
-          />
-        ) : null}
-        {errors ? (
-          <AlertContainer
-            messages={errors}
-            type="Error"
-            className="alert alert-danger"
-          />
-        ) : null}
         <div className="d-flex flex-row text-center justify-content-center">
+          {success.message ? (
+            <AlertContainer
+              messages={success}
+              type="Success"
+              className="alert alert-success"
+            />
+          ) : null}
+          {errors ? (
+            <AlertContainer
+              messages={errors}
+              type="Error"
+              className="alert alert-danger"
+            />
+          ) : null}
           <div className="col-sm-12">
             <SelectInput
               className="form-control"

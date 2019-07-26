@@ -27,15 +27,7 @@ class ViewOrder extends Component {
       this.props.history.push("/orders/");
     }
 
-    let btnClass = "btn btn-success ml-2 mr-2";
     let orderStatus = "";
-    let containerListItems = "";
-
-    if (order.purchaseType) {
-      if (order.purchaseType.type === "Sales") {
-        btnClass = "btn btn-success ml-2 mr-2 disabled";
-      }
-    }
 
     switch (order.stage) {
       case 1:
