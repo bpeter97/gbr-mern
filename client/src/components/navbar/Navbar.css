@@ -1,0 +1,10 @@
+@media only screen and (max-width: 1400px) {
+	.navBar-sizing {
+		font-size: 14px !important;
+	}
+}
+@media only screen and (min-width: 1400px) {
+	.navBar-sizing {
+		font-size: 16px !important;
+	}
+}

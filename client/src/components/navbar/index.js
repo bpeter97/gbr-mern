@@ -11,6 +11,7 @@ import Clock from "./Clock";
 import GBRCart from "./../orders/GBRCart";
 
 import DropDownNavItem from "./../common/DropDownNavItem";
+import "./Navbar.css"
 
 class NavBar extends Component {
   constructor() {
@@ -74,7 +75,7 @@ class NavBar extends Component {
         className="dropdown-item"
         key={Math.random(10)}
         to="/containers/add"
-      >
+      > 
         Add Container
       </Link>
     ];
@@ -82,7 +83,7 @@ class NavBar extends Component {
     if (isAuthenticated) {
       navbar = (
         <nav
-          className="navbar navbar-expand-md navbar-dark top-nav"
+          className="navbar navbar-expand-md navbar-dark top-nav navBar-sizing"
           style={{ backgroundColor: "#ffffff" }}
         >
           <button
@@ -155,15 +156,13 @@ class NavBar extends Component {
               <li className="dropdown my-auto">
                 <button
                   href="#"
-                  className="dropdown-toggle"
+                  className="dropdown-toggle navBar-sizing"
                   id="account"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                   style={{
                     color: "#008000",
-                    backgroundColor: "#ffffff00",
-                    fontSize: "16px"
                   }}
                 >
                   <SvgIcon
@@ -211,7 +210,7 @@ class NavBar extends Component {
                   <button
                     className="dropdown-item"
                     href="#"
-                    style={{ backgroundColor: "#ffffff00", fontSize: "16px" }}
+                    style={{ backgroundColor: "#ffffff00" }}
                   >
                     Settings
                   </button>
@@ -219,7 +218,7 @@ class NavBar extends Component {
                   <button
                     className="dropdown-item"
                     onClick={this.onLogoutClick}
-                    style={{ backgroundColor: "#ffffff00", fontSize: "16px" }}
+                    style={{ backgroundColor: "#ffffff00" }}
                   >
                     Log off
                   </button>
