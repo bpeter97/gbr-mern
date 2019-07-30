@@ -20,6 +20,10 @@ class ViewOrder extends Component {
     }
   }
 
+  viewAgreement(){
+    this.props.history.push("/orders/view/ra");
+  }
+
   render() {
     const { order } = this.props;
 
@@ -80,6 +84,7 @@ class ViewOrder extends Component {
                               <button
                                 type="button"
                                 className="btn btn-sm btn-success"
+                                onClick={this.viewAgreement()}
                               >
                                 Print Agreement
                               </button>
