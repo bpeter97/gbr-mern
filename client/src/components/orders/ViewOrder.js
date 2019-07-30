@@ -6,34 +6,32 @@ import checkEmpty from "./../../utils/checkEmpty";
 // Sub-components
 import Shortcuts from "../dashboard/Shortcuts";
 
+import { getOrder } from "./../../actions/orderActions";
+
 class ViewOrder extends Component {
-  constructor() {
-    super();
-    this.state = {
-      formName: "View Order"
-    };
+  constructor(props) {
+    super(props);
+    let hasState = this.props.location.location.state;
+    let id = "";
+    if (!hasState) {
+      this.props.history.push("/orders");
+    } else {
+      id = hasState.id;
+      this.props.getOrder(id);
+    }  
   }
 
-  changeOrderName(name) {
-    if (name !== this.state.formName) {
-      this.setState({ formName: name });
-    }
-  }
-
-  viewAgreement(){
-    this.props.history.push("/orders/view/ra");
+  viewAgreement = () => {
+    this.props.history.push("/orders/view/ra", {id: this.props.order._id});
   }
 
   render() {
     const { order } = this.props;
 
-    if (checkEmpty(this.props.order)) {
-      this.props.history.push("/orders/");
-    }
-
     let orderStatus = "";
 
     switch (order.stage) {
+      // TODO: Define stages as they become more defined.
       case 1:
         orderStatus = "Pending Delivery";
         break;
@@ -50,7 +48,7 @@ class ViewOrder extends Component {
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center py-2">
-                  {this.state.formName}
+                  View Order
                 </h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3">
@@ -84,7 +82,7 @@ class ViewOrder extends Component {
                               <button
                                 type="button"
                                 className="btn btn-sm btn-success"
-                                onClick={this.viewAgreement()}
+                                onClick={this.viewAgreement}
                               >
                                 Print Agreement
                               </button>
@@ -126,15 +124,15 @@ class ViewOrder extends Component {
                       <div className="row">
                         <div className="col-sm-12 col-md-8 col-lg-8 text-xs-center text-md-left">
                           <p className="h1 mb-2">
-                            {order.customer.name ? order.customer.name : ""}
+                            {order.customer ? order.customer.name : ""}
                           </p>
                           <span className="pl-1">
-                            {order.customer.address1
+                            {order.customer
                               ? order.customer.address1
                               : ""}
                           </span>
                           <br />
-                          {order.customer.address2 ? (
+                          {order.customer ? (
                             <span className="pl-1">
                               {order.customer.address2}
                               <br />
@@ -144,25 +142,25 @@ class ViewOrder extends Component {
                           )}
 
                           <span className="pl-1">
-                            {order.customer.city ? order.customer.city : ""},{" "}
-                            {order.customer.state ? order.customer.state : ""},{" "}
-                            {order.customer.zipcode
+                            {order.customer ? order.customer.city : ""},{" "}
+                            {order.customer ? order.customer.state : ""},{" "}
+                            {order.customer
                               ? order.customer.zipcode
                               : ""}
                           </span>
                           <br />
                           <span className="pl-1">
                             Phone:{" "}
-                            {order.customer.phone
+                            {order.customer
                               ? order.customer.phone
                               : "None"}{" "}
-                            {order.customer.ext
+                            {order.customer
                               ? "Ext: " + order.customer.ext
                               : ""}
                           </span>
                           <br />
 
-                          {order.customer.fax ? (
+                          {order.customer ? (
                             <span className="pl-1">
                               Fax: {order.customer.fax}
                               <br />
@@ -171,7 +169,7 @@ class ViewOrder extends Component {
                             ""
                           )}
 
-                          {order.customer.email ? (
+                          {order.customer ? (
                             <span className="pl-1">
                               Email: {order.customer.email}
                               <br />
@@ -184,7 +182,7 @@ class ViewOrder extends Component {
                               Order Type:
                             </span>
                             <h5 className="d-inline ml-2 font-weight-normal">
-                              {order.purchaseType.type
+                              {order.purchaseType
                                 ? order.purchaseType.type
                                 : ""}
                             </h5>
@@ -197,15 +195,15 @@ class ViewOrder extends Component {
                             </h5>
                             <br />
                             <h4 className="mt-4 pl-1">
-                              {order.job.name ? order.job.name : ""}
+                              {order.job ? order.job.name : ""}
                             </h4>
                             <span className="pl-1">
-                              {order.job.address ? order.job.address : ""}
+                              {order.job ? order.job.address : ""}
                             </span>
                             <br />
                             <span className="pl-1">
-                              {order.job.city ? order.job.city : ""}, CA,{" "}
-                              {order.job.zipcode ? order.job.zipcode : ""}
+                              {order.job ? order.job.city : ""}, CA,{" "}
+                              {order.job ? order.job.zipcode : ""}
                             </span>
                             <br />
                           </div>
@@ -215,7 +213,7 @@ class ViewOrder extends Component {
                             Order Type:
                           </h5>
                           <h5 className="d-inline ml-2 font-weight-normal">
-                            {order.purchaseType.type
+                            {order.purchaseType
                               ? order.purchaseType.type
                               : ""}
                           </h5>
@@ -225,15 +223,15 @@ class ViewOrder extends Component {
                             {orderStatus ? orderStatus : ""}
                           </h5>
                           <h4 className="mt-4">
-                            {order.job.name ? order.job.name : ""}
+                            {order.job ? order.job.name : ""}
                           </h4>
                           <span className="">
-                            {order.job.address ? order.job.address : ""}
+                            {order.job ? order.job.address : ""}
                           </span>
                           <br />
                           <span className="">
-                            {order.job.city ? order.job.city : ""}, CA,{" "}
-                            {order.job.zipcode ? order.job.zipcode : ""}
+                            {order.job ? order.job.city : ""}, CA,{" "}
+                            {order.job ? order.job.zipcode : ""}
                           </span>
                           <br />
                         </div>
@@ -243,7 +241,8 @@ class ViewOrder extends Component {
                       </div>
                       <div className="row mb-3">
                         <div className="pl-3 col-12 text-center">
-                          {order.containers.length <= 0 ? (
+                          {order.containers ?
+                          order.containers.length <= 0 ? (
                             <div>
                               <h3 className="font-weight-normal mb-3">
                                 Containers
@@ -319,7 +318,8 @@ class ViewOrder extends Component {
                                 );
                               })}
                             </ul>
-                          )}
+                          )
+                          : "No Order" }
                         </div>
                       </div>
                       <div className="row mb-3">
@@ -339,7 +339,7 @@ class ViewOrder extends Component {
                                 </div>
                                 <div className="col">
                                   <span>
-                                    {order.purchasePrices.taxRate
+                                    {order.purchasePrices
                                       ? order.purchasePrices.taxRate
                                       : ""}
                                   </span>
@@ -354,7 +354,7 @@ class ViewOrder extends Component {
                                 <div className="col">
                                   <span>
                                     $
-                                    {order.purchasePrices.monthlyPrice
+                                    {order.purchasePrices
                                       ? order.purchasePrices.monthlyPrice.toFixed(
                                           2
                                         )
@@ -371,7 +371,7 @@ class ViewOrder extends Component {
                                 <div className="col">
                                   <span>
                                     $
-                                    {order.purchasePrices.deliveryTotal
+                                    {order.purchasePrices
                                       ? order.purchasePrices.deliveryTotal.toFixed(
                                           2
                                         )
@@ -388,7 +388,7 @@ class ViewOrder extends Component {
                                 <div className="col">
                                   <span>
                                     $
-                                    {order.purchasePrices.priceBeforeTax
+                                    {order.purchasePrices
                                       ? order.purchasePrices.priceBeforeTax.toFixed(
                                           2
                                         )
@@ -409,7 +409,7 @@ class ViewOrder extends Component {
                                 <div className="col">
                                   <span>
                                     $
-                                    {order.purchasePrices.salesTax
+                                    {order.purchasePrices
                                       ? order.purchasePrices.salesTax.toFixed(2)
                                       : "0.00"}
                                   </span>
@@ -424,7 +424,7 @@ class ViewOrder extends Component {
                                 <div className="col">
                                   <span>
                                     $
-                                    {order.purchasePrices.totalPrice
+                                    {order.purchasePrices
                                       ? order.purchasePrices.totalPrice.toFixed(
                                           2
                                         )
@@ -459,7 +459,8 @@ class ViewOrder extends Component {
                                 </div>
                               </div>
                             </li>
-                            {order.products.map(product => {
+                            {order.products ?
+                            order.products.map(product => {
                               let p = product.product;
                               return (
                                 <li
@@ -498,7 +499,8 @@ class ViewOrder extends Component {
                                   </div>
                                 </li>
                               );
-                            })}
+                            })
+                            : "No Order" }
                           </ul>
                         </div>
                       </div>
@@ -618,5 +620,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { getOrder }
 )(ViewOrder);

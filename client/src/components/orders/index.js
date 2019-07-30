@@ -20,12 +20,11 @@ class Orders extends Component {
   }
 
   onSelection(id) {
-    this.props.getOrder(id);
-    setTimeout(() => {
-      if (checkEmpty(this.props.errors)) {
-        this.props.history.push("/orders/view");
-      }
-    }, 1000);
+    const location = {
+      pathname: "/orders/view",
+      state: { id: id }
+    };
+    this.props.history.push(location);
   }
 
   render() {
