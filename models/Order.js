@@ -81,6 +81,10 @@ const OrderSchema = new Schema({
 			}
 		}
 	],
+	orderSignature: {
+		type: Schema.Types.ObjectId,
+		ref: "OrderSignature"
+	},
 	createdBy: {
 		type: Schema.Types.ObjectId,
 		ref: "User",

@@ -9,9 +9,11 @@ const { populateCustomers, customers } = require("./seed/customerSeed");
 const { populateProducts } = require("./seed/productSeed");
 const {
   orders,
+  orderSignature,
   populateRequestedProducts,
   populatePurchasePrices,
-  populateOrders
+  populateOrders,
+  populateOrderSignatures
 } = require("./seed/purchasesSeed");
 const {
   populatePurchaseTypes,
@@ -35,6 +37,7 @@ describe("ORDERS", () => {
   beforeEach(populateContainerStats);
   beforeEach(populateContainers);
   beforeEach(populateOrders);
+  beforeEach(populateOrderSignatures);
 
   var newOrder = {
     quote: null,
@@ -399,5 +402,35 @@ describe("ORDERS", () => {
         })
         .end(done);
     });
+  });
+
+  describe("POST /orders/signature", () => {
+    it("should create and return a new OrderSignature", () => {
+      /* 
+        User clicks "Sign Agreement". A modal appears with the three options, 
+        a signature pad, and two text inputs, one for their printed name, and
+        one for their title.
+
+        The submit button will submit the signData, the printed name, the title,
+        the order ID, the customer ID, and the user ID to create the OrderSignature.
+
+        It will then redirect the user back to the "rental agreement" page with
+        the newly created signature already in place.
+
+        From their it will return a signature object.
+      */
+    });
+    it("should not create a new OrderSignature if not logged in");
+  });
+
+  describe("GET /orders/signature/:id", () => {
+    it("should return an OrderSignature");
+    it("should not return an OrderSignature if not logged in");
+  });
+
+  describe("DELETE /orders/signature/:id", () => {
+    it("should delete a specific OrderSignature");
+    it("should not delete an OrderSignature if not logged in");
+    it("should not delete an OrderSignature with invalid ID");
   });
 });

@@ -21,6 +21,8 @@ export class RentalOrder extends Component {
   bindSignature = e => {
     if (this.state.signInput.isEmpty()) return false;
 
+    console.log(this.state.signInput.toData());
+
     let imageURL = this.state.signInput.toDataURL();
 
     let image = imageURL,
@@ -28,7 +30,11 @@ export class RentalOrder extends Component {
       img = document.createElement("img");
 
     img.src = image;
-    img.alt = "Double Click to Remove Signature";
+    img.alt = "Signature";
+
+    // Before adding signature to page, we will send it to the DB.
+    // this.props.addSignatureToOrder(orderId, signData);
+
     if (container.children.length > 0) {
       container.removeChild(container.children[0]);
     }
