@@ -3,24 +3,24 @@ import { Provider } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter as Router } from "connected-react-router";
 
-import store from "./store";
+import store from "../../store";
 
 import jwt_decode from "jwt-decode";
-import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "./actions/defaultsActions";
+import setAuthToken from "../../utils/setAuthToken";
+import { setCurrentUser, logoutUser } from "./../../actions/defaultsActions";
 
-import Login from "./components/defaults/Login";
-import PrivateRoute from "./components/common/PrivateRoute";
-import Dashboard from "./components/dashboard";
-import SideNav from "./components/sidenav/SideNav";
-import Calendars from "./components/calendar";
-import Customers from "./components/customers";
-import Containers from "./components/containers";
-import Products from "./components/products";
-import Orders from "./components/orders";
-import Quotes from "./components/quotes";
-import Users from "./components/users";
-import NavBar from "./components/navbar";
+import Login from "../defaults/Login";
+import PrivateRoute from "../common/PrivateRoute";
+import Dashboard from "../dashboard";
+import SideNav from "../sidenav/SideNav";
+import Calendars from "../calendar";
+import Customers from "../customers";
+import Containers from "../containers";
+import Products from "../products";
+import Orders from "../orders";
+import Quotes from "../quotes";
+import Users from "../users";
+import NavBar from "../navbar";
 
 import Drawer, {
   DrawerContainer,
@@ -28,18 +28,18 @@ import Drawer, {
 } from "react-swipeable-drawer";
 
 import "./App.css";
-import EditCustomer from "./components/customers/EditCustomer";
-import AddCustomer from "./components/customers/AddCustomer";
-import EditContainer from "./components/containers/EditContainer";
-import AddContainer from "./components/containers/AddContainer";
-import EditProduct from "./components/products/EditProduct";
-import AddProduct from "./components/products/AddProduct";
+import EditCustomer from "../customers/EditCustomer";
+import AddCustomer from "../customers/AddCustomer";
+import EditContainer from "../containers/EditContainer";
+import AddContainer from "../containers/AddContainer";
+import EditProduct from "../products/EditProduct";
+import AddProduct from "../products/AddProduct";
 
 // Orders
-import AddOrder from "./components/orders/AddOrder";
-import ViewOrder from "./components/orders/ViewOrder";
-import RentalOrder from "./components/orders/forms/RentalOrder";
-import RentalAgreement from "./components/orders/RentalAgreement/";
+import AddOrder from "../orders/AddOrder";
+import ViewOrder from "../orders/ViewOrder";
+import RentalOrder from "../orders/forms/RentalOrder";
+import RentalAgreement from "../orders/RentalAgreement";
 
 const createHistory = require("history").createBrowserHistory;
 
