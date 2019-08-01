@@ -11,20 +11,6 @@ import Spinner from "./../../common/Spinner";
 
 import "./RentalAgreement.css";
 
-/* 
-	User clicks "Sign Agreement". A modal appears with the three options, 
-	a signature pad, and two text inputs, one for their printed name, and
-	one for their title.
-
-	The submit button will submit the signData, the printed name, the title,
-	the order ID, the customer ID, and the user ID to create the OrderSignature.
-
-	It will then redirect the user back to the "rental agreement" page with
-	the newly created signature already in place.
-
-	From their it will return a signature object.
-*/
-
 class RentalAgreement extends Component {
   constructor(props) {
     super(props);
