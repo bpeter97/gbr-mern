@@ -7,6 +7,7 @@ import TextArea from "../common/TextArea";
 import SelectInput from "./../common/SelectInput";
 import AlertContainer from "../alerts/AlertContainer";
 import checkEmpty from "./../../utils/checkEmpty";
+import getSelectOptions from "./../../utils/getSelectOptions";
 
 class EditCustomerForm extends Component {
   constructor() {
@@ -100,18 +101,7 @@ class EditCustomerForm extends Component {
     const { errors } = this.props;
     const { isFlagged } = this.state;
 
-    let flaggedSelect;
-    if (isFlagged) {
-      flaggedSelect = [
-        { value: true, selected: true, label: "Yes" },
-        { value: false, selected: false, label: "No" }
-      ];
-    } else {
-      flaggedSelect = [
-        { value: false, selected: true, label: "No" },
-        { value: true, selected: false, label: "Yes" }
-      ];
-    }
+    let flaggedSelect = getSelectOptions(isFlagged, true);
 
     let form = (
       <form onSubmit={this.onSubmit}>

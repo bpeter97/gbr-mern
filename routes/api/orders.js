@@ -12,6 +12,20 @@ router
   .get(helpers.getOrders)
   .post(helpers.postOrder);
 
+// @route   api/orders/signature
+// @POST    Creates a new order signature.
+// @access  Private
+router.route("/signature/").post(helpers.postOrderSignature);
+
+// @route   api/orders/signature/:id
+// @GET     Retrieves an order signature.
+// @DELETE  Deletes an order signature.
+// @access  Private
+router
+  .route("/signature/:id")
+  .get(helpers.getOrderSignature)
+  .delete(helpers.deleteOrderSignature);
+
 // @route   api/orders/user/:id
 // @GET     Retrieves all orders created by a user.
 // @access  Private

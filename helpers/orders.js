@@ -11,6 +11,7 @@ const PurchasePrices = require("../models/PurchasePrices");
 const RequestedProduct = require("../models/RequestedProduct");
 const Product = require("../models/Product");
 const ContainerDelivery = require("../models/ContainerDelivery");
+const OrderSignature = require("./../models/OrderSignature");
 
 // validation files
 const validateOrderInput = require("../validation/order");
@@ -36,6 +37,7 @@ exports.getOrders = (req, res) => {
       path: "containers.container",
       populate: { path: "deliveries.delivery", model: ContainerDelivery }
     })
+    .populate("signature")
     .populate("createdBy")
     .then(orders => {
       if (!orders) {
@@ -311,6 +313,7 @@ exports.postOrder = (req, res) => {
                         model: ContainerDelivery
                       }
                     })
+                    .populate("signature")
                     .populate("createdBy")
                     .then(order => {
                       if (!order) {
@@ -385,6 +388,7 @@ exports.getOrder = (req, res) => {
       path: "containers.container",
       populate: { path: "deliveries.delivery", model: ContainerDelivery }
     })
+    .populate("signature")
     .populate("createdBy")
     .then(order => {
       if (!order) {
@@ -448,4 +452,86 @@ exports.deleteOrder = (req, res) => {
       res.json(order);
     })
     .catch(e => res.status(404).json(e));
+};
+
+// @route   POST api/orders/signature
+// @desc    Creates a single order signature for a specific order.
+// @access  Private
+exports.postOrderSignature = (req, res) => {
+  let errors = {};
+
+  let signature = new OrderSignature({
+    order: req.body.order,
+    customer: req.body.customer,
+    signature: req.body.signature,
+    printName: req.body.printName,
+    title: req.body.title
+  });
+
+  signature.save().then(sig => {
+    Order.findByIdAndUpdate(
+      req.body.order,
+      { $set: { signature: sig._id } },
+      (err, res) => {
+        if (err) {
+          errors.order =
+            "There was an issue updating the order with the signature ID.";
+          return res.status(400).json(errors);
+        }
+      }
+    );
+    res.json(sig);
+  });
+};
+
+// @route   GET api/orders/signature/:id
+// @desc    Retrieves a single order signature for a specific order.
+// @access  Private
+exports.getOrderSignature = (req, res) => {
+  let errors = {};
+
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.signature = "The ID provided was invalid";
+    return res.status(400).json(errors);
+  }
+
+  OrderSignature.findById(req.params.id).then(sig => {
+    if (!sig) {
+      errors.signature = "There was no signature found";
+      return res.status(400).json(errors);
+    }
+
+    res.json(sig);
+  });
+};
+
+// @route   DELETE api/orders/signature/:id
+// @desc    Deletes a single order signature for a specific order.
+// @access  Private
+exports.deleteOrderSignature = (req, res) => {
+  let errors = {};
+
+  if (!ObjectID.isValid(req.params.id)) {
+    errors.signature = "The ID provided was invalid";
+    return res.status(400).json(errors);
+  }
+
+  OrderSignature.findByIdAndRemove(req.params.id).then(sig => {
+    if (!sig) {
+      errors.signature = "There was no signature found";
+      return res.status(400).json(errors);
+    }
+    Order.findByIdAndUpdate(
+      sig.order,
+      { $set: { signature: null } },
+      (err, res) => {
+        if (err) {
+          errors.order =
+            "There was an issue updating the order with the signature ID.";
+          return res.status(400).json(errors);
+        }
+      }
+    );
+    res.json(sig);
+  });
 };

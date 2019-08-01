@@ -15,6 +15,7 @@ const {
   populateOrders,
   populateOrderSignatures
 } = require("./seed/purchasesSeed");
+const { signatureData } = require("./seed/signatureData");
 const {
   populatePurchaseTypes,
   purchaseTypes
@@ -104,6 +105,14 @@ describe("ORDERS", () => {
     }
   ];
   updatedOrder.containers[0].container = orders[0].containers[0].container.toHexString();
+
+  var newOrderSignature = {
+    order: orders[0]._id,
+    customer: orders[0].customer,
+    signature: signatureData,
+    printName: "Brian Peter",
+    title: "Web Developer"
+  };
 
   describe("GET /orders", () => {
     it("should return all orders that are not hidden", done => {
@@ -405,32 +414,127 @@ describe("ORDERS", () => {
   });
 
   describe("POST /orders/signature", () => {
-    it("should create and return a new OrderSignature", () => {
-      /* 
-        User clicks "Sign Agreement". A modal appears with the three options, 
-        a signature pad, and two text inputs, one for their printed name, and
-        one for their title.
-
-        The submit button will submit the signData, the printed name, the title,
-        the order ID, the customer ID, and the user ID to create the OrderSignature.
-
-        It will then redirect the user back to the "rental agreement" page with
-        the newly created signature already in place.
-
-        From their it will return a signature object.
-      */
+    it("should create and return a new OrderSignature", done => {
+      request(app)
+        .post(`/api/orders/signature`)
+        .send(newOrderSignature)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body).toBeTruthy();
+          expect(res.body.signature).toStrictEqual(signatureData);
+        })
+        .end(err => {
+          if (err) {
+            return done(err);
+          }
+          Order.findById(orders[0]._id)
+            .populate("signature")
+            .then(order => {
+              expect(order).toBeTruthy();
+              expect(order.signature).toBeTruthy();
+              expect(order.signature.order.toHexString()).toBe(orders[0]._id);
+              done();
+            })
+            .catch(e => done(e));
+        });
     });
-    it("should not create a new OrderSignature if not logged in");
+    it("should not create a new OrderSignature if not logged in", done => {
+      request(app)
+        .post(`/api/orders/signature`)
+        .send(newOrderSignature)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
   });
 
   describe("GET /orders/signature/:id", () => {
-    it("should return an OrderSignature");
-    it("should not return an OrderSignature if not logged in");
+    it("should return an OrderSignature", done => {
+      request(app)
+        .get(`/api/orders/signature/${orderSignature._id}`)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body).toBeTruthy();
+          expect(res.body.signature).toStrictEqual(signatureData);
+        })
+        .end(done);
+    });
+    it("should not return an OrderSignature with invalid ID", done => {
+      request(app)
+        .get(`/api/orders/signature/${orderSignature._id}ssss`)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body).toBeTruthy();
+          expect(res.body.signature).toStrictEqual(
+            "The ID provided was invalid"
+          );
+        })
+        .end(done);
+    });
+    it("should not return an OrderSignature if not logged in", done => {
+      request(app)
+        .get(`/api/orders/signature/${orderSignature._id}`)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
   });
 
   describe("DELETE /orders/signature/:id", () => {
-    it("should delete a specific OrderSignature");
-    it("should not delete an OrderSignature if not logged in");
-    it("should not delete an OrderSignature with invalid ID");
+    it("should delete a specific OrderSignature", done => {
+      request(app)
+        .del(`/api/orders/signature/${orderSignature._id}`)
+        .set("Authorization", users[0].token)
+        .expect(200)
+        .expect(res => {
+          expect(res.body).toBeTruthy();
+          expect(res.body.signature).toStrictEqual(signatureData);
+        })
+        .end(err => {
+          if (err) {
+            return done(err);
+          }
+          OrderSignature.findById(orderSignature._id)
+            .then(sig => {
+              expect(sig).not.toBeTruthy();
+              Order.findById(orders[0]._id)
+                .then(order => {
+                  expect(order.signature).toBeUndefined();
+                  done();
+                })
+                .catch(e => done(e));
+            })
+            .catch(e => done(e));
+        });
+    });
+    it("should not delete an OrderSignature if not logged in", done => {
+      request(app)
+        .del(`/api/orders/signature/${orderSignature._id}`)
+        .expect(401)
+        .expect(res => {
+          expect(res.body.auth).toBe("Authorization failed");
+        })
+        .end(done);
+    });
+    it("should not delete an OrderSignature with invalid ID", done => {
+      request(app)
+        .del(`/api/orders/signature/${orderSignature._id}ssss`)
+        .set("Authorization", users[0].token)
+        .expect(400)
+        .expect(res => {
+          expect(res.body).toBeTruthy();
+          expect(res.body.signature).toStrictEqual(
+            "The ID provided was invalid"
+          );
+        })
+        .end(done);
+    });
   });
 });

@@ -7,6 +7,7 @@ import TextArea from "../common/TextArea";
 import SelectInput from "../common/SelectInput";
 import AlertContainer from "../alerts/AlertContainer";
 import checkEmpty from "./../../utils/checkEmpty";
+import getSelectOptions from "./../../utils/getSelectOptions";
 
 class EditContainerForm extends Component {
   constructor() {
@@ -130,96 +131,13 @@ class EditContainerForm extends Component {
 
     const currentlyRented = this.state.stats.currentlyRented;
 
-    let flaggedSelect;
-    if (isFlagged) {
-      flaggedSelect = [
-        { value: true, selected: true, label: "Yes" },
-        { value: false, selected: false, label: "No" }
-      ];
-    } else {
-      flaggedSelect = [
-        { value: false, selected: true, label: "No" },
-        { value: true, selected: false, label: "Yes" }
-      ];
-    }
-
-    let rentalResaleSelect;
-    if (rentalResale === "Rental") {
-      rentalResaleSelect = [
-        { value: "Rental", selected: true, label: "Rental" },
-        { value: "Sales", selected: false, label: "Sales" }
-      ];
-    } else {
-      rentalResaleSelect = [
-        { value: "Sales", selected: true, label: "Sales" },
-        { value: "Rental", selected: false, label: "Rental" }
-      ];
-    }
-
-    let shelvesSelect;
-    if (hasShelves) {
-      shelvesSelect = [
-        { value: true, selected: true, label: "Yes" },
-        { value: false, selected: false, label: "No" }
-      ];
-    } else {
-      shelvesSelect = [
-        { value: false, selected: true, label: "No" },
-        { value: true, selected: false, label: "Yes" }
-      ];
-    }
-
-    let paintedSelect;
-    if (isPainted) {
-      paintedSelect = [
-        { value: true, selected: true, label: "Yes" },
-        { value: false, selected: false, label: "No" }
-      ];
-    } else {
-      paintedSelect = [
-        { value: false, selected: true, label: "No" },
-        { value: true, selected: false, label: "Yes" }
-      ];
-    }
-
-    let onBoxNumbersSelect;
-    if (hasOnBoxNumbers) {
-      onBoxNumbersSelect = [
-        { value: true, selected: true, label: "Yes" },
-        { value: false, selected: false, label: "No" }
-      ];
-    } else {
-      onBoxNumbersSelect = [
-        { value: false, selected: true, label: "No" },
-        { value: true, selected: false, label: "Yes" }
-      ];
-    }
-
-    let signsSelect;
-    if (hasSigns) {
-      signsSelect = [
-        { value: true, selected: true, label: "Yes" },
-        { value: false, selected: false, label: "No" }
-      ];
-    } else {
-      signsSelect = [
-        { value: false, selected: true, label: "No" },
-        { value: true, selected: false, label: "Yes" }
-      ];
-    }
-
-    let rentedSelect;
-    if (currentlyRented) {
-      rentedSelect = [
-        { value: true, selected: true, label: "Yes" },
-        { value: false, selected: false, label: "No" }
-      ];
-    } else {
-      rentedSelect = [
-        { value: false, selected: true, label: "No" },
-        { value: true, selected: false, label: "Yes" }
-      ];
-    }
+    let flaggedSelect = getSelectOptions(isFlagged, true);
+    let rentalResaleSelect = getSelectOptions(rentalResale, "Rental");
+    let shelvesSelect = getSelectOptions(hasShelves, true);
+    let paintedSelect = getSelectOptions(isPainted, true);
+    let onBoxNumbersSelect = getSelectOptions(hasOnBoxNumbers, true);
+    let signsSelect = getSelectOptions(hasSigns, true);
+    let rentedSelect = getSelectOptions(currentlyRented, true);
 
     let sizeSelect = [];
     let selectedSizeIndex = 0;
