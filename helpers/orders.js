@@ -460,12 +460,15 @@ exports.deleteOrder = (req, res) => {
 exports.postOrderSignature = (req, res) => {
   let errors = {};
 
+  let user = jwt_decode(req.token);
+
   let signature = new OrderSignature({
     order: req.body.order,
     customer: req.body.customer,
     signature: req.body.signature,
     printName: req.body.printName,
-    title: req.body.title
+    title: req.body.title,
+    createdBy: user._id
   });
 
   signature.save().then(sig => {
