@@ -28,6 +28,10 @@ exports.getOrders = (req, res) => {
       path: "products.product",
       model: RequestedProduct
     })
+    .populate({
+      path: "products.product",
+      populate: { path: "product.type", model: ProductType }
+    })
     .populate("containers.container")
     .populate({
       path: "containers.container",
@@ -379,6 +383,10 @@ exports.getOrder = (req, res) => {
       path: "products.product",
       model: RequestedProduct
     })
+    .populate({
+      path: "products.product",
+      populate: { path: "product.type", model: ProductType }
+    })
     .populate("containers.container")
     .populate({
       path: "containers.container",
@@ -466,7 +474,7 @@ exports.postOrderSignature = (req, res) => {
     order: req.body.order,
     customer: req.body.customer,
     signature: req.body.signature,
-    printName: req.body.printName,
+    printedName: req.body.printedName,
     title: req.body.title,
     createdBy: user._id
   });

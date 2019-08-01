@@ -18,12 +18,12 @@ class ViewOrder extends Component {
     } else {
       id = hasState.id;
       this.props.getOrder(id);
-    }  
+    }
   }
 
   viewAgreement = () => {
-    this.props.history.push("/orders/view/ra", {id: this.props.order._id});
-  }
+    this.props.history.push("/orders/view/ra", { id: this.props.order._id });
+  };
 
   render() {
     const { order } = this.props;
@@ -47,9 +47,7 @@ class ViewOrder extends Component {
           <div className="col-sm-12 pb-4">
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title text-center py-2">
-                  View Order
-                </h5>
+                <h5 className="card-title text-center py-2">View Order</h5>
                 <div className="d-flex flex-row justify-content-center">
                   <div className="col-12 py-md-3">
                     <div className="container">
@@ -58,8 +56,8 @@ class ViewOrder extends Component {
                           className="navbar-toggler ml-auto"
                           type="button"
                           data-toggle="collapse"
-                          data-target="#navbarNav"
-                          aria-controls="navbarNav"
+                          data-target="#viewOrderNavBar"
+                          aria-controls="viewOrderNavBar"
                           aria-expanded="false"
                           aria-label="Toggle navigation"
                         >
@@ -67,7 +65,7 @@ class ViewOrder extends Component {
                         </button>
                         <div
                           className="collapse navbar-collapse"
-                          id="navbarNav"
+                          id="viewOrderNavBar"
                         >
                           <ul className="navbar-nav w-100">
                             <li className="nav-item mx-lg-1 my-1 my-lg-0 active">
@@ -84,7 +82,12 @@ class ViewOrder extends Component {
                                 className="btn btn-sm btn-success"
                                 onClick={this.viewAgreement}
                               >
-                                Print Agreement
+                                Print Agreement{" "}
+                                {order
+                                  ? order.signature
+                                    ? "(Signed)"
+                                    : "(Not Signed)"
+                                  : "(Not Signed)"}
                               </button>
                             </li>
                             <li className="nav-item mx-lg-1 my-1 my-lg-0 ">
@@ -127,9 +130,7 @@ class ViewOrder extends Component {
                             {order.customer ? order.customer.name : ""}
                           </p>
                           <span className="pl-1">
-                            {order.customer
-                              ? order.customer.address1
-                              : ""}
+                            {order.customer ? order.customer.address1 : ""}
                           </span>
                           <br />
                           {order.customer ? (
@@ -144,19 +145,13 @@ class ViewOrder extends Component {
                           <span className="pl-1">
                             {order.customer ? order.customer.city : ""},{" "}
                             {order.customer ? order.customer.state : ""},{" "}
-                            {order.customer
-                              ? order.customer.zipcode
-                              : ""}
+                            {order.customer ? order.customer.zipcode : ""}
                           </span>
                           <br />
                           <span className="pl-1">
                             Phone:{" "}
-                            {order.customer
-                              ? order.customer.phone
-                              : "None"}{" "}
-                            {order.customer
-                              ? "Ext: " + order.customer.ext
-                              : ""}
+                            {order.customer ? order.customer.phone : "None"}{" "}
+                            {order.customer ? "Ext: " + order.customer.ext : ""}
                           </span>
                           <br />
 
@@ -213,9 +208,7 @@ class ViewOrder extends Component {
                             Order Type:
                           </h5>
                           <h5 className="d-inline ml-2 font-weight-normal">
-                            {order.purchaseType
-                              ? order.purchaseType.type
-                              : ""}
+                            {order.purchaseType ? order.purchaseType.type : ""}
                           </h5>
                           <br />
                           <h5 className="d-inline text-uppercase">Status:</h5>
@@ -241,85 +234,90 @@ class ViewOrder extends Component {
                       </div>
                       <div className="row mb-3">
                         <div className="pl-3 col-12 text-center">
-                          {order.containers ?
-                          order.containers.length <= 0 ? (
-                            <div>
-                              <h3 className="font-weight-normal mb-3">
-                                Containers
-                              </h3>
-                              <span className="font-italic">
-                                No containers are currently attached to the
-                                order.
-                              </span>
-                              <hr />
-                            </div>
-                          ) : (
-                            <ul className="list-group mt-3">
-                              <li className="list-group-item">
-                                <div className="row text-center">
-                                  <div className="col">
-                                    <span>GBR Number</span>
-                                  </div>
-                                  <div className="col">
-                                    <span>Serial Number</span>
-                                  </div>
-                                  <div className="col">
-                                    <span>Size</span>
-                                  </div>
-                                  <div className="col d-none d-sm-block">
-                                    <span>Type</span>
-                                  </div>
-                                  <div className="col">
-                                    <span>Status</span>
-                                  </div>
-                                </div>
-                              </li>
-                              {order.containers.map(container => {
-                                let c = container.container;
-                                console.log(c);
-                                return (
-                                  <li
-                                    key={Math.random(10)}
-                                    className="list-group-item"
-                                  >
-                                    <div className="row text-center">
-                                      <div className="col">
-                                        <span>
-                                          {c.gbrNumber ? c.gbrNumber : ""}
-                                        </span>
-                                      </div>
-                                      <div className="col">
-                                        <span>
-                                          {c.serialNumber ? c.serialNumber : ""}
-                                        </span>
-                                      </div>
-                                      <div className="col">
-                                        <span>
-                                          {c ? c.size.size + "'" : ""}
-                                        </span>
-                                      </div>
-                                      <div className="col d-none d-sm-block">
-                                        <span>
-                                          {c.rentalResale ? c.rentalResale : ""}
-                                        </span>
-                                      </div>
-                                      <div className="col">
-                                        <span>
-                                          {c.deliveries
-                                            ? c.deliveries.slice(-1)[0].delivery
-                                                .isDelivered
-                                              ? "Delivered"
-                                              : "Pending Delivery"
-                                            : ""}
-                                        </span>
-                                      </div>
+                          {order.containers ? (
+                            order.containers.length <= 0 ? (
+                              <div>
+                                <h3 className="font-weight-normal mb-3">
+                                  Containers
+                                </h3>
+                                <span className="font-italic">
+                                  No containers are currently attached to the
+                                  order.
+                                </span>
+                                <hr />
+                              </div>
+                            ) : (
+                              <ul className="list-group mt-3">
+                                <li className="list-group-item">
+                                  <div className="row text-center">
+                                    <div className="col">
+                                      <span>GBR Number</span>
                                     </div>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          )
-                          : "No Order" }
+                                    <div className="col">
+                                      <span>Serial Number</span>
+                                    </div>
+                                    <div className="col">
+                                      <span>Size</span>
+                                    </div>
+                                    <div className="col d-none d-sm-block">
+                                      <span>Type</span>
+                                    </div>
+                                    <div className="col">
+                                      <span>Status</span>
+                                    </div>
+                                  </div>
+                                </li>
+                                {order.containers.map(container => {
+                                  let c = container.container;
+                                  return (
+                                    <li
+                                      key={Math.random(10)}
+                                      className="list-group-item"
+                                    >
+                                      <div className="row text-center">
+                                        <div className="col">
+                                          <span>
+                                            {c.gbrNumber ? c.gbrNumber : ""}
+                                          </span>
+                                        </div>
+                                        <div className="col">
+                                          <span>
+                                            {c.serialNumber
+                                              ? c.serialNumber
+                                              : ""}
+                                          </span>
+                                        </div>
+                                        <div className="col">
+                                          <span>
+                                            {c ? c.size.size + "'" : ""}
+                                          </span>
+                                        </div>
+                                        <div className="col d-none d-sm-block">
+                                          <span>
+                                            {c.rentalResale
+                                              ? c.rentalResale
+                                              : ""}
+                                          </span>
+                                        </div>
+                                        <div className="col">
+                                          <span>
+                                            {c.deliveries
+                                              ? c.deliveries.slice(-1)[0]
+                                                  .delivery.isDelivered
+                                                ? "Delivered"
+                                                : "Pending Delivery"
+                                              : ""}
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            )
+                          ) : (
+                            "No Order"
+                          )}
                         </div>
                       </div>
                       <div className="row mb-3">
@@ -459,48 +457,50 @@ class ViewOrder extends Component {
                                 </div>
                               </div>
                             </li>
-                            {order.products ?
-                            order.products.map(product => {
-                              let p = product.product;
-                              return (
-                                <li
-                                  className="list-group-item"
-                                  key={Math.random(10)}
-                                >
-                                  <div className="row text-center">
-                                    <div className="col">
-                                      <span>
-                                        {p.product.name ? p.product.name : ""}
-                                      </span>
-                                    </div>
-                                    <div className="col">
-                                      <span>
-                                        $
-                                        {!p.product.rental
-                                          ? p.product.price.toFixed(2)
-                                          : "0.00"}
-                                      </span>
-                                    </div>
-                                    <div className="col">
-                                      <span>
-                                        $
-                                        {p.product.rental
-                                          ? p.product.price.toFixed(2)
-                                          : "0.00"}
-                                      </span>
-                                    </div>
-                                    <div className="col">
-                                      <span>
-                                        {p.productQuantity
-                                          ? p.productQuantity
-                                          : ""}
-                                      </span>
-                                    </div>
-                                  </div>
-                                </li>
-                              );
-                            })
-                            : "No Order" }
+                            {order.products
+                              ? order.products.map(product => {
+                                  let p = product.product;
+                                  return (
+                                    <li
+                                      className="list-group-item"
+                                      key={Math.random(10)}
+                                    >
+                                      <div className="row text-center">
+                                        <div className="col">
+                                          <span>
+                                            {p.product.name
+                                              ? p.product.name
+                                              : ""}
+                                          </span>
+                                        </div>
+                                        <div className="col">
+                                          <span>
+                                            $
+                                            {!p.product.rental
+                                              ? p.product.price.toFixed(2)
+                                              : "0.00"}
+                                          </span>
+                                        </div>
+                                        <div className="col">
+                                          <span>
+                                            $
+                                            {p.product.rental
+                                              ? p.product.price.toFixed(2)
+                                              : "0.00"}
+                                          </span>
+                                        </div>
+                                        <div className="col">
+                                          <span>
+                                            {p.productQuantity
+                                              ? p.productQuantity
+                                              : ""}
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  );
+                                })
+                              : "No Order"}
                           </ul>
                         </div>
                       </div>

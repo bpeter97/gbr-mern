@@ -70,6 +70,9 @@ export const ADD_ORDER = "ADD_ORDER";
 export const EDIT_ORDER = "EDIT_ORDER";
 export const DELETE_ORDER = "DELETE_ORDER";
 export const CLEAR_ORDER = "CLEAR_ORDER";
+export const ADD_ORDER_SIGNATURE = "ADD_ORDER_SIGNATURE";
+export const DELETE_ORDER_SIGNATURE = "DELETE_ORDER_SIGNATURE";
+export const GET_ORDER_SIGNATURE = "GET_ORDER_SIGNATURE";
 export const ORDER_LOADING = "ORDER_LOADING";
 
 // containers

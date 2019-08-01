@@ -5,7 +5,10 @@ import {
   EDIT_ORDER,
   DELETE_ORDER,
   CLEAR_ORDER,
-  ORDER_LOADING
+  ORDER_LOADING,
+  GET_ORDER_SIGNATURE,
+  ADD_ORDER_SIGNATURE,
+  DELETE_ORDER_SIGNATURE
 } from "../actions/types";
 
 const initialState = {
@@ -60,6 +63,30 @@ export default function(state = initialState, action) {
       return {
         ...state,
         orders: state.orders.filter(order => order._id !== action.payload)
+      };
+    case GET_ORDER_SIGNATURE:
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          signature: action.payload
+        }
+      };
+    case ADD_ORDER_SIGNATURE:
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          signature: action.payload
+        }
+      };
+    case DELETE_ORDER_SIGNATURE:
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          signature: null
+        }
       };
     case CLEAR_ORDER:
       return {};
