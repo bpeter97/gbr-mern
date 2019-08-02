@@ -9,7 +9,7 @@ import { connectRouter } from "connected-react-router";
 import quoteReducer from "./quote";
 import productReducer from "./product";
 import orderReducer from "./order";
-import containerReducer from "./../../reducers/containerReducer";
+import containerReducer from "./container";
 import notificationReducer from "./notification";
 import visitReducer from "./visit";
 import eventReducer from "./event";

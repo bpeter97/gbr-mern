@@ -1,6 +1,7 @@
 import axios from "axios";
 import SET_SUCCESS, { clearSuccess } from "./success";
 import GET_ERRORS, { clearErrors } from "./error";
+import SET_PURCHASE_CUSTOMER from "./purchase";
 
 /* 
 ################## TYPES ##################
@@ -13,7 +14,6 @@ export const DELETE_CUSTOMER = "DELETE_CUSTOMER";
 export const CLEAR_CUSTOMER = "DELETE_CUSTOMER";
 export const CUSTOMERS_LOADING = "CUSTOMERS_LOADING";
 export const CUSTOMER_LOADING = "CUSTOMER_LOADING";
-export const SET_PURCHASE_CUSTOMER = "SET_PURCHASE_CUSTOMER";
 
 /* 
 ################## REDUCER ##################

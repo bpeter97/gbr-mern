@@ -6,7 +6,7 @@ import {
   getContainer,
   clearContainer,
   getContainerSizes
-} from "../../actions/containerActions";
+} from "../../redux/modules/container";
 import EditContainerForm from "./EditContainerForm";
 
 // Components

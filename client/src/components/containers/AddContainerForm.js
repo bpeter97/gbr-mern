@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
-import { addContainer } from "../../actions/containerActions";
+import { addContainer } from "../../redux/modules/container";
 import TextArea from "../common/TextArea";
 import SelectInput from "../common/SelectInput";
 import AlertContainer from "../alerts/AlertContainer";
