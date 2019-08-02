@@ -13,11 +13,9 @@ import {
   setPurchaseType,
   getPurchaseTypes
 } from "./../../actions/purchaseActions";
-import {
-  clearSuccess,
-  setErrors,
-  clearErrors
-} from "./../../actions/commonActions";
+
+import { clearSuccess } from "./../../redux/modules/success";
+import { clearErrors, setErrors } from "./../../redux/modules/error";
 
 class AddOrderForm extends Component {
   constructor() {
