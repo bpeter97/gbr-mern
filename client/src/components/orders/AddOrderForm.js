@@ -6,7 +6,7 @@ import GetJobInfo from "./steps/GetJobInfo";
 import SelectCustomer from "./steps/SelectCustomer";
 import AddProductsToCart from "./steps/AddProductsToCart";
 import AlertContainer from "./../alerts/AlertContainer";
-import { addOrder } from "./../../actions/orderActions";
+import { addOrder } from "./../../redux/modules/order";
 import checkEmpty from "./../../utils/checkEmpty";
 
 import {

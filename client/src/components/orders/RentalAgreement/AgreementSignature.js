@@ -7,7 +7,7 @@ import SignaturePad from "signature_pad";
 import {
   addOrderSignature,
   deleteOrderSignature
-} from "./../../../actions/orderActions";
+} from "./../../../redux/modules/order";
 
 export class AgreementSignature extends Component {
   constructor() {

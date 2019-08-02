@@ -6,7 +6,7 @@ import ReactTable from "react-table";
 import matchSorter from "match-sorter";
 
 // Actions
-import { getOrders, getOrder } from "../../actions/orderActions";
+import { getOrders, getOrder } from "../../redux/modules/order";
 
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";

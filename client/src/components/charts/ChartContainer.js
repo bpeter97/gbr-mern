@@ -7,7 +7,7 @@ import SalesChart from "./SalesChart";
 import StockChart from "./StockChart";
 
 import { getQuotes } from "./../../redux/modules/quote";
-import { getOrders } from "../../actions/orderActions";
+import { getOrders } from "../../redux/modules/order";
 import { getContainers } from "../../actions/containerActions";
 
 class ChartContainer extends Component {

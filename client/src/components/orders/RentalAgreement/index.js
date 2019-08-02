@@ -6,7 +6,7 @@ import Shortcuts from "./../../dashboard/Shortcuts";
 import AgreementTerms from "./AgreementTerms";
 import AgreementSignature from "./AgreementSignature";
 
-import { getOrder } from "./../../../actions/orderActions";
+import { getOrder } from "./../../../redux/modules/order";
 import Spinner from "./../../common/Spinner";
 
 import "./RentalAgreement.css";

@@ -6,7 +6,7 @@ import checkEmpty from "./../../utils/checkEmpty";
 // Sub-components
 import Shortcuts from "../dashboard/Shortcuts";
 
-import { getOrder } from "./../../actions/orderActions";
+import { getOrder } from "./../../redux/modules/order";
 
 class ViewOrder extends Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 import { getQuotes } from "./../../redux/modules/quote";
-import { getOrders } from "../../actions/orderActions";
+import { getOrders } from "../../redux/modules/order";
 import PropTypes from "prop-types";
 import Spinner from "./../common/Spinner";
 

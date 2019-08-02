@@ -1,23 +1,111 @@
 import axios from "axios";
+import GET_ERRORS from "./error";
+import SET_SUCCESS from "./success";
 
-import {
-	GET_ORDERS,
-	GET_ORDER,
-	ADD_ORDER,
-	// EDIT_ORDER,
-	// DELETE_ORDER,
-	// GET_ERRORS,
-	CLEAR_ORDER,
-	ORDER_LOADING,
-	SET_SUCCESS,
-	GET_ERRORS,
-	ADD_ORDER_SIGNATURE,
-	DELETE_ORDER_SIGNATURE,
-	GET_ORDER_SIGNATURE
-} from "./types";
-// import { setSuccess } from "./../redux/modules/success";
-// import { clearErrors } from "./../redux/modules/error";
+/* 
+################## TYPES ##################
+*/
+export const GET_ORDERS = "GET_ORDERS";
+export const GET_ORDER = "GET_ORDER";
+export const ADD_ORDER = "ADD_ORDER";
+export const EDIT_ORDER = "EDIT_ORDER";
+export const DELETE_ORDER = "DELETE_ORDER";
+export const CLEAR_ORDER = "CLEAR_ORDER";
+export const ADD_ORDER_SIGNATURE = "ADD_ORDER_SIGNATURE";
+export const DELETE_ORDER_SIGNATURE = "DELETE_ORDER_SIGNATURE";
+export const GET_ORDER_SIGNATURE = "GET_ORDER_SIGNATURE";
+export const ORDER_LOADING = "ORDER_LOADING";
 
+/* 
+################## REDUCER ##################
+*/
+const initialState = {
+	orders: [],
+	order: {},
+	loading: false
+};
+
+export default function(state = initialState, action) {
+	switch (action.type) {
+		case ORDER_LOADING:
+			return {
+				...state,
+				loading: true
+			};
+		case GET_ORDERS: {
+			action.payload.forEach(order => {
+				let newCreationDate = new Date(order.creationDate);
+				let newDateFormat =
+					newCreationDate.getMonth() +
+					"/" +
+					newCreationDate.getDay() +
+					"/" +
+					newCreationDate.getFullYear();
+				order.creationDate = newDateFormat;
+			});
+
+			return {
+				...state,
+				orders: action.payload,
+				loading: false
+			};
+		}
+		case GET_ORDER:
+			return {
+				...state,
+				order: action.payload,
+				loading: false
+			};
+		case EDIT_ORDER:
+			return {
+				...state,
+				order: action.payload,
+				loading: false
+			};
+		case ADD_ORDER:
+			return {
+				...state,
+				orders: [action.payload, ...state.orders]
+			};
+		case DELETE_ORDER:
+			return {
+				...state,
+				orders: state.orders.filter(order => order._id !== action.payload)
+			};
+		case GET_ORDER_SIGNATURE:
+			return {
+				...state,
+				order: {
+					...state.order,
+					signature: action.payload
+				}
+			};
+		case ADD_ORDER_SIGNATURE:
+			return {
+				...state,
+				order: {
+					...state.order,
+					signature: action.payload
+				}
+			};
+		case DELETE_ORDER_SIGNATURE:
+			return {
+				...state,
+				order: {
+					...state.order,
+					signature: null
+				}
+			};
+		case CLEAR_ORDER:
+			return {};
+		default:
+			return state;
+	}
+}
+
+/* 
+################## ACTION CREATORS ##################
+*/
 export const getOrders = () => dispatch => {
 	dispatch(setOrderLoading());
 	axios

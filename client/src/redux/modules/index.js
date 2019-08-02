@@ -8,7 +8,7 @@ import customerReducer from "./../../reducers/customerReducer";
 import { connectRouter } from "connected-react-router";
 import quoteReducer from "./quote";
 import productReducer from "./product";
-import orderReducer from "./../../reducers/orderReducer";
+import orderReducer from "./order";
 import containerReducer from "./../../reducers/containerReducer";
 import notificationReducer from "./../../reducers/notificationReducer";
 import visitReducer from "./visit";
