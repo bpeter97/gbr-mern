@@ -10,7 +10,7 @@ import quoteReducer from "./quote";
 import productReducer from "./product";
 import orderReducer from "./order";
 import containerReducer from "./../../reducers/containerReducer";
-import notificationReducer from "./../../reducers/notificationReducer";
+import notificationReducer from "./notification";
 import visitReducer from "./visit";
 import eventReducer from "./../../reducers/eventReducer";
 import cartReducer from "./../../reducers/cartReducer";
