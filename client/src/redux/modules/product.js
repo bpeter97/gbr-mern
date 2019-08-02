@@ -1,20 +1,83 @@
 import axios from "axios";
+import { clearSuccess } from "./../modules/success";
+import GET_ERRORS, { clearErrors } from "./../modules/error";
+import SET_SUCCESS from "./../modules/success";
 
-import {
-	GET_PRODUCTS,
-	GET_PRODUCT,
-	GET_PRODUCT_TYPES,
-	ADD_PRODUCT,
-	EDIT_PRODUCT,
-	// DELETE_PRODUCT,
-	GET_ERRORS,
-	CLEAR_PRODUCT,
-	PRODUCT_LOADING,
-	SET_SUCCESS
-} from "./types";
-import { clearSuccess } from "./../redux/modules/success";
-import { clearErrors } from "./../redux/modules/error";
+/* 
+################## TYPES ##################
+*/
+export const GET_PRODUCTS = "GET_PRODUCTS";
+export const GET_PRODUCT_TYPES = "GET_PRODUCT_TYPES";
+export const GET_PRODUCT = "GET_PRODUCT";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const EDIT_PRODUCT = "EDIT_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const CLEAR_PRODUCT = "CLEAR_PRODUCT";
+export const PRODUCT_LOADING = "PRODUCT_LOADING";
 
+/* 
+################## REDUCER ##################
+*/
+const initialState = {
+	products: [],
+	product: {},
+	types: [],
+	loading: false
+};
+
+export default function(state = initialState, action) {
+	switch (action.type) {
+		case PRODUCT_LOADING:
+			return {
+				...state,
+				loading: true
+			};
+		case GET_PRODUCTS:
+			return {
+				...state,
+				products: action.payload,
+				loading: false
+			};
+		case GET_PRODUCT:
+			return {
+				...state,
+				product: action.payload,
+				loading: false
+			};
+		case GET_PRODUCT_TYPES:
+			return {
+				...state,
+				types: action.payload,
+				loading: false
+			};
+		case EDIT_PRODUCT:
+			return {
+				...state,
+				product: action.payload,
+				loading: false
+			};
+		case ADD_PRODUCT:
+			return {
+				...state,
+				products: [action.payload, ...state.products]
+			};
+		case DELETE_PRODUCT:
+			return {
+				...state,
+				products: state.products.filter(
+					product => product._id !== action.payload
+				)
+			};
+		case CLEAR_PRODUCT:
+			return {};
+		default:
+			return state;
+	}
+}
+
+/* 
+################## ACTION CREATORS ##################
+*/
 export const getProducts = () => dispatch => {
 	dispatch(setProductLoading());
 	axios
