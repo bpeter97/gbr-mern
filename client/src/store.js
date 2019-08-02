@@ -11,12 +11,12 @@ export const history = createBrowserHistory();
 const middleware = [thunk, multi];
 
 const store = createStore(
-  rootReducer(history),
-  initialState,
-  compose(
-    applyMiddleware(...middleware)
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+	rootReducer(history),
+	initialState,
+	compose(
+		applyMiddleware(...middleware),
+		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	)
 );
 
 export default store;

@@ -96,7 +96,7 @@ export class AgreementSignature extends Component {
 
   render() {
     if (this.props.order.signature) {
-      let signatureData = this.props.order.signature.signature[0][0];
+      let signatureData = this.props.order.signature.signature.length > 0 ? this.props.order.signature.signature[0][0] : null;
 
       let image = signatureData,
         container = document.getElementById("container"),
