@@ -1,20 +1,75 @@
 import axios from "axios";
+import SET_SUCCESS, { clearSuccess } from "./success";
+import GET_ERRORS, { clearErrors } from "./error";
 
-import {
-	GET_CUSTOMERS,
-	GET_CUSTOMER,
-	ADD_CUSTOMER,
-	EDIT_CUSTOMER,
-	DELETE_CUSTOMER,
-	GET_ERRORS,
-	CLEAR_CUSTOMER,
-	CUSTOMER_LOADING,
-	SET_SUCCESS,
-	SET_PURCHASE_CUSTOMER
-} from "./types";
-import { clearSuccess } from "./../redux/modules/success";
-import { clearErrors } from "./../redux/modules/error";
+/* 
+################## TYPES ##################
+*/
+export const GET_CUSTOMERS = "GET_CUSTOMERS";
+export const GET_CUSTOMER = "GET_CUSTOMER";
+export const EDIT_CUSTOMER = "EDIT_CUSTOMER";
+export const ADD_CUSTOMER = "ADD_CUSTOMER";
+export const DELETE_CUSTOMER = "DELETE_CUSTOMER";
+export const CLEAR_CUSTOMER = "DELETE_CUSTOMER";
+export const CUSTOMERS_LOADING = "CUSTOMERS_LOADING";
+export const CUSTOMER_LOADING = "CUSTOMER_LOADING";
+export const SET_PURCHASE_CUSTOMER = "SET_PURCHASE_CUSTOMER";
 
+/* 
+################## REDUCER ##################
+*/
+const initialState = {
+	customers: [],
+	customer: {},
+	loading: false
+};
+
+export default function(state = initialState, action) {
+	switch (action.type) {
+		case CUSTOMER_LOADING:
+			return {
+				...state,
+				loading: true
+			};
+		case ADD_CUSTOMER:
+			return {
+				...state,
+				customers: [action.payload, ...state.customers]
+			};
+		case GET_CUSTOMERS:
+			return {
+				...state,
+				customers: action.payload,
+				loading: false
+			};
+		case GET_CUSTOMER:
+			return {
+				...state,
+				customer: action.payload,
+				loading: false
+			};
+		case EDIT_CUSTOMER:
+			return {
+				...state,
+				customer: action.payload
+			};
+		case DELETE_CUSTOMER:
+			return {
+				...state,
+				customers: state.customers.filter(
+					customer => customer._id !== action.payload
+				)
+			};
+		case CLEAR_CUSTOMER:
+			return {};
+		default:
+			return state;
+	}
+}
+
+/* 
+################## ACTION CREATORS ##################
+*/
 export const addCustomer = (customerData, purchase = false) => dispatch => {
 	dispatch(clearErrors());
 	dispatch(clearSuccess());

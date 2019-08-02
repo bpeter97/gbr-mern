@@ -7,7 +7,7 @@ import TextArea from "../../common/TextArea";
 import SelectInput from "./../../common/SelectInput";
 import AlertContainer from "./../../alerts/AlertContainer";
 
-import { getCustomers, addCustomer } from "./../../../actions/customerActions";
+import { getCustomers, addCustomer } from "./../../../redux/modules/customer";
 import { setPurchaseCustomer } from "./../../../redux/modules/purchase";
 
 export class SelectCustomer extends Component {

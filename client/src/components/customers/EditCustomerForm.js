@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
-import { editCustomer } from "../../actions/customerActions";
+import { editCustomer } from "../../redux/modules/customer";
 import TextArea from "../common/TextArea";
 import SelectInput from "./../common/SelectInput";
 import AlertContainer from "../alerts/AlertContainer";

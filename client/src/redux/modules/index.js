@@ -4,7 +4,7 @@ import errorReducer from "./error";
 import successReducer from "./success";
 import userReducer from "./user";
 import todoReducer from "./todo";
-import customerReducer from "./../../reducers/customerReducer";
+import customerReducer from "./customer";
 import { connectRouter } from "connected-react-router";
 import quoteReducer from "./quote";
 import productReducer from "./product";

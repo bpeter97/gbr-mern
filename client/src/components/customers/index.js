@@ -6,7 +6,7 @@ import "react-table/react-table.css";
 import matchSorter from "match-sorter";
 
 // Actions
-import { getCustomers } from "../../actions/customerActions";
+import { getCustomers } from "../../redux/modules/customer";
 
 // Components
 import Shortcuts from "./../dashboard/Shortcuts";
