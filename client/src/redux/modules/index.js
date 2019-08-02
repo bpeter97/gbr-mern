@@ -13,7 +13,7 @@ import containerReducer from "./container";
 import notificationReducer from "./notification";
 import visitReducer from "./visit";
 import eventReducer from "./event";
-import cartReducer from "./../../reducers/cartReducer";
+import cartReducer from "./cart";
 import purchaseReducer from "./purchase";
 
 export default history =>
