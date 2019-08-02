@@ -1,16 +1,51 @@
 import axios from "axios";
+import SET_SUCCESS, { clearSuccess } from "./success";
+import GET_ERRORS, { clearErrors } from "./error";
 
-import {
-	GET_EVENTS,
-	GET_EVENT,
-	EVENTS_LOADING,
-	EDIT_EVENT,
-	GET_ERRORS,
-	SET_SUCCESS
-} from "./types";
-import { clearSuccess } from "./../redux/modules/success";
-import { clearErrors } from "./../redux/modules/error";
+/* 
+################## TYPES ##################
+*/
+export const GET_EVENT = "GET_EVENT";
+export const GET_EVENTS = "GET_EVENTS";
+export const EVENTS_LOADING = "EVENTS_LOADING";
+export const EDIT_EVENT = "EDIT_EVENT";
 
+/* 
+################## REDUCER ##################
+*/
+const initialState = {
+	events: [],
+	event: {},
+	loading: false
+};
+
+export default function(state = initialState, action) {
+	switch (action.type) {
+		case EVENTS_LOADING:
+			return {
+				...state,
+				loading: true
+			};
+		case GET_EVENTS:
+			return {
+				...state,
+				events: action.payload,
+				loading: false
+			};
+		case GET_EVENT:
+			return {
+				...state,
+				event: action.payload,
+				loading: false
+			};
+		default:
+			return state;
+	}
+}
+
+/* 
+################## ACTION CREATORS ##################
+*/
 export const getEvents = () => dispatch => {
 	dispatch(setEventLoading());
 	axios

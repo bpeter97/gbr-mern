@@ -12,7 +12,7 @@ import orderReducer from "./order";
 import containerReducer from "./../../reducers/containerReducer";
 import notificationReducer from "./notification";
 import visitReducer from "./visit";
-import eventReducer from "./../../reducers/eventReducer";
+import eventReducer from "./event";
 import cartReducer from "./../../reducers/cartReducer";
 import purchaseReducer from "./purchase";
 
