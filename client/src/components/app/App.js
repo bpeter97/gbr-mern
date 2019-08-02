@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter as Router } from "connected-react-router";
 
-import store from "../../store";
+import store from "./../../redux/store";
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../../utils/setAuthToken";
