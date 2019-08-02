@@ -12,7 +12,7 @@ import checkEmpty from "./../../utils/checkEmpty";
 import {
   setPurchaseType,
   getPurchaseTypes
-} from "./../../actions/purchaseActions";
+} from "./../../redux/modules/purchase";
 
 import { clearSuccess } from "./../../redux/modules/success";
 import { clearErrors, setErrors } from "./../../redux/modules/error";

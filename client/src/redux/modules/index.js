@@ -14,7 +14,7 @@ import notificationReducer from "./../../reducers/notificationReducer";
 import visitReducer from "./visit";
 import eventReducer from "./../../reducers/eventReducer";
 import cartReducer from "./../../reducers/cartReducer";
-import purchaseReducer from "./../../reducers/purchaseReducer";
+import purchaseReducer from "./purchase";
 
 export default history =>
 	combineReducers({
