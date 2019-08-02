@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import ReactTable from "react-table";
 import matchSorter from "match-sorter";
-import { addItem } from "./../../../actions/cartActions";
+import { addItem } from "./../../../redux/modules/cart";
 import AlertContainer from "./../../alerts/AlertContainer";
 
 class AddProductsToCart extends Component {

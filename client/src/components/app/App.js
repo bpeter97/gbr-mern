@@ -7,7 +7,7 @@ import store from "./../../redux/store";
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../../utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "./../../actions/defaultsActions";
+import { setCurrentUser, logoutUser } from "./../../redux/modules/auth";
 
 import Login from "../defaults/Login";
 import PrivateRoute from "../common/PrivateRoute";

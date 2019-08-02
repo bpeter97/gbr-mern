@@ -9,7 +9,7 @@ import {
   removeItem,
   modifyTaxRate,
   changeItemPrice
-} from "./../../actions/cartActions";
+} from "./../../redux/modules/cart";
 
 class GBRCart extends Component {
   constructor() {

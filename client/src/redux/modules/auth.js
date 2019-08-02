@@ -1,10 +1,40 @@
 import axios from "axios";
-import setAuthToken from "../utils/setAuthToken";
+import isEmpty from "./../../validation/isEmpty";
+import setAuthToken from "./../../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
+import GET_ERRORS, { clearErrors } from "./error";
 
-import { GET_ERRORS, SET_CURRENT_USER } from "./types";
-import { clearErrors } from "./../redux/modules/error";
+/* 
+################## TYPES ##################
+*/
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const GET_USERS = "GET_USERS";
+export const USERS_LOADING = "USERS_LOADING";
 
+/* 
+################## REDUCER ##################
+*/
+const initialState = {
+	isAuthenticated: false,
+	user: {}
+};
+
+export default function(state = initialState, action) {
+	switch (action.type) {
+		case SET_CURRENT_USER:
+			return {
+				...state,
+				isAuthenticated: !isEmpty(action.payload),
+				user: action.payload
+			};
+		default:
+			return state;
+	}
+}
+
+/* 
+################## ACTION CREATORS ##################
+*/
 export const registerUser = (userData, history) => dispatch => {
 	dispatch(clearErrors());
 	axios

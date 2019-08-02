@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { logoutUser } from "../../actions/defaultsActions";
+import { logoutUser } from "../../redux/modules/auth";
 
 import SvgIcon from "react-icons-kit";
 import { AccountIcon } from "../../icons";
