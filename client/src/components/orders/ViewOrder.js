@@ -5,8 +5,10 @@ import checkEmpty from "./../../utils/checkEmpty";
 
 // Sub-components
 import Shortcuts from "../dashboard/Shortcuts";
+import DeliverContainer from "./forms/DeliverContainer";
 
 import { getOrder } from "./../../redux/modules/order";
+import { getContainers } from "./../../redux/modules/container";
 
 class ViewOrder extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class ViewOrder extends Component {
     } else {
       id = hasState.id;
       this.props.getOrder(id);
+      this.props.getContainers();
     }
   }
 
@@ -26,8 +29,18 @@ class ViewOrder extends Component {
   };
 
   render() {
-    const { order } = this.props;
-
+    const { order, containers } = this.props;
+    
+    let cons;
+    
+    if(containers.containers) {
+      if(order.purchaseType) {
+        cons = containers.containers.filter(container => {
+          return container.rentalResale == order.purchaseType.type;
+        });  
+      }
+    }
+    
     let orderStatus = "";
 
     switch (order.stage) {
@@ -112,6 +125,8 @@ class ViewOrder extends Component {
                               <button
                                 type="button"
                                 className="btn btn-sm btn-danger"
+                                data-toggle="modal"
+                                data-target="#deleteOrderModal"
                               >
                                 Delete Order
                               </button>
@@ -535,48 +550,7 @@ class ViewOrder extends Component {
                               </button>
                             </div>
                             <div className="modal-body">
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
-                              ............................................................
+                              <DeliverContainer containers={cons} />
                             </div>
                             <div className="modal-footer">
                               <button
@@ -588,6 +562,58 @@ class ViewOrder extends Component {
                               </button>
                               <button type="button" className="btn btn-success">
                                 Deliver Container
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* DELETE ORDER MODAL */}
+                      <div
+                        className="modal fade"
+                        id="deleteOrderModal"
+                        tabIndex="-1"
+                        role="dialog"
+                        aria-labelledby="DeleteOrderModal"
+                        aria-hidden="true"
+                      >
+                        <div
+                          className="modal-dialog modal-dialog-centered modal-lg"
+                          role="document"
+                        >
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h5
+                                className="modal-title"
+                                id="exampleModalCenterTitle"
+                              >
+                                Delete Order
+                              </h5>
+                              <button
+                                type="button"
+                                className="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                              >
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div className="modal-body">
+                              <div className="alert alert-danger" role="alert">
+                                <p className="font-weight-bold">WARNING:</p>
+                                <p>This will permanently delete the order from the system.</p>
+                              </div>
+                            </div>
+                            <div className="modal-footer">
+                              <button
+                                type="button"
+                                className="btn btn-default"
+                                data-dismiss="modal"
+                              >
+                                Cancel
+                              </button>
+                              <button type="button" className="btn btn-danger">
+                                Delete
                               </button>
                             </div>
                           </div>
@@ -608,17 +634,19 @@ class ViewOrder extends Component {
 ViewOrder.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  order: PropTypes.object.isRequired
+  order: PropTypes.object.isRequired,
+  containers: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
   location: state.router,
-  order: state.orders.order
+  order: state.orders.order,
+  containers: state.containers
 });
 
 export default connect(
   mapStateToProps,
-  { getOrder }
+  { getOrder, getContainers }
 )(ViewOrder);
