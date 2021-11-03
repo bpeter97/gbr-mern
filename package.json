@@ -43,7 +43,7 @@
     "prop-types": "^15.7.2",
     "react-tooltip": "^3.10.0",
     "signature_pad": "^3.0.0-beta.3",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "expect": "^24.8.0",
